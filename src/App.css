@@ -417,7 +417,7 @@ text-align: left;
 
 
 input[type="date"]{
-  padding: 15px;
+  padding: 21px;
   width: 200px;
   height: 3px;
   font-family: "Roboto Mono",monospace;
@@ -429,8 +429,9 @@ input[type="date"]{
 }
 
 #select{
+  padding:15px;
   width: 220px;
-  height: 35px;
+  height: 46px;
   border: 1px solid #f1eaea;
 }
 

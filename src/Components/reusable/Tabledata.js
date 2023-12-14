@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { GrView } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
+import { FaArrowsRotate } from "react-icons/fa6";
+
 
 const Tr=styled.tr`
   background:white;
@@ -16,41 +18,53 @@ const Tr=styled.tr`
 }
 
  
-td{
+>td{
   font-family: Public Sans;
 font-weight: 400;
 line-height: 27px;
 letter-spacing: 0em;
 text-align: left;
+font-size:16px;
+&:nth-child(4){
+  >p{
+    background-color:green;
+    border-radius:20px;
+    color:white;
+  }
+ 
 
 }
-
-   button{
-    background-color:green;
-    color:white;
-    border:none;
-    padding:10px;
-    width:80px;
-    border-radius:50px;
-    cursor:pointer;
-   }
-
-  .icons-box{
-    padding-top:18px;
-    display:flex;
-    gap:5px;
- 
-  }  
-
-  .icons{
+ &:nth-child(5){
+  padding-top:18px;
+  display:flex;
+  gap:5px;
+  >button{
     color:white;
     background: rgba(116, 136, 249, 1);
     border-radius:5px;
-    padding:5px;
-    font-size:25px;
+    width:40px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    border:none;
+    outline:none;
+    box-shadow:none;
+    >svg{
+      font-size:20px;
+    }
    
   }
 
+}  
+
+}
+
+
+
+  
+  
  
 
  `
@@ -65,10 +79,11 @@ const Tabledata = (props) => {
         <td><p>{props.Sno}</p></td>
         <td><p>{props.date}</p></td>
         <td><p>{props.message}</p></td>
-        <td><p> <button>{props.status}</button></p></td>
-        <td className='icons-box'>
-          <GrView className='icons'/>
-          <MdDelete className='icons'/>
+        <td><p>{props.status}</p></td>
+        <td>
+          <button><GrView/></button>
+          <button><FaArrowsRotate/></button>
+          <button><MdDelete /></button>
 
           </td>
     
@@ -77,10 +92,12 @@ const Tabledata = (props) => {
         <td><p>{props.Sno}</p></td>
         <td><p>{props.date}</p></td>
         <td><p>{props.message}</p></td>
-        <td><p><button>{props.status}</button></p></td>
-        <td className='icons-box'>
-          <GrView className='icons'/>
-          <MdDelete className='icons'/>
+        <td><p>{props.status}</p></td>
+        <td>
+          <button><GrView/></button>
+          <button><FaArrowsRotate/></button>
+          <button><MdDelete /></button>
+
           </td>
     
         </Tr>
