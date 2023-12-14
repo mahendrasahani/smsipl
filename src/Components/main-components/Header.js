@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Logo from "../assests/logo.png"
 import UserIcon from "../assests/user-icon.png"
 import Hamburger from "../assests/hamburger.png"
 import { useDispatch} from 'react-redux';
 import { setHidden } from '../store/HiddenSlice';
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
-  const [modal,setModal]=useState(true)
-  const dispatch=useDispatch();
-
-  
+  const [modal,setModal]=useState(true)                                     //control modal box using this state variable
+  const dispatch=useDispatch();                   
+                                                                                      
   return (
     <div className='header'>
      <img className='logo' src={Logo} alt="img"/>
        
        <div className='header-main'>
 
-        <img src={Hamburger} alt="img" className='hamburger' onClick={()=>dispatch(setHidden())}/>
+        <img src={Hamburger} alt="img" className='hamburger' onClick={()=>dispatch(setHidden())}/>           
 
         <span className='user-box'>
 
@@ -25,7 +25,7 @@ const Header = () => {
         {
           modal||<div className='icon-click'>
           <p>Profile</p>
-          <p>Logout</p>
+          <p><Link to={"/"}>Logout</Link></p>
         </div>
         }
     

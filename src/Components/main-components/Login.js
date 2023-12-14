@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Mail from "./assests/mail.png"
-import Lock from "./assests/lock.png";
-import Logo from "./assests/logo3.png"
-import Custombutton from './reusable/CustomButton';
-import Custominput from './reusable/CustomInput';
+import Mail from "../assests/mail.png"
+import Lock from "../assests/lock.png";
+import Logo from "../assests/logo3.png"
+import Custombutton from '../reusable/CustomButton';
+import Custominput from '../reusable/CustomInput';
 
 const Login = () => {
     const [login,setLogin]=useState(false)
   
-    const [formdata,setFormdata]=useState({
+    const [formdata,setFormdata]=useState({                                                        //form data variables
       email:"",
       password:""
     })

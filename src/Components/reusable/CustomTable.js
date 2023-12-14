@@ -12,29 +12,9 @@ text-align:left;
   text-align:center;
 }
 
-:nth-child(1){
-  width:10%;
-}
-:nth-child(2){
-  width:20%;
-}
-
-:nth-child(3){
-  width:30%;
-}
-
-:nth-child(4){
-  width:20%;
-}
-
-:nth-child(5){
-  width:20%;
-}
-
 th{
   font-family: Public Sans;
-font-size: 23px;
-font-weight: 400;
+font-weight: 600;
 line-height: 27px;
 letter-spacing: 0em;
 text-align: left;
@@ -47,11 +27,11 @@ const Table = () => {
     <>
      <table className='table'>
           <Tr>
-                <th>#</th>
-                <th>Date</th>
-                <th className='message'>Message</th>
-                <th className='status'>Status</th>
-                <th>Actions</th>
+                <th><p>#</p></th>
+                <th><p>Date</p></th>
+                <th className='message'><p>Message</p></th>
+                <th className='status'><p>Status</p></th>
+                <th><p>Actions</p></th>
        
           </Tr>
        
