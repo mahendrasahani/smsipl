@@ -1,0 +1,573 @@
+body{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*----------------------------------------------------Custom Css ------------------------------------------------------*/
+
+.button{
+  background:#0575E6;
+  padding: 14px;
+  border-radius: 50px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.table{
+  margin-top: 20px;
+  padding-top:20px;
+  width: 100%;
+}
+
+@media only screen and (max-width:1100px) {
+  .table{
+    width: 800px;
+  }
+}
+
+
+.main-container{
+  /* margin-top: 50px; */
+  width: 80%;
+  background:white;
+  margin-top:100px;
+  margin-left: 250px;
+}
+
+@media only screen and (max-width:1150px) {
+  .main-container{
+    /* margin-top: 50px; */
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width:900px) {
+  .main-container{
+    /* margin-top: 50px; */
+    width: 50%;
+
+  }
+}
+
+
+
+.span-box{
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding:10px;
+  align-items: end;
+  gap: 4rem;
+  
+}
+
+.span-box p{
+  color: #161616;
+font-family: Public Sans;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+/*------------------------------------------- Login Page-------------------------------------------------------------- */
+
+.login{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-wrap: wrap;
+}
+
+.logo-part{
+  width: 50%;
+  height: 100%;
+ background:url("./Components/assests/logo2.jpg");
+ background-position: center;
+  background-size: cover;
+}
+
+
+.form-part{
+      width: 50%;
+      align-self: center;
+      text-align: left;
+      
+}
+
+.form-part .logo{
+  display: none;
+}
+
+.form-part h1{
+  font-family: Public Sans;
+font-size: 35px;
+font-weight: 700;
+line-height: 45px;
+letter-spacing: 0em;
+text-align: left;
+color: #333333;
+ height: 30px;
+}
+
+.form-part h3{
+  font-family: Public Sans;
+font-size: 20px;
+font-weight:500;
+line-height: 31px;
+margin-bottom: 30px;
+text-align: left;
+color: #333333;
+
+}
+
+.form-inside{
+  width: 50%;
+  padding-left: 50px;
+}
+
+.form-inside h1{
+  font-family: Public Sans;
+font-size: 38px;
+font-weight: 700;
+line-height: 45px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.form-inside h3{
+  font-family: Public Sans;
+font-size: 27px;
+font-weight: 400;
+line-height: 31px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+
+span img{
+  width: 26px;
+  height: 26px;
+ 
+}
+
+
+.form   input[type="email"],
+input[type="password"],
+textarea {
+  font-size: 15px;
+  width: 100%;
+  border: none;
+  outline: none;
+
+ }
+
+ ::placeholder {
+  color: #333333;
+  opacity:0.4;
+}
+
+/* {
+  width: 100%;
+  padding: 14px;
+  border-radius:50px;
+  border: 1.47px solid  #B9B9B9;
+  border-left: none;
+} */
+
+
+
+@media only screen and (max-width:750px) {
+
+
+   .login{
+    height: 100%;
+    width: 100%;
+    background: url("./Components/assests/bg.png");
+   }
+
+   .logo-part{
+    display: none;
+   }
+
+   .form-part{
+    border-radius: 20px;
+    width: 100%;
+   
+   }
+
+   .form-part .logo{
+    display: block;
+    position:absolute;
+    top: 10%;
+    width: 200px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+   }
+
+   .form-inside{
+    border-radius: 50px;
+    padding: 25px;
+    width: 70%;
+    margin:200px auto;
+    background-color: white;
+   }
+}
+
+
+
+/*------------------------------- -----------------------Layout--------------------------------------------------------- */
+.container{
+  background: rgba(237, 242, 247, 1);
+  height: 100vh;
+}
+
+.container-box{
+  display: flex;
+  gap: 2%;
+  background: rgba(237, 242, 247, 1);
+}
+
+
+/*---------------------------------------------------- Header --------------------------------------------------------*/
+.header{
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position:fixed;
+  width: 100%;
+  z-index: 10;
+  max-height: 85px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.17);
+  background-color: white;
+}
+
+.logo{
+  width: 125.844px;
+  height: 57px;
+  padding: 14px 0px 1px 87px;
+  cursor:pointer;
+}
+
+.header-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 80%;
+  padding:0 20px;
+}
+
+.header-main .hamburger{
+      width: 49px;
+      height: 49px;
+      cursor:pointer;
+}
+
+.user-box{
+  position: relative;
+}
+
+.user-icon{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.icon-click{
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  right: -15px;
+  background-color: white;
+  top: 70px;
+  box-shadow: 5px 5px 10px rgb(202, 196, 196);
+  border-radius: 15px;
+}
+
+.icon-click p{
+  cursor: pointer;
+}
+
+@media only screen and (max-width:740px) {
+  .logo{
+    padding:14px 0px 1px 10px;
+  }
+}
+/*-------------------------------------------------------Sidebar --------------------------------------------------*/
+.sidebar{
+  position: fixed;
+  top:0;
+  background: rgba(0, 39, 255, 1);
+  height: 100vh;
+  width: 220px;
+}
+
+.nav-links{
+  margin-top: 128px;
+  list-style-type: none;
+}
+
+.nav-links li{
+  margin: 34px 0;
+  font-family: Public Sans;
+font-size: 20px;
+font-weight: 500;
+line-height: 29px;
+letter-spacing: 0em;
+text-align: left;
+ color: white;
+}
+
+.nav-links li a{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-links li span{
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li img{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+
+/* ---------------------------------------------searchbar------------------------------------------------------------ */
+
+.searchbox{
+  background-color: white;
+  width: 100%;
+}
+
+.searchbox h1{
+  font-family: Public Sans;
+ font-size: 25px;
+ margin-left: 20px;
+}
+
+
+
+input[type="date"]{
+  padding: 15px;
+  width: 200px;
+  height: 3px;
+  font-family: "Roboto Mono",monospace;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(241, 231, 231);
+}
+
+#select{
+  width: 220px;
+  height: 35px;
+  border: 1px solid #f1eaea;
+}
+
+
+@media only screen and (max-width:527px){
+  input[type="date"]{
+
+    width: 130px;
+  
+  }
+
+  #select{
+   width: 150px;
+  }
+}
+
+/* --------------------------------------------------Message-box ---------------------------------------------------- */
+
+.message-container{
+  /* margin-top: 50px; */
+  width: 80%;
+  background:white;
+  margin-top:100px;
+  margin-left: 250px;
+}
+
+@media only screen and (max-width:1150px) {
+  .message-container{
+    /* margin-top: 50px; */
+    width:70%;
+    background:white;
+  }
+}
+
+@media only screen and (max-width:800px) {
+  .message-container{
+    /* margin-top: 50px; */
+    width:50%;
+    
+  }
+}
+
+
+.message-container > p{
+/* font-size: 25px;
+font-weight: 500;
+line-height: 29px;
+letter-spacing: 0em;
+text-align: left; */
+font-family: Public Sans;
+font-size: 25px;
+font-weight: 600;
+line-height: 29px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+.message-box1{
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding:10px;
+  align-items: end;
+  gap: 4rem;
+}
+
+.message-box1 span>p{
+  color: #161616;
+  font-family: Public Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.message-box1 .message-status{
+  width: 317.1px;
+height: 43px;
+border-radius: 5px;
+border: 1.13px solid rgba(159, 159, 159, 1);
+font-family: Public Sans;
+font-size: 20px;
+font-weight: 500;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+padding: 11px 0 0 10px;
+}
+
+.message-box p{
+  margin-left: 20px;
+  font-family: Public Sans;
+font-size: 24px;
+font-weight: 600;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.message-box .message{
+  font-weight: 100;
+  border:2px solid grey;
+  width: 80%;
+  min-height: 200px;
+  border: 1.13px solid rgba(159, 159, 159, 1);
+  padding:10px;
+}
+
+.button-box{
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding:10px;
+  align-items: end;
+  gap: 1.8rem;
+}
+
+.button-box button{
+  width: 200px;
+background:#0575E6;
+ padding: 14px;
+ border-radius:5px;
+ color: white;
+ border: none;
+ cursor: pointer;background-color: #0575E6;
+
+
+}
+
+@media only screen and (max-width:736px){
+
+  .messages{
+    width:70%;
+  }
+  .message-box1 .message-status{
+    width: 150px;
+    height: 25px;
+  }
+  
+}
+
+.table-box{
+  background-color:rgba(237, 242, 247, 1);
+}
+
+@media only screen and (max-width:1100px){
+  .table-box{
+    overflow: scroll;
+  }
+}
