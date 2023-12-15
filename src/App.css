@@ -108,6 +108,12 @@ font-weight: 600;
 line-height: normal;
 }
 
+@media only screen and (max-width:966px) {
+  .span-box{
+   gap:3.2rem;
+  }
+}
+
 /*------------------------------------------- Login Page-------------------------------------------------------------- */
 
 .login{

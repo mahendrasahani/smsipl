@@ -14,10 +14,15 @@ const Layout = () => {                                                          
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth == 1158) {
+      if (window.innerWidth < 1158) {
          if(value===true)
          dispatch(setHidden())
       }
+
+      if (window.innerWidth > 1158) {
+        if(value===false)
+        dispatch(setHidden())
+     }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

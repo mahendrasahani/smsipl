@@ -30,24 +30,27 @@ font-size:16px;
     background-color:green;
     border-radius:20px;
     color:white;
+    @media (max-width: 1039px) {
+      padding:5px;
+    }
+   
   }
  
-
 }
  &:nth-child(5){
   padding-top:11px;
   display:flex;
   gap:5px;
-  @media (max-width: 1028px) {
+  @media (max-width: 1039px) {
     padding-top:24px;
   }
-  @media (max-width: 846px) {
+  @media (max-width: 856px) {
     padding-top:37px;
   }
-  @media (max-width: 790px) {
+  @media (max-width: 805px) {
     padding-top:52px;
   }
-  @media (max-width: 736px) {
+  @media (max-width: 749px) {
     padding-top:64px;
   }
   >button{

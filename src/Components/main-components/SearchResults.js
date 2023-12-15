@@ -34,8 +34,8 @@ const style1={
               </span>
               <span>
                 <p>Status</p>
-                <select name="SelectStatus" id="select" onClick={(e)=>setStatus(e.target.value)}>
-                  <option value="" selected disabled hidden>Select Status</option>
+                <select name="SelectStatus" id="select" value={status} onChange={(e)=>setStatus(e.target.value)}>
+                  <option value="" disabled hidden>Select Status</option>
                   <option value="Success">Success</option>
                   <option value="Failed">Failed</option>
                 </select>
