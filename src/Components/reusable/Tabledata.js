@@ -19,7 +19,8 @@ const Tr=styled.tr`
 
  
 >td{
-  font-family: Public Sans;
+padding:0 10px;
+font-family: Public Sans;
 font-weight: 400;
 line-height: 27px;
 letter-spacing: 0em;
