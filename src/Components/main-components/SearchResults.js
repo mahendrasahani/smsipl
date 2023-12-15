@@ -31,15 +31,14 @@ const style1={
               <p>To Date</p>
               <input type="date"  value={enddate} onChange={(e)=>setendDate(e.target.value)}/>
               </span>
-            <span>
-              <p>Status</p>
-              <select name="Select Status" id="select">
-                <option value="none" selected disabled hidden>Select Status</option>
-              <option value="Status">Success</option>
-              <option value="Failed">Failed</option>
-              </select>
-               
-              </span>
+              <span>
+                <p>Status</p>
+                <select name="SelectStatus" id="select">
+                  <option value="" selected disabled hidden>Select Status</option>
+                  <option value="Success">Success</option>
+                  <option value="Failed">Failed</option>
+                </select>
+              </span>              
         </div>
       </div>
       <div className='table-box'>

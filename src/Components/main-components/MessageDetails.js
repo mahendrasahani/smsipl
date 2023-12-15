@@ -12,7 +12,7 @@ const MessageDetails = () => {
 
   return (
     <div className='message-container messages' style={!value?style1:null}>
-      <p style={{marginLeft:"20px"}}>Message Detail</p>
+      <p style={{margin:"8px 0px 0px 20px"}}>Message Detail</p>
       <div className='message-box1'>
         <span>
             <p>Date</p>

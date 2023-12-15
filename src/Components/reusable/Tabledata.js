@@ -9,7 +9,7 @@ import { FaArrowsRotate } from "react-icons/fa6";
 const Tr=styled.tr`
   background:white;
   width:100%;
- border:2px solid rgba(237, 242, 247, 1);
+ border-bottom:4px solid rgba(237, 242, 247, 1);
  
 
 :nth-child(4){
@@ -19,7 +19,7 @@ const Tr=styled.tr`
 
  
 >td{
-padding:0 10px;
+padding:0 30px;
 font-family: Public Sans;
 font-weight: 400;
 line-height: 27px;

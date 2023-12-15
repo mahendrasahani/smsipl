@@ -13,7 +13,7 @@ text-align:left;
 }
 
 th{
-  padding:0 10px;
+  padding:0 30px;
   font-family: Public Sans;
 font-weight: 600;
 line-height: 27px;
