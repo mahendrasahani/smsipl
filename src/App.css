@@ -442,7 +442,7 @@ input[type="date"]{
 
 #select{
   padding:15px;
-  width: 220px;
+  width: 248px;
   height: 46px;
   border: 1px solid #f1eaea;
 }
@@ -456,7 +456,7 @@ input[type="date"]{
   }
 
   #select{
-   width: 150px;
+   width: 178px;
   }
 }
 
