@@ -11,7 +11,7 @@ const Sidebar = () => {
   const dispatch=useDispatch();  
   return (
     <div className='sidebar'>
-         <button style={{position:"absolute",right:"0"}} onClick={()=>dispatch(setHidden())}><RxCross2 /></button>
+         <button onClick={()=>dispatch(setHidden())}><RxCross2 /></button>
          <ul className='nav-links'>
             <li><span><img src={Home} alt="img"/> Dashboard</span></li>
 

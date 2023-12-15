@@ -35,15 +35,15 @@ font-size:16px;
 
 }
  &:nth-child(5){
-  padding-top:18px;
+  padding-top:11px;
   display:flex;
   gap:5px;
   >button{
     color:white;
     background: rgba(116, 136, 249, 1);
     border-radius:5px;
-    width:40px;
-    height:30px;
+    width:36px;
+    height:38px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -52,7 +52,7 @@ font-size:16px;
     outline:none;
     box-shadow:none;
     >svg{
-      font-size:20px;
+      font-size:22px;
     }
    
   }

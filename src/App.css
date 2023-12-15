@@ -213,17 +213,6 @@ textarea {
   opacity:0.4;
 }
 
-/* {
-  width: 100%;
-  padding: 14px;
-  border-radius:50px;
-  border: 1.47px solid  #B9B9B9;
-  border-left: none;
-} */
-
-
-
-
 
 @media only screen and (max-width:750px) {
 
@@ -296,7 +285,7 @@ textarea {
 .logo{
   width: 125.844px;
   height: 57px;
-  padding: 14px 0px 1px 87px;
+  padding: 7px 0px 5px 87px;
   cursor:pointer;
 }
 
@@ -316,6 +305,7 @@ textarea {
 
 .user-box{
   position: relative;
+  top:3px;
 }
 
 .user-icon{
@@ -345,11 +335,25 @@ textarea {
   color: black;
 }
 
-@media only screen and (max-width:740px) {
+@media only screen and (max-width:720px) {
   .logo{
-    width: 100px;
-    height: 50px;
-    padding:14px 0px 1px 10px;
+    width: 85px;
+    height: 35px;
+    padding: 11px 0px 11px 10px
+  }
+
+  .header-main .hamburger{
+    width: 35px;
+    height: 35px;
+  }
+
+  .user-icon{
+   width: 30px;
+   height: 30px;
+  }
+
+  .user-box{
+    top:0;
   }
 }
 /*-------------------------------------------------------Sidebar --------------------------------------------------*/
@@ -360,6 +364,15 @@ textarea {
   height: 100vh;
   width: 220px;
 }
+
+.sidebar button{
+  position: absolute;
+  right: 0;
+}
+
+.sidebar button svg{
+  font-size: 25px;
+} 
 
 .nav-links{
   margin-top: 128px;
@@ -459,20 +472,10 @@ input[type="date"]{
 
 @media only screen and (max-width:1150px) {
   .message-container{
-    /* margin-top: 50px; */
     width:90%;
-    margin-left:0;
-    
+    margin-left:0; 
   }
 }
-
-/* @media only screen and (max-width:800px) {
-  .message-container{
-   
-    width:50%;
-    
-  }
-} */
 
 
 .message-container > p{
@@ -501,8 +504,8 @@ text-align: left;
 }
 
 .message-box1 .message-status{
-  width: 317.1px;
-height: 43px;
+  width: 188px;
+height: 25px;
 border-radius: 5px;
 border: 1.13px solid rgba(159, 159, 159, 1);
 font-family: Public Sans;
@@ -510,7 +513,7 @@ font-weight: 500;
 line-height: 28px;
 letter-spacing: 0em;
 text-align: left;
-padding: 11px 0 0 10px;
+padding:10px;
 }
 
 .message-box p{
@@ -557,11 +560,20 @@ background:#0575E6;
 @media only screen and (max-width:736px){
 
   .messages{
-    width:70%;
+    width:90%;
   }
   .message-box1 .message-status{
     width: 150px;
     height: 25px;
+  }
+
+  .button-box{
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding:10px;
+    align-items: end;
+    gap: 0.8rem;
   }
   
 }

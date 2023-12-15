@@ -6,9 +6,9 @@ const MessageDetails = () => {
     const value=useSelector(state=>state.hiddenstate.hidden);
  
     const style1={
-       margin:"120px auto",
+       margin:"90px auto",
+       width:"90%",
     }
-
 
   return (
     <div className='message-container messages' style={!value?style1:null}>

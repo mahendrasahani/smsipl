@@ -6,13 +6,14 @@ import { useSelector } from 'react-redux';
 
 const SearchResults = () => {
 
-  const [startdate,setstartDate]=useState('0000-00-00')
-  const [enddate,setendDate]=useState('0000-00-00')
+  const [startdate,setstartDate]=useState('2023-12-15')
+  const [enddate,setendDate]=useState('2023-12-15')
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
  
   
 const style1={
-   margin:"120px auto",
+   margin:"90px auto",
+   width:"90%",
 }
 
 
