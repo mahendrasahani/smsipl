@@ -23,7 +23,7 @@ text-align: left;
 }
 `
 
-const Table = () => {
+const Table = ({items}) => {
   return (
     <>
      <table className='table'>
@@ -35,8 +35,13 @@ const Table = () => {
                 <th><p>Actions</p></th>
        
           </Tr>
+       {
+        items.map((item)=>{
+          return <Tabledata Sno={item.id} date={item.date} message={item.message} status={item.status} key={item.id}/>
+         
+        })
+       }
        
-       <Tabledata Sno={"1"} date={"12/12/2023"} message={"Lorem ipsum dolor sit amet consectetur, adipisicing"} status={"Success"}/>
      </table>
     </>
   );
