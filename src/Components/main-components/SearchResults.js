@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import Table from '../reusable/CustomTable'
 import { useSelector } from 'react-redux';
 
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 const SearchResults = () => {
 
+  const [status,setStatus]=useState('');
   const [startdate,setstartDate]=useState('2023-12-15')
   const [enddate,setendDate]=useState('2023-12-15')
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
@@ -33,7 +34,7 @@ const style1={
               </span>
               <span>
                 <p>Status</p>
-                <select name="SelectStatus" id="select">
+                <select name="SelectStatus" id="select" onClick={(e)=>setStatus(e.target.value)}>
                   <option value="" selected disabled hidden>Select Status</option>
                   <option value="Success">Success</option>
                   <option value="Failed">Failed</option>

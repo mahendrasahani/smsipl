@@ -4,7 +4,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const HiddenSlice=createSlice({
     name:"hiddenstate",
     initialState:{
-        hidden:false
+        hidden:true,
+        loginCredentials:{
+            email:["sachin85@gmail.com"]
+        }
     },
 
     reducers:{

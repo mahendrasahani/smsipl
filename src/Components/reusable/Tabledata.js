@@ -5,7 +5,6 @@ import { GrView } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { FaArrowsRotate } from "react-icons/fa6";
 
-
 const Tr=styled.tr`
   background:white;
   width:100%;
@@ -39,6 +38,18 @@ font-size:16px;
   padding-top:11px;
   display:flex;
   gap:5px;
+  @media (max-width: 1028px) {
+    padding-top:24px;
+  }
+  @media (max-width: 846px) {
+    padding-top:37px;
+  }
+  @media (max-width: 790px) {
+    padding-top:52px;
+  }
+  @media (max-width: 736px) {
+    padding-top:64px;
+  }
   >button{
     color:white;
     background: rgba(116, 136, 249, 1);
@@ -61,18 +72,9 @@ font-size:16px;
 }  
 
 }
-
-
-
-  
-  
- 
-
  `
 
 const Tabledata = (props) => {
-
-  
 
   return (
    <>

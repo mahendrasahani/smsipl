@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "../main-components/Header"
 import Sidebar from '../main-components/Sidebar';
 import { Outlet } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setHidden } from '../store/HiddenSlice';
 
 
                                                                                                            
 
 const Layout = () => {                                                                              //Main layout 
-  const value=useSelector(state=>state.hiddenstate.hidden);                                       
+  const value=useSelector(state=>state.hiddenstate.hidden); 
+  const dispatch=useDispatch();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth == 1158) {
+         if(value===true)
+         dispatch(setHidden())
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [window.innerWidth]);
                     
   return (
     <div className='container'>
