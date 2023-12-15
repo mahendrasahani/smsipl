@@ -12,8 +12,8 @@ const items = [
 const SearchResults = () => {
 
   const [statusvalue,setStatus]=useState('');
-  const [startdate,setstartDate]=useState('2000-12-15')
-  const [enddate,setendDate]=useState('2000-12-15')
+  const [startdate,setstartDate]=useState('2023-01-10')
+  const [enddate,setendDate]=useState('2023-12-27')
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
   const [filteredItems, setFilteredItems] = useState([]);
 
