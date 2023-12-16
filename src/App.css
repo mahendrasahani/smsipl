@@ -56,6 +56,12 @@ body{
   cursor: pointer;
 }
 
+.button a{
+ color: white;
+ text-decoration: none;
+}
+
+
 .table{
   margin-top: 20px;
   width: 100%;
@@ -111,6 +117,11 @@ line-height: normal;
 @media only screen and (max-width:966px) {
   .span-box{
    gap:3.2rem;
+  }
+}
+@media only screen and (max-width:479px) {
+  .span-box{
+   gap:1.2rem;
   }
 }
 
@@ -443,6 +454,13 @@ input[type="date"]{
   border: 1px solid rgb(241, 231, 231);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: url('./Components/assests/calender.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
 #select{
   padding:15px;
   width: 234px;
@@ -547,13 +565,13 @@ background:#0575E6;
 
 }
 
+
 @media only screen and (max-width:736px){
 
-  .message-box1 .message-status{
-    width: 150px;
-    height: 25px;
+  .message-box1{
+    gap:1rem;
   }
-
+  
   .button-box{
     margin-left: 10px;
     display: flex;
@@ -565,9 +583,17 @@ background:#0575E6;
   
 }
 
+@media only screen and (max-width:499px){
+
+  .message-box1{
+    gap:0rem;
+  }
+  
+}
+
 .table-box{
   background-color:white;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 @media only screen and (max-width:1100px){

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import Header from "../main-components/Header"
 import Sidebar from '../main-components/Sidebar';
 import { Outlet } from 'react-router';

@@ -1,21 +1,20 @@
-import React, {useEffect, useRef, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import Table from '../reusable/CustomTable'
 import { useSelector } from 'react-redux';
 
 
-const items = [
-  { id: 1,date: '2023-12-20',message:"Lorem ipsum dolor sit amet consectetur, adipisicing",status:"success"},
-  { id: 2,date: '2023-02-20',message:"Lorem ipsum dolor sit amet consectetur, adipisicing",status:"failed" },
-  { id: 3,date: '2023-03-10',message:"Lorem ipsum dolor sit amet consectetur, adipisicing",status:"success" },
-];
+
 
 const SearchResults = () => {
+
 
   const [statusvalue,setStatus]=useState('');
   const [startdate,setstartDate]=useState('2023-01-10')
   const [enddate,setendDate]=useState('2023-12-27')
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
   const [filteredItems, setFilteredItems] = useState([]);
+
+  const items=useSelector(state=>state.Items.items);   
 
 const style1={
    margin:"90px auto",
@@ -30,11 +29,12 @@ useEffect(() => {
     setFilteredItems(filtered);
 
    
-}, [statusvalue, startdate, enddate]);
+}, [statusvalue, startdate, enddate,items]);
 
 const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
   return items.filter(item => {
-    const itemDate = new Date(item.date);
+    const itemDateParts = item.date.split('-').reverse().join('-');
+    const itemDate = new Date(itemDateParts);
     const start = new Date(startDate);
     const end = new Date(endDate);
     const st = item.status.toLowerCase();
@@ -72,7 +72,7 @@ const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
       </div>
       <div className='table-box'>
         {
-          filteredItems.length==0? <Table items={items}/>: <Table items={filteredItems}/>
+          filteredItems.length===0? <Table items={items}/>: <Table items={filteredItems}/>
         }
        
       </div>

@@ -1,9 +1,11 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { GrView } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { FaArrowsRotate } from "react-icons/fa6";
+import { useDispatch } from 'react-redux';
+import { deleteItems } from '../store/ItemsSlice';
 
 const Tr=styled.tr`
   background:white;
@@ -85,6 +87,7 @@ font-size:16px;
  }
 
 const Tabledata = (props) => {
+  const dispatch=useDispatch()
 
   return (
    <>
@@ -96,7 +99,7 @@ const Tabledata = (props) => {
         <td>
           <button><GrView/></button>
           <button><FaArrowsRotate/></button>
-          <button><MdDelete /></button>
+          <button onClick={()=>dispatch(deleteItems(props.Sno))}><MdDelete /></button>
 
           </td>
     

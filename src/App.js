@@ -8,13 +8,11 @@ import MessageDetails from './Components/main-components/MessageDetails';
 
 
 
-
 const App=()=> {
 
   return (
     <div className="App">
         <Outlet/>
-
     </div>
   );
 }
@@ -29,15 +27,15 @@ const Approuter=createBrowserRouter([
         element:<Login/>
       },
       {
-        path:"admin",
+        path:"/admin",
         element:<Layout/>,
         children:[
           {
-            path:"",
+            path:"/admin/",
             element:<SearchResults/>
           },
           {
-            path:'messageDetails',
+            path:'/admin/messageDetails',
             element:<MessageDetails/>
           }
         ]
