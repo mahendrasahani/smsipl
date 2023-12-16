@@ -12,7 +12,7 @@ const Layout = () => {                                                          
   const value=useSelector(state=>state.hiddenstate.hidden); 
   const dispatch=useDispatch();
 
-  useEffect(() => {
+  useEffect(() => {                                                           
     const handleResize = () => {
       if (window.innerWidth < 1158) {
          if(value===true)

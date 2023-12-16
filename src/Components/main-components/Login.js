@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const Login = () => {
 
     const [error,setError]=useState(false)
-    const value=useSelector(state=>state.hiddenstate.loginCredentials.email);  
+    const value=useSelector(state=>state.hiddenstate.loginCredentials.email);             //get email of signed user
     
     const [formdata,setFormdata]=useState({                                                        //form data variables
       email:"",
