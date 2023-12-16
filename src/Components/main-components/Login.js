@@ -19,10 +19,10 @@ const Login = () => {
  const handleFormdata=(e)=>{
   e.preventDefault()
   const {name, value } =e.target;
-  setFormdata((prevData) => ({
-    ...prevData,
+  setFormdata({
+    ...formdata,
     [name]: value,
-  }));
+  });
  }
 
 

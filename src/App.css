@@ -459,11 +459,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 20px;
+  cursor: pointer;
 }
 
 #select{
   padding:15px;
   width: 234px;
+  cursor: pointer;
   height: 46px;
   border: 1px solid #f1eaea;
 }
