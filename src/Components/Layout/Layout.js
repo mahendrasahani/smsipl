@@ -12,8 +12,8 @@ const Layout = () => {                                                          
   const value=useSelector(state=>state.hiddenstate.hidden); 
   const dispatch=useDispatch();
 
-  useEffect(() => {                                                           
-    const handleResize = () => {
+  useEffect(() => {                                                      
+    const handleResize = () => {                            //function to hide  sidebar when screen size is less than 1158
       if (window.innerWidth < 1158) {
          if(value===true)
          dispatch(setHidden())
