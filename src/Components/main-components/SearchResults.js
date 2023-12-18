@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux';
 
 
 const SearchResults = () => {
-
-
+  
+  const date=new Date();
+  const maindate=date.getFullYear()+"-"+date.getMonth()+"-" + date.getDate();
+  
   const [statusvalue,setStatus]=useState('');
-  const [startdate,setstartDate]=useState('2023-01-10')
-  const [enddate,setendDate]=useState('2023-12-27')
+  const [startdate,setstartDate]=useState(maindate)
+  const [enddate,setendDate]=useState(maindate)
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
   const items=useSelector(state=>state.Items.items);   
   const [filteredItems, setFilteredItems] = useState([]);                         //array to store filtered items

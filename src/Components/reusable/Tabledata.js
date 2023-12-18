@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GrView } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { deleteItems } from '../store/ItemsSlice';
+import { Link } from 'react-router-dom';
 
 const Tr=styled.tr`
   background:white;
@@ -71,7 +72,12 @@ font-size:16px;
     >svg{
       font-size:22px;
     }
-   
+    >a svg{
+      text-decoration:none;
+      color:white;
+      font-size:22px;
+      padding-top:3px;
+    }
   }
 
 }  
@@ -95,9 +101,9 @@ const Tabledata = (props) => {
         <td><p>{props.Sno}</p></td>
         <td><p>{props.date}</p></td>
         <td><p>{props.message}</p></td>
-        <td><p style={(props.status==="success")?style1:style2}>{props.status}</p></td>
+        <td><p style={(props.status==="Success")?style1:style2}>{props.status}</p></td>
         <td>
-          <button><GrView/></button>
+          <button><Link to={`messageDetails/${props.Sno}`}><GrView/></Link></button>
           <button><FaArrowsRotate/></button>
           <button onClick={()=>dispatch(deleteItems(props.Sno))}><MdDelete /></button>
 

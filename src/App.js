@@ -5,7 +5,7 @@ import Login from "./Components/main-components/Login"
 import SearchResults from './Components/main-components/SearchResults';
 import Layout from './Components/Layout/Layout';
 import MessageDetails from './Components/main-components/MessageDetails';
-
+import { useSelector } from 'react-redux';
 
 
 const App=()=> {
@@ -16,6 +16,13 @@ const App=()=> {
     </div>
   );
 }
+
+const MessageDetailsWrapper = () => {
+  const items = useSelector(state => state.Items.items);
+
+
+  return <MessageDetails items={items} />;
+};
 
 const Approuter=createBrowserRouter([
   {
@@ -35,8 +42,8 @@ const Approuter=createBrowserRouter([
             element:<SearchResults/>
           },
           {
-            path:'/admin/messageDetails',
-            element:<MessageDetails/>
+            path: '/admin/messageDetails/:id',
+            element: <MessageDetailsWrapper />
           }
         ]
       }
