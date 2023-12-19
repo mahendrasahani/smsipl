@@ -8,6 +8,8 @@ import MessageDetails from './Components/main-components/MessageDetails';
 import { useSelector } from 'react-redux';
 
 
+
+
 const App=()=> {
 
   return (
@@ -44,7 +46,7 @@ const Approuter=createBrowserRouter([
           {
             path: '/admin/messageDetails/:id',
             element: <MessageDetailsWrapper />
-          }
+          },
         ]
       }
     ]

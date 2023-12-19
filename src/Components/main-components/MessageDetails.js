@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-
+import { Link } from 'react-router-dom';
 
 const MessageDetails = ({items}) => {
   const {id}=useParams();
@@ -20,7 +20,7 @@ const MessageDetails = ({items}) => {
 
   return (
     <div className='message-container messages' style={!value?style1:null}>
-      <p style={{margin:"8px 0px 0px 20px"}}>Message Detail</p>
+      <p style={{margin:"8px 0px 0px 20px",color:'rgba(0, 0, 0, 1)'}}>Message Detail</p>
       
       <div className='message-box1'>
         <span>
@@ -54,7 +54,7 @@ const MessageDetails = ({items}) => {
 
       <div className='button-box'>
       <button>PROCESS</button>
-      <button>CLOSE</button>
+     <Link to={"/admin"}> <button>CLOSE</button></Link>
       </div>
     </div>
   );

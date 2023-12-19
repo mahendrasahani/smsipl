@@ -13,12 +13,16 @@ text-align:left;
 }
 
 th{
-  padding:0 30px;
-  font-family: Public Sans;
-font-weight: 600;
+padding:0 30px;
+height:54px;
+font-family: Public Sans;
+font-size: 23px;
+font-weight: 400;
 line-height: 27px;
 letter-spacing: 0em;
 text-align: left;
+color:rgba(37, 37, 37, 1);
+
 
 }
 `

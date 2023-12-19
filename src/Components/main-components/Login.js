@@ -9,10 +9,10 @@ import { useSelector } from 'react-redux';
 const Login = () => {
 
     const [error,setError]=useState(false)
-    const value=useSelector(state=>state.hiddenstate.loginCredentials.email);             //get email of signed user
+    const value=useSelector(state=>state.hiddenstate.loginCredentials.userInfo);             //get email of signed user
     
     const [formdata,setFormdata]=useState({                                                        //form data variables
-      email:"",
+      username:"",
       password:""
     })
 
@@ -27,12 +27,12 @@ const Login = () => {
 
 
  const handleSubmit=(e)=>{
-   if(value[0]!==formdata.email){
+   if(value[0].username!==formdata.username || value[0].password!==formdata.password){
     setError(true)
     e.preventDefault()
    }
    else{
-    setFormdata({ ...formdata, email: '', password: '' });
+    setFormdata({ ...formdata, username: '', password: '' });
    }
 
  }
@@ -49,7 +49,7 @@ const Login = () => {
           <h3>Welcome Back,Please login to continue</h3>
           <form className='form' action='/admin' onSubmit={handleSubmit}>
 
-            <Custominput img={Mail} name={"email"} type={"email"} value={formdata.email} handleChange={handleFormdata} placeholder={"Email Address"}/>
+            <Custominput img={Mail} name={"username"} type={"text"} value={formdata.username} handleChange={handleFormdata} placeholder={"Username"}/>
 
             <Custominput img={Lock} name={"password"} type={"password"} value={formdata.password} handleChange={handleFormdata} placeholder={"Password"}/>
 

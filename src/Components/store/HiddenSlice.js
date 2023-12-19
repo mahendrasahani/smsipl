@@ -6,7 +6,13 @@ const HiddenSlice=createSlice({
     initialState:{
         hidden:true,
         loginCredentials:{
-            email:["admin@gmail.com"]
+            userInfo:[{
+                username:"admin",
+                password:"admin"
+            }
+        
+        ]
+            
         }
     },
 

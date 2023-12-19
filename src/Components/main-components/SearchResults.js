@@ -61,12 +61,17 @@ const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
               </span>
             <span>
               <p>To Date</p>
-              <input type="date"  value={enddate} onChange={(e)=>setendDate(e.target.value)}/>
+              
+              <input type="date"  
+              value={enddate} 
+              onChange={(e)=>setendDate(e.target.value)}/>
+              
               </span>
+              
               <span>
                 <p>Status</p>
                 <select name="SelectStatus" id="select" value={statusvalue} onChange={(e)=>setStatus(e.target.value)}>
-                  <option value="" disabled hidden>Select Status</option>
+                  <option value="">Select Status</option>
                   <option value="Success">Success</option>
                   <option value="Failed">Failed</option>
                 </select>

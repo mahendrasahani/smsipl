@@ -7,8 +7,9 @@ display: flex;
 align-items:center;
 gap: 10px;
 padding: 8px;
+padding-left:30px;
 border-radius:50px;
-border: 1.47px solid  #B9B9B9;
+border: 1.47px solid  rgba(185, 185, 185, 1);
 `
 
 const Custominput = ({img,type,inputValue,handleChange,placeholder,name}) => {
