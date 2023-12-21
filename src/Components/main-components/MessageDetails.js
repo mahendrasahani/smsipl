@@ -20,36 +20,34 @@ const MessageDetails = ({items}) => {
 
   return (
     <div className='message-container messages' style={!value?style1:null}>
-      <p style={{margin:"8px 0px 0px 20px",color:'rgba(0, 0, 0, 1)'}}>Message Detail</p>
+      <p style={{margin:"8px 0px 0px 20px"}}>Message Detail</p>
       
       <div className='message-box1'>
         <span>
             <p>Date</p>
-            <p className='message-status'>{itemsData[0].date}</p>
+            <div className='message-status'><p >{itemsData[0].date}</p></div>
         </span>
         <span> 
             <p>Status</p>
-            <p className='message-status'>{itemsData[0].status}</p>
+             <div className='message-status'><p >{itemsData[0].status}</p></div>
             </span>
         
       </div>
       <div className='message-box'>
       <p>Message </p>
          <p className='message'>
-         {itemsData[0].message}
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor atque distinctio vero id quia enim voluptate quibusdam quos voluptatem mollitia magnam in, omnis laboriosam nihil minima natus! Exercitationem optio unde nostrum ab odit quidem beatae ullam, iste debitis iusto quaerat voluptatum veritatis velit tempore autem fugiat ipsa eos, aperiam hic vitae nesciunt magni nihil quas! Numquam autem magnam ratione iusto voluptas recusandae, laboriosam aliquid hic eos vel exercitationem omnis facere consequatur tenetur odit ipsa eligendi commodi reiciendis quod.
          </p>
       </div>
       
-      {
-        itemsData[0].status==="Failed"?<div className='span-box'>
+      
+        <div className='span-box'>
         <span>
           <p>Error Details</p>
-          <p style={{width:"80%",color:"red",fontWeight:"400"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam voluptatibus alias aliquam inventore perspiciatis dolorum, pariatur nam magni nemo reprehenderit. </p>
+          <p  className='error'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam voluptatibus alias aliquam inventore perspiciatis dolorum, pariatur nam magni nemo reprehenderit. </p>
         </span>
         </div>
-        :
-        null
-      }
+     
       
 
       <div className='button-box'>

@@ -21,7 +21,7 @@ const Sidebar = () => {
                 </span>
             </li>
             
-            <li><span><img src={Users} alt="img"/><Link>Users</Link></span></li>
+            <li><span><img src={Users} alt="img"/><Link to={"usermenu"}>Users</Link></span></li>
          </ul>
     </div>
   );

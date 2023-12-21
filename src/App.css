@@ -49,12 +49,33 @@ body{
 
 .button{
   background:#0575E6;
-  padding: 14px;
   border-radius: 44px;
   color: white;
   border: none;
   cursor: pointer;
+  width: 440px;
+  height:50px;
 }
+
+.button .App{
+  width: 54px;
+  height: 24px;
+}
+
+
+
+
+@media (max-width: 768px) {
+ .button{
+  width:85%;
+  margin:auto;
+ }
+}
+@media (max-width: 600px) {
+  .button{
+   width:90%;
+  }
+ }
 
 .button a{
  color: white;
@@ -74,14 +95,21 @@ body{
   /* margin-top: 50px; */
   width: 80%;
   background:white;
-  margin-top:100px;
-  margin-left: 325px;
+  margin-top:70px;
+  margin-left: 322px;
   height: 100%;
 }
+
+@media only screen and (max-width:1400px) {
+  .main-container{
+    margin-left: 295px;
+  }
+} 
 
 @media only screen and (max-width:1300px) {
   .main-container{
     width: 75%;
+    margin-left: 295px;
   }
 } 
 
@@ -116,10 +144,23 @@ body{
   color:rgba(22, 22, 22, 1);
 font-family: Public Sans;
 font-style: normal;
-font-weight: 600;
+font-weight: 400;
 line-height: normal;
 font-size:24px;
 }
+
+.span-box .error{
+  width:80%;
+  color:rgba(242, 62, 62, 1);
+  font-size:23px;
+  }
+
+  @media only screen and (max-width:1550px) {
+    .span-box .error{
+      font-size:19px;
+      }
+  }
+
 
 @media only screen and (max-width:966px) {
   .span-box{
@@ -227,7 +268,7 @@ span img{
 input[type="password"],
 textarea {
   font-size: 15px;
-  width: 100%;
+  width: 90%;
   border: none;
   outline: none;
  }
@@ -269,7 +310,7 @@ textarea {
     width: 200px;
     height: 100px;
     left: 0;
-    right: 0;
+    right:19px;
     margin: auto;
    }
 
@@ -280,9 +321,23 @@ textarea {
     margin:200px auto;
     background-color: white;
    }
+
+   .form-inside h1{
+  text-align:center;
+  }
+  
+  .form-inside h3{
+  text-align:center;
+ 
+  }
 }
 
+@media only screen and (max-width:500px) {
+  .form-part .logo{
+    right:5px;
 
+   }
+}
 
 /*------------------------------- -----------------------Layout--------------------------------------------------------- */
 .container{
@@ -302,8 +357,7 @@ textarea {
 .header{
  
   display: flex;
-  justify-content: space-between;
-  gap: 100px;
+  gap: 85px;
   align-items: center;
   position:fixed;
   width: 100%;
@@ -394,9 +448,6 @@ textarea {
    height: 30px;
   }
 
-  .user-box{
-    top:0;
-  }
 }
 /*-------------------------------------------------------Sidebar --------------------------------------------------*/
 .sidebar{
@@ -404,7 +455,7 @@ textarea {
   top:0;
   background: rgba(0, 39, 255, 1);
   height: 100vh;
-  width: 290px;
+  width: 300px;
 }
 
 .sidebar button{
@@ -418,7 +469,7 @@ textarea {
 
 .nav-links{
   margin-top: 128px;
-  margin-left:30px;
+  margin-left:14px;
   list-style-type: none;
 }
 
@@ -452,13 +503,29 @@ text-align: left;
   height: 25px;
 }
 
+@media only screen and (max-width:1536px) {
+  .sidebar{
+     width:280px;
+  }
+
+  .nav-links{
+    margin-left:10px;
+  }
+}
+
+
 @media only screen and (max-width:1158px) {
   .sidebar{
      width: 220px;
   }
 
   .nav-links{
-    margin-left:10px;
+    margin-left:0px;
+  }
+
+  .nav-links li{
+  font-size: 20px;
+  
   }
 }
 
@@ -483,14 +550,11 @@ text-align: left;
 
 }
 
-
-
 input[type="date"]{
   padding: 21px;
-  width:100%;
-  height: 3px;
+  width:327px;
   font-family:Public Sans;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -498,6 +562,8 @@ input[type="date"]{
   color:rgba(17, 17, 19, 0.6);
 
 }
+
+
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   background-image: url('./Components/assests/calender.png');
@@ -508,8 +574,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #select{
-  padding:11px;
-  width: 234px;
+  padding:20px;
+  width: 350px;
   cursor: pointer;
   font-size:18px;
   font-family: Public Sans;
@@ -519,16 +585,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color:rgba(17, 17, 19, 0.6);
 }
 
+@media only screen and (max-width:1550px) {
+  input[type="date"]{
+    padding: 21px;
+    width:100%;
+    height: 3px;
+  }
+
+  #select{
+    padding:11px;
+    width: 234px;
+  }
+} 
+
 /* --------------------------------------------------Message-box ---------------------------------------------------- */
 
 .message-container{
   /* margin-top: 50px; */
   width: 80%;
   background:white;
-  margin-top:100px;
-  margin-left: 325px;
+  margin-top:70px;
+  margin-left: 322px;
 }
 
+@media only screen and (max-width:1550px) {
+  .message-container{
+    margin-left: 300px;
+  }
+} 
 
 @media only screen and (max-width:1300px) {
   .message-container{
@@ -549,10 +633,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .message-container > p{
 font-family: Public Sans;
-font-weight: 600;
+font-weight: 500;
+font-size:25px;
 line-height: 29px;
 letter-spacing: 0em;
 text-align: left;
+color:rgba(0, 0, 0, 1);
+
 }
 
 .message-box1{
@@ -561,49 +648,76 @@ text-align: left;
   flex-wrap: wrap;
   padding:0 10px;
   align-items: end;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .message-box1 span>p{
-  color: #161616;
+  color: rgba(22, 22, 22, 1);
   font-family: Public Sans;
   font-style: normal;
-  font-weight: 600;
+  font-size:24px;
+  font-weight: 400;
   line-height: normal;
 }
 
+
 .message-box1 .message-status{
-  width: 188px;
-height: 25px;
+  width: 387px;
+  height:38px;
+font-size:20px;
 border-radius: 5px;
-border: 1.13px solid rgba(159, 159, 159, 1);
+border: 1.125px solid #9F9F9F;
 font-family: Public Sans;
 font-weight: 500;
 line-height: 28px;
 letter-spacing: 0em;
 text-align: left;
-padding:0 10px;
+color:rgba(17, 17, 19, 0.8);
+display: inline-flex;
+padding: 13px 0px 13px 18px;
+align-items:center;
+gap: 86px;
+
+}
+
+
+.message-box1 .message-status p{
+  color: rgba(17, 17, 19, 0.80);
+  font-family: Public Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height:28px;
 }
 
 .message-box p{
-  margin: 10px 0px 0px 20px;
+  margin: 25px 0px 0px 20px;
   font-family: Public Sans;
-font-weight: 600;
+font-weight: 400;
 line-height: 28px;
+font-size: 24px;
 letter-spacing: 0em;
 text-align: left;
+color:rgba(22, 22, 22, 1);
 
 }
 
 .message-box .message{
-  font-weight: 100;
   border:2px solid grey;
   width: 80%;
   min-height: 200px;
   border: 1.13px solid rgba(159, 159, 159, 1);
-  padding:0 10px;
   border-radius: 5px;
   padding:20px;
+  color:rgba(100, 100, 100, 1);
+  font-family: Public Sans;
+font-size: 23px;
+font-weight: 400;
+line-height: 32px;
+letter-spacing: 0em;
+text-align: left;
+
+
 }
 
 .button-box{
@@ -635,6 +749,35 @@ background:#0575E6;
 }
 
 
+@media only screen and (max-width:1550px){
+
+  .message-box1 .message-status{
+  width: 240px;
+  height: 39px;
+  padding: 0 10px 0px 11px;
+  border-radius: 5px;
+  align-items: center;
+  }
+  .message-box1 .message-status p{
+  border-radius: 5px;
+  font-family: Public Sans;
+  font-weight: 500;
+  font-size:18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color:rgba(17, 17, 19, 0.8);
+ 
+  }
+
+  .message-box .message{
+  font-size: 19px;
+  }
+
+
+ 
+  
+}
+
 @media only screen and (max-width:736px){
 
   .message-box1{
@@ -665,8 +808,76 @@ background:#0575E6;
   margin-bottom: 100px;
 }
 
+.table-inside td{
+  font-size:23px;
+}
+
+.table-inside td:nth-child(5){
+  padding-top:21px;
+}
+
+
+@media only screen and (max-width:1536px) {
+  .table-inside td{
+    font-size:18px;
+ }
+} 
+
+@media only screen and (max-width:1440px) {
+  .table-inside td{
+    font-size:16px;
+ }
+ .table-inside td:nth-child(5){
+  padding-top:15px;
+}
+} 
+
+@media only screen and (max-width:1336px) {
+  .table-inside td{
+    font-size:14px;
+ }
+
+ .table-inside td:nth-child(5){
+  padding-top:8px;
+}
+
+
+} 
+
+@media only screen and (max-width:1280px) {
+  .table-inside td{
+    font-size:10px;
+ }
+
+} 
+
+
 @media only screen and (max-width:1100px){
   .table-box{
     overflow: scroll;
   }
 }
+
+
+@media only screen and (max-width:904px) {
+ .table-inside td:nth-child(5){
+  padding-top:15px;
+}
+
+
+} 
+
+
+@media only screen and (max-width:772px) {
+  .table-inside td:nth-child(5){
+   padding-top:27px;
+ }
+ 
+}
+
+@media only screen and (max-width:738px) {
+  .table-inside td:nth-child(5){
+   padding-top:41px;
+ }
+ 
+ } 

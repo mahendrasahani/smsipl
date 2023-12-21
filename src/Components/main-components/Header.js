@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Logo from "../assests/logo.png"
 import UserIcon from "../assests/user-icon.png"
-import Hamburger from "../assests/hamburger.png"
+// import Hamburger from "../assests/hamburger.png"
+import Hamburger from "../assests/hamburger.svg"
 import { useDispatch} from 'react-redux';
 import { setHidden } from '../store/HiddenSlice';
 import { Link } from 'react-router-dom';

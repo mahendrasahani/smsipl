@@ -23,7 +23,19 @@ letter-spacing: 0em;
 text-align: left;
 color:rgba(37, 37, 37, 1);
 
+ 
+} 
 
+@media only screen and (max-width:1536px) {
+  th{
+    font-size:21px;
+ } 
+
+ @media only screen and (max-width:1440px) {
+   th{
+    font-size:17px;
+   }
+ } 
 }
 `
 

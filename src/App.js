@@ -6,6 +6,7 @@ import SearchResults from './Components/main-components/SearchResults';
 import Layout from './Components/Layout/Layout';
 import MessageDetails from './Components/main-components/MessageDetails';
 import { useSelector } from 'react-redux';
+import Usermenu from './Components/main-components/Usermenu';
 
 
 
@@ -40,13 +41,17 @@ const Approuter=createBrowserRouter([
         element:<Layout/>,
         children:[
           {
-            path:"/admin/",
+            path:"/admin",
             element:<SearchResults/>
           },
           {
             path: '/admin/messageDetails/:id',
             element: <MessageDetailsWrapper />
           },
+          {
+            path:"/admin/usermenu",
+            element:<Usermenu/>
+          }
         ]
       }
     ]
