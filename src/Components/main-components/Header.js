@@ -11,7 +11,12 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const [modal,setModal]=useState(true)                                     //control modal box using this state variable
   const dispatch=useDispatch();                   
-                                                                                      
+        
+  const handleLogout=()=>{
+    localStorage.removeItem('token')
+    window.location.href="/login"
+  }
+
   return (
     <div className='header'>
      <img className='logo' src={Logo} alt="img"/>
@@ -26,7 +31,7 @@ const Header = () => {
         {
           modal||<div className='icon-click'>
           <p>Profile</p>
-          <p><Link to={"/"}>Logout</Link></p>
+          <p onClick={handleLogout}>Logout</p>
         </div>
         }
     

@@ -94,7 +94,7 @@ const Tabledata = (props) => {
           <button><Link><img src={Cycle} alt="Cycleimg"/></Link></button>
           <button onClick={()=>dispatch(deleteItems(props.Sno))}> <Link> <img src={Delete} alt="deleteimg"/></Link></button>
 
-          </td>
+        </td>
     
         </Tr>
        

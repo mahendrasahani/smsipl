@@ -4,7 +4,7 @@ import apiService from '../ApiInstance/apiService';
 class Apis{
     async Authentication(url,credentials) {
         const apiResponse = await apiService.post(url+'/Authentication',credentials);
-        return apiResponse.token;
+        return apiResponse.data;
       }
       
     async IntAuthentication(url,credentials) {
@@ -13,14 +13,14 @@ class Apis{
       }
 
   async getMessageDetails(url,id) {
-    const apiResponse = await apiService.MessageDetails(url+'/GetMessageDetails/' + id);
+    const apiResponse = await apiService.MessageDetails(url+'/GetMessageDetails/' + id,id);
     console.log("apiResponseapiResponse", apiResponse)
     return apiResponse.data;
   }
 
   async GetMessageList(url) {
-    const apiResponse = await apiService.MessageList(url+'/GetMessageList');
-    return apiResponse.data;
+    const apiResponse = await apiService.MessageList(url+'/IntMessageManager/GetMessageList');
+    return apiResponse;
   }
 
   async UpdateMessage(url) {

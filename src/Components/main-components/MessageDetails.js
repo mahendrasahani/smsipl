@@ -38,6 +38,7 @@ const MessageDetails = ({items}) => {
          <p className='message'>
          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor atque distinctio vero id quia enim voluptate quibusdam quos voluptatem mollitia magnam in, omnis laboriosam nihil minima natus! Exercitationem optio unde nostrum ab odit quidem beatae ullam, iste debitis iusto quaerat voluptatum veritatis velit tempore autem fugiat ipsa eos, aperiam hic vitae nesciunt magni nihil quas! Numquam autem magnam ratione iusto voluptas recusandae, laboriosam aliquid hic eos vel exercitationem omnis facere consequatur tenetur odit ipsa eligendi commodi reiciendis quod.
          </p>
+         {/* <textarea class="message"></textarea> */}
       </div>
       
       

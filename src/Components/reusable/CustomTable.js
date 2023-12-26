@@ -39,7 +39,7 @@ color:rgba(37, 37, 37, 1);
 }
 `
 
-const Table = ({items}) => {
+const Table = ({messages}) => {
   return (
     <>
      <table className='table'>
@@ -52,9 +52,8 @@ const Table = ({items}) => {
        
           </Tr>
        {
-        items.map((item)=>{
+        messages.map((item)=>{
           return <Tabledata Sno={item.id} date={item.date} message={item.message} status={item.status} key={item.id}/>
-         
         })
        }
        

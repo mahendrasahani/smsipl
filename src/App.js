@@ -33,25 +33,25 @@ const Approuter=createBrowserRouter([
     Element:<App/>,
     children:[
       {
-        path:"/",
+        path:"/login",
         element:<Login/>
       },
       {
-        path:"/admin",
+        path:"/admin/dashboard",
         element:<Layout/>,
         children:[
           {
-            path:"/admin",
+            path:"/admin/dashboard",
             element:<SearchResults/>
           },
           {
-            path: '/admin/messageDetails/:id',
+            path: '/admin/dashboard/messageDetails/:id',
             element: <MessageDetailsWrapper />
           },
           {
-            path:"/admin/usermenu",
+            path:"/admin/dashboard/usermenu",
             element:<Usermenu/>
-          }
+          },
         ]
       }
     ]

@@ -1,11 +1,14 @@
 import React, {useEffect, useState } from 'react';
 import Table from '../reusable/CustomTable'
 import { useSelector } from 'react-redux';
+import Apis from '../../Services/ApiServices/Apis';
+import axios from 'axios';
 
 
 
 
 const Usermenu = () => {
+  const [messages,setMessages]=useState([]);
   
   const date=new Date();
   const maindate=date.getFullYear()+"-"+date.getMonth()+"-" + date.getDate();
@@ -14,9 +17,9 @@ const Usermenu = () => {
   const [startdate,setstartDate]=useState(maindate)
   const [enddate,setendDate]=useState(maindate)
   const value=useSelector(state=>state.hiddenstate.hidden);                      //use of redux state variable (hidden)
-  const items=useSelector(state=>state.Items.items);   
+  // const items=useSelector(state=>state.Items.items);   
   const [filteredItems, setFilteredItems] = useState([]);                         //array to store filtered items
-
+  const [loading, setLoading] = useState(false);
  
 
 const style1={
@@ -27,15 +30,50 @@ const style1={
 
 
 useEffect(() => {
+  const token = localStorage.getItem('token');
+  console.log(token)
+  if(token)
+    fetchMessage();
 
-    const filtered = filterItemsByDateRange(items, startdate, enddate, statusvalue);
+  else {
+    window.location.href="/login"
+  }
+
+
+  const filtered = filterItemsByDateRange(messages, startdate, enddate, statusvalue);
     setFilteredItems(filtered);
 
-   
-}, [statusvalue, startdate, enddate,items]);
+}, [messages,startdate,enddate,statusvalue]);
 
-const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
-  return items.filter(item => {
+
+const fetchMessage = async () => {
+  // console.log(usertoken)
+  // try {
+  //   const response = await axios({
+  //     method: 'get',
+  //     url: 'http://dpw1.afrilogitech.com/api/IntMessageManager/GetMessageList',
+  //     headers: {
+  //       'Authorization': `Bearer ${usertoken}`,
+  //       'accept': '*/*',
+  //     }
+  //   });
+
+  //   if (response.status === 200) {
+  //     console.log(response);
+  //   } else {
+  //     console.log(response.status);
+  //   }
+  // } catch (err) {
+  //   console.log('Error:', err);
+  // }
+
+  const apiResponse=await Apis.GetMessageList('http://dpw1.afrilogitech.com/api');
+  console.log(apiResponse)
+};
+
+
+  const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
+   return messages.filter(item => {
     const itemDateParts = item.date.split('-').reverse().join('-');
     const itemDate = new Date(itemDateParts);
     const start = new Date(startDate);
@@ -80,7 +118,7 @@ const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
       </div>
       <div className='table-box'>
         {
-          filteredItems.length===0? <Table items={items}/>: <Table items={filteredItems}/>
+          filteredItems.length===0? <Table messages={messages}/>: <Table messages={filteredItems}/>
         }
        
       </div>

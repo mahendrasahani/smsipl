@@ -2,7 +2,7 @@
   "name": "afrilogitech",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://dpw1.afrilogitech.com",
+  "proxy": "http://dpw1.afrilogitech.com",
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",

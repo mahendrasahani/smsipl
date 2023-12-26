@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Lock from "../assests/lock.png";
 import Logo from "../assests/logo3.png"
@@ -6,6 +6,7 @@ import Custombutton from '../reusable/CustomButton';
 import Custominput from '../reusable/CustomInput';
 import { useSelector } from 'react-redux';
 import User from "../assests/user.png"
+import Apis from '../../Services/ApiServices/Apis';
 
 
 const Login = () => {
@@ -17,97 +18,48 @@ const Login = () => {
       username:"",
       password:""
     })
-
-   
-   
-   
+    const token=localStorage.getItem('token')||0;
 
 
- const handleSubmit=async(e)=>{
-    e.preventDefault()
-  try{
-    const response=await axios.post(`${URL}/Authentication`,{
-      headers:{
-        "Access-Control-Allow-Origin": "*/*",
-        'Content-Type': 'application/json',
-      },
-      body:JSON.stringify(formdata),
-    });
-    
-
-    if(!response.ok){
-      console.log(response.status)
-    }
-    else{
-      const data=await response.token;
-    }
-  }
-  catch{
-
-  }
-  
- }
+    useEffect(()=>{
+         if(token){
+          window.location.href="/admin/dashboard";
+         }
+    },[])
 
 
-   
-    // const HandleLogin=async()=>{
 
-      // let data = JSON.stringify({
-      //   "username": "TPA_APIUser",
-      //   "password": "AccTKN@2010"
-      // });
+    const handleSubmit=async(e)=>{
+    e.preventDefault();
       
       // let config = {
       //   method: 'post',
       //   maxBodyLength: Infinity,
       //   url: 'http://dpw1.afrilogitech.com/api/Authentication',
-      //   headers: { 
-      //    
-          
+      //   headers: {
+      //     'Content-Type': 'application/json',
       //   },
       //   data : data
       // };
       
-      // axios.request(config)
+      // await axios.request(config)
       // .then((response) => {
-      //   console.log(JSON.stringify(response.data));
+      //   // console.log(response.data.token);
+      //   localStorage.setItem("token",response.data.token)
+      //   window.location.href="/admin";
       // })
       // .catch((error) => {
       //   console.log(error);
       // });
 
+     
+        var apiResponseData = await Apis.Authentication('http://dpw1.afrilogitech.com/api',formdata);
+        console.log(apiResponseData.token)
+          localStorage.setItem("token",apiResponseData.token)
+          window.location.href="/admin/dashboard";
+        
+    }
 
-
-    //   try {
-    //     const response = await fetch(`${URL}/Authentication`, {
-    //       method: 'POST',
-    //       headers:
-    //      {
-    //        "Accept": "application/json",
-    //        "Content-Type": "application/json",
-    //     },
-    //     body:JSON.stringify(formdata),
-    //     });
-    
-    //     if (!response.ok) {
-    //       console.error('Authentication failed:', response.statusText);
-
-    //     } else {
-    //       const data=await response.json();
-    //       localStorage.setItem("token",data.token);
-    //       window.location.href = '/admin'; 
-    //     }
-    //   } catch (error) {
-    //     console.error('Request failed:', error.message);
-      
-    //   }
-    // }
-
-    // const handleSubmit =(e) => {
-    //   e.preventDefault();
-    //   HandleLogin();
-    // };
-    
  
  const handleFormdata=(e)=>{
   e.preventDefault()
