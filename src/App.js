@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Outlet, createBrowserRouter } from 'react-router-dom';
+import './App.css';
+import Login from "./Components/main-components/Login"
+import SearchResults from './Components/main-components/SearchResults';
+import Layout from './Components/Layout/Layout';
+import MessageDetails from './Components/main-components/MessageDetails';
+
+import Usermenu from './Components/main-components/Usermenu';
+import { useSelector } from 'react-redux';
+
+
+
+
+const App=()=> {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Outlet/>
     </div>
   );
 }
 
-export default App;
+const MessageDetailsWrapper = () => {
+  const items = useSelector(state => state.Items.items);
+
+
+  return <MessageDetails items={items} />;
+};
+
+
+   
+
+
+const Approuter=createBrowserRouter([
+  {
+    path:'/',
+    Element:<App/>,
+    children:[
+      {
+        path:"/login",
+        element:<Login/>
+      },
+      {
+        path:"/admin/dashboard",
+        element:<Layout/>,
+        children:[
+          {
+            path:"/admin/dashboard",
+            element:<SearchResults/>
+          },
+          {
+            path: '/admin/dashboard/messageDetails/:id',
+            element: <MessageDetailsWrapper />
+          },
+          {
+            path:"/admin/dashboard/usermenu",
+            element:<Usermenu/>
+          },
+        ]
+      }
+    ]
+    
+  
+  }
+])
+
+export default Approuter;
