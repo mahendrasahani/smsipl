@@ -1,17 +1,43 @@
-import React from 'react';
+import React from "react";
 
-const Message = ({item}) => {
+const Message = ({ item, value, length }) => {
+
+
+   const {bltype,cargocode,destinationplacename,destinationplacecode,exportername,shippingagentname,shippingagentcode,loadingportname,loadingportcode}=item;
+
+
+  const showData = (index) => {
+    for (let i = 1; i <= length; i++) {
+      const data = document.getElementById(`inside-message${i}`);
+      const computedStyle = window.getComputedStyle(data);
+      const isHidden = computedStyle.getPropertyValue("display") === "none";
+      data.style.display = i === index && isHidden ? "block" : "none";
+   
+    }
+  };
+
   return (
-    <div style={{border:"2px solid black",padding:"10px",margin:"19px",width:"80%"}}>
-        <h1 style={{borderBottom:"2px solid black",display:"inline"}}>BolList</h1>
-           <p>BlType : {item.bltype}</p>
-           <p>CargoCode : {item.cargocode}</p>
-           <p>Destination : {item.destinationplacename} , {item.destinationplacecode}</p>
-           <p>Exporter Name : {item.exportername}</p>
-           <p>Shipping Agent : {item.shippingagentname} , {item.shippingagentcode}</p>
-           <p>Loading Port : {item.loadingportname} , {item.loadingportcode}</p>
+    <div className="message-card">
+      <h1 onClick={() => showData(value + 1)}>
+        BolList {value + 1}{" "}
+      </h1>
+      <div className="inside-message" id={`inside-message${value + 1}`}>
+        <p>BlType : {bltype}</p>
+        <p>CargoCode : {cargocode}</p>
+        <p>
+          Destination : {destinationplacename} ,{" "}
+          {destinationplacecode}
+        </p>
+        <p>Exporter Name : {exportername}</p>
+        <p>
+          Shipping Agent : {shippingagentname} , {shippingagentcode}
+        </p>
+        <p>
+          Loading Port : {loadingportname} , {loadingportcode}
+        </p>
+      </div>
     </div>
   );
-}
+};
 
 export default Message;

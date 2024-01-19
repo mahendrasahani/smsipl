@@ -1,12 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { deleteItems } from '../store/ItemsSlice';
 import { Link } from 'react-router-dom';
 import Viewsvg from "../assests/view.svg"
 import Cycle from "../assests/cycle.svg"
-import Delete from "../assests/delete.svg"
+import { useSelector } from 'react-redux';
 
 const Tr=styled.tr`
   background:white;
@@ -15,7 +13,8 @@ const Tr=styled.tr`
  
  
 >td{
-padding:0 30px;
+  max-height:150px;
+padding:0 15px;
 font-family: Public Sans;
 font-weight: 400;
 line-height: 26px;
@@ -27,10 +26,11 @@ color: rgba(112, 116, 120, 1);
  &:nth-child(4){
   >p{
     background-color:green;
-    border-radius:20px;
+  
     color:white;
-    @media (max-width: 1039px) {
+    @media (max-width: 1550px) {
       padding:5px;
+      display: block !important;
     }
    
   }
@@ -39,7 +39,7 @@ color: rgba(112, 116, 120, 1);
  &:nth-child(5){
   display:flex;
   gap:5px;
-  height: 417px;
+ 
   align-items: center;
 
   >button{
@@ -47,9 +47,6 @@ color: rgba(112, 116, 120, 1);
     border-radius:5px;
     width:40px;
     height:40px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     cursor:pointer;
     border:none;
     outline:none;
@@ -67,23 +64,50 @@ color: rgba(112, 116, 120, 1);
 
  const style1={
   padding:"5px 20px",
-  backgroundColor:"green"
+  backgroundColor:"green",
+  borderRadius:"34px",
+  height: "28px",
+  width: "38px",
  }
 
  const style2={
   padding:"5px 20px",
-  backgroundColor:"red"
+  backgroundColor:"red",
+  borderRadius:"20px",
+  height: "28px",
+  width: "38px",
  }
 
 const Tabledata = (props) => {
-  const dispatch=useDispatch()
+  const [popup,setPopup]=useState(false)
+  const items = useSelector(state => state.Items.items);
+  const [popupMessage,setMessage]=useState(null);
+
+
+  const {Sno,date,status,statusdesc,message}=props;
+
+  const DisplayMessage=(id)=>{
+           const filtermessage=items.filter((item)=>{
+              return item.id===id;
+           })
+           
+           const parsedJson = JSON.parse(filtermessage[0].message);
+           const formatted = JSON.stringify(parsedJson, null, 2);
+           console.log("formatted data",formatted)
+          
+          setMessage(formatted)
+         
+  }
+
 
   return (
    <>
-        <Tr className='table-inside'>
-        <td><p>{props.Sno}</p></td>
-        <td><p>{props.date.split('-').reverse().join('-')}</p></td>
-        <td><p>
+   <tbody>
+   <Tr className='table-inside'>
+        <td><p>{Sno}</p></td>
+        <td><p>{date.split('-').reverse().join('-')}</p></td>
+        <td>
+          {/* <div>
           <p>Vessel Name : {props.message.vessel.vesselName}</p>
         <p>Vessel MRN : {props.message.vessel.mrn}</p>
         <p>Approval Date : {props.message.vessel.approvalDate}</p>
@@ -92,18 +116,31 @@ const Tabledata = (props) => {
         <p>Discharge Port : {props.message.vessel.dischargePortName} , {props.message.vessel.dischargePortCode}</p>
         <p>Terminal Details : {props.message.vessel.terminalName} , {props.message.vessel.terminalCode}</p>
         <p>Expect Arrival Date : {props.message.vessel.expectedArrivalDate}</p>
-           </p>
+           </div> */}
+
+           <p onClick={()=>DisplayMessage(Sno)}>{message.slice(0,196)}</p>
         </td>
-        <td style={{textAlign:"center"}}><p style={(props.status===6)?style1:style2}>{props.status===6?"Success":"Failed"}</p></td>
-        <td>
-          <button><Link to={`messageDetails/${props.Sno}`}> <img src={Viewsvg} alt="viewimg"/></Link></button>
-          <button><Link><img src={Cycle} alt="Cycleimg"/></Link></button>
-          <button onClick={()=>dispatch(deleteItems(props.Sno))}> <Link> <img src={Delete} alt="deleteimg"/></Link></button>
+        <td style={{textAlign:"center"}}><p style={(status===6||status===4)?style1:style2}></p></td>
+       <td>
+          <button><Link to={`messageDetails/${Sno}`}> <img src={Viewsvg} alt="viewimg"/></Link></button>
+           <button><Link><img src={Cycle} alt="Cycleimg"/></Link></button>
+          {/*<button onClick={()=>dispatch(deleteItems(props.Sno))}> <Link> <img src={Delete} alt="deleteimg"/></Link></button> */}
 
         </td>
-    
         </Tr>
-       
+   </tbody>
+
+ 
+     {
+       popupMessage?<div className='popup'>
+        <p onClick={()=>setMessage(null)}>✖</p>
+        <h1>Message Details</h1>
+        
+       <pre className='popup-message'>{popupMessage}</pre>
+     </div>:null
+     }
+        
+ 
    </>
   );
 }

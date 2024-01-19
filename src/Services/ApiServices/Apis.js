@@ -17,8 +17,8 @@ class Apis{
     return apiResponse;
   }
 
-  async GetMessageList(url,start,end) {
-    const apiResponse = await apiService.MessageList(url+'/IntMessageManager/GetMessageList',start,end);
+  async GetMessageList(url,start,end,status) {
+    const apiResponse = await apiService.MessageList(url+'/IntMessageManager/GetMessageList',start,end,status);
     return apiResponse;
   }
 

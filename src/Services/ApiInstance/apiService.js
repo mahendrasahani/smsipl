@@ -1,4 +1,4 @@
-import { type } from '@testing-library/user-event/dist/type';
+
 import axios from 'axios'
 
 
@@ -52,13 +52,15 @@ class ApiService {
       resolve(result);
     })
       .catch((err) => {
+        alert(err)
+        window.location.href="/admin/dashboard"
         console.log("error: " + err);
       });
     });
   }
 
 
-  async MessageList(url,start,end) {
+  async MessageList(url,start,end,status) {
 
     const token = localStorage.getItem('token')
   
@@ -68,7 +70,7 @@ class ApiService {
         params:{
           dtStartDate:start,
           dtEnddate:end,
-          nStatus:0,
+          nStatus:status,
         },
         url,
         headers:
