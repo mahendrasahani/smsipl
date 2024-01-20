@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import Apis from '../../Services/ApiServices/Apis';
-import Loading from '../reusable/Loading';
+import Apis from '../../../Services/ApiServices/Apis';
+import Loading from '../../reusable/Loading';
 import { useSelector } from 'react-redux';
 import Message from './Message';
 
@@ -22,10 +22,8 @@ const MessageDetails = ({items}) => {
   })
 
 
-  useEffect(()=>{
-
-          MessageInfo();
-    
+  useEffect(()=>{  
+    MessageInfo();
   },[])
 
   
@@ -37,6 +35,7 @@ const MessageDetails = ({items}) => {
         // console.log("message",data.data.bollist)
         setMessage(data?.data.bollist)
         setVessel(data.data.vessel)
+        console.log("messagedetails",data)
       } catch (error) {
         setLoading(false);
         console.error("Error fetching messages:", error);
@@ -98,7 +97,7 @@ const MessageDetails = ({items}) => {
           </div>
           {
             message.map((item,i)=>{
-                return <Message item={item} key={i} value={i} length={message.length}/>
+                return <Message items={item} key={item.bolnbr} value={i} length={message.length}/>
                    
             })
           }

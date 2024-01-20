@@ -1,9 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Table from "../reusable/CustomTable";
 import { useDispatch, useSelector } from "react-redux";
 import Apis from "../../Services/ApiServices/Apis";
 import { addItems } from "../store/ItemsSlice";
 import Loading from "../reusable/Loading";
+import Viewsvg from "../assests/view.svg"
+import Cycle from "../assests/cycle.svg"
+
+
 
 const SearchResults = () => {
   //present date
@@ -52,7 +56,13 @@ const SearchResults = () => {
     
       const end = formatDate2(enddate);
       console.log(start,end)
-      fetchMessage(start, end, statusvalue);
+      if(dateOption==1){
+        fetchMessage(start,start, statusvalue);
+      }
+      else{
+        fetchMessage(start,end, statusvalue);
+      }
+      
     } else {
       window.location.href = "/login";
     }
@@ -65,7 +75,6 @@ const SearchResults = () => {
       setLoading(true);
       console.log("start",start)
       console.log("end",end)
-      console.log("status",statusvalue)
       const apiResponse = await Apis.GetMessageList(
         "http://dpw1.afrilogitech.com/api",
         start,
@@ -101,39 +110,7 @@ const SearchResults = () => {
   //---------------------- Filter function to filter data using date and status----------------------------------//
 
   const FilterData = () => {
-
-    // if(items){
-    //   const filtered = filterItemsByDateRange(
-    //     items,
-    //     startdate,
-    //     enddate,
-    //     statusvalue
-    //   );
-    //   setFilteredItems(filtered);
-    // }
-
-    // else{
-    //   console.log("start",startdate)
-    //   console.log("end",enddate)
-    //   console.log("status",statusvalue)
-    //   setFilteredItems(items)
-    // }
-
     setNumber((prev)=>prev+1)
- 
-  };
-
-  const filterItemsByDateRange = (items, startDate, endDate, statusvalue) => {
-    return items?.filter((item) => {
-      let itemDate = formatDateString(new Date(item.row_created));
-      const itemStatus = item.status_code;
-      itemDate = formatDate(itemDate);
-      startDate = formatDate2(startDate);
-      endDate = formatDate2(endDate);
-      const dateInRange = itemDate >= startDate && itemDate <= endDate;
-      const statusMatches = itemStatus == statusvalue;
-      return dateInRange && statusMatches;
-    });
   };
 
 //---------------------------------------------------------------------------------------------------------------//
@@ -145,6 +122,7 @@ const SearchResults = () => {
      setendDate(maindate)
      setStatus(0);
      FilterData(items)
+     console.log("dateOption",dateOption)
   };
 
 
@@ -154,6 +132,7 @@ const SearchResults = () => {
 
   return (
     <div className="main-container" style={!value ? style1 : null}>
+      <div className="filter-part">
       <div className="searchbox">
         <h1>Search Results</h1>
         <div>
@@ -167,23 +146,36 @@ const SearchResults = () => {
                 value={dateOption}
                 onChange={(e) => setDateoption(e.target.value)}
               >
-                <option value={0}>Select All</option>
+                <option value={0}>Select Range</option>
                 <option value={1}>On</option>
                 <option value={2}>Between</option>
               </select>
             </span>
-
-            <span>
-              <p>From Date</p>
-              <input
-                type="date"
-                value={startdate}
-                min="2023-01-01"
-                max={maindate}
-                onChange={(e) => setstartDate(e.target.value)}
-              />
-            </span>
-            <span>
+                
+                {
+                  dateOption==1?<span className="date-input">
+                  <p>Date</p>
+                  <input
+                    type="date"
+                    value={startdate}
+                    min="2023-01-01"
+                    max={maindate}
+                    onChange={(e) => setstartDate(e.target.value)}
+                  />
+                </span>
+                :
+                <div className="date-field">
+                <span>
+                <p>From Date</p>
+                <input
+                  type="date"
+                  value={startdate}
+                  min="2023-01-01"
+                  max={maindate}
+                  onChange={(e) => setstartDate(e.target.value)}
+                />
+              </span>
+              <span>
               <p>To Date</p>
 
               <input
@@ -194,7 +186,8 @@ const SearchResults = () => {
                 onChange={(e) => setendDate(e.target.value)}
               />
             </span>
-
+              </div>
+              }
             <span>
               <p>Status</p>
               <select
@@ -210,14 +203,34 @@ const SearchResults = () => {
                 <option value={7}>Transfer Failed</option>
               </select>
             </span>
+            
+          
+          </div>
+          <div className="btns">
             <button className="filter-btn" onClick={FilterData}>
               Search
             </button>
 
             <button className="filter-btn" onClick={ResetData}>Clear</button>
-          </div>
+            </div>
         </div>
       </div>
+     
+      <div className="legends">
+             <div className="color-legend">
+              <p><span>Details Inserted </span><span></span></p>
+              <p><span>Transfer Successful </span><span></span></p>
+              <p><span>Details Insertion Failed </span><span></span></p>
+              <p><span>Transfer Failed </span><span></span></p>
+             </div>
+             <div className="icon-legend">
+             <p><span>View </span><span><img src={Viewsvg} alt="" /></span></p>
+              <p><span>Reprocess</span><span><img src={Cycle} alt="" /></span></p>
+        
+             </div>
+      </div>
+      </div>
+      
 
       {loading ? (
         <Loading />
@@ -225,13 +238,14 @@ const SearchResults = () => {
         <div className="table-box">{<Table messages={filteredItems} />}</div>
       ) : items.length === 0 ? (
         <h1 style={{ textAlign: "center", height: "300px" }}>
-          <div
+          <hr
             style={{
-              height: "50px",
+              height: "40px",
               backgroundColor: "rgba(237, 242, 247, 1)",
               marginBottom: "40px",
+              border:"none"
             }}
-          ></div>
+          ></hr>
           No data is found for specific date Filters......
         </h1>
       ) : (

@@ -1,9 +1,11 @@
 import React from "react";
+import CargoDetails from "./CargoDetails";
+import ContainerDetails from "./ContainerDetails";
 
-const Message = ({ item, value, length }) => {
+const Message = ({ items, value, length }) => {
 
 
-   const {bltype,cargocode,destinationplacename,destinationplacecode,exportername,shippingagentname,shippingagentcode,loadingportname,loadingportcode}=item;
+   const {bltype,cargocode,destinationplacename,destinationplacecode,exportername,shippingagentname,shippingagentcode,loadingportname,loadingportcode}=items;
 
 
   const showData = (index) => {
@@ -35,6 +37,29 @@ const Message = ({ item, value, length }) => {
         <p>
           Loading Port : {loadingportname} , {loadingportcode}
         </p>
+
+        <div className="boldetails">
+          <div>
+          {
+            items.bolcargos.map((item,i)=>{
+                return <CargoDetails item={item} key={i} val={(i+1)*(3*value)}  indexval={i} length={items.bolcargos.length}/>
+                   
+            })
+          }
+          </div>
+          <div>
+          {
+            items.bolcntrs.map((item,i)=>{
+                return <ContainerDetails item={item} key={i} val={(i+1)*(5*value)} indexval={i} length={items.bolcntrs.length}/>
+                   
+            })
+          }
+          </div>
+        
+
+
+  
+        </div>
       </div>
     </div>
   );
