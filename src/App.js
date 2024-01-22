@@ -1,0 +1,69 @@
+
+import { Outlet, createBrowserRouter } from 'react-router-dom';
+import './App.css';
+import Login from "./Components/main-components/Login"
+
+import Layout from './Components/Layout/Layout';
+import MessageDetails from './Components/main-components/MessageDetails/MessageDetails';
+
+import Usermenu from './Components/main-components/Usermenu';
+import { useSelector } from 'react-redux';
+import SearchResults from './Components/main-components/SearchResults';
+
+
+
+
+const App=()=> {
+
+  return (
+    <div className="App">
+        <Outlet/>
+    </div>
+  );
+}
+
+const MessageDetailsWrapper = () => {
+  const items = useSelector(state => state.Items.items);
+
+
+  return <MessageDetails items={items} />;
+};
+
+
+   
+
+
+const Approuter=createBrowserRouter([
+  {
+    path:'/',
+    Element:<App/>,
+    children:[
+      {
+        path:"/login",
+        element:<Login/>
+      },
+      {
+        path:"/admin/dashboard",
+        element:<Layout/>,
+        children:[
+          {
+            path:"/admin/dashboard",
+            element:<SearchResults/>
+          },
+          {
+            path: '/admin/dashboard/messageDetails/:id',
+            element: <MessageDetailsWrapper />
+          },
+          {
+            path:"/admin/dashboard/usermenu",
+            element:<Usermenu/>
+          },
+        ]
+      }
+    ]
+    
+  
+  }
+])
+
+export default Approuter;
