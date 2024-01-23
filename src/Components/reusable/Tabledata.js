@@ -133,7 +133,7 @@ const Tabledata = (props) => {
 
             {status === 5 || status === 7 ? (
               <button>
-                <Link>
+                <Link to={`messageDetails/${Sno}`}>
                   <img src={Cycle} alt="Cycleimg" />
                 </Link>
               </button>

@@ -55,6 +55,15 @@ const Message = ({ items, value, length }) => {
             })
           }
           </div>
+
+          <div>
+          { items.bolvehicles?
+            items.bolvehicles.map((item,i)=>{
+                return <ContainerDetails item={item} key={i} val={(i+1)*(5*value)} indexval={i} length={items.bolvehicles.length}/>
+                   
+            }):<h1>BolVehicles</h1>
+          }
+          </div>
         
 
 
