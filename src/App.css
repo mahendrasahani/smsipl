@@ -791,6 +791,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 } 
 
+@media only screen and (max-width:600px) {
+
+ .legends{
+   bottom:0;
+   position: absolute;
+   right: 0;
+ }
+} 
 
 @media only screen and (max-width:470px) {
 
