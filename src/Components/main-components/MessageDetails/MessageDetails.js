@@ -121,7 +121,7 @@ const MessageDetails = ({items}) => {
           
    
          {     
-         (itemsData[0]?.status_code===5 || itemsData[0]?.status_code===7)?                       
+         (itemsData[0]?.status_code===7)?                       
          
          //process button will only show when status_code is 5 or 7 ie. inset failed /Pushing Failed
 

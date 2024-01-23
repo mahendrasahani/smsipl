@@ -61,7 +61,7 @@ const Message = ({ items, value, length }) => {
             items.bolvehicles.map((item,i)=>{
                 return <ContainerDetails item={item} key={i} val={(i+1)*(5*value)} indexval={i} length={items.bolvehicles.length}/>
                    
-            }):<h1>BolVehicles</h1>
+            }):<h1>No data for bolvehicle is found</h1>
           }
           </div>
         
