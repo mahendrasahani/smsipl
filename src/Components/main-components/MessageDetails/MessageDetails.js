@@ -56,6 +56,7 @@ const MessageDetails = ({items}) => {
 
     
   const processMessage=async()=>{
+    console.log(itemsData[0]?.status_code)
         const response=await Apis.ProcessMessage('http://dpw1.afrilogitech.com/api',id,itemsData[0]?.status_code)
         if(response){
           alert(response)
@@ -102,28 +103,10 @@ const MessageDetails = ({items}) => {
           }
    
    
-         {/* { 
-           ((itemsData[0]?.status_code)===2 ||((itemsData[0]?.status_code)===5) || ((itemsData[0]?.status_code)===7))?
-           <div className='span-box'>
-           <span>
-             <p style={{width:"150px",borderBottom:"2px solid black"}}>Error Details</p>
-             <p  className='error' style={{color:"red",display:"inline"}}>{itemsData[0]?.status_desc}</p>
-           </span>
-           </div>
-           :
-           <div className='span-box'>
-            <span>
-            <p style={{width:"100px",borderBottom:"2px solid black"}}>Success</p>
-            <p  className='error' style={{color:"green",display:"inline"}}>{itemsData[0]?.status_desc}</p>
-          </span>
-          </div>
-         } */}
-          
    
          {     
-         (itemsData[0]?.status_code===7)?                       
+         (itemsData[0]?.status_code===7 || itemsData[0]?.status_code===5)?                       
          
-         //process button will only show when status_code is 5 or 7 ie. inset failed /Pushing Failed
 
          <div className='button-box'>
          <button onClick={() => setProcess(!process)}>PROCESS</button>

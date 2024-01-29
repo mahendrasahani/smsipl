@@ -23,7 +23,7 @@ class ApiService {
         .catch((err) => {
           console.log("error: " + err);
           alert("Error in POST update/Wrong Crendentials")
-          window.location.href = '/'
+          window.location.href = '/login'
           
           });
         
@@ -52,7 +52,7 @@ class ApiService {
       resolve(result);
     })
       .catch((err) => {
-        alert(err)
+        alert("Can't find the message Details for required messageId")
         window.location.href="/admin/dashboard"
         console.log("error: " + err);
       });
@@ -117,7 +117,7 @@ class ApiService {
             if (err && err.response && err.response.data && err.response.data.message) {
               alert(err.response.data.message);
             } else {
-              alert("Error in POST update")
+              alert("Error in processing the message Details")
             }
           }
         });

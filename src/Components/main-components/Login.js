@@ -29,25 +29,6 @@ const Login = () => {
     const handleSubmit=async(e)=>{
     e.preventDefault();
       
-      // let config = {
-      //   method: 'post',
-      //   maxBodyLength: Infinity,
-      //   url: 'http://dpw1.afrilogitech.com/api/Authentication',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   data : data
-      // };
-      
-      // await axios.request(config)
-      // .then((response) => {
-      //   // console.log(response.data.token);
-      //   localStorage.setItem("token",response.data.token)
-      //   window.location.href="/admin";
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
 
      
         var apiResponseData = await Apis.Authentication('http://dpw1.afrilogitech.com/api',formdata);

@@ -1003,6 +1003,10 @@ word-wrap:break-word;
   display: none;
 }
 
+.inside-vehicle{
+  display: none;
+}
+
 .button-box{
   margin-left: 10px;
   margin-bottom: 100px;

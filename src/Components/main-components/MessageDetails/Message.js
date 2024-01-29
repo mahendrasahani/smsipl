@@ -1,6 +1,7 @@
 import React from "react";
 import CargoDetails from "./CargoDetails";
 import ContainerDetails from "./ContainerDetails";
+import VehicleDetails from "./VehiclesDetails";
 
 const Message = ({ items, value, length }) => {
 
@@ -59,7 +60,7 @@ const Message = ({ items, value, length }) => {
           <div>
           { items.bolvehicles?
             items.bolvehicles.map((item,i)=>{
-                return <ContainerDetails item={item} key={i} val={(i+1)*(5*value)} indexval={i} length={items.bolvehicles.length}/>
+                return <VehicleDetails item={item} key={i} val={(i+1)*(7*(1+value))} indexval={i} length={items.bolvehicles.length}/>
                    
             }):<h1>No data for bolvehicle is found</h1>
           }

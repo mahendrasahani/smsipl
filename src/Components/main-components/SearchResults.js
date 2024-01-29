@@ -234,7 +234,7 @@ const SearchResults = () => {
       ) : filteredItems.length !== 0 ? (
         <div className="table-box">{<Table messages={filteredItems} />}</div>
       ) : items.length === 0 ? (
-        <h1 style={{ textAlign: "center", height: "300px" }}>
+        <h1 style={{ textAlign: "center", height: "500px" }}>
           <hr
             style={{
               height: "40px",
