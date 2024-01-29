@@ -43,7 +43,7 @@ const Message = ({ items, value, length }) => {
           <div>
           {
             items.bolcargos.map((item,i)=>{
-                return <CargoDetails item={item} key={i} val={(i+1)*(3*value)}  indexval={i} length={items.bolcargos.length}/>
+                return <CargoDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)}  indexval={i} length={items.bolcargos.length}/>
                    
             })
           }
@@ -51,7 +51,7 @@ const Message = ({ items, value, length }) => {
           <div>
           {
             items.bolcntrs.map((item,i)=>{
-                return <ContainerDetails item={item} key={i} val={(i+1)*(5*value)} indexval={i} length={items.bolcntrs.length}/>
+                return <ContainerDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)} indexval={i} length={items.bolcntrs.length}/>
                    
             })
           }
@@ -60,7 +60,7 @@ const Message = ({ items, value, length }) => {
           <div>
           { items.bolvehicles?
             items.bolvehicles.map((item,i)=>{
-                return <VehicleDetails item={item} key={i} val={(i+1)*(7*(1+value))} indexval={i} length={items.bolvehicles.length}/>
+                return <VehicleDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)} indexval={i} length={items.bolvehicles.length}/>
                    
             }):<h1>No data for bolvehicle is found</h1>
           }

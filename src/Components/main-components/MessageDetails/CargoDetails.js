@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 
 const CargoDetails = ({item,val,indexval, length}) => {
     const {markandnbr,cargotypecode,description}=item;
-
+      
+      
     
        const showCargoDetails=()=>{
         if(val==0){
