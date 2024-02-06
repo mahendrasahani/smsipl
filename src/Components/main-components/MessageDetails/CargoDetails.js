@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
 
-const CargoDetails = ({item,val,indexval, length}) => {
+const CargoDetails = ({item,val,indexval}) => {
     const {markandnbr,cargotypecode,description}=item;
-      
-      
+
     
        const showCargoDetails=()=>{
         if(val==0){
-          const data = document.getElementById(`inside-cargo${val+indexval}`);
+          const data = document.getElementById(`inside-cargo${val}`);
           const computedStyle = window.getComputedStyle(data);
           const displayProperty = computedStyle.getPropertyValue('display');
           
@@ -21,8 +19,10 @@ const CargoDetails = ({item,val,indexval, length}) => {
           
         }
 
+     
+
         else{
-          const data = document.getElementById(`inside-cargo${val+indexval+length}`);
+          const data = document.getElementById(`inside-cargo${val}`);
           const computedStyle = window.getComputedStyle(data);
           const displayProperty = computedStyle.getPropertyValue('display');
           
@@ -39,7 +39,7 @@ const CargoDetails = ({item,val,indexval, length}) => {
       
        } 
 
-
+    
   
     return (
       <div className="cargo-card">
@@ -47,13 +47,13 @@ const CargoDetails = ({item,val,indexval, length}) => {
         Bolcargos {indexval + 1}{" "}
         </h1>
         {
-         (val===0)?<div className="inside-cargo" id={`inside-cargo${val+indexval}`}>
+         (val===0)?<div className="inside-cargo" id={`inside-cargo${val}`}>
           <p>Markandnbr : {markandnbr}</p>
           <p>Cargotypecode : {cargotypecode}</p>
           <p>description : {description}</p>
          
         </div>:
-          <div className="inside-cargo" id={`inside-cargo${val+indexval+length}`}>
+          <div className="inside-cargo" id={`inside-cargo${val}`}>
           <p>Markandnbr : {markandnbr}</p>
           <p>Cargotypecode : {cargotypecode}</p>
           <p>description : {description}</p>

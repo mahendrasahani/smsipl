@@ -13,6 +13,7 @@ import SearchResults from './Components/main-components/SearchResults';
 
 
 
+
 const App=()=> {
 
   return (
@@ -42,14 +43,21 @@ const Approuter=createBrowserRouter([
         path:"/login",
         element:<Login/>
       },
+   
       {
         path:"/admin/dashboard",
         element:<Layout/>,
         children:[
+          // {
+          //   path:"/admin/dashboard",
+          //   element:<SearchResults/>
+          // },
           {
             path:"/admin/dashboard",
-            element:<SearchResults/>
+             element:<SearchResults/>
           },
+       
+        
           {
             path: '/admin/dashboard/messageDetails/:id',
             element: <MessageDetailsWrapper />

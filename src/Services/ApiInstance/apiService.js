@@ -10,6 +10,7 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
+        mode: "cors",
         url,
         data,
         headers:
@@ -36,6 +37,7 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
+        mode: "cors",
         url,
         params: {
           messageId:id,
@@ -67,6 +69,7 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "get",
+          mode: "cors",
         params:{
           dtStartDate:start,
           dtEnddate:end,
@@ -92,6 +95,7 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
+        mode: "cors",
         url,
         body:{
           messageId:id,
@@ -129,6 +133,7 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
+        mode: "cors",
         url,
         body:data,
         headers:

@@ -7,7 +7,7 @@ const ContainerDetails = ({item,val,indexval, length}) => {
 
 const showContainerDetails=()=>{
   if(val==0){
-    const data = document.getElementById(`inside-cntrs${val+indexval}`);
+    const data = document.getElementById(`inside-cntrs${val}`);
     const computedStyle = window.getComputedStyle(data);
     const displayProperty = computedStyle.getPropertyValue('display');
     
@@ -22,7 +22,7 @@ const showContainerDetails=()=>{
   }
 
   else{
-    const data = document.getElementById(`inside-cntrs${val+indexval+length}`);
+    const data = document.getElementById(`inside-cntrs${val}`);
     const computedStyle = window.getComputedStyle(data);
     const displayProperty = computedStyle.getPropertyValue('display');
     
@@ -45,11 +45,11 @@ return (
     bolcntrs {indexval + 1}{" "}
     </h1>
     {
-      val===0?<div className="inside-cntrs" id={`inside-cntrs${val+indexval}`}>
+      val===0?<div className="inside-cntrs" id={`inside-cntrs${val}`}>
       <p>Cntrnbr : {cntrnbr}</p>
       <p>Cntrsize : {cntrsize}</p>
     </div>:
-      <div className="inside-cntrs" id={`inside-cntrs${val+indexval+length}`}>
+      <div className="inside-cntrs" id={`inside-cntrs${val}`}>
         <p>Cntrnbr : {cntrnbr}</p>
       <p>Cntrsize : {cntrsize}</p>
     

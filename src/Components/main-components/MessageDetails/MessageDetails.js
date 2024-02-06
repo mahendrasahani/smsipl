@@ -97,7 +97,7 @@ const MessageDetails = ({items}) => {
           </div>
           {
             message.map((item,i)=>{
-                return <Message items={item} key={item.bolnbr} value={i} length={message.length}/>
+                return <Message items={item} key={item.bolnbr} randomNum={Math.floor(Math.random()*6000+1)} value={i} length={message.length}/>
                    
             })
           }

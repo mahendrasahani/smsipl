@@ -5,7 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const ItemsSlice=createSlice({
     name:"Items",
     initialState:{
-        items : []
+        items : [],
+        idCount:0,
           
     },
 
@@ -13,6 +14,10 @@ const ItemsSlice=createSlice({
 
      addItems:(state,action)=>{
         state.items=action.payload;
+     },
+
+     incrementIdcount:(state,action)=>{
+          state.idCount+=1;
      },
         
     deleteItems:(state,action)=>{
@@ -23,5 +28,5 @@ const ItemsSlice=createSlice({
     }
 })
 
-export const { deleteItems,addItems } =ItemsSlice.actions
+export const { deleteItems,addItems,incrementIdcount } =ItemsSlice.actions
 export default ItemsSlice.reducer

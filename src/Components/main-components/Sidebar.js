@@ -17,7 +17,7 @@ const Sidebar = () => {
 
             <li>    
                 <span>
-                  <img src={Comment} alt="img"/><Link>Messages</Link>
+                  <img src={Comment} alt="img"/><Link to={"messages"}>Messages</Link>
                 </span>
             </li>
             

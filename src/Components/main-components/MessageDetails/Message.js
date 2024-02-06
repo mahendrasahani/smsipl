@@ -3,8 +3,9 @@ import CargoDetails from "./CargoDetails";
 import ContainerDetails from "./ContainerDetails";
 import VehicleDetails from "./VehiclesDetails";
 
-const Message = ({ items, value, length }) => {
+const Message = ({ items,randomNum, value, length }) => {
 
+  
 
    const {bltype,cargocode,destinationplacename,destinationplacecode,exportername,shippingagentname,shippingagentcode,loadingportname,loadingportcode}=items;
 
@@ -42,8 +43,10 @@ const Message = ({ items, value, length }) => {
         <div className="boldetails">
           <div>
           {
+        
             items.bolcargos.map((item,i)=>{
-                return <CargoDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)}  indexval={i} length={items.bolcargos.length}/>
+            
+                return <CargoDetails item={item} key={i} val={`${randomNum}`+`${Math.floor(Math.random()*6000+1)}`}  indexval={i} length={items.bolcargos.length}/>
                    
             })
           }
@@ -51,7 +54,7 @@ const Message = ({ items, value, length }) => {
           <div>
           {
             items.bolcntrs.map((item,i)=>{
-                return <ContainerDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)} indexval={i} length={items.bolcntrs.length}/>
+                return <ContainerDetails item={item} key={i} val={`${randomNum}`+`${Math.floor(Math.random()*6000+1)}`} indexval={i} length={items.bolcntrs.length}/>
                    
             })
           }
@@ -60,7 +63,7 @@ const Message = ({ items, value, length }) => {
           <div>
           { items.bolvehicles?
             items.bolvehicles.map((item,i)=>{
-                return <VehicleDetails item={item} key={i} val={Math.floor(Math.random()*6000+1)} indexval={i} length={items.bolvehicles.length}/>
+                return <VehicleDetails item={item} key={i} val={`${randomNum}`+`${Math.floor(Math.random()*6000+1)}`} indexval={i} length={items.bolvehicles.length}/>
                    
             }):<h1>No data for bolvehicle is found</h1>
           }
