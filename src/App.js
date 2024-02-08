@@ -9,6 +9,7 @@ import MessageDetails from './Components/main-components/MessageDetails/MessageD
 import Usermenu from './Components/main-components/Usermenu';
 import { useSelector } from 'react-redux';
 import SearchResults from './Components/main-components/SearchResults';
+import Exceldata from './Components/main-components/Exceldata';
 
 
 
@@ -54,12 +55,17 @@ const Approuter=createBrowserRouter([
           // },
           {
             path:"/admin/dashboard",
-             element:<SearchResults/>
+             element:<Exceldata/>
+          },
+
+          {
+            path:"/admin/dashboard/messagelist",
+            element:<SearchResults/>
           },
        
         
           {
-            path: '/admin/dashboard/messageDetails/:id',
+            path: '/admin/dashboard/messagelist/messageDetails/:id',
             element: <MessageDetailsWrapper />
           },
           {

@@ -89,20 +89,7 @@ const SearchResults = () => {
   };
 
 
-  //------------------------------------------Format Date---------------------------------------------------------//
 
-  const formatDateString = (date) => {
-    return date.toLocaleDateString("en-US");
-  };
-
-  const formatDate = (dateString) => {
-    const [month, day, year] = dateString.split("/");
-    const formattedDate = `${month.padStart(2, "0")}/${day.padStart(
-      2,
-      "0"
-    )}/${year}`;
-    return formattedDate;
-  };
 
   //---------------------- Filter function to filter data using date and status----------------------------------//
 

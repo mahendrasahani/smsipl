@@ -13,11 +13,11 @@ const Sidebar = () => {
     <div className='sidebar'>
          <button onClick={()=>dispatch(setHidden())}><RxCross2 /></button>
          <ul className='nav-links'>
-            <li><span><img src={Home} alt="img"/><Link>Dashboard</Link></span></li>
+            <li><span><img src={Home} alt="img"/><Link to={""}>Dashboard</Link></span></li>
 
             <li>    
                 <span>
-                  <img src={Comment} alt="img"/><Link>Messages</Link>
+                  <img src={Comment} alt="img"/><Link to={"messagelist"}>Messages</Link>
                 </span>
             </li>
             

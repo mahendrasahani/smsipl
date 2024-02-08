@@ -713,6 +713,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 2px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
    }
 
    .icon-legend >p>span~span{
@@ -724,9 +725,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
    }
 
    .icon-legend >p>span~span>img{
-    width: 29px;
-    height: 26px;
-   }
+    padding: 4px;
+    width: 22px;
+    height: 23px;
+  }
+   
 
 
 @media only screen and (max-width:1571px) {
@@ -1174,7 +1177,9 @@ background:#0575E6;
 
 @media only screen and (max-width:585px) {
 
-
+  .table-inside td{
+    max-height:225px !important ;
+  }
 
     .table-inside td > p{
       height: 31px;
@@ -1255,4 +1260,60 @@ background:#0575E6;
 }
 
 
+/* graphpage css */
+
+
+
+
+
+.graphpage {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  height: 600px;
+}
+
+
+.graphpage::-webkit-scrollbar {
+  display: none;
+}
+
+
+.graphpage >h1{
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+.graph-card{
+  max-width: 500px;
+  height: 300px;
+  margin:45px auto;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius:20px;
+}
+
+
+.graph-btns{
+  margin-top: 10px;
+  display: flex;
+  width:100%;
+  justify-content: center;
+  gap: 10px;
+}
+
+.graph-btns>input{
+  width: 110px;
+  padding: 11.5px !important;
+  font-size: 14px !important;
+}
+
+.graph-btns button{
+   background-color:#0575E6;
+   border-radius: 10px;
+   border: none;
+   color: white;
+   cursor: pointer;
+   width: 3rem;
+   height: 1.5rem;
+}
 
