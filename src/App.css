@@ -885,6 +885,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 160px;
   }
 
+  .filter-btn{
+    width:200px;
+    height: 40px;
+    padding: 0;
+    font-size:20px;
+  }
+
   .date-input > input[type="date"] {
     width: 79%;
   }
