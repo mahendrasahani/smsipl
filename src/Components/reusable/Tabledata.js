@@ -111,7 +111,7 @@ const Tabledata = (props) => {
                     ? "purple"
                     : status === 7
                     ? "red"
-                    : "inherit",
+                    : "black",
               }}
             ></p>
           </td>

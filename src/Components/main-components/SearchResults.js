@@ -206,6 +206,7 @@ const SearchResults = () => {
               <p><span>Transfer Successful </span><span></span></p>
               <p><span>Details Insertion Failed </span><span></span></p>
               <p><span>Transfer Failed </span><span></span></p>
+              <p><span>Default</span><span></span></p>
              </div>
              <div className="icon-legend">
              <p><span>View </span><span><img src={Viewsvg} alt="" /></span></p>

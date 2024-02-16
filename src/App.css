@@ -142,6 +142,7 @@ body {
 } */
 
 .span-box {
+  justify-content: center;
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -774,9 +775,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .color-legend {
+  padding: 5px;
   border-radius: 10px;
   width: 200px;
-  max-height: 90px;
+  max-height: 111px;
   box-shadow: 5px 5px 5px grey;
 }
 
@@ -810,7 +812,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: red;
 }
 
+.color-legend > p:nth-child(5) > span ~ span {
+  border-radius: 10px;
+  background: black;
+}
+
 .icon-legend {
+  padding: 5px;
   border-radius: 10px;
   width: 200px;
   max-height: 90px;
