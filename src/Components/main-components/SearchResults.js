@@ -122,7 +122,7 @@ const SearchResults = () => {
         <div>
           <div className="span-box">
 
-            <span>
+            <div>
             <p>Search By Date</p>
             <select
                 name="SelectStatus"
@@ -134,10 +134,10 @@ const SearchResults = () => {
                 <option value={1}>On</option>
                 <option value={2}>Between</option>
               </select>
-            </span>
+            </div>
                 
                 {
-                  dateOption==1?<span className="date-input">
+                  dateOption==1?<>
                   <p>Date</p>
                   <input
                     type="date"
@@ -146,10 +146,10 @@ const SearchResults = () => {
                     max={maindate}
                     onChange={(e) => setstartDate(e.target.value)}
                   />
-                </span>
+                </>
                 :
-                <div className="date-field">
-                <span>
+                <>
+                <div>
                 <p>From Date</p>
                 <input
                   type="date"
@@ -158,8 +158,8 @@ const SearchResults = () => {
                   max={maindate}
                   onChange={(e) => setstartDate(e.target.value)}
                 />
-              </span>
-              <span>
+              </div>
+              <div>
               <p>To Date</p>
 
               <input
@@ -169,10 +169,10 @@ const SearchResults = () => {
                 value={enddate}
                 onChange={(e) => setendDate(e.target.value)}
               />
-            </span>
-              </div>
+            </div>
+              </>
               }
-            <span>
+            <div>
               <p>Status</p>
               <select
                 name="SelectStatus"
@@ -186,7 +186,7 @@ const SearchResults = () => {
                 <option value={5}>Details Insertion Failed</option>
                 <option value={7}>Transfer Failed</option>
               </select>
-            </span>
+            </div>
             
           
           </div>

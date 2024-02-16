@@ -104,77 +104,77 @@ const Exceldata = () => {
        <div className="searchbox">
          <h1>Download Excel Sheet</h1>
          <div style={{marginBottom:"100px"}} >
-          <div className="span-box">
+         <div className="span-box">
 
-            <span>
-            <p>Search By Date</p>
-            <select
-                name="SelectStatus"
-                id="select"
-                value={dateOption}
-                onChange={(e) => setDateoption(e.target.value)}
-              >
-                <option value={0}>Select Range</option>
-                <option value={1}>On</option>
-                <option value={2}>Between</option>
-              </select>
-            </span>
-                
-                {
-                  dateOption==1?<span className="date-input">
-                  <p>Date</p>
-                  <input
-                    type="date"
-                    value={startdate}
-                    min="2023-01-01"
-                    max={maindate}
-                    onChange={(e) => setstartDate(e.target.value)}
-                  />
-                </span>
-                :
-                <div className="date-field">
-                <span>
-                <p>From Date</p>
-                <input
-                  type="date"
-                  value={startdate}
-                  min="2023-01-01"
-                  max={maindate}
-                  onChange={(e) => setstartDate(e.target.value)}
-                />
-              </span>
-              <span>
-              <p>To Date</p>
+<div>
+<p>Search By Date</p>
+<select
+    name="SelectStatus"
+    id="select"
+    value={dateOption}
+    onChange={(e) => setDateoption(e.target.value)}
+  >
+    <option value={0}>Select Range</option>
+    <option value={1}>On</option>
+    <option value={2}>Between</option>
+  </select>
+</div>
+    
+    {
+      dateOption==1?<>
+      <p>Date</p>
+      <input
+        type="date"
+        value={startdate}
+        min="2023-01-01"
+        max={maindate}
+        onChange={(e) => setstartDate(e.target.value)}
+      />
+    </>
+    :
+    <>
+    <div>
+    <p>From Date</p>
+    <input
+      type="date"
+      value={startdate}
+      min="2023-01-01"
+      max={maindate}
+      onChange={(e) => setstartDate(e.target.value)}
+    />
+  </div>
+  <div>
+  <p>To Date</p>
 
-              <input
-                type="date"
-                min="2023-01-01"
-                max={maindate}
-                value={enddate}
-                onChange={(e) => setendDate(e.target.value)}
-              />
-            </span>
-              </div>
-              }
-            <span>
-              <p>Status</p>
-              <select
-                name="SelectStatus"
-                id="select"
-                value={statusvalue}
-                onChange={(e) => setStatus(e.target.value)}
-              >
-                <option value={0}>Select All</option>
-                <option value={4}>Details Inserted</option>
-                <option value={6}>Transfer Successful</option>
-                <option value={5}>Details Insertion Failed</option>
-                <option value={7}>Transfer Failed</option>
-              </select>
-            </span>
-            
-          
-          </div>
-          <div className="btns" style={{margin:"20px",width:"75%"}}>
+  <input
+    type="date"
+    min="2023-01-01"
+    max={maindate}
+    value={enddate}
+    onChange={(e) => setendDate(e.target.value)}
+  />
+</div>
+  </>
+  }
+<div>
+  <p>Status</p>
+  <select
+    name="SelectStatus"
+    id="select"
+    value={statusvalue}
+    onChange={(e) => setStatus(e.target.value)}
+  >
+    <option value={0}>Select All</option>
+    <option value={4}>Details Inserted</option>
+    <option value={6}>Transfer Successful</option>
+    <option value={5}>Details Insertion Failed</option>
+    <option value={7}>Transfer Failed</option>
+  </select>
+</div>
+
+
+</div>
+          <div className="btns">
             <button className="filter-btn" onClick={FilterData}>
              FilterData
             </button>
