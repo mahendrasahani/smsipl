@@ -22,6 +22,7 @@ const Tr = styled.tr`
     text-align: left;
     color: rgba(37, 37, 37, 1);
   }
+  
 
   @media only screen and (max-width: 1536px) {
     th {

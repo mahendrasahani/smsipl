@@ -673,8 +673,15 @@ textarea {
 
 @media only screen and (max-width: 1158px) {
   .sidebar {
-    width:200px;
-    z-index: 11;
+    width:237px;
+  
+  }
+}
+
+@media only screen and (max-width:720px) {
+  .sidebar {
+    width:190px;
+   
   }
 }
 
@@ -735,7 +742,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin:28px 0px;
+  padding: 17px;
   gap: 22px;
 }
 
@@ -915,16 +922,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     bottom: 0;
     position: absolute;
     right: 0;
+    background:white;
+    z-index: 999;
   }
-}
 
-@media only screen and (max-width: 470px) {
   .filter-btn {
     margin-top: 20px;
+    width: 160px;
+    height: 36px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
   }
 
-
 }
+
+
+
+
+
 
 /* --------------------------------------------------Message-box ---------------------------------------------------- */
 
@@ -1201,18 +1217,43 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .table-inside td {
   font-size: 23px;
+ line-height: 26px;
 }
 
 .table-inside td:nth-child(5) {
   height: 417px;
 }
 
-.table-inside td:nth-child(2) {
-  width: 150px;
+
+
+.table-inside td:nth-child(5)>button{
+  background: rgba(116, 136, 249, 1);
+  border-radius:5px;
+  width:40px;
+  height:40px;
+  border:none;
+  outline:none;
+  box-shadow:none;
+  
 }
+
+.table-inside td:nth-child(5)>button>a img{
+  text-decoration:none;
+  font-size:22px;
+  padding-top:3px;
+  /* height: 13px;
+  width: 13px;
+  padding-top: 1px; */
+}
+
+
 
 .table-inside td:nth-child(3) {
   cursor: pointer;
+}
+
+.table-inside td:nth-child(2)>p {
+  width:140px;
 }
 
 @media only screen and (max-width: 1536px) {
@@ -1223,6 +1264,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .table-inside td:nth-child(4) > p {
     display: block !important;
   }
+
+
 }
 
 @media only screen and (max-width: 1440px) {
@@ -1235,6 +1278,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .table-inside td {
     font-size: 14px;
   }
+
+  .table-inside td:nth-child(2)>p {
+    width:60px;
+  }
+  
 }
 
 @media only screen and (max-width: 1280px) {
@@ -1259,17 +1307,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 585px) {
   .table-inside td {
-    max-height: 225px !important ;
-  }
-
-  .table-inside td > p {
-    height: 31px;
-    line-height: 32px;
+   line-height:14px;
+   max-height: 110px !important;
   }
 
   .table-inside td:nth-child(4) > p {
     padding: 0 !important;
+    height: 25px !important;
+    width: 55px !important;
   }
+
+  .table-inside td:nth-child(5)>button{
+    width:25px;
+    height:25px;  
+  }
+
+  .table-inside td:nth-child(5)>button>a img{
+    height: 13px;
+    width: 13px;
+    padding-top: 1px;
+  }
+
+  .table-inside td:nth-child(2)>p{
+    width: 46px;
+    }
+  
 }
 
 @media only screen and (max-width: 1500px) {
@@ -1332,6 +1394,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 20px;
   word-wrap: break-word;
   line-height: 22px;
+}
+
+@media only screen and (max-width:600px){
+  .popup > p:first-child {
+    right: 6px;
+    top: -23px;
+  }
+
+  .popup > h1 {
+    padding-top: 15px;
+}
 }
 
 /* graphpage css */

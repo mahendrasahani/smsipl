@@ -16,11 +16,9 @@ const Tr = styled.tr`
 padding:0 15px;
 font-family: Public Sans;
 font-weight: 400;
-line-height: 26px;
 letter-spacing: 0em;
 text-align: left;
 color: rgba(112, 116, 120, 1);
-
 
  &:nth-child(4){
   >p{
@@ -36,30 +34,12 @@ color: rgba(112, 116, 120, 1);
  &:nth-child(5){
   display:flex;
   gap:5px;
- 
   align-items: center;
-
-  >button{
-    background: rgba(116, 136, 249, 1);
-    border-radius:5px;
-    width:40px;
-    height:40px;
-    border:none;
-    outline:none;
-    box-shadow:none;
-    >a img{
-      text-decoration:none;
-      font-size:22px;
-      padding-top:3px;
-    }
-  }
- 
- 
 }
  `;
 
 const style1 = {
-  padding: "5px 20px",
+  padding:"3px 42px",
   borderRadius: "34px",
   height: "28px",
   width: "38px",
