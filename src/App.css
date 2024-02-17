@@ -157,7 +157,7 @@ body {
   font-weight: 400;
   line-height: normal;
   font-size: 24px;
-  margin: 13px;
+  margin: 13px 0px;
 }
 
 .span-box .error {
@@ -738,7 +738,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-#select {
+.select-box {
   padding: 14px 20px;
   width: 327.1px;
   cursor: pointer;
@@ -750,7 +750,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: rgba(17, 17, 19, 0.6);
 }
 
-#select:focus{
+.select-box:focus{
    outline: none;
 }
 
@@ -876,7 +876,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
   }
 
-   #select{
+ .select-box{
     width: 260px;
     padding: 9px;
    }
@@ -922,15 +922,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   input[type="date"] {
-    padding:15px;
-    width: 155px;
+    padding: 16px;
+    width: 157px;
     font-size: 14px;
   }
 
-  #select {
-    padding: 5px;
+.select-box {
+    padding: 6px;
     width: 191px;
   }
+
+  .searchbox h1 {
+    font-size: 22px;
+  }
+  
 }
 
 @media only screen and (max-width: 600px) {
@@ -942,9 +947,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 999;
   }
 
-  #select {
+.select-box{
     font-size: 14px;
-    width: 180px;
+    width: 178px;
   }
 
   .filter-btn {
@@ -957,7 +962,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   input[type="date"] {
-    padding: 14.5px;
+    padding: 13.5px;
     width: 149px;
     font-size: 14px;
   }
@@ -1439,10 +1444,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   scrollbar-width: none;
   overflow-y: scroll;
   height: 100vh;
+  scroll-behavior: smooth;
+    margin-bottom: 10px !important;
 }
 
 .span-box1{
-  justify-content:center;
+  justify-content: center;
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;

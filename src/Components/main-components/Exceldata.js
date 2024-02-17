@@ -110,6 +110,7 @@ const Exceldata = () => {
 <p>Search By Date</p>
 <select
     name="SelectStatus"
+    className="select-box"
     id="select"
     value={dateOption}
     onChange={(e) => setDateoption(e.target.value)}
@@ -159,8 +160,9 @@ const Exceldata = () => {
 <div>
   <p>Status</p>
   <select
+  className="select-box"
     name="SelectStatus"
-    id="select"
+    id="select1"
     value={statusvalue}
     onChange={(e) => setStatus(e.target.value)}
   >

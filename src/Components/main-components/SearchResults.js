@@ -126,6 +126,7 @@ const SearchResults = () => {
             <p>Search By Date</p>
             <select
                 name="SelectStatus"
+                className="select-box"
                 id="select"
                 value={dateOption}
                 onChange={(e) => setDateoption(e.target.value)}
@@ -176,6 +177,7 @@ const SearchResults = () => {
               <p>Status</p>
               <select
                 name="SelectStatus"
+                className="select-box"
                 id="select"
                 value={statusvalue}
                 onChange={(e) => setStatus(e.target.value)}
@@ -217,8 +219,7 @@ const SearchResults = () => {
       </div>
     
     
-     
-     
+  
 
       {loading ? (
         <Loading />
