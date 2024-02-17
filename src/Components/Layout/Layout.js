@@ -10,12 +10,14 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     const handleResize = () => {
  // ---------------------------------------------------------------function to hide/show sidebar based on screen size
       if (window.innerWidth < 1158 && value === true) {
-        dispatch(setHidden());
+        dispatch(setHidden(!value));
+     
       } else if (window.innerWidth >= 1158 && value === false) {
-        dispatch(setHidden());
+        dispatch(setHidden(!value));
       }
     };
 
@@ -24,6 +26,12 @@ const Layout = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [value]); 
+
+  useEffect(()=>{
+    if(window.innerWidth < 1158){
+      dispatch(setHidden(false));
+    }
+  },[])
 
   return (
     <div className='container'>

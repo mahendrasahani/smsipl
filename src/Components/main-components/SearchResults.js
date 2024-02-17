@@ -178,7 +178,7 @@ const SearchResults = () => {
               <select
                 name="SelectStatus"
                 className="select-box"
-                id="select"
+                id="select1"
                 value={statusvalue}
                 onChange={(e) => setStatus(e.target.value)}
               >
@@ -235,7 +235,7 @@ const SearchResults = () => {
               border:"none"
             }}
           ></hr>
-          No data is found for specific date Filters......
+          No data is found for specific date Filters
         </h1>
       ) : (
         <div className="table-box">{<Table messages={items} />}</div>

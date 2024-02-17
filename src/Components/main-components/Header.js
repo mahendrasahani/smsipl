@@ -3,15 +3,17 @@ import Logo from "../assests/logo.png"
 import UserIcon from "../assests/user-icon.png"
 // import Hamburger from "../assests/hamburger.png"
 import Hamburger from "../assests/hamburger.svg"
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { setHidden } from '../store/HiddenSlice';
 
 
 
 const Header = () => {
   const [modal,setModal]=useState(true)                                     //control modal box using this state variable
-  const dispatch=useDispatch();                   
-        
+  const dispatch=useDispatch();          
+  const value = useSelector((state) => state.hiddenstate.hidden);         
+
+  
   const handleLogout=()=>{
     localStorage.removeItem('token')
     window.location.href="/login"
@@ -23,7 +25,7 @@ const Header = () => {
        
        <div className='header-main'>
 
-        <img src={Hamburger} alt="img" className='hamburger' onClick={()=>dispatch(setHidden())}/>           
+        <img src={Hamburger} alt="img" className='hamburger' onClick={()=>dispatch(setHidden(!value))}/>           
 
         <span className='user-box'>
 

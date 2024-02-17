@@ -18,7 +18,7 @@ const HiddenSlice=createSlice({
 
     reducers:{
         setHidden:(state,action)=>{
-            state.hidden=!state.hidden;
+            state.hidden=action.payload;
         }
     }
 })

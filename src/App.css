@@ -600,6 +600,7 @@ textarea {
 .sidebar button {
   position: absolute;
   right: 0;
+  cursor: pointer;
 }
 
 .sidebar button svg {
@@ -1481,6 +1482,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 45px auto;
   box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
+}
+
+.graph-card >canvas{
+  cursor: pointer;
 }
 
 .graph-btns {

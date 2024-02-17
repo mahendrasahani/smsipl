@@ -3,15 +3,16 @@ import Home from "../assests/home.png"
 import Comment from "../assests/comment.png"
 import Users from "../assests/man.png";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { setHidden } from '../store/HiddenSlice';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+  const value = useSelector((state) => state.hiddenstate.hidden);
   const dispatch=useDispatch();  
   return (
     <div className='sidebar'>
-         <button onClick={()=>dispatch(setHidden())}><RxCross2 /></button>
+         <button onClick={()=>dispatch(setHidden(!value))}><RxCross2 /></button>
          <ul className='nav-links'>
             <li><span><img src={Home} alt="img"/><Link to={""}>Dashboard</Link></span></li>
 
