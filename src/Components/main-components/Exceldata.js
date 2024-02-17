@@ -121,7 +121,7 @@ const Exceldata = () => {
 </div>
     
     {
-      dateOption==1?<>
+      dateOption==1?<div>
       <p>Date</p>
       <input
         type="date"
@@ -130,7 +130,7 @@ const Exceldata = () => {
         max={maindate}
         onChange={(e) => setstartDate(e.target.value)}
       />
-    </>
+    </div>
     :
     <>
     <div>

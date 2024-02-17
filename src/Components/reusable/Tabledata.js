@@ -12,7 +12,7 @@ const Tr = styled.tr`
  
  
 >td{
-  max-height:150px;
+  max-height:135px;
 padding:0 15px;
 font-family: Public Sans;
 font-weight: 400;

@@ -53,6 +53,8 @@ body {
   cursor: pointer;
   width: 440px;
   height: 50px;
+  font-family: Public Sans;
+  font-weight: 500;
 }
 
 .button .App {
@@ -103,7 +105,6 @@ body {
 }
 
 .main-container {
-  /* margin-top: 50px; */
   width: 80%;
   background: white;
   margin-top: 70px;
@@ -142,21 +143,21 @@ body {
 } */
 
 .span-box {
-  justify-content:space-around;
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-
+  gap: 25px;
 }
 
-.span-box p {
+.span-box>div> p {
   color: rgba(22, 22, 22, 1);
   font-family: Public Sans;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   font-size: 24px;
+  margin: 13px;
 }
 
 .span-box .error {
@@ -172,21 +173,16 @@ body {
   }
 }
 
-@media only screen and (max-width: 1366px) {
-  .span-box p {
-    margin: 12px 0px;
-    font-size: 20px;
+@media only screen and (max-width: 1404px) {
+  .span-box>div> p {
+     font-size: 20px;
   }
-
   .span-box > span {
     height: 100px;
   }
 }
 
 @media only screen and (max-width: 966px) {
-  .span-box {
-    gap: 1.2rem;
-  }
 
   .span-box p {
     font-size: 18px;
@@ -654,10 +650,32 @@ textarea {
     margin-left: 0px;
   }
 
+  .nav-links li {
+    font-size: 20px;
+  }
+
   .nav-links li span {
-    gap: 12px;
+    gap:6px;
+  }
+
+  .nav-links li a {
+    padding-top: 5px;
+  }
+
+  .nav-links li img {
+    width: 20px;
+    height: 20px;
+}
+}
+
+
+@media only screen and (max-width: 1404px) {
+  .sidebar{
+    width: 230px;
   }
 }
+
+
 
 @media only screen and (max-width: 1158px) {
   .sidebar {
@@ -671,12 +689,6 @@ textarea {
   }
 }
 
-@media only screen and (max-width: 1158px) {
-  .sidebar {
-    width:237px;
-  
-  }
-}
 
 @media only screen and (max-width:720px) {
   .sidebar {
@@ -738,11 +750,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: rgba(17, 17, 19, 0.6);
 }
 
+#select:focus{
+   outline: none;
+}
+
 .btns {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 17px;
+  padding: 21px 0px 10px 0px;
   gap: 22px;
 }
 
@@ -855,15 +871,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @media only screen and (max-width: 1571px) {
   input[type="date"] {
     padding: 19px;
-    width: 75%;
-    height: 1px;
+    width:220px;
+    height: 3px;
     font-size: 16px;
   }
 
-  #select {
-    padding: 8px;
-    width: 190px;
-  }
+   #select{
+    width: 260px;
+    padding: 9px;
+   }
 
   .filter-btn {
     padding: 8px;
@@ -882,12 +898,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media only screen and (max-width: 1404px) {
-  #select {
-    font-size: 14px;
-    width: 160px;
-  }
-
-
+ 
 
   .date-input {
     width: 160px;
@@ -911,9 +922,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   input[type="date"] {
-    padding: 16.5px;
-    width: 125px;
+    padding:15px;
+    width: 155px;
     font-size: 14px;
+  }
+
+  #select {
+    padding: 5px;
+    width: 191px;
   }
 }
 
@@ -926,6 +942,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 999;
   }
 
+  #select {
+    font-size: 14px;
+    width: 180px;
+  }
+
   .filter-btn {
     margin-top: 20px;
     width: 160px;
@@ -933,6 +954,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0;
     font-size: 14px;
     font-weight: 600;
+  }
+
+  input[type="date"] {
+    padding: 14.5px;
+    width: 149px;
+    font-size: 14px;
   }
 
 }
@@ -1209,14 +1236,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .table-box {
   background-color: white;
-  margin-bottom: 217px;
-  max-height: 500px;
+  max-height:250px;
   overflow-y: scroll;
-  /* overflow-x: scroll; */
 }
 
 .table-inside td {
-  font-size: 23px;
+  font-size: 20px;
  line-height: 26px;
 }
 
@@ -1253,7 +1278,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .table-inside td:nth-child(2)>p {
-  width:140px;
+  width:95px;
 }
 
 @media only screen and (max-width: 1536px) {
@@ -1343,11 +1368,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*--------------------------------- LOADING COMPONENT CSS ------------------------------------------------*/
 .loading-top {
   border-radius: 50%;
-  margin-left: 40%;
-  margin-top: 150px;
+  margin-left: 37%;
+  margin-top: 77px;
   margin-bottom: 150px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   animation: rotateLoading 0.4s linear infinite;
@@ -1422,7 +1447,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  gap: 2rem;
+  gap:25px;
+}
+
+.span-box1>div> p {
+  color: rgba(22, 22, 22, 1);
+  font-family: Public Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: 24px;
 }
 
 .graphpage::-webkit-scrollbar {
@@ -1464,4 +1498,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   width: 3rem;
   height: 1.5rem;
+}
+
+@media only screen and (max-width: 1404px) {
+  .span-box1>div> p {
+     font-size: 20px;
+     margin: 11px 0px;
+
+  }
 }

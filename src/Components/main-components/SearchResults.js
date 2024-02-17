@@ -137,7 +137,7 @@ const SearchResults = () => {
             </div>
                 
                 {
-                  dateOption==1?<>
+                  dateOption==1?<div>
                   <p>Date</p>
                   <input
                     type="date"
@@ -146,7 +146,7 @@ const SearchResults = () => {
                     max={maindate}
                     onChange={(e) => setstartDate(e.target.value)}
                   />
-                </>
+                </div>
                 :
                 <>
                 <div>
@@ -215,7 +215,10 @@ const SearchResults = () => {
              </div>
       </div>
       </div>
-      
+    
+    
+     
+     
 
       {loading ? (
         <Loading />
