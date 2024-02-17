@@ -104,7 +104,7 @@ const Exceldata = () => {
        <div className="searchbox">
          <h1>Download Excel Sheet</h1>
          <div style={{marginBottom:"100px"}} >
-         <div className="span-box">
+         <div className="span-box1">
 
 <div>
 <p>Search By Date</p>

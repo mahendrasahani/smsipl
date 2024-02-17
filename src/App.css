@@ -96,7 +96,7 @@ body {
 
 .table {
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom:90px;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
@@ -142,12 +142,12 @@ body {
 } */
 
 .span-box {
-  justify-content: center;
+  justify-content:space-around;
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  gap: 4rem;
+
 }
 
 .span-box p {
@@ -166,9 +166,6 @@ body {
 }
 
 @media only screen and (max-width: 1550px) {
-  .span-box {
-    gap: 2rem;
-  }
 
   .span-box .error {
     font-size: 19px;
@@ -176,10 +173,6 @@ body {
 }
 
 @media only screen and (max-width: 1366px) {
-  .span-box {
-    gap: 40px;
-  }
-
   .span-box p {
     margin: 12px 0px;
     font-size: 20px;
@@ -668,7 +661,9 @@ textarea {
 
 @media only screen and (max-width: 1158px) {
   .sidebar {
-    width: 220px;
+    width: 236px;
+    z-index: 11;
+ 
   }
 
   .nav-links li {
@@ -676,11 +671,15 @@ textarea {
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1158px) {
   .sidebar {
+    width:200px;
     z-index: 11;
   }
 }
+
+
+
 
 /* -----------------------------Messagelist Searchbox ------------------------------------------- */
 .filter-part {
@@ -736,7 +735,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 28px;
+  margin:28px 0px;
   gap: 22px;
 }
 
@@ -881,6 +880,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 160px;
   }
 
+
+
   .date-input {
     width: 160px;
   }
@@ -894,6 +895,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .date-input > input[type="date"] {
     width: 79%;
+   
   }
 
   .date-field {
@@ -1339,6 +1341,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   scrollbar-width: none;
   overflow-y: scroll;
   height: 100vh;
+}
+
+.span-box1{
+  justify-content:center;
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 2rem;
 }
 
 .graphpage::-webkit-scrollbar {
