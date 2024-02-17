@@ -116,7 +116,7 @@ body {
 @media only screen and (max-width: 1404px) {
   .main-container {
     width: 80%;
-    margin-left: 236px;
+    margin-left:220px;
   }
 }
 
@@ -542,7 +542,7 @@ textarea {
 
 @media only screen and (max-width: 1404px) {
   .header {
-    gap: 38px;
+    gap:25px;
   }
 
   .logo {
@@ -644,7 +644,7 @@ textarea {
 
 @media only screen and (max-width: 1404px) {
   .sidebar {
-    width: 215px;
+    width: 200px;
   }
 
   .nav-links {
@@ -668,14 +668,6 @@ textarea {
     height: 20px;
 }
 }
-
-
-@media only screen and (max-width: 1404px) {
-  .sidebar{
-    width: 230px;
-  }
-}
-
 
 
 @media only screen and (max-width: 1158px) {
@@ -996,7 +988,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1404px) {
   .message-container {
-    margin-left: 237px;
+    margin-left:223px;
     width: 80%;
   }
 }
