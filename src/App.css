@@ -1515,3 +1515,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   }
 }
+
+
+
+.cstm_select{
+  padding: 16px;
+  color: rgba(17, 17, 19, 0.6);
+      outline: none;
+    border-radius: 5px;
+    border: 1.13px solid rgba(159, 159, 159, 1);
+}

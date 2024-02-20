@@ -135,9 +135,9 @@ const Usermenu = () => {
         <div>
           <div className="span-box">
 
-            <span>
+              <span > 
             <p>Search By Date</p>
-            <select
+            <select class="cstm_select"
                 name="SelectStatus"
                 id="select"
                 value={dateOption}
@@ -187,7 +187,7 @@ const Usermenu = () => {
               }
             <span>
               <p>Status</p>
-              <select
+                <select class="cstm_select"
                 name="SelectStatus"
                 id="select"
                 value={statusvalue}
