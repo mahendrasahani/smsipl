@@ -68,15 +68,13 @@ const SearchResults = () => {
     }
   }, [number]);
 
-  // --------------------------------Fetching data from getMessageList Api--------------------------------------//
-
   const fetchMessage = async (start, end) => {
     try {
       setLoading(true);
       console.log("start",start)
       console.log("end",end)
       const apiResponse = await Apis.GetMessageList(
-        "http://dpw1.afrilogitech.com/api",
+        "https://dpw1.afrilogitech.com/api",
         start,
         end,
         statusvalue

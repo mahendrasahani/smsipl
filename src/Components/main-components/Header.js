@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Logo from "../assests/logo.png"
+import Logo from "../assests/logo copy.png"
 import UserIcon from "../assests/user-icon.png"
 // import Hamburger from "../assests/hamburger.png"
 import Hamburger from "../assests/hamburger.svg"

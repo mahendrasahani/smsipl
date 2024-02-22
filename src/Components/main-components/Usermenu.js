@@ -67,7 +67,7 @@ const fetchMessage = async () => {
   //   console.log('Error:', err);
   // }
 
-  const apiResponse=await Apis.GetMessageList('http://dpw1.afrilogitech.com/api');
+  const apiResponse=await Apis.GetMessageList('https://dpw1.afrilogitech.com/api');
   console.log(apiResponse)
 };
 

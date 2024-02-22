@@ -31,7 +31,7 @@ const MessageDetails = ({items}) => {
     const MessageInfo=async()=>{
       try {
         setLoading(true);
-        const data= await Apis.getMessageDetails('http://dpw1.afrilogitech.com/api',id);
+        const data= await Apis.getMessageDetails('https://dpw1.afrilogitech.com/api',id);
         // console.log("message",data.data.bollist)
         setMessage(data?.data.bollist)
         setVessel(data.data.vessel)
@@ -57,7 +57,7 @@ const MessageDetails = ({items}) => {
 
     
   const processMessage=async()=>{
-        const response=await Apis.ProcessMessage('http://dpw1.afrilogitech.com/api',id,itemsData[0]?.status_code)
+        const response=await Apis.ProcessMessage('https://dpw1.afrilogitech.com/api',id,itemsData[0]?.status_code)
         if(response){
           alert(response)
           window.location.href="/admin/dashboard"
