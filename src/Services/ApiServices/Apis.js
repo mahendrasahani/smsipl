@@ -7,8 +7,11 @@ class Apis{
         return apiResponse.data;
       }
       
-    async IntAuthentication(url,credentials) {
-        const apiResponse = await apiService.post(url+'/IntAuthentication',credentials);
+      async IntAuthentication(url, credentials) {
+        const apiResponse = await apiService.post(
+          url + "/IntAuthentication",
+          credentials
+        );
         return apiResponse.data;
       }
 

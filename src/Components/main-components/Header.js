@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Logo from "../assests/logo.png"
+import Logo from "../assests/newLogo.png"
 import UserIcon from "../assests/user-icon.png"
 // import Hamburger from "../assests/hamburger.png"
 import Hamburger from "../assests/hamburger.svg"
@@ -18,6 +18,7 @@ const Header = () => {
     localStorage.removeItem('token')
     window.location.href="/login"
   }
+  
 
   return (
     <div className='header'>
@@ -31,7 +32,7 @@ const Header = () => {
 
         <img className='user-icon' src={UserIcon} alt="img" onClick={()=>setModal(!modal)}/>
         {
-          modal||<div className='icon-click'>
+          modal && <div className='icon-click'>
           <p>Profile</p>
           <p onClick={handleLogout}>Logout</p>
         </div>

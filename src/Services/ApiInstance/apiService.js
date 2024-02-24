@@ -5,29 +5,22 @@ import axios from 'axios'
 class ApiService {
 
 
-  async post(url, data) {                                                                            //login post request
-
+  async post(url, data) {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
-        mode: "cors",
         url,
         data,
-        headers:
-        {
-          'Accept': "*/*",
+        headers: {
           "Content-Type": "application/json",
-        }
-      }).then((result) => {
-        resolve(result);
+        },
       })
+        .then((result) => {
+          resolve(result);
+        })
         .catch((err) => {
-          console.log("error: " + err);
-          alert("Error in POST update/Wrong Crendentials")
-          window.location.href = '/login'
-          
-          });
-        
+          alert(err);
+        });
     });
   }
  

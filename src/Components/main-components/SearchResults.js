@@ -73,7 +73,7 @@ const SearchResults = () => {
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
-        "http://dpw1.afrilogitech.com/api",
+        "https://dpw1.afrilogitech.com/api",
         start,
         end,
         statusvalue
