@@ -11,14 +11,16 @@ import { setHidden } from '../store/HiddenSlice';
 const Header = () => {
   const [modal,setModal]=useState(true)                                     //control modal box using this state variable
   const dispatch=useDispatch();          
-  const value = useSelector((state) => state.hiddenstate.hidden);         
+  const value = useSelector((state) => state.hiddenstate.hidden);   
+      
 
   
   const handleLogout=()=>{
     localStorage.removeItem('token')
     window.location.href="/login"
   }
-  
+
+
 
   return (
     <div className='header'>
