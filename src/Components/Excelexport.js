@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Vector from "./assests/Vector.png";
 
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
@@ -21,25 +22,24 @@ const ExportExcel = ({ excelData, fileName }) => {
   }
 
   return (
-    <>
+    <div class="col-md-7 col-7">
     {
       excelData.length>0 ?<button
       onClick={() => exportToExcel(fileName)}
       color="primary" 
-      className="filter-btn"
+      className="filter-btn download-btn"
     >
-     ExcelSheet
+    Download excel sheet &nbsp;<i class="fa fa-download"></i>
     </button>:
-    <button
-    onClick={(e) =>handlebtn()}
+   
+  
+  <button type="button" onClick={(e) =>handlebtn()}
     color="primary" 
-    className="filter-btn"
-  >
-  Download
-  </button>
+    className="filter-btn">Download excel sheet &nbsp;<i class="fa fa-download"></i></button>
+
     }
       
-    </>
+      </div>
   );
 };
 

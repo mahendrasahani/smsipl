@@ -49,9 +49,14 @@ const Table = ({ messages }) => {
             <th>
               <p>Date</p>
             </th>
-            <th className="message">
-              <p>Message</p>
+            <th>
+              <p>MRN no.</p>
             </th>
+            <th>
+              <p>Vessels Code</p>
+            </th>
+          
+
             <th className="status">
               <p>Status</p>
             </th>

@@ -31,7 +31,7 @@ color: rgba(112, 116, 120, 1);
   }
  
  }
- &:nth-child(5){
+ &:nth-child(6){
   display:flex;
   gap:5px;
   align-items: center;
@@ -40,9 +40,6 @@ color: rgba(112, 116, 120, 1);
 
 const style1 = {
   padding:"3px 42px",
-  borderRadius: "34px",
-  height: "28px",
-  width: "38px",
 };
 
 const Tabledata = (props) => {
@@ -58,10 +55,10 @@ const Tabledata = (props) => {
 
     const parsedJson = JSON.parse(filtermessage[0].message);
     const formatted = JSON.stringify(parsedJson, null, 2);
-  
-
     setMessage(formatted);
   };
+
+
 
   return (
     <>
@@ -75,14 +72,18 @@ const Tabledata = (props) => {
           </td>
           <td>
             <p onClick={() => DisplayMessage(Sno)}>
-              {message.slice(0, 200)}....
+              {JSON.parse(message)?.vessel?.mrn}
+             
             </p>
+          </td>
+          <td>
+            <p style={{color:"black"}}>{JSON.parse(message)?.vessel?.vesselVisitCode}</p>
           </td>
           <td style={{ textAlign: "center" }}>
             <p
               style={{
                 ...style1,
-                backgroundColor:
+                color:
                   status === 4
                     ? "blue"
                     : status === 6
@@ -93,7 +94,7 @@ const Tabledata = (props) => {
                     ? "red"
                     : "black",
               }}
-            ></p>
+            >{statusdesc}</p>
           </td>
           <td>
             {status === 4 ? (

@@ -1,10 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
 }
 
 .App {
-  text-align: center;
   width: 100%;
 }
 
@@ -45,13 +50,17 @@ body {
 
 /*----------------------------------------------------Custom Css ------------------------------------------------------*/
 
+.btn:hover{
+  opacity: 0.8;
+}
+
 .button {
   background: #0575e6;
   border-radius: 44px;
   color: white;
   border: none;
   cursor: pointer;
-  width: 440px;
+  width: 411px;
   height: 50px;
   font-family: Public Sans;
   font-weight: 500;
@@ -65,14 +74,14 @@ body {
 @media (max-width: 1408px) {
   .button {
     font-size: 19px;
-    width: 392px;
+    width: 360px;
     height: 47px;
   }
 }
 
 @media (max-width: 768px) {
   .button {
-    width: 362px;
+    width: 330px;
     margin: auto;
     height: 42px;
   }
@@ -80,16 +89,10 @@ body {
 
 @media (max-width: 600px) {
   .button {
-    width: 350px;
+    width:80%;
   }
 }
 
-@media (max-width: 500px) {
-  .button {
-    width: 84%;
-    height: 38px;
-  }
-}
 
 .button a {
   color: white;
@@ -270,7 +273,7 @@ span img {
   height: 26px;
 }
 
-.form input[type="text"],
+/* .form input[type="text"],
 input[type="password"],
 textarea {
   font-size: 15px;
@@ -279,7 +282,7 @@ textarea {
   outline: none;
   background-color: transparent;
   color: #fff;
-}
+} */
 
 ::placeholder {
   color: #fff;
@@ -305,11 +308,7 @@ textarea {
     height: 45px;
   }
 
-  .form input[type="text"],
-  input[type="password"],
-  textarea {
-    width: 85%;
-  }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -337,8 +336,7 @@ textarea {
   .form input[type="text"],
   input[type="password"],
   textarea {
-    background-color: transparent;
-    color: #fff;
+  
     width: 85%;
   }
 
@@ -461,6 +459,8 @@ textarea {
 
 /*------------------------------- -----------------------Layout--------------------------------------------------------- */
 .container {
+  padding: 0;
+  margin: 0;
   background: rgba(237, 242, 247, 1);
   height: 100vh;
   overflow: hidden;
@@ -596,11 +596,13 @@ textarea {
 }
 /*-------------------------------------------------------Sidebar --------------------------------------------------*/
 .sidebar {
-  position: fixed;
-  top: 0;
-  background: rgba(0, 39, 255, 1);
-  height: 100vh;
-  width: 300px;
+ 
+  margin-top: 8px !important;
+  padding-top: 11px;
+  height: 100vh !important;
+  margin-top: 0;
+  background: blue;
+  
 }
 
 .sidebar button {
@@ -649,9 +651,7 @@ textarea {
 }
 
 @media only screen and (max-width: 1404px) {
-  .sidebar {
-    width: 200px;
-  }
+
 
   .nav-links {
     margin-left: 0px;
@@ -676,21 +676,13 @@ textarea {
 }
 
 @media only screen and (max-width: 1158px) {
-  .sidebar {
-    width: 236px;
-    z-index: 11;
-  }
+
 
   .nav-links li {
     font-size: 20px;
   }
 }
 
-@media only screen and (max-width: 720px) {
-  .sidebar {
-    width: 190px;
-  }
-}
 
 /* -----------------------------Messagelist Searchbox ------------------------------------------- */
 .filter-part {
@@ -710,15 +702,38 @@ textarea {
   margin-bottom: 10px;
 }
 
+.range-selector{
+  display: flex;
+margin-left: 20px;
+gap: 26px;
+}
+
+.range-selector>p:nth-child(1){
+  color: #161616;
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size:24px;
+  line-height: 28.2px;
+}
+
+
+
+.range-selector>p{
+  color: #4F4F4F;
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size:24px;
+  line-height: 28.2px;
+}
+
 input[type="date"] {
-  padding: 14px;
+  padding: 14.5px;
   width: 297px;
   font-family: Public Sans;
   font-size: 18px;
   border: none;
   outline: none;
-  border-radius: 5px;
-  border: 1.13px solid rgba(159, 159, 159, 1);
+  border: 1px solid #ced4da;
   color: rgba(17, 17, 19, 0.6);
 }
 
@@ -755,13 +770,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .filter-btn {
   padding: 11px;
-  width: 371px;
-  height: 65px;
-  background-color: #0575e6;
+  width: 327px;
+  height: 53px;
+  background-color: #0575E6;
   border: 1px solid grey;
-  border-radius: 35px;
   color: white;
-  font-size: 35px;
+  font-size: 21px;
+  border-radius: 5px;
+  line-height: 29.4px;
 }
 
 .filter-btn:hover {
@@ -871,6 +887,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
   }
 
+  .download-btn>span:nth-child(2)>img {
+    width: 14px;
+    height: 11px;
+}
+
   .select-box {
     width: 260px;
     padding: 9px;
@@ -880,7 +901,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 8px;
     width: 180px;
     height: 37px;
-    font-size: 18px;
+    font-size: 13px;
   }
 
   .date-field {
@@ -901,7 +922,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 200px;
     height: 40px;
     padding: 0;
-    font-size: 20px;
   }
 
   .date-input > input[type="date"] {
@@ -914,7 +934,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   input[type="date"] {
-    padding: 16px;
+    padding: 14.5px;
     width: 157px;
     font-size: 14px;
   }
@@ -926,6 +946,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .searchbox h1 {
     font-size: 22px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  input[type="date"] {
+    padding: 13.5px;
+    width:100%;
+    font-size: 14px;
   }
 }
 
@@ -948,15 +976,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 160px;
     height: 36px;
     padding: 0;
-    font-size: 14px;
     font-weight: 600;
   }
 
-  input[type="date"] {
-    padding: 13.5px;
-    width: 149px;
-    font-size: 14px;
-  }
+
 }
 
 /* --------------------------------------------------Message-box ---------------------------------------------------- */
@@ -1235,11 +1258,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   line-height: 26px;
 }
 
-.table-inside td:nth-child(5) {
+.table-inside td:nth-child(6) {
   height: 417px;
 }
 
-.table-inside td:nth-child(5) > button {
+.table-inside td:nth-child(6) > button {
   background: rgba(116, 136, 249, 1);
   border-radius: 5px;
   width: 40px;
@@ -1249,7 +1272,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   box-shadow: none;
 }
 
-.table-inside td:nth-child(5) > button > a img {
+.table-inside td:nth-child(6) > button > a img {
   text-decoration: none;
   font-size: 22px;
   padding-top: 3px;
@@ -1303,7 +1326,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 8px;
   }
 
-  .table-inside td:nth-child(5) {
+  .table-inside td:nth-child(6) {
     height: 716px;
   }
 
@@ -1324,12 +1347,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 55px !important;
   }
 
-  .table-inside td:nth-child(5) > button {
+  .table-inside td:nth-child(6) > button {
     width: 25px;
     height: 25px;
   }
 
-  .table-inside td:nth-child(5) > button > a img {
+  .table-inside td:nth-child(6) > button > a img {
     height: 13px;
     width: 13px;
     padding-top: 1px;
@@ -1458,6 +1481,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 20px;
 }
 
+canvas{
+  max-width: 400px !important;
+}
+
 .graph-card > canvas {
   cursor: pointer;
 }
@@ -1486,6 +1513,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 1.5rem;
 }
 
+.download-btn{
+  border: 1.13px solid #9F9F9F;
+  align-items: center;
+  gap: 19px;
+  border-radius:5px;
+  justify-content: center;
+  display: flex;
+}
+
+.download-btn>span:nth-child(2)>img{
+ width: 14px;
+ height: 17px;
+}
+
 @media only screen and (max-width: 1404px) {
   .span-box1 > div > p {
     font-size: 20px;
@@ -1499,4 +1540,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
   border-radius: 5px;
   border: 1.13px solid rgba(159, 159, 159, 1);
+}
+
+/*---------------------------------------- actions-------------------------------------------- */
+
+/* .actions>a:nth-child(1){
+
+ background:#A48D6B !important;
+} */
+
+.actions>a:nth-child(2){
+
+  background:#A48D6B !important;
+ }
+
+ .actions>a:nth-child(3){
+  background:#767B95 !important
+ }
+
+.actions>a:nth-child(1):hover{
+
+  background: #4e8bcc !important;
+}
+
+.actions>a:nth-child(2):hover{
+
+  background:#edd1a8 !important;
+}
+
+.actions>a:nth-child(3):hover{
+  background:#bec2d3 !important
 }

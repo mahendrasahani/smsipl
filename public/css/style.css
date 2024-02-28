@@ -1,0 +1,324 @@
+@font-face {
+    font-family: 'PTM55F';
+    src: url('../../font/PTM55F.ttf') format('truetype');
+    -ms-font-family: 'PTM55F' !important;
+    -ms-src: url('../../font/PTM55F.ttf') format('truetype') !important;
+    -webkit-font-family: 'PTM55F' !important;
+    -webkit-src: url('../../font/PTM55F.ttf') format('truetype') !important;
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../../font/Lato-Regular.ttf') format('truetype');
+    -ms-font-family: 'Lato-Regular' !important;
+    -ms-src: url('../../font/Lato-Regular.ttf') format('truetype') !important;
+    -webkit-font-family: 'Lato-Regular' !important;
+    -webkit-src: url('../../font/Lato-Regular.ttf') format('truetype') !important;
+    font-weight: normal;
+    font-style: normal;
+}
+#not-call{background: #E1E8FF;border-radius: 25px 25px 0px 25px;padding:15px;}
+.main-header{box-shadow: -2px 2px 3px 2px #ddd;}
+.btn-outline-primary{border:1px solid #838383;color:#838383;}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #6159C7 !important;
+    border-color: #6159C7;
+}
+.card{
+	/*border-radius: 13px;*/
+box-shadow: 0px 1px 8.7859px rgb(62 62 65 / 25%)s}
+a {
+    color: #7787BB;
+	font-weight:bold;
+}
+body {
+   font-family: 'Lato-Regular', sans-serif;
+  font-size: 16px;
+ background: #fff;
+}
+
+label , p , li ,a{
+    font-size: 14px;
+}
+.main-sidebar .brand-text{
+	color: #E1E8FF;
+    font-size: 28px;
+    font-family: 'PTM55F';
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #f3f6ff;
+    color: #6159C7;
+    border-radius: 20px 0px 0px 20px;
+    margin: 0px 0px 0px 10px;
+    box-shadow: none;
+    font-weight: bold;
+}
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background-color: #f3f6ff;
+    color: #6159C7;
+    border-radius: 20px 0px 0px 20px;
+    margin: 0px 0px 0px 10px;
+    box-shadow: none;
+    font-weight: bold;
+}
+.nav-sidebar .nav-item>.nav-link {
+    position: relative;
+    margin: 0px 0px 0px 12px;
+}
+.elevation-4 {
+     box-shadow:none !important; /*0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)!important*/; 
+}
+/******************************************Dashboard**************************/
+.connectedSortable .card{
+	height: 300px;
+    overflow-y: scroll;
+}
+.navbar-nav img{
+	width: 30px;
+    margin-right: 5px;
+    border-radius: 30px;
+}
+.follow-up{
+	background: #fff;
+    padding: 20px 20px;
+    border-radius: 5px;
+    margin: 10px 0px 20px 0px;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+}
+.follow-up h4{
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.nav-tabs {
+    border: 1px solid #dee2e6;
+}
+.content-wrapper {
+    background: #f3f6ff;
+}
+.dashboard-tab button{
+   border-radius: 30px;
+    padding: 0px 30px;
+}
+.dashboard-tab a{
+    color: #fff;
+}
+.dashboard-tab .table{
+	margin: 20px 0px;
+}
+.dashboard-tab .table tr{
+	background: #EFEFEF;
+	border-bottom: 2px solid #fff;
+}
+.dashboard-tab {
+	border: 1px solid #ccc;
+    border-radius: 0px 0px 4px 4px;
+    height: 200px;
+    overflow-y: scroll;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #6159C7;
+    border: 1px solid #7787BB;
+    border-radius: 0px;
+}
+.nav-tabs .nav-link {
+    margin-bottom: -1px;
+    border: 1px solid #7787BB;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: #E5E5E5;
+    color: #7787BB;  
+}
+.nav-link{
+    padding: 8px 6px;
+}
+
+@media (min-width: 576px){
+.form-inline .form-control {
+    display: inline-block !important;
+}
+}
+.sidebar-collapse .form-control-sidebar, .sidebar-collapse .form-control-sidebar~.input-group-append{
+    display: block!important;
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active img, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active img{
+    background: #6159C7;
+    border-radius: 30px;
+    padding: 2px;
+}
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link img, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link img:focus {
+    background: #6159C7;
+    border-radius: 30px;
+    padding: 2px;
+}
+.brand-link{
+margin: auto;
+    text-align: center;
+    letter-spacing: 6px;
+}
+.dashboard-table table{
+    font-size: 14px;
+}
+/********************************************************Edit form****************************/
+
+.edit-profile .card-footer{
+    background: transparent;
+    text-align: center;
+}
+.edit-profile .card-footer button{
+    margin: 0px 10px;
+}
+.edit-profile .card-body {
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    border: 1px solid #ccc;
+    margin: 0px 22px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+.edit-profile .card-header {
+    border-bottom: none;
+}
+.edit-profile .btn-info {
+    color: #fff;
+    background-color: #6159C7;
+    border-color: #6159C7;
+    box-shadow: 0px 2px 8px #888;
+    width: 110px;
+	border-radius: 8px;
+}
+.edit-profile .btn-default{
+    width: 110px;
+    color: #6159C7;
+    background-color: #EDEDED;
+    border-color: #EDEDED;
+     box-shadow: 0px 2px 8px #888;border-radius: 8px;
+}
+.edit-profile .card-title {
+    margin: 5px 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/********************************************************marketing****************************/
+.marketing ul{
+    padding: 0px 0px 0px 0px;
+}
+.marketing li{
+    float: left;
+    list-style: none;
+    padding: 0px 18px 0px 0px;
+    font-size: 12px;
+}
+.marketing table{
+    font-size: 12px;
+}
+.marketing .card{
+    padding: 0px 20px;
+    height: 350px;
+    overflow-y: scroll;
+}
+.marketing .card-header{
+padding: 10px 0px;
+}
+.marketing .card-title {
+    margin: 5px 0px;
+}
+.recharge{
+display: flex;
+margin: 8px 0px;
+}
+.recharge a{
+    color: #fff;
+}
+.recharge .btn{
+    padding: 2px 0px;
+    margin: -2px 0px 10px -10px;
+    font-size: 14px;
+}
+.marketing p{
+    text-align: center;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    display: block;
+    font-size: 20px;
+    color: #C4C4C4;
+}
+.content-wrapper .transaction{
+    float: right;
+    background: #6159C7;
+    color: #fff;
+}
+.content-wrapper .transaction a{
+    color: #fff;
+}
+
+/******************************************Transaction details******************************/
+
+.transaction-table .card{
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.transaction-form .input-group{
+    margin-top: 15px;
+}
+.transaction-form .input-group-append button{
+    background: #fff;
+    border-left: 0px;
+}
+/**************************************purchase-sms********************************/
+#purchase-sms .modal-header{
+    color: #6159C7;
+    background: #E1E8FF;
+}
+#purchase-sms .form-control {
+    height: 32px;
+    background-color: #E4E4E4;
+}
+#purchase-sms .modal-footer .btn{
+    color: #fff;
+}
+#purchase-sms .card-body{
+    padding: 0px;
+}
+.login-btn{border-radius: 50px;box-shadow: 0px 4px 4px 0px #00000026;
+    border: 1px solid #C1C1C1;}
+.login-div{background: linear-gradient(180deg, #0575E6 0%, #02298A 84.79%, #021B79 100%);-webkit-align-items: flex-start;padding-left:60px;}
+.logo-div{background:#ffffff;background-image: url('../img/login-bag.png');background-repeat: no-repeat;
+    background-position-x: -142px;
+    background-position-y: 485px;
+    background-size: 500px 500px;}
+.input-logo{background-color: #f9f9f9;border-radius: 50px;padding-left: 36px;}
+.email{
+    padding-right: 20px;
+    background-image: url(../img/username.png);
+    background-repeat: no-repeat;
+    background-position: left calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    margin-bottom: 10px !important;
+}
+.password{padding-right: 20px;
+    background-image: url(../img/lock.png);
+    background-repeat: no-repeat;
+    background-position: left calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    margin-bottom: 10px !important;}
+    .logologin{display: none;}
+.sidebar{margin-top: 20px;}
+/*********************************Send sms*************************************/
+@media only screen and (max-width: 600px) {
+    .logo-div {
+      display: none !important;
+    }
+    .logologin{display: block !important;margin-bottom: 30px;}
+  }
+  .btn-group-sm>.btn, .btn-clear{padding: 0px 5px 0px 5px !important;}
+
