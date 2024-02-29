@@ -327,7 +327,7 @@ const Messages = () => {
                               >
                                 <a
                                   className="btn btn-sm btn-primary btn-clear"
-                                  href={`/messageDetails/${itm.id}`}
+                                  href={`/messageDetails/${itm?.id}`}
                                 >
                                   <i className="fa fa-eye"></i>
                                 </a>
