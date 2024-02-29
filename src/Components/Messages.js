@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Apis from "./../Services/ApiServices/Apis";
 import { addItems } from "./store/ItemsSlice";
 import moment from "moment/moment";
+import { Button, Modal } from 'antd';
 import Loading from "./reusable/Loading";
-
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 const Messages = () => {
   //present date
@@ -18,13 +20,11 @@ const Messages = () => {
   const [statusvalue, setStatus] = useState(0);
   const [startdate, setstartDate] = useState(maindate);
   const [enddate, setendDate] = useState(maindate);
-  const value = useSelector((state) => state.hiddenstate.hidden);
+  const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [filteredItems, setFilteredItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dateOption, setDateoption] = useState(0);
-  const [number, setNumber] = useState(0);
-  const [hiddenSidebar,setHiddenSidebar]=useState(false)
-  const [url,setUrl]=useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const items = useSelector((state) => state.Items.items);
 
@@ -47,17 +47,14 @@ const Messages = () => {
   };
 
   useEffect(() => {
+    const start = formatDate2(startdate);
 
-    
-      const start = formatDate2(startdate);
-
-      const end = formatDate2(enddate);
-      if (dateOption == 1) {
-        fetchMessage(start, start, statusvalue);
-      } else {
-        fetchMessage(start, end, statusvalue);
-      }
-   
+    const end = formatDate2(enddate);
+    if (dateOption == 1) {
+      fetchMessage(start, start, statusvalue);
+    } else {
+      fetchMessage(start, end, statusvalue);
+    }
   }, [startdate, enddate, statusvalue]);
 
   // --------------------------------Fetching data from getMessageList Api--------------------------------------//
@@ -88,109 +85,16 @@ const Messages = () => {
     setStatus(0);
   };
 
-  //---------------------------------------------------------------------------------------------------------------//
 
-  useEffect(()=>{
-    const pageURLArray = window.location.href.split("/")
-    setUrl(pageURLArray[pageURLArray.length - 1])
-    console.log("items",items)
-  })
 
   return (
+    <>
     <div className="wrapper">
-      <nav className="main-header navbar navbar-expand navbar-white navbar-light" style={{marginLeft:hiddenSidebar&&"0"}}>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              data-widget="pushmenu"
-              onClick={()=>setHiddenSidebar(!hiddenSidebar)}
-              role="button"
-            >
-              <img src="img/toggle.png" alt="toggle" className="img-fluid" />
-            </a>
-          </li>
-        </ul>
+      <Header />
 
-        <ul className="navbar-nav ml-auto">
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <a
-                id="dropdownSubMenu1"
-                href="#"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                className="nav-link dropdown-toggle"
-                style={{ color: "#6159C7" }}
-              >
-                <img src="img/user1.png" className="img-responsive" />
-                DP WORLD
-              </a>
-              <ul
-                aria-labelledby="dropdownSubMenu1"
-                className="dropdown-menu border-0 shadow"
-                style={{ left: "0px", right: "inherit" }}
-              >
-                <li>
-                  <a href="index.html" className="dropdown-item">
-                    Logout
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </ul>
-      </nav>
+      <Sidebar />
 
-      
-      <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{background:"white",width:"255px",transform:hiddenSidebar&&"translateX(-255px)"}}>
-        <a href="index.html" className="brand-link"  style={{paddingBottom:"0px"}}>
-          <img
-            src="img/logo.png"
-            alt="Logo"
-            className="img-fluid"
-            width="180px"
-          />
-        </a>
-       
-          <div className="sidebar">
-          <nav className="mt-2">
-            <ul
-              className="nav nav-pills nav-sidebar flex-column"
-              data-widget="treeview"
-              role="menu"
-              data-accordion="false"
-            >
-              <li className="nav-item">
-                <a href="/dashboard" className={`nav-link ${url === "dashboard" ? "active" : ""}`}>
-                  <img src="img/home.png" className="img-responsive" />
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/messages" className={`nav-link ${url === "messages" ? "active" : ""}`}>
-                  <img src="img/msg.png" className="img-responsive" />
-                  <p>Messages</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/users" className={`nav-link ${url === "users" ? "active" : ""}`}>
-                  <img src="img/manage.png" className="img-responsive" />
-                  <p>Users</p>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-    
-       
-      </aside>
-    
-
-
-      <div className="content-wrapper" style={{marginLeft:hiddenSidebar&&"0"}}>
+      <div className="content-wrapper" style={{ marginLeft: hidden && "0" }}>
         <div className="content-header">
           <div className="container-fluid">
             <div className="row mb-2">
@@ -221,19 +125,18 @@ const Messages = () => {
                   <div className="col-md-2">
                     <div className="form-group">
                       <label>Select date range</label>
-                     
+
                       <select
-                name="SelectStatus"
-                className="form-control form-control-sm"
-                id="select"
-                value={dateOption}
-                onChange={(e) => setDateoption(e.target.value)}
-              >
-                <option value={0}>Select Range</option>
-                <option value={1}>On</option>
-                <option value={2}>Between</option>
-              </select>
-                     
+                        name="SelectStatus"
+                        className="form-control form-control-sm"
+                        id="select"
+                        value={dateOption}
+                        onChange={(e) => setDateoption(e.target.value)}
+                      >
+                        <option value={0}>Select Range</option>
+                        <option value={1}>On</option>
+                        <option value={2}>Between</option>
+                      </select>
                     </div>
                   </div>
                   {dateOption === "1" ? (
@@ -261,53 +164,52 @@ const Messages = () => {
                   ) : (
                     <>
                       <div class="col-md-2">
-                      <div class="form-group">
-                        <label>From date</label>
-                        <div
-                          class="input-group date"
-                          id="reservationdate"
-                          data-target-input="nearest"
-                        >
-                          <input
-                            type="date"
-                            class="form-control form-control-sm datetimepicker-input"
-                            id="from-date"
-                            value={startdate}
-                            min="2023-01-01"
-                            max={new Date().toISOString().split("T")[0]}
-                            onChange={(e) => setstartDate(e.target.value)}
-                            data-target="#reservationdate"
-                          />
+                        <div class="form-group">
+                          <label>From date</label>
+                          <div
+                            class="input-group date"
+                            id="reservationdate"
+                            data-target-input="nearest"
+                          >
+                            <input
+                              type="date"
+                              class="form-control form-control-sm datetimepicker-input"
+                              id="from-date"
+                              value={startdate}
+                              min="2023-01-01"
+                              max={new Date().toISOString().split("T")[0]}
+                              onChange={(e) => setstartDate(e.target.value)}
+                              data-target="#reservationdate"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label>From date</label>
-                        <div
-                          class="input-group date"
-                          id="reservationdate"
-                          data-target-input="nearest"
-                        >
-                          <input
-                            type="date"
-                            class="form-control form-control-sm datetimepicker-input"
-                            id="from-date"
-                            min="2023-01-01"
-                          max={new Date().toISOString().split("T")[0]}
-                          value={enddate}
-                          onChange={(e) => setendDate(e.target.value)}
-                            data-target="#reservationdate"
-                          />
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>From date</label>
+                          <div
+                            class="input-group date"
+                            id="reservationdate"
+                            data-target-input="nearest"
+                          >
+                            <input
+                              type="date"
+                              class="form-control form-control-sm datetimepicker-input"
+                              id="from-date"
+                              min="2023-01-01"
+                              max={new Date().toISOString().split("T")[0]}
+                              value={enddate}
+                              onChange={(e) => setendDate(e.target.value)}
+                              data-target="#reservationdate"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    
                     </>
                   )}
                   <div class="col-md-2">
-                                <div class="form-group">
-                                <label>Status</label>
+                    <div class="form-group">
+                      <label>Status</label>
                       <select
                         name="SelectStatus"
                         className="form-control form-control-sm"
@@ -321,13 +223,11 @@ const Messages = () => {
                         <option value={5}>Details Insertion Failed</option>
                         <option value={7}>Transfer Failed</option>
                       </select>
-                                </div>
-                            </div>
-                  
+                    </div>
+                  </div>
                 </div>
 
-
-<hr />
+                <hr />
                 <div className="row mt-3">
                   <div className="col-md-2">
                     <div className="form-group">
@@ -398,62 +298,56 @@ const Messages = () => {
                       </tr>
                     </thead>
                     <tbody style={{ fontSize: "12px" }}>
-                     
-                      
-                        {
-                          items && items?.map((itm,i)=>{
-                            return <tr>
-                             <td>{i}</td>
-                             <td>{
-   moment(itm?.row_created.slice(0, 10)).format('DD-MM-YYYY')}</td>
-                             <td>{JSON.parse(itm?.message)?.vessel?.mrn}</td>
-                             <td>{JSON.parse(itm?.message).vessel?.vesselVisitCode}</td>
-                     
-                        <td>c</td>
-                        <td>03</td>
-                        <td style={{ color: "#FF0000" }}>{itm?.status_desc}</td>
-                        <td style={{gap:"2px",display:"flex"}} className="actions">
-                          <a
-                            className="btn btn-sm btn-primary btn-clear"
-                            href="/messageDetails"
-                            
-                          >
-                            <i className="fa fa-eye"></i>
-                          </a>
-                          <a
-                            className="btn btn-sm  btn-clear"
-                          
-                          >
-                            <i className="fa fa-refresh"></i>
-                          </a>
-                        
-                            
-                            <a
-                            className="btn btn-sm btn-clear"
-                            data-toggle="modal"
-                            data-target="#code"
-                         
-                          >
-                            
-                            <i className="fa fa-code"></i>
-                          </a>
+                      {items &&
+                        items?.map((itm) => {
+                          return (
+                            <tr>
+                              <td>{itm?.id}</td>
+                              <td>
+                                {moment(itm?.row_created.slice(0, 10)).format(
+                                  "DD-MM-YYYY"
+                                )}
+                              </td>
+                              <td>{JSON.parse(itm?.message)?.vessel?.mrn}</td>
+                              <td>
+                                {
+                                  JSON.parse(itm?.message).vessel
+                                    ?.vesselVisitCode
+                                }
+                              </td>
 
+                              <td>c</td>
+                              <td>03</td>
+                              <td style={{ color: "#FF0000" }}>
+                                {itm?.status_desc}
+                              </td>
+                              <td
+                                style={{ gap: "2px", display: "flex" }}
+                                className="actions"
+                              >
+                                <a
+                                  className="btn btn-sm btn-primary btn-clear"
+                                  href={`/messageDetails/${itm.id}`}
+                                >
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                                <a className="btn btn-sm  btn-clear">
+                                  <i className="fa fa-refresh"></i>
+                                </a>
 
-
-
-                        </td>
-                             </tr>
-                           
-                           
-                          })
-                        }
-                     
-                      
-                     
-                
-                      
-                      
-                           
+                                <a
+                                  className="btn btn-sm btn-clear"
+                                  data-toggle="modal"
+                                  data-target="#code"
+                                  
+                                >
+                                  <i className="fa fa-code"></i>
+                                </a>
+                                          
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </table>
                 </div>
@@ -464,6 +358,22 @@ const Messages = () => {
       </div>
       <aside className="control-sidebar control-sidebar-dark"></aside>
     </div>
+    <div className="modal fade" id="code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog" role="document">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalLabel">Messages Information</h5>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+  </>
   );
 };
 

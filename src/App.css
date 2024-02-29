@@ -336,7 +336,6 @@ textarea {
   .form input[type="text"],
   input[type="password"],
   textarea {
-  
     width: 85%;
   }
 
@@ -796,88 +795,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
 }
 
-.legends {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 16px;
-}
 
-.color-legend {
-  padding: 5px;
-  border-radius: 10px;
-  width: 200px;
-  max-height: 111px;
-  box-shadow: 5px 5px 5px grey;
-}
-
-.color-legend > p {
-  font-family: Public Sans;
-  font-weight: 400;
-  margin: 2px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.color-legend > p > span ~ span {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-}
-
-.color-legend > p:first-child > span ~ span {
-  border-radius: 10px;
-  background: blue;
-}
-
-.color-legend > p:nth-child(2) > span ~ span {
-  border-radius: 10px;
-  background: green;
-}
-.color-legend > p:nth-child(3) > span ~ span {
-  border-radius: 10px;
-  background: purple;
-}
-.color-legend > p:nth-child(4) > span ~ span {
-  border-radius: 10px;
-  background: red;
-}
-
-.color-legend > p:nth-child(5) > span ~ span {
-  border-radius: 10px;
-  background: black;
-}
-
-.icon-legend {
-  padding: 5px;
-  border-radius: 10px;
-  width: 200px;
-  max-height: 90px;
-  box-shadow: 5px 5px 5px grey;
-}
-
-.icon-legend > p {
-  font-family: Public Sans;
-  font-weight: 400;
-  margin: 2px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.icon-legend > p > span ~ span {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  background: rgba(116, 136, 249, 1);
-}
-
-.icon-legend > p > span ~ span > img {
-  padding: 4px;
-  width: 22px;
-  height: 23px;
-}
 
 @media only screen and (max-width: 1571px) {
   input[type="date"] {
@@ -951,7 +869,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width:768px) {
   input[type="date"] {
-    padding: 13.5px;
+   
     width:100%;
     font-size: 14px;
   }
@@ -1571,3 +1489,20 @@ canvas{
 .actions>a:nth-child(3):hover{
   background:#bec2d3 !important
 }
+
+/*---------------------------------------------------- dashboard------------------------------------------------------------------ */
+
+
+  .date-pick{
+    height: 38px !important;
+  }
+
+  .status-field{
+    padding: 0px 4px;
+  }
+
+  @media only screen and (max-width:768px){
+    .status-field{
+      padding:0px;
+    }
+  }

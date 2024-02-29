@@ -28,8 +28,7 @@ const Approuter=createBrowserRouter([
   {
     path:'/',
    element:<App/>
-     
-  
+   
   },
   {
     path:"/dashboard",
@@ -40,7 +39,7 @@ const Approuter=createBrowserRouter([
     element:<Messages/>
   },
   {
-    path:"/messageDetails",
+    path:"/messageDetails/:id",
     element:<MessageDetail/>
   }
 ])

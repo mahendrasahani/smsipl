@@ -1,6 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import Apis from '../Services/ApiServices/Apis';
 
 const MessageDetail = () => {
+  
+        const {id}=useParams();
+       
+    const hidden = useSelector((state) => state.hiddenstate.hidden);
+     
+    const [message,setMessage]=useState([]);
+    const [vessel,setVessel]=useState({})
+    const [loading,setLoading] =useState(true)
+
+    // useEffect(()=>{  
+    //     MessageInfo();
+    //   },[])
+    
+      
+    //     const MessageInfo=async()=>{
+    //       try {
+    //         setLoading(true);
+    //         const data= await Apis.getMessageDetails('https://dpw1.afrilogitech.com/api',id);
+    //         console.log("message",data.data.bollist)
+    //         console.log("data",data?.data)
+    //         setMessage(data?.data?.bollist)
+    //         setVessel(data?.data?.vessel)
+    //       } catch (error) {
+    //         setLoading(false);
+    //         console.error("Error fetching messages:", error);
+    //       } finally {
+    //         setLoading(false);
+    //       }
+        
+    //     }
+    
   return (
     <div class="wrapper">
 
@@ -9,60 +45,11 @@ const MessageDetail = () => {
     </div>
    */}
 
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
- 
-      <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-                  <img src="img/toggle.png" alt="toggle" class="img-fluid" />
-              </a>
-          </li>
-      </ul>
-  
-   
-      <ul class="navbar-nav ml-auto">
-          <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                  <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" style={{color:"#6159C7"}}><img src="img/user1.png" class="img-responsive"/>DP WORLD</a>
-                  <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style={{left:"0px", right: "inherit"}}>
-                      <li><a href="index.html" class="dropdown-item">Logout</a></li>
-                  </ul>
-              </li>
-          </ul>
-      </ul>
-    </nav>
+    <Header/>
 
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
-          <a href="index.html" class="brand-link">
-              <img src="img/logo.png" alt="Logo" class="img-fluid" width="180px" />
-          </a>
-          <div class="sidebar">
-              <nav class="mt-2">
-                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                      <li class="nav-item">
-                          <a href="home.html" class="nav-link">
-                            <img src="img/home.png" class="img-responsive"/>
-                            <p>Dashboard</p>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="Messages.html" class="nav-link active">
-                            <img src="img/msg.png" class="img-responsive"/>
-                            <p>Messages</p>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="Users.html" class="nav-link">
-                            <img src="img/manage.png" class="img-responsive"/>
-                            <p>Users</p>
-                          </a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-      </aside>
+    <Sidebar/>
   
-      <div class="content-wrapper">
+      <div class="content-wrapper" style={{marginLeft:hidden&&"0"}}>
           <div class="content-header">
               <div class="container-fluid">
                   <div class="row mb-2">

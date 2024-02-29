@@ -11900,7 +11900,6 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(
   .main-sidebar,
   .main-sidebar::before {
     box-shadow: none !important;
-    margin-left: -250px;
   }
   .sidebar-open .main-sidebar,
   .sidebar-open .main-sidebar::before {

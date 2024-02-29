@@ -35,7 +35,7 @@ const ExportExcel = ({ excelData, fileName }) => {
   
   <button type="button" onClick={(e) =>handlebtn()}
     color="primary" 
-    className="filter-btn">Download excel sheet &nbsp;<i class="fa fa-download"></i></button>
+    className="btn btn-primary btn-block">Download excel sheet &nbsp;<i class="fa fa-download"></i></button>
 
     }
       

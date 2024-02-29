@@ -30,7 +30,6 @@ class ApiService {
     return new Promise(async function (resolve, reject) {
       await axios({
         method: "post",
-        mode: "cors",
         url,
         params: {
           messageId:id,
@@ -48,7 +47,7 @@ class ApiService {
     })
       .catch((err) => {
         alert("Can't find the message Details for required messageId")
-        window.location.href="/admin/dashboard"
+        window.location.href="/messages"
         console.log("error: " + err);
       });
     });
