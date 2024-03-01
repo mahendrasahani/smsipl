@@ -1,47 +1,32 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./Components/Login";
+import Messages from "./Components/Messages";
+import MessageDetail from "./Components/MessageDetail";
+import Dashboard from "./Components/Dashboard";
+import Modify from "./Components/Modify";
 
-import {createBrowserRouter } from 'react-router-dom';
-import './App.css';
-import Login from "./Components/Login"
-import Messages from './Components/Messages';
-import MessageDetail from './Components/MessageDetail';
-import Dashboard from './Components/Dashboard';
-
-
-
-
-
-
-const App=()=> {
-
+const App = () => {
   return (
     <div className="App">
-        <Login/>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/messageDetails" element={<MessageDetail />} />
+        <Route path="/modify" element={<Modify />} />
+      </Routes>
     </div>
   );
-}
+};
 
+const AppRouter = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
 
-   
-
-
-const Approuter=createBrowserRouter([
-  {
-    path:'/',
-   element:<App/>
-   
-  },
-  {
-    path:"/dashboard",
-    element:<Dashboard/>
-  },
-  {
-    path:"/messages",
-    element:<Messages/>
-  },
-  {
-    path:"/messageDetails/:id",
-    element:<MessageDetail/>
-  }
-])
-
-export default Approuter;
+export default AppRouter;

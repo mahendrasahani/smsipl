@@ -14,6 +14,9 @@ const Dashboard = () => {
   const onRef = useRef();
   const betweenRef = useRef();
 
+  useEffect(() => {
+    document.title = "DP WORLD | Dashboard";
+  }, []);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(
     new Date().toISOString().split("T")[0]
@@ -24,7 +27,6 @@ const Dashboard = () => {
   const [statusValue, setStatusValue] = useState(0);
   const [dateOption, setDateOption] = useState(2);
   const [number, setNumber] = useState(0); // Define setNumber state
-
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -56,8 +58,6 @@ const Dashboard = () => {
     }
   };
 
-
-
   useEffect(() => {
     const element1 = onRef.current;
     const element2 = betweenRef.current;
@@ -83,9 +83,7 @@ const Dashboard = () => {
     };
   }, []);
 
- 
-  const [isModalOpen,setModal]=useState('')
-
+  const [isModalOpen, setModal] = useState("");
 
   return (
     <div className="wrapper">
@@ -93,12 +91,11 @@ const Dashboard = () => {
       <img src="img/logo.png" alt="Logo" className="img-fluid" />
     </div> */}
 
-    <Header/>
-      
-    <Sidebar/>
-    
+      <Header />
 
-      <div className="content-wrapper" style={{marginLeft:hidden&&"0"}}>
+      <Sidebar />
+
+      <div className="content-wrapper" style={{ marginLeft: hidden && "0" }}>
         <div className="content-header">
           <div className="container-fluid">
             <div className="row mb-2">
@@ -164,96 +161,92 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="row">
-                     
-                          {dateOption === "1" ? (
-                           
-                           <div className="col-md-5">
-                           <div className="form-group">
-                             <label>From date</label>
-                             <div
-                          className="input-group date"
-                          id="reservationdate"
-                          data-target-input="nearest"
-                        >
-                               <input
-                                 type="date"
-                                 className="form-control form-control-sm datetimepicker-input date-pick"
-                                 id="from-date"
-                                 value={startDate}
-                                 min="2023-01-01"
-                                 max={new Date().toISOString().split("T")[0]}
-                                 onChange={(e) => setStartDate(e.target.value)}
-                                 data-target="#reservationdate"
-                               />
-                               </div>
-                               </div>
-                               </div>
-                      
-                          ) : (
-                            <>
-                               <div className="col-md-6">
-                           <div className="form-group">
-                                <label for="start">From Date</label>
-                                <div
-                          className="input-group date"
-                          id="reservationdate"
-                          data-target-input="nearest"
-                        >
-                                <input
-                                id="start"
+                      {dateOption === "1" ? (
+                        <div className="col-md-5">
+                          <div className="form-group">
+                            <label>From date</label>
+                            <div
+                              className="input-group date"
+                              id="reservationdate"
+                              data-target-input="nearest"
+                            >
+                              <input
+                                type="date"
                                 className="form-control form-control-sm datetimepicker-input date-pick"
+                                id="from-date"
+                                value={startDate}
+                                min="2023-01-01"
+                                max={new Date().toISOString().split("T")[0]}
+                                onChange={(e) => setStartDate(e.target.value)}
+                                data-target="#reservationdate"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label for="start">From Date</label>
+                              <div
+                                className="input-group date"
+                                id="reservationdate"
+                                data-target-input="nearest"
+                              >
+                                <input
+                                  id="start"
+                                  className="form-control form-control-sm datetimepicker-input date-pick"
                                   type="date"
                                   value={startDate}
                                   min="2023-01-01"
                                   max={new Date().toISOString().split("T")[0]}
                                   onChange={(e) => setStartDate(e.target.value)}
                                 />
-                                </div>
                               </div>
-                              </div>
-                              <div className="col-md-6">
-                           <div className="form-group">
-                                <label for="to">To Date</label>
-                                <div
-                          className="input-group date"
-                          id="reservationdate"
-                          data-target-input="nearest"
-                        >
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label for="to">To Date</label>
+                              <div
+                                className="input-group date"
+                                id="reservationdate"
+                                data-target-input="nearest"
+                              >
                                 <input
-                                id="to"
-                                className="form-control form-control-sm datetimepicker-input date-pick"
+                                  id="to"
+                                  className="form-control form-control-sm datetimepicker-input date-pick"
                                   type="date"
                                   min="2023-01-01"
                                   max={new Date().toISOString().split("T")[0]}
                                   value={endDate}
                                   onChange={(e) => setEndDate(e.target.value)}
                                 />
-                                </div>
                               </div>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                        <div className="col-md-6 status-field">
-                        <div className="form-group">
-                          <label>Status</label>
-                          <select
-                name="SelectStatus"
-                className="form-control"
-                id="select1"
-                value={statusValue}
-                onChange={(e) => setStatusValue(e.target.value)}
-              >
-                <option value={0}>Select All</option>
-                <option value={4}>Details Inserted</option>
-                <option value={6}>Transfer Successful</option>
-                <option value={5}>Details Insertion Failed</option>
-                <option value={7}>Transfer Failed</option>
-              </select>
-                        </div>
-                        </div>
-                  
-                     
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    <div className="col-md-6 status-field">
+                      <div className="form-group">
+                        <label>Status</label>
+                        <select
+                          name="SelectStatus"
+                          className="form-control"
+                          id="select1"
+                          value={statusValue}
+                          onChange={(e) => setStatusValue(e.target.value)}
+                        >
+                          <option value={0}>Select All</option>
+                          <option value={4}>Details Inserted</option>
+                          <option value={6}>Transfer Successful</option>
+                          <option value={5}>Details Insertion Failed</option>
+                          <option value={7}>Transfer Failed</option>
+                        </select>
+                      </div>
+                    </div>
+
                     <div className="row mt-3 mb-2">
                       <div className="col-md-3 col-5">
                         <button
@@ -263,16 +256,18 @@ const Dashboard = () => {
                           Clear all
                         </button>
                       </div>
-                     
-                      <ExportExcel excelData={items} fileName={"Excel Export"} />
-                      
+
+                      <ExportExcel
+                        excelData={items}
+                        fileName={"Excel Export"}
+                      />
                     </div>
                   </div>
                   <div className="col-md-1"></div>
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-body">
-                      <GraphCard  itemsData={items}/>
+                        <GraphCard itemsData={items} />
                       </div>
                     </div>
                   </div>

@@ -767,7 +767,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 22px;
 }
 
-.filter-btn {
+/* .filter-btn {
   padding: 11px;
   width: 327px;
   height: 53px;
@@ -777,13 +777,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 21px;
   border-radius: 5px;
   line-height: 29.4px;
-}
+} */
 
-.filter-btn:hover {
+/* .filter-btn:hover {
   cursor: pointer;
   background-color: white;
   color: #0575e6;
-}
+} */
 
 /* date-field */
 
@@ -799,7 +799,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1571px) {
   input[type="date"] {
-    padding: 19px;
+   
     width: 220px;
     height: 3px;
     font-size: 16px;
@@ -815,12 +815,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 9px;
   }
 
-  .filter-btn {
+  /* .filter-btn {
     padding: 8px;
     width: 180px;
     height: 37px;
     font-size: 13px;
-  }
+  } */
 
   .date-field {
     width: 440px;
@@ -836,11 +836,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 160px;
   }
 
-  .filter-btn {
+  /* .filter-btn {
     width: 200px;
     height: 40px;
     padding: 0;
-  }
+  } */
 
   .date-input > input[type="date"] {
     width: 79%;
@@ -889,13 +889,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 178px;
   }
 
-  .filter-btn {
+  /* .filter-btn {
     margin-top: 20px;
     width: 160px;
     height: 36px;
     padding: 0;
     font-weight: 600;
-  }
+  } */
 
 
 }
@@ -1395,7 +1395,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-width: 500px;
   height: 300px;
   margin: 45px auto;
-  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
 }
 
@@ -1462,32 +1461,51 @@ canvas{
 
 /*---------------------------------------- actions-------------------------------------------- */
 
-/* .actions>a:nth-child(1){
+.actions>button:nth-child(1){
 
- background:#A48D6B !important;
-} */
+ background:#007bff !important;
+}
+
+.actions>button:nth-child(1):hover{
+  background:white !important;
+ }
+
+ .actions>button:nth-child(1){
+
+  color:white !important;
+ }
+
+ .actions>button:nth-child(1):hover{
+
+  color:black !important;
+ }
+ 
 
 .actions>a:nth-child(2){
 
   background:#A48D6B !important;
  }
 
- .actions>a:nth-child(3){
+ .actions>button:nth-child(3){
   background:#767B95 !important
  }
 
 .actions>a:nth-child(1):hover{
 
-  background: #4e8bcc !important;
+  background: white !important;
+  color: black !important;
 }
+
 
 .actions>a:nth-child(2):hover{
 
-  background:#edd1a8 !important;
+  background:white !important;
+  color: black !important;
 }
 
-.actions>a:nth-child(3):hover{
-  background:#bec2d3 !important
+.actions>button:nth-child(3):hover{
+  background:white !important;
+  color: black !important;
 }
 
 /*---------------------------------------------------- dashboard------------------------------------------------------------------ */
@@ -1506,3 +1524,16 @@ canvas{
       padding:0px;
     }
   }
+
+
+.modal-box {
+    z-index: 1;
+    height: 321px;
+    top: 13%;
+    left: 28%;
+    width: 800px;
+    background: white;
+    position: absolute;
+   overflow-y:scroll;
+   box-shadow: 10px 10px 66px 23px grey
+}

@@ -16,30 +16,31 @@ const ExportExcel = ({ excelData, fileName }) => {
     FileSaver.saveAs(data, fileName + fileExtension);
   };
 
-
-  const handlebtn=()=>{
-     alert("No data is there to be printed")
-  }
+  const handlebtn = () => {
+    alert("No data is there to be printed");
+  };
 
   return (
     <div class="col-md-7 col-7">
-    {
-      excelData.length>0 ?<button
-      onClick={() => exportToExcel(fileName)}
-      color="primary" 
-      className="filter-btn download-btn"
-    >
-    Download excel sheet &nbsp;<i class="fa fa-download"></i>
-    </button>:
-   
-  
-  <button type="button" onClick={(e) =>handlebtn()}
-    color="primary" 
-    className="btn btn-primary btn-block">Download excel sheet &nbsp;<i class="fa fa-download"></i></button>
-
-    }
-      
-      </div>
+      {excelData.length > 0 ? (
+        <button
+          onClick={() => exportToExcel(fileName)}
+          color="primary"
+          className="btn btn-primary btn-block"
+        >
+          Download Excel Sheet &nbsp;<i class="fa fa-download"></i>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={(e) => handlebtn()}
+          color="primary"
+          className="btn btn-primary btn-block"
+        >
+          Download Excel Sheet &nbsp;<i class="fa fa-download"></i>
+        </button>
+      )}
+    </div>
   );
 };
 
