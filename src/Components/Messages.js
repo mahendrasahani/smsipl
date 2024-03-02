@@ -6,6 +6,9 @@ import { addItems } from "./store/ItemsSlice";
 import moment from "moment/moment";
 import { Button, Modal } from "antd";
 import Loading from "./reusable/Loading";
+import { FaCode, FaRegEye } from "react-icons/fa";
+import { FiRefreshCw } from "react-icons/fi";
+
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
@@ -94,7 +97,7 @@ const Messages = () => {
     setmrnnumber("");
   };
 
-  useEffect(() => {
+  const handleFilterMEssage = () => {
     let filteredData = items;
     if (mrnnumber !== "") {
       filteredData = filteredData.filter(
@@ -127,8 +130,11 @@ const Messages = () => {
     }
 
     setFilteredItems(filteredData);
-    console.log(filteredData);
-  }, [mrnnumber, visitcode, carriername, items, bolno]);
+  };
+
+  useEffect(() => {
+    setFilteredItems(items);
+  }, [items]);
 
   const handleInputChange = (e) => {
     setmrnnumber(e.target.value);
@@ -153,7 +159,7 @@ const Messages = () => {
       return itm?.id == data;
     });
 
-    console.log("mod", modaldata1);
+    // console.log("mod", modaldata1);
     setmodaldata(modaldata1);
     setIsModalOpen(!isModalOpen);
   };
@@ -377,6 +383,15 @@ const Messages = () => {
                     <div className="col-md-2 mt-4 pt-2">
                       <button
                         type="button"
+                        className="btn btn-block btn-sm btn-outline-primary"
+                        onClick={() => handleFilterMEssage()}
+                      >
+                        Search
+                      </button>
+                    </div>
+                    <div className="col-md-2 mt-4 pt-2">
+                      <button
+                        type="button"
                         className="btn btn-block btn-sm btn-outline-danger"
                         onClick={() => ResetData()}
                       >
@@ -399,7 +414,7 @@ const Messages = () => {
                           <th style={{ color: "#3166C9" }}>
                             Vessel Visit Code
                           </th>
-                          <th style={{ color: "#3166C9" }}>Cargo Code</th>
+                          {/* <th style={{ color: "#3166C9" }}>Cargo Code</th> */}
                           <th style={{ color: "#3166C9" }}>BoL Count.</th>
                           <th style={{ color: "#3166C9" }}>Status</th>
                           <th style={{ color: "#3166C9" }}>Action</th>
@@ -419,15 +434,33 @@ const Messages = () => {
                                 <td>{itm?.manifest?.vessel?.mrn}</td>
                                 <td>{itm?.manifest.vessel?.vesselVisitCode}</td>
 
-                                <td>
+                                {/* <td>
                                   {itm?.manifest?.bolList?.map((item) => (
                                     <span>{item?.cargoCode}, </span>
                                   ))}
-                                </td>
+                                </td> */}
 
                                 <td>{itm?.manifest?.bolList?.length}</td>
-                                <td style={{ color: "#FF0000" }}>
-                                  {itm?.status_desc}
+                                <td
+                                  style={{
+                                    color:
+                                      itm?.status_code === 2 ||
+                                      itm?.status_code === 5 ||
+                                      itm?.status_code === 7
+                                        ? "#FF0000"
+                                        : "darkgreen",
+                                  }}
+                                >
+                                  {itm?.status_code === 2 &&
+                                    "VALIDATION FAILED"}
+                                  {itm?.status_code === 3 &&
+                                    "VALIDATION SUCCESSFUL"}
+                                  {itm?.status_code === 4 && "DETAILS INSERTED"}
+                                  {itm?.status_code === 5 &&
+                                    "DETAILS INSERTION FAILED"}
+                                  {itm?.status_code === 6 &&
+                                    "PUSHING SUCCESSFUL"}
+                                  {itm?.status_code === 7 && "PUSHING FAILED"}
                                 </td>
                                 <td
                                   style={{ gap: "2px", display: "flex" }}
@@ -437,10 +470,10 @@ const Messages = () => {
                                     className="btn btn-sm  btn-clear"
                                     onClick={() => handleNavigation(itm?.id)}
                                   >
-                                    <i className="fa fa-eye"></i>
+                                    <FaRegEye />
                                   </button>
                                   <a className="btn btn-sm bg-success btn-clear">
-                                    <i className="fa fa-refresh"></i>
+                                    <FiRefreshCw />
                                   </a>
 
                                   <button
@@ -449,7 +482,7 @@ const Messages = () => {
                                     data-target="#code"
                                     onClick={() => updateModal(itm?.id)}
                                   >
-                                    <i className="fa fa-code"></i>
+                                    <FaCode />
                                   </button>
                                 </td>
                               </tr>
