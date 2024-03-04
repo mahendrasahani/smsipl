@@ -9,7 +9,6 @@ import moment from "moment";
 
 const MessageDetail = () => {
   const location = useLocation();
-  console.log(location?.state?.messageData);
   const id = location?.state?.messageData?.id;
   const status_code = location?.state?.messageData?.status_code;
 
@@ -45,6 +44,8 @@ const MessageDetail = () => {
         "https://dpw1.afrilogitech.com/api",
         id
       );
+
+   
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -55,10 +56,7 @@ const MessageDetail = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const filtererror = message?.filter((itm) => itm?.errorlist !== null);
-  //   seterrorlist(message);
-  // }, []);
+
 
   useEffect(() => {
     const filterbol =
@@ -90,7 +88,7 @@ const MessageDetail = () => {
     setcargoList(filtercargo);
   }, [cargono, bollist, message]);
 
-  console.log(bollist[0]);
+ 
 
   useEffect(() => {
     const filtercntr =
@@ -195,9 +193,7 @@ const MessageDetail = () => {
                       <p className="mb-0" style={{ color: "#676767" }}>
                         {vessel?.vesselVisitCode}
                       </p>
-                      {/* <p className="mb-0" style={{ color: "#676767" }}>
-                        C
-                      </p> */}
+                   
                       <p className="mb-0" style={{ color: "#676767" }}>
                         {vessel?.vesselName}
                       </p>
@@ -484,7 +480,7 @@ const MessageDetail = () => {
                                   onChange={(e) => setCargono(e.target.value)}
                                 >
                                   {bollist &&
-                                    bollist[0]?.bolcargos.map((itm, i) => {
+                                    bollist[0]?.bolcargos?.map((itm, i) => {
                                       return (
                                         <option id={i} value={i}>
                                           {i + 1}

@@ -35,19 +35,12 @@ class Apis {
     return apiResponse;
   }
 
-  async UpdateMessage(url) {
-    const apiResponse = await apiService.post(url + "/UpdateMessage");
+  async UpdateBOLMessage(url,data) {
+    const apiResponse = await apiService.post(url + "/UpdateMessage",data);
     return apiResponse.data.data;
   }
 
-  // async ProcessMessage(url, id, scode) {
-  //   const apiResponse = await apiService.processMessage(
-  //     url + "/IntMessageManager/ProcessMessage",
-  //     id,
-  //     scode
-  //   );
-  //   return apiResponse.data;
-  // }
+
   async ProcessMessage(url, id, scode) {
     const apiResponse = await apiService.post(
       url + "/IntMessageManager/ProcessMessage",

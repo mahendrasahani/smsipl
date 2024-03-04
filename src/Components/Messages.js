@@ -74,7 +74,9 @@ const Messages = () => {
         statusvalue
       );
 
+     console.log("data",apiResponse?.data)
       dispatch(addItems(apiResponse?.data));
+
       setitems(apiResponse?.data);
     } catch (error) {
       console.error("Error fetching messages:", error);

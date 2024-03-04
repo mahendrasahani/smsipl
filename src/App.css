@@ -1537,3 +1537,13 @@ canvas{
    overflow-y:scroll;
    box-shadow: 10px 10px 66px 23px grey
 }
+
+.dataInput > p>input[type="text"]{
+  width: 150px;
+}
+
+.save{
+  margin:10px auto;
+  width: 162px;
+ 
+}
