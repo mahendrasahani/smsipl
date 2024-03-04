@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 defaults.plugins.title.display = "true";
 
 const GraphCard = ({ itemsData }) => {
+
+ 
+
   const [messagedetails, setmessagedetails] = useState({
     detailsinserted: 0,
     insertionfailed: 0,
@@ -20,39 +23,44 @@ const GraphCard = ({ itemsData }) => {
       transfersuccessful: 0,
       transferfailed: 0,
     }));
-
-    itemsData &&
-      itemsData?.map((itm) => {
-        if (itm.status_code === 2) {
-          setmessagedetails((prevState) => ({
-            ...prevState,
-            detailsinserted: prevState.detailsinserted + 1,
-          }));
-        }
-
-        if (itm.status_code === 5) {
-          setmessagedetails((prevState) => ({
-            ...prevState,
-            insertionfailed: prevState.insertionfailed + 1,
-          }));
-        }
-
-        if (itm.status_code === 6) {
-          setmessagedetails((prevState) => ({
-            ...prevState,
-            transfersuccessful: prevState.transfersuccessful + 1,
-          }));
-        }
-
-        if (itm.status_code === 7) {
-          setmessagedetails((prevState) => ({
-            ...prevState,
-            transferfailed: prevState.transferfailed + 1,
-          }));
-        }
-        return itm;
+  
+    itemsData && itemsData.length>0 &&
+      itemsData?.forEach((itm) => {
+        setmessagedetails((prevState) => {
+          if (itm.status_code === 4) {
+            return {
+              ...prevState,
+              detailsinserted: prevState.detailsinserted + 1,
+            };
+          }
+  
+          if (itm.status_code === 5) {
+            return {
+              ...prevState,
+              insertionfailed: prevState.insertionfailed + 1,
+            };
+          }
+  
+          if (itm.status_code === 6) {
+            return {
+              ...prevState,
+              transfersuccessful: prevState.transfersuccessful + 1,
+            };
+          }
+  
+          if (itm.status_code === 7) {
+            return {
+              ...prevState,
+              transferfailed: prevState.transferfailed + 1,
+            };
+          }
+  
+          return prevState;
+        });
       });
   }, [itemsData]);
+
+ 
 
   return (
     <div
@@ -74,7 +82,7 @@ const GraphCard = ({ itemsData }) => {
               ],
               datasets: [
                 {
-                  label: "No. of messages ",
+                  label: "No. of messages",
                   data: [
                     messagedetails.detailsinserted,
                     messagedetails.insertionfailed,

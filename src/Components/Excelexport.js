@@ -21,7 +21,7 @@ const ExportExcel = ({ excelData, fileName }) => {
   };
 
   return (
-    <div class="col-md-7 col-7">
+    <div className="col-md-7 col-7">
       {excelData.length > 0 ? (
         <button
           onClick={() => exportToExcel(fileName)}

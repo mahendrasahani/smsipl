@@ -58,13 +58,8 @@ const Messages = () => {
 
   useEffect(() => {
     const start = formatDate2(startdate);
-
     const end = formatDate2(enddate);
-    if (dateOption == 1) {
-      fetchMessage(start, start, statusvalue);
-    } else {
-      fetchMessage(start, end, statusvalue);
-    }
+    fetchMessage(start, end, statusvalue);
   }, [startdate, enddate, statusvalue]);
 
   // --------------------------------Fetching data from getMessageList Api--------------------------------------//
@@ -90,7 +85,7 @@ const Messages = () => {
 
   //-------------------------------------------Reset Data----------------------------------------------------------//
 
-  const ResetData = () => {
+  const handleResetData = () => {
     setbolno("");
     setVisitcode("");
     setcarriername("");
@@ -151,14 +146,13 @@ const Messages = () => {
   };
 
   const handleNavigation = (data) => {
-    navigate("/messageDetails", { state: { id: data } });
+    navigate("/messageDetails", { state: {messageData:data } });
   };
 
   const updateModal = (data) => {
     const modaldata1 = filteredItems?.filter((itm) => {
       return itm?.id == data;
     });
-
     // console.log("mod", modaldata1);
     setmodaldata(modaldata1);
     setIsModalOpen(!isModalOpen);
@@ -227,91 +221,48 @@ const Messages = () => {
                   <div className="row mt-3">
                     <div className="col-md-2">
                       <div className="form-group">
-                        <label>Select Date Range</label>
-
-                        <select
-                          name="SelectStatus"
-                          className="form-control form-control-sm"
-                          id="select"
-                          value={dateOption}
-                          onChange={(e) => setDateoption(e.target.value)}
+                        <label>From Date</label>
+                        <div
+                          className="input-group date"
+                          id="reservationdate"
+                          data-target-input="nearest"
                         >
-                          <option value={0}>Select Range</option>
-                          <option value={1}>On</option>
-                          <option value={2}>Between</option>
-                        </select>
+                          <input
+                            type="date"
+                            className="form-control form-control-sm datetimepicker-input"
+                            id="from-date"
+                            value={startdate}
+                            min="2023-01-01"
+                            max={new Date().toISOString().split("T")[0]}
+                            onChange={(e) => setstartDate(e.target.value)}
+                            data-target="#reservationdate"
+                          />
+                        </div>
                       </div>
                     </div>
-                    {dateOption === "1" ? (
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <label>From Date</label>
-                          <div
-                            class="input-group date"
-                            id="reservationdate"
-                            data-target-input="nearest"
-                          >
-                            <input
-                              type="date"
-                              class="form-control form-control-sm datetimepicker-input"
-                              id="from-date"
-                              value={startdate}
-                              min="2023-01-01"
-                              max={new Date().toISOString().split("T")[0]}
-                              onChange={(e) => setstartDate(e.target.value)}
-                              data-target="#reservationdate"
-                            />
-                          </div>
+                    <div className="col-md-2">
+                      <div className="form-group">
+                        <label>To Date</label>
+                        <div
+                          className="input-group date"
+                          id="reservationdate"
+                          data-target-input="nearest"
+                        >
+                          <input
+                            type="date"
+                            className="form-control form-control-sm datetimepicker-input"
+                            id="from-date"
+                            min="2023-01-01"
+                            max={new Date().toISOString().split("T")[0]}
+                            value={enddate}
+                            onChange={(e) => setendDate(e.target.value)}
+                            data-target="#reservationdate"
+                          />
                         </div>
                       </div>
-                    ) : (
-                      <>
-                        <div class="col-md-2">
-                          <div class="form-group">
-                            <label>From Date</label>
-                            <div
-                              class="input-group date"
-                              id="reservationdate"
-                              data-target-input="nearest"
-                            >
-                              <input
-                                type="date"
-                                class="form-control form-control-sm datetimepicker-input"
-                                id="from-date"
-                                value={startdate}
-                                min="2023-01-01"
-                                max={new Date().toISOString().split("T")[0]}
-                                onChange={(e) => setstartDate(e.target.value)}
-                                data-target="#reservationdate"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="form-group">
-                            <label>From Date</label>
-                            <div
-                              class="input-group date"
-                              id="reservationdate"
-                              data-target-input="nearest"
-                            >
-                              <input
-                                type="date"
-                                class="form-control form-control-sm datetimepicker-input"
-                                id="from-date"
-                                min="2023-01-01"
-                                max={new Date().toISOString().split("T")[0]}
-                                value={enddate}
-                                onChange={(e) => setendDate(e.target.value)}
-                                data-target="#reservationdate"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                    <div class="col-md-2">
-                      <div class="form-group">
+                    </div>
+                    <div className="col-md-2">
+                      <div className="form-group">
                         <label>Status</label>
                         <select
                           name="SelectStatus"
@@ -329,7 +280,6 @@ const Messages = () => {
                       </div>
                     </div>
                   </div>
-
                   <hr />
                   <div className="row mt-3">
                     <div className="col-md-2">
@@ -393,7 +343,7 @@ const Messages = () => {
                       <button
                         type="button"
                         className="btn btn-block btn-sm btn-outline-danger"
-                        onClick={() => ResetData()}
+                        onClick={() => handleResetData()}
                       >
                         Clear All
                       </button>
@@ -420,75 +370,95 @@ const Messages = () => {
                           <th style={{ color: "#3166C9" }}>Action</th>
                         </tr>
                       </thead>
-                      <tbody style={{ fontSize: "12px" }}>
-                        {filteredItems &&
-                          filteredItems?.map((itm) => {
-                            return (
-                              <tr>
-                                <td>{itm?.id}</td>
-                                <td>
-                                  {moment(itm?.row_created.slice(0, 10)).format(
-                                    "DD-MM-YYYY"
-                                  )}
-                                </td>
-                                <td>{itm?.manifest?.vessel?.mrn}</td>
-                                <td>{itm?.manifest.vessel?.vesselVisitCode}</td>
+                      {loading ? (
+                        <div className="d-flex justify-content-center w-100">
+                          <Loading />
+                        </div>
+                      ) : (
+                        <tbody style={{ fontSize: "12px" }}>
+                          {filteredItems && Array.isArray(filteredItems) &&
+                            filteredItems?.map((itm) => {
+                              return (
+                                <tr>
+                                  <td>{itm?.id}</td>
+                                  <td>
+                                    {moment(
+                                      itm?.row_created.slice(0, 10)
+                                    ).format("DD-MM-YYYY")}
+                                  </td>
+                                  <td>{itm?.manifest?.vessel?.mrn}</td>
+                                  <td>
+                                    {itm?.manifest.vessel?.vesselVisitCode}
+                                  </td>
 
-                                {/* <td>
+                                  {/* <td>
                                   {itm?.manifest?.bolList?.map((item) => (
                                     <span>{item?.cargoCode}, </span>
                                   ))}
                                 </td> */}
 
-                                <td>{itm?.manifest?.bolList?.length}</td>
-                                <td
-                                  style={{
-                                    color:
-                                      itm?.status_code === 2 ||
-                                      itm?.status_code === 5 ||
-                                      itm?.status_code === 7
-                                        ? "#FF0000"
-                                        : "darkgreen",
-                                  }}
-                                >
-                                  {itm?.status_code === 2 &&
-                                    "VALIDATION FAILED"}
-                                  {itm?.status_code === 3 &&
-                                    "VALIDATION SUCCESSFUL"}
-                                  {itm?.status_code === 4 && "DETAILS INSERTED"}
-                                  {itm?.status_code === 5 &&
-                                    "DETAILS INSERTION FAILED"}
-                                  {itm?.status_code === 6 &&
-                                    "PUSHING SUCCESSFUL"}
-                                  {itm?.status_code === 7 && "PUSHING FAILED"}
-                                </td>
-                                <td
-                                  style={{ gap: "2px", display: "flex" }}
-                                  className="actions"
-                                >
-                                  <button
-                                    className="btn btn-sm  btn-clear"
-                                    onClick={() => handleNavigation(itm?.id)}
+                                  <td>{itm?.manifest?.bolList?.length}</td>
+                                  <td
+                                    style={{
+                                      color:
+                                        itm?.status_code === 2 ||
+                                        itm?.status_code === 5 ||
+                                        itm?.status_code === 7
+                                          ? "#FF0000"
+                                          : "darkgreen",
+                                    }}
                                   >
-                                    <FaRegEye />
-                                  </button>
-                                  <a className="btn btn-sm bg-success btn-clear">
-                                    <FiRefreshCw />
-                                  </a>
+                                    {itm?.status_code === 1 &&
+                                      "RAW DATA RECEIVED"}
+                                    {itm?.status_code === 2 &&
+                                      "VALIDATION FAILED"}
+                                    {itm?.status_code === 3 &&
+                                      "VALIDATION SUCCESSFUL"}
+                                    {itm?.status_code === 4 &&
+                                      "DETAILS INSERTED"}
+                                    {itm?.status_code === 5 &&
+                                      "DETAILS INSERTION FAILED"}
+                                    {itm?.status_code === 6 &&
+                                      "TRANSFER SUCCESSFUL"}
+                                    {itm?.status_code === 7 &&
+                                      "TRANSFER FAILED"}
+                                  </td>
+                                  <td
+                                    style={{ gap: "2px", display: "flex" }}
+                                    className="actions"
+                                  >
+                                    <button
+                                      title="View Details"
+                                      className="btn btn-sm  btn-clear"
+                                      onClick={() => handleNavigation(itm)}
+                                    >
+                                      <FaRegEye />
+                                    </button>
+                                    {itm?.status_code === 5 ||
+                                      (itm?.status_code === 7 && (
+                                        <a
+                                          className="btn btn-sm bg-success btn-clear"
+                                          title="Re-Process"
+                                        >
+                                          <FiRefreshCw />
+                                        </a>
+                                      ))}
 
-                                  <button
-                                    className="btn btn-sm bg-success  btn-clear"
-                                    data-toggle="modal"
-                                    data-target="#code"
-                                    onClick={() => updateModal(itm?.id)}
-                                  >
-                                    <FaCode />
-                                  </button>
-                                </td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
+                                    <button
+                                      title="View JSON"
+                                      className="btn btn-sm bg-success  btn-clear"
+                                      data-toggle="modal"
+                                      data-target="#code"
+                                      onClick={() => updateModal(itm?.id)}
+                                    >
+                                      <FaCode />
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                        </tbody>
+                      )}
                     </table>
                   </div>
                 </div>

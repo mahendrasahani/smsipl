@@ -29,11 +29,19 @@ const Sidebar = () => {
     };
   }, [hidden]);
 
+  const [windowsize,setwindwosize]=useState(false);
+
   useEffect(() => {
     if (window.innerWidth < 768) {
+      setwindwosize(true)
       dispatch(setHidden(true));
     }
-  }, []);
+
+    if (window.innerWidth > 768) {
+      setwindwosize(false)
+    }
+
+  }, [window.innerWidth]);
 
   const sidebarRef = useRef(null);
 
@@ -41,7 +49,7 @@ const Sidebar = () => {
     const handleClickOutside = (event) => {
       if (
         sidebarRef.current &&
-        window.innerWidth < 768 &&
+        window.innerWidth < 992 &&
         !sidebarRef.current.contains(event.target)
       ) {
         dispatch(setHidden(!hidden));
@@ -61,7 +69,7 @@ const Sidebar = () => {
       style={{
         background: "white",
         overflow: "hidden",
-        transform: hidden ? "translateX(-255px)" : "translateX(0px)",
+        transform: !windowsize ? hidden ? "translateX(-255px)" : "translateX(0px)":hidden ? "translateX(0px)" : "translateX(225px)"
       }}
     >
       <a

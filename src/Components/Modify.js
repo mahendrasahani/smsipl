@@ -7,15 +7,17 @@ import Header from "./Header";
 
 const Modify = () => {
   const location = useLocation();
-  const id = location?.state?.id ? location?.state?.id : 190;
+ console.log("lic",location)
+  const id = location?.state?.id;
+
 
   const hidden = useSelector((state) => state.hiddenstate.hidden);
-  const [bolno, setbolno] = useState("MSN03");
-  const [cargono, setCargono] = useState("C");
+  const [bolno, setbolno] = useState(location?.state?.bolno);
+  const [cargono, setCargono] = useState("");
   const [cargolist, setcargoList] = useState([]);
-  const [cntrno, setCntrno] = useState("C");
+  const [cntrno, setCntrno] = useState("");
   const [cntrlist, setCntrList] = useState([]);
-  const [bolvno, setbolvno] = useState("SKFS026ZZ30");
+  const [bolvno, setbolvno] = useState("");
   const [vlist, setVlist] = useState([]);
 
   const [message, setMessage] = useState([]);
@@ -29,6 +31,21 @@ const Modify = () => {
     consignee: "",
     cargocode: "",
     pod: "",
+    shipper:"",
+    notifier:"",
+    org:"",
+    pol:"",
+    dst:"",
+    placeofdvy:"",
+    crno:"",
+    BlType:"",
+
+// LoadingPortCode:
+// LoadingPortName:
+// DestinationPlaceCode:
+// DestinationPlaceName:
+// DeliveryPlaceCode:
+
   });
 
   const [bolcargodata, setbolcargodata] = useState({
@@ -201,6 +218,8 @@ const Modify = () => {
     console.log("vlis", vlist);
   }, [bolvno, bollist, message]);
 
+  console.log("databoibllist",bollistdata)
+
   return (
     <div className="wrapper">
       <Header />
@@ -279,6 +298,78 @@ const Modify = () => {
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
                     <label>POD:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="pod"
+                      value={bollistdata.pod}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Shipper:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="pod"
+                      value={bollistdata.pod}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Notifier:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="pod"
+                      value={bollistdata.pod}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Org:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="pod"
+                      value={bollistdata.pod}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Pol:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="pod"
+                      value={bollistdata.pod}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Dst:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input

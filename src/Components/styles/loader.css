@@ -1,0 +1,43 @@
+.loader {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid currentcolor;
+  border-radius: 3px;
+  font-size: 30px;
+  padding: 1em;
+  position: relative;
+  margin-bottom: 0.25em;
+  vertical-align: top;
+  transition: 0.3s color, 0.3s border, 0.3s transform, 0.3s opacity;
+}
+.loader:hover {
+  color: blue;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 0;
+  padding: 0;
+  border-width: 3px;
+  line-height: 200px;
+  opacity: 1;
+  transform: scale(1.2);
+  z-index: 2;
+  [class*="loader-"] {
+    font-size: 70px;
+    line-height: 200px;
+  }
+}
+
+.loader-01 {
+  border: 0.2em dotted currentcolor;
+  border-radius: 50%;
+  animation: 1s loader-01 linear infinite;
+}
+
+@keyframes loader-01 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
