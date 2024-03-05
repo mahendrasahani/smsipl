@@ -148,9 +148,9 @@ const MessageDetail = () => {
                     <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       MRN No:
                     </p>
-                    <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
+                    {/* <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       Vessels Visit Code:
-                    </p>
+                    </p> */}
                     {/* <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       Cargo Code:
                     </p> */}
@@ -193,9 +193,9 @@ const MessageDetail = () => {
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.mrn}
                       </p>
-                      <p className="mb-0 height-box" style={{ color: "#676767" }}>
+                      {/* <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.vesselVisitCode}
-                      </p>
+                      </p> */}
                    
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.vesselName}

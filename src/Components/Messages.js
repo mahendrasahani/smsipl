@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import Table from "./reusable/CustomTable";
 import { useDispatch, useSelector } from "react-redux";
 import Apis from "./../Services/ApiServices/Apis";
 import { addItems } from "./store/ItemsSlice";
 import moment from "moment/moment";
-import { Button, Modal } from "antd";
 import Loading from "./reusable/Loading";
 import { FaCode, FaRegEye } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
@@ -185,6 +183,21 @@ const Messages = () => {
     const htmlFormattedJson = jsonString.replace(/\n/g, "<br>");
     setFormattedJson(htmlFormattedJson);
   }, [jsonString]);
+
+  const handleReprocess = async (id,status_code) => {
+    try {
+      const data = await Apis.ProcessMessage(
+        "https://dpw1.afrilogitech.com/api",
+        id,
+        status_code
+      );
+    } catch (error) {
+      setLoading(false);
+      alert("Reprocess failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -432,12 +445,13 @@ const Messages = () => {
                                     </button>
                                     {itm?.status_code === 5 ||
                                       (itm?.status_code === 7 && (
-                                        <a
+                                        <button
                                           className="btn btn-sm bg-success btn-clear"
                                           title="Re-Process"
+                                          onClick={() => handleReprocess(itm?.id,itm?.status_code)}
                                         >
                                           <FiRefreshCw />
-                                        </a>
+                                        </button>
                                       ))}
 
                                     <button
