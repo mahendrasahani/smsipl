@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import {useLocation } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
 
 const Modify = () => {
   const location = useLocation();
-  const id = location?.state?.id;
-  const items = useSelector((state) => state.Items.items);
-
+  // const id = location?.state?.id;
+  const id=212;
   const hidden = useSelector((state) => state.hiddenstate.hidden);
-  const [bolno, setbolno] = useState(location?.state?.bolno);
+  // const [bolno, setbolno] = useState(location?.state?.bolno);
+  const [bolno, setbolno] = useState("SENTINDDEL00102");
   const [cargono, setCargono] = useState(0);
   const [bollist, setbollist] = useState([]);
   const [cargolist, setcargoList] = useState(bollist[0]?.bolcargos);
@@ -28,29 +28,181 @@ const Modify = () => {
   const [loading, setLoading] = useState(true);
 
   const [bollistdata, setbollistdata] = useState({
-    bolnbr: "",
-    TradeMode: "",
+    bolID: 0,
+    vesselid: 0,
+    messageID: 0,
+    vesselVisitCode: "",
+    bolNbr: "",
+    tradeMode: "",
     consignee: "",
-    cargocode: "",
-    pod: "",
     shipper: "",
     notifier: "",
     org: "",
     pol: "",
+    pod: "",
     dst: "",
-    placeofdvy: "",
-    crno: "",
-    BlType: "",
-    LoadingPortCode: "",
-    LoadingPortName: "",
-    DestinationPlaceCode: "",
-    DestinationPlaceName: "",
-    DeliveryPlaceCode: "",
+    cargoCode: "",
+    userDefinedName0: "",
+    userDefinedName1: "",
+    userDefinedName2: "",
+    userDefinedName3: "",
+    userDefinedName4: "",
+    userDefinedName5: "",
+  userDefinedName6: "",
+    userDefinedName7: "",
+  userDefinedName8: "",
+    userDefinedName9: "",
+    userDefinedCode0: "",
+    userDefinedCode1: "",
+    userDefinedCode2: "",
+    userDefinedCode3: "",
+    userDefinedCode4: "",
+    userDefinedCode5: "",
+    userDefinedCode6: "",
+  userDefinedCode7: "",
+    userDefinedCode8: "",
+    userDefinedCode9: "",
+    userDefinedNbr0:0,
+    userDefinedNbr1:0,
+    userDefinedNbr2:0,
+    userDefinedNbr3:0,
+    userDefinedNbr4 :0,
+    userDefinedNbr5:0,
+    userDefinedNbr6:0,
+    userDefinedNbr7:0,
+    userDefinedNbr8:0,
+    userDefinedNbr9:0,
+    userDefinedTime0: "",
+    userDefinedTime1: "",
+    userDefinedTime2: "",
+    userDefinedTime3: "",
+    userDefinedTime4: "",
+    userDefinedTime5: "",
+    userDefinedTime6: "",
+    userDefinedTime7: "",
+    userDefinedTime8: "",
+  userDefinedTime9: "",
+  placeOfDelivery: "",
+  crn: "", 
+  blType: "",
+  loadingPortCode: "",
+  loadingPortName: "",
+  destinationPlaceCode: "",
+  destinationPlaceName: "",
+  deliveryPlaceCode: "",
+  deliveryPlaceName: "",
+    cargoClassificationCode:"",
+   cargoClassificationName:"",
+   shippingAgentCode: "",
+   shippingAgentName: "",
+   forwarderCode: "",
+   forwarderName: "",
+   forwarderTel: "",
+   exporterName: "",
+   exporterAddress: "",
+   exporterTel: "",
+   exporterTin: "",
+    consigneeAddress:"",
+consigneeName:"",
+consigneeTel:"",
+notifyName:"",
+notifyAddress: "",
+notifyTel: "",
     bolCargos:cargolist,
     bolCntrs:cntrlist,
     bolVehicles:vlist,
   });
 
+  
+
+
+  useEffect(()=>{
+          setbollistdata({
+            bolID:bollist[0]?.primaryid || "",
+            vesselid:vessel?.primaryid || "",
+            messageID:id,
+            vesselVisitCode:bollist[0]?.vesselvisitcode || "",
+            bolNbr:bollist[0]?.bolnbr || "",
+            tradeMode:bollist[0]?.trademode || "",
+            cargoClassificationCode:bollist[0]?.cargoclassificationcode || "",
+  cargoClassificationName:bollist[0]?.cargoclassificationname || "",
+            consignee:bollist[0]?.consignee || "",
+            consigneeAddress:bollist[0]?.consigneeaddress || "",
+consigneeName:bollist[0]?.consigneename || "",
+consigneeTel:bollist[0]?.consigneetel || "",
+            cargoCode:bollist[0]?.cargocode || "",
+            pod:bollist[0]?.pod || "",
+            shipper:bollist[0]?.shipper || "",
+            notifier:bollist[0]?.notifier || "",
+            org:bollist[0]?.org || "",
+            pol: bollist[0]?.pol || "",
+            dst:bollist[0]?.dst || "",
+            placeOfDelivery: bollist[0]?.placeofdelivery || "",
+            crn:bollist[0]?.crn || "",
+            blType:bollist[0]?.bltype || "",
+            loadingPortCode:bollist[0]?.loadingportcode || "",
+            loadingPortName:bollist[0]?.loadingportname || "",
+            destinationPlaceCode:bollist[0]?.destinationplacecode || "",
+            destinationPlaceName:bollist[0]?.destinationplacename || "",
+            deliveryPlaceCode:bollist[0]?.deliveryplacecode || "",
+            deliveryPlaceName:bollist[0]?.deliveryplacename || "",
+            userDefinedName1:bollist[0]?.userdefinedname1 || "",
+            userDefinedName0:bollist[0]?.userdefinedname0 || "",
+            userDefinedName2: bollist[0]?.userdefinedname2 || "",
+            userDefinedName3: bollist[0]?.userdefinedname3 || "",
+            userDefinedName4: bollist[0]?.userdefinedname4 || "",
+            userDefinedName5: bollist[0]?.userdefinedname5 || "",
+          userDefinedName6: bollist[0]?.userdefinedname6 || "",
+            userDefinedName7: bollist[0]?.userdefinedname7 || "",
+          userDefinedName8: bollist[0]?.userdefinedname8 || "",
+            userDefinedName9: bollist[0]?.userdefinedname9 || "",
+            userDefinedCode0: bollist[0]?.userdefinedcode0 || "",
+            userDefinedCode1: bollist[0]?.userdefinedcode1 || "",
+            userDefinedCode2: bollist[0]?.userdefinedcode2 || "",
+            userDefinedCode3: bollist[0]?.userdefinedcode3 || "",
+            userDefinedCode4: bollist[0]?.userdefinedcode4 || "",
+            userDefinedCode5: bollist[0]?.userdefinedcode5 || "",
+            userDefinedCode6: bollist[0]?.userdefinedcode6 || "",
+          userDefinedCode7: bollist[0]?.userdefinedcode7 || "",
+            userDefinedCode8: bollist[0]?.userdefinedcode8 || "",
+            userDefinedCode9: bollist[0]?.userdefinedcode9 || "",
+            userDefinedNbr0:bollist[0]?.userdefinednbr0 || 0,
+            userDefinedNbr1:bollist[0]?.userdefinednbr1 || 0,
+            userDefinedNbr2:bollist[0]?.userdefinednbr2 || 0,
+            userDefinedNbr3:bollist[0]?.userdefinednbr3 || 0,
+            userDefinedNbr4:bollist[0]?.userdefinednbr4 || 0,
+            userDefinedNbr5:bollist[0]?.userdefinednbr5 || 0,
+            userDefinedNbr6:bollist[0]?.userdefinednbr6 || 0,
+            userDefinedNbr7:bollist[0]?.userdefinednbr7 || 0,
+            userDefinedNbr8:bollist[0]?.userdefinednbr8 || 0,
+            userDefinedNbr9:bollist[0]?.userdefinednbr9 || 0,
+            userDefinedTime0: bollist[0]?.userdefinedtime0 || "",
+            userDefinedTime1: bollist[0]?.userdefinedtime1 || "",
+            userDefinedTime2: bollist[0]?.userdefinedtime2 || "",
+            userDefinedTime3: bollist[0]?.userdefinedtime3 || "",
+            userDefinedTime4: bollist[0]?.userdefinedtime4 || "",
+            userDefinedTime5: bollist[0]?.userdefinedtime5 || "",
+            userDefinedTime6: bollist[0]?.userdefinedtime6 || "",
+            userDefinedTime7: bollist[0]?.userdefinedtime7 || "",
+            userDefinedTime8: bollist[0]?.userdefinedtime8 || "",
+          userDefinedTime9: bollist[0]?.userdefinedtime9 || "",
+          shippingAgentCode:bollist[0]?.shippingagentcode || "",
+          shippingAgentName:bollist[0]?.shippingagentname || "",
+          forwarderCode:bollist[0]?.forwardercode || "",
+          forwarderName:bollist[0]?.forwardername || "",
+          forwarderTel:bollist[0]?.forwardertel || "",
+          exporterName: bollist[0]?.exportername || "",
+          exporterAddress:bollist[0]?.exporteraddress || "",
+          exporterTel:bollist[0]?.exportertel || "",
+          exporterTin:bollist[0]?.exportertin || "",
+          notifyName:bollist[0]?.notifyname || "",
+           notifyAddress: bollist[0]?.notifyaddress || "",
+            notifyTel: bollist[0]?.notifytel || "",
+            bolCargos:cargolist,
+            bolCntrs:cntrlist,
+            bolVehicles:vlist,
+          })
+  },[bollist])
 
   const updatebolcargo = (e) => {
     const updatedList = [...cargolist];
@@ -86,7 +238,7 @@ const Modify = () => {
         id
       );
 
-      console.log("data", data);
+   
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -100,8 +252,15 @@ const Modify = () => {
 
 
   const updateInputValue = (e) => {
-    setbollist(prevState => [{...prevState[0], [e.target.name] : e.target.value}]);
-  };
+    setbollistdata((prevValues) => ({
+        ...prevValues,
+        [e.target.name]: e.target.value,
+        bolCargos:cargolist,
+        bolCntrs:cntrlist,
+        bolVehicles:vlist,
+    }));
+};
+
   useEffect(() => {
     const filtererror = message?.filter((itm) => itm?.errorlist !== null);
     seterrorlist(filtererror);
@@ -129,13 +288,26 @@ const Modify = () => {
 
   const submitData = async (e) => {
     e.preventDefault();
-    bollist[0].bolcargos=cargolist;
-    bollist[0].bolcntrs=cntrlist;
-    bollist[0].bolvehicles=vlist;
-    console.log("values",bollist)
-  };
+    
+   (cargolist==null)?bollistdata.bolCargos=[]:bollistdata.bolCargos=cargolist;
+   (cntrlist==null)?bollistdata.bolCntrs=[]:bollistdata.bolCntrs=cntrlist;
+   (vlist==null)?bollistdata.bolVehicles=[]:bollistdata.bolVehicles=vlist;
 
+   
  
+    const response=await Apis.UpdateBOLMessage(
+      "https://dpw1.afrilogitech.com/api",
+      bollistdata
+    );
+    
+    if(response && response?.success===true){
+      window.location.href="/dashboard";
+    }
+
+    else{
+      alert(response?.message)
+    }
+  };
 
   return (
     <div className="wrapper">
@@ -154,7 +326,7 @@ const Modify = () => {
                 </h1>
                 <ol className="breadcrumb ">
                   <li className="breadcrumb-item">
-                    <a href="dashboard">Home</a>
+                    <a href="/dashboard">Home</a>
                   </li>
                   <li className="breadcrumb-item">
                     <a href="/messages">Transfer failed</a>
@@ -178,8 +350,36 @@ const Modify = () => {
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="bolnbr"
-                      value={bollist[0]?.bolnbr}
+                      name="bolNbr"
+                      value={bollistdata?.bolNbr}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Cargo Classification Code:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="cargoClassificationCode"
+                      value={bollistdata?.cargoClassificationCode}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Cargo Classification Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="cargoClassificationCame"
+                      value={bollistdata?.cargoClassificationName}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -193,7 +393,49 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="consignee"
-                      value={bollist[0]?.consignee}
+                      value={bollistdata?.consignee}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Consignee Address:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="consigneeAddress"
+                      value={bollistdata?.consigneeAddress}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Consignee Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="consigneeName"
+                      value={bollistdata?.consigneeName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Consignee Tel:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="consigneeTel"
+                      value={bollistdata?.consigneeTel}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -206,8 +448,8 @@ const Modify = () => {
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="cargocode"
-                      value={bollist[0]?.cargocode}
+                      name="cargoCode"
+                      value={bollistdata?.cargoCode}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -221,7 +463,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="pod"
-                      value={bollist[0]?.pod}
+                      value={bollistdata?.pod}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -236,7 +478,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="shipper"
-                      value={bollist[0]?.shipper}
+                      value={bollistdata?.shipper}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -250,7 +492,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="notifier"
-                      value={bollist[0]?.notifier}
+                      value={bollistdata?.notifier}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -264,7 +506,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="org"
-                      value={bollist[0]?.org}
+                      value={bollistdata?.org}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -278,7 +520,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="pol"
-                      value={bollist[0]?.pol}
+                      value={bollistdata?.pol}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -293,7 +535,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="dst"
-                      value={bollist[0]?.dst}
+                      value={bollistdata?.dst}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -307,8 +549,8 @@ const Modify = () => {
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="placeofdelivery"
-                      value={bollist[0]?.placeofdelivery}
+                      name="placeOfDelivery"
+                      value={bollistdata?.placeOfDelivery}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -323,7 +565,7 @@ const Modify = () => {
                       type="text"
                       className="form-control form-control-sm"
                       name="crn"
-                      value={bollist[0]?.crn}
+                      value={bollistdata?.crn}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -337,8 +579,8 @@ const Modify = () => {
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="bltype"
-                      value={bollist[0]?.bltype}
+                      name="blType"
+                      value={bollistdata?.blType}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -346,14 +588,14 @@ const Modify = () => {
 
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
-                    <label>LoadingPortCode:</label>
+                    <label>Loading Port Code:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="loadingportcode"
-                      value={bollist[0]?.loadingportcode}
+                      name="loadingPortCode"
+                      value={bollistdata?.loadingPortCode}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -361,14 +603,14 @@ const Modify = () => {
 
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
-                    <label>LoadingPortName:</label>
+                    <label>Loading Port Name:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="loadingportname"
-                      value={bollist[0]?.loadingportname}
+                      name="loadingPortName"
+                      value={bollistdata?.loadingPortName}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
@@ -376,46 +618,863 @@ const Modify = () => {
 
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
-                    <label>DestinationPlaceCode:</label>
+                    <label>Destination Place Code:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="destinationplacecode"
-                      value={bollist[0]?.destinationplacecode}
+                      name="destinationPlaceCode"
+                      value={bollistdata?.destinationPlaceCode}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
                 </div>
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
-                    <label>DestinationPlaceName:</label>
+                    <label>Destination Place Name:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="destinationplacename"
-                      value={bollist[0]?.destinationplacename}
+                      name="destinationPlaceName"
+                      value={bollistdata?.destinationPlaceName}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
                 </div>
                 <div className="row mb-1">
                   <div className="col-md-2 col-6">
-                    <label>DeliveryPlaceCode:</label>
+                    <label>Delivery Place Code:</label>
                   </div>
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
                       className="form-control form-control-sm"
-                      name="deliveryplacecode"
-                      value={bollist[0]?.deliveryplacecode}
+                      name="deliveryPlaceCode"
+                      value={bollistdata?.deliveryPlaceCode}
                       onChange={(e) => updateInputValue(e)}
                     />
                   </div>
+                  </div>
+
+                  <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Delivery Place Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="deliveryPlaceName"
+                      value={bollistdata?.deliveryPlaceName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
                 </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Notify Address:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="notifyAddress"
+                      value={bollistdata?.notifyAddress}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Notify Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="notifyName"
+                      value={bollistdata?.notifyName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Notify Tel:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="notifyTel"
+                      value={bollistdata?.notifyTel}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                  
+  
+  
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Shipping Agent Code:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="shippingAgentCode"
+                      value={bollistdata?.shippingAgentCode}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Shipping Agent Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="shippingAgentName"
+                      value={bollistdata?.shippingAgentName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Forwarder Code:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="forwarderCode"
+                      value={bollistdata?.forwarderCode}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Forwarder Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="forwarderName"
+                      value={bollistdata?.forwarderName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Forwarder Tel:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="forwarderTel"
+                      value={bollistdata?.forwarderTel}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Exporter Address:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="exporterAddress"
+                      value={bollistdata?.exporterAddress}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Exporter Name:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="exporterName"
+                      value={bollistdata?.exporterName}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Exporter Tel:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="exporterTel"
+                      value={bollistdata?.exporterTel}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>Exporter Tin:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="exporterTin"
+                      value={bollistdata?.exporterTin}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName0:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName0"
+                      value={bollistdata?.userDefinedName0}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName1:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName1"
+                      value={bollistdata?.userDefinedName1}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName2:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName2"
+                      value={bollistdata?.userDefinedName2}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName3:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName3"
+                      value={bollistdata?.userDefinedName3}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName4:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName4"
+                      value={bollistdata?.userDefinedName4}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName5:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName5"
+                      value={bollistdata?.userDefinedName5}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName6:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName6"
+                      value={bollistdata?.userDefinedName6}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName7:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName7"
+                      value={bollistdata?.userDefinedName7}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName8:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName8"
+                      value={bollistdata?.userDefinedName8}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedName9:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedName9"
+                      value={bollistdata?.userDefinedName9}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode0:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode0"
+                      value={bollistdata?.userDefinedCode0}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode1:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode1"
+                      value={bollistdata?.userDefinedCode1}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode2:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode2"
+                      value={bollistdata?.userDefinedCode2}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode3:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode3"
+                      value={bollistdata?.userDefinedCode3}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode4:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode4"
+                      value={bollistdata?.userDefinedCode4}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode5:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode5"
+                      value={bollistdata?.userDefinedCode5}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode6:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode6"
+                      value={bollistdata?.userDefinedCode6}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode7:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode7"
+                      value={bollistdata?.userDefinedCode7}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode8:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode8"
+                      value={bollistdata?.userDefinedCode8}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedCode9:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedCode9"
+                      value={bollistdata?.userDefinedCode9}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr0:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr0"
+                      value={bollistdata?.userDefinedNbr0}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr1:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr1"
+                      value={bollistdata?.userDefinedNbr1}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr2:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr2"
+                      value={bollistdata?.userDefinedNbr2}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr3:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr3"
+                      value={bollistdata?.userDefinedNbr3}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr4:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr4"
+                      value={bollistdata?.userDefinedNbr4}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr5:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr5"
+                      value={bollistdata?.userDefinedNbr5}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr6:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr6"
+                      value={bollistdata?.userDefinedNbr6}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr7:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr7"
+                      value={bollistdata?.userDefinedNbr7}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr8:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr8"
+                      value={bollistdata?.userDefinedNbr8}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedNbr9:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedNbr9"
+                      value={bollistdata?.userDefinedNbr9}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime0:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime0"
+                      value={bollistdata?.userDefinedTime0}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime1:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime1"
+                      value={bollistdata?.userDefinedTime1}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime2:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime2"
+                      value={bollistdata?.userDefinedTime2}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime3:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime3"
+                      value={bollistdata?.userDefinedTime3}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime4:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime4"
+                      value={bollistdata?.userDefinedTime4}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime5:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime5"
+                      value={bollistdata?.userDefinedTime5}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime6:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime6"
+                      value={bollistdata?.userDefinedTime6}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime7:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime7"
+                      value={bollistdata?.userDefinedTime7}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime8:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime8"
+                      value={bollistdata?.userDefinedTime8}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+                <div className="row mb-1">
+                  <div className="col-md-2 col-6">
+                    <label>UserDefinedTime9:</label>
+                  </div>
+                  <div className="col-md-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      name="userDefinedTime9"
+                      value={bollistdata?.userDefinedTime9}
+                      onChange={(e) => updateInputValue(e)}
+                    />
+                  </div>
+                
+                </div>
+             
+               
+               
+
 
                 <div className="row mt-3">
                   <div className="col-md-4 pr-0">
@@ -1223,7 +2282,7 @@ const Modify = () => {
                 </div>
               </div>
             </div>
-            <a href="">
+            
               <button
                 type="button"
                 className="btn btn-block text-white col-md-2 mt-2"
@@ -1232,7 +2291,7 @@ const Modify = () => {
               >
                 Save & Update
               </button>
-            </a>
+       
           </div>
         </section>
       </div>

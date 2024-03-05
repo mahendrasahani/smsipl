@@ -74,7 +74,7 @@ const Messages = () => {
         statusvalue
       );
 
-     console.log("data",apiResponse?.data)
+   
       dispatch(addItems(apiResponse?.data));
 
       setitems(apiResponse?.data);
@@ -155,7 +155,7 @@ const Messages = () => {
     const modaldata1 = filteredItems?.filter((itm) => {
       return itm?.id == data;
     });
-    // console.log("mod", modaldata1);
+ 
     setmodaldata(modaldata1);
     setIsModalOpen(!isModalOpen);
   };
@@ -206,7 +206,7 @@ const Messages = () => {
                   </h1>
                   <ol className="breadcrumb ">
                     <li className="breadcrumb-item">
-                      <a href="/home">Home</a>
+                      <a href="/dashboard">Home</a>
                     </li>
                     <li className="breadcrumb-item active">Messages</li>
                   </ol>
@@ -381,7 +381,7 @@ const Messages = () => {
                           {filteredItems && Array.isArray(filteredItems) &&
                             filteredItems?.map((itm) => {
                               return (
-                                <tr>
+                                <tr key={itm?.id}>
                                   <td>{itm?.id}</td>
                                   <td>
                                     {moment(
@@ -392,12 +392,6 @@ const Messages = () => {
                                   <td>
                                     {itm?.manifest.vessel?.vesselVisitCode}
                                   </td>
-
-                                  {/* <td>
-                                  {itm?.manifest?.bolList?.map((item) => (
-                                    <span>{item?.cargoCode}, </span>
-                                  ))}
-                                </td> */}
 
                                   <td>{itm?.manifest?.bolList?.length}</td>
                                   <td
