@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import {useLocation } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
-import moment from "moment";
 
 const Modify = () => {
   const location = useLocation();
@@ -12,7 +11,17 @@ const Modify = () => {
  
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   // const [bolno, setbolno] = useState(location?.state?.bolno);
-  const [bolno, setbolno] = useState("SENTINDDEL00102");
+  const [bolno, setbolno] = useState("");
+  
+  useEffect(()=>{
+       if(location?.state?.bolno){
+        setbolno(location?.state?.bolno)
+       }
+       else{
+         setbolno("SENTINDDEL00102")
+       }
+  },[])
+
   const [cargono, setCargono] = useState(0);
   const [bollist, setbollist] = useState([]);
   const [cargolist, setcargoList] = useState(bollist[0]?.bolcargos);
@@ -227,28 +236,28 @@ consigneeTel:bollist[0]?.consigneetel || "",
     document.title = "DP WORLD | Dashboard";
   }, []);
 
-  useEffect(() => {
-    MessageInfo();
-  }, []);
+  // useEffect(() => {
+  //   MessageInfo();
+  // }, []);
 
-  const MessageInfo = async () => {
-    try {
-      setLoading(true);
-      const data = await Apis.getMessageDetails(
-        "https://dpw1.afrilogitech.com/api",
-        id
-      );
+  // const MessageInfo = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = await Apis.getMessageDetails(
+  //       "https://dpw1.afrilogitech.com/api",
+  //       id
+  //     );
 
    
-      setMessage(data?.data?.bollist);
-      setVessel(data?.data?.vessel);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error fetching messages:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     setMessage(data?.data?.bollist);
+  //     setVessel(data?.data?.vessel);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.error("Error fetching messages:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
 
 
@@ -1177,7 +1186,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr0"
                       value={bollistdata?.userDefinedNbr0}
@@ -1192,7 +1201,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr1"
                       value={bollistdata?.userDefinedNbr1}
@@ -1207,7 +1216,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr2"
                       value={bollistdata?.userDefinedNbr2}
@@ -1222,7 +1231,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr3"
                       value={bollistdata?.userDefinedNbr3}
@@ -1237,7 +1246,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr4"
                       value={bollistdata?.userDefinedNbr4}
@@ -1252,7 +1261,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr5"
                       value={bollistdata?.userDefinedNbr5}
@@ -1267,7 +1276,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr6"
                       value={bollistdata?.userDefinedNbr6}
@@ -1283,7 +1292,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr7"
                       value={bollistdata?.userDefinedNbr7}
@@ -1298,7 +1307,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr8"
                       value={bollistdata?.userDefinedNbr8}
@@ -1314,7 +1323,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-sm"
                       name="userDefinedNbr9"
                       value={bollistdata?.userDefinedNbr9}
@@ -1598,7 +1607,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="volumecbm"
                                   value={cargolist[cargono]?.volumecbm}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1606,7 +1615,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="volume"
                                   value={cargolist[cargono]?.volume}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1623,7 +1632,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="weightKg"
                                   value={cargolist[cargono]?.weightKg}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1632,7 +1641,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="weight"
                                   value={cargolist[cargono]?.weight}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1650,7 +1659,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="qty"
                                   value={cargolist[cargono]?.qty}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1867,7 +1876,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="grossweightinkg"
                                   value={cntrlist[cntrno]?.grossweightinkg}
                                   onChange={(e) => updatebolcntr(e)}
@@ -1876,14 +1885,14 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
-                                  name="frieghtindicator"
-                                  value={cntrlist[cntrno]?.frieghtindicator}
+                                  name="freightindicator"
+                                  value={cntrlist[cntrno]?.freightindicator}
                                   onChange={(e) => updatebolcntr(e)}
                                 />
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="containerpackage"
                                   value={cntrlist[cntrno]?.containerpackage}
                                   onChange={(e) => updatebolcntr(e)}
@@ -1899,7 +1908,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="containerweight"
                                   value={cntrlist[cntrno]?.containerweight}
                                   onChange={(e) => updatebolcntr(e)}
@@ -1915,7 +1924,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="containervolume"
                                   value={cntrlist[cntrno]?.containervolume}
                                   onChange={(e) => updatebolcntr(e)}
@@ -1939,7 +1948,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="mintemp"
                                   value={cntrlist[cntrno]?.mintemp}
                                   onChange={(e) => updatebolcntr(e)}
@@ -1947,7 +1956,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="maxtemp"
                                   value={cntrlist[cntrno]?.maxtemp}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2112,7 +2121,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="height"
                                   value={vlist[bolvno]?.height}
                                   onChange={(e) => updatebolv(e)}
@@ -2125,8 +2134,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="keyNbr"
-                                  value={vlist[bolvno]?.keyNbr}
+                                  name="keynbr"
+                                  value={vlist[bolvno]?.keynbr}
                                   onChange={(e) => updatebolv(e)}
                                 />
                               </p>
@@ -2136,7 +2145,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="length"
                                   value={vlist[bolvno]?.length}
                                   onChange={(e) => updatebolv(e)}
@@ -2149,8 +2158,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="prodMonth"
-                                  value={vlist[bolvno]?.prodMonth}
+                                  name="prodmonth"
+                                  value={vlist[bolvno]?.prodmonth}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2173,8 +2182,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="usedCar"
-                                  value={vlist[bolvno]?.usedCar}
+                                  name="usedcar"
+                                  value={vlist[bolvno]?.usedcar}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2185,8 +2194,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="vehicleId"
-                                  value={vlist[bolvno]?.vehicleId}
+                                  name="vehicleid"
+                                  value={vlist[bolvno]?.vehicleid}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2196,7 +2205,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="volume"
                                   value={vlist[bolvno]?.volume}
                                   onChange={(e) => updatebolv(e)}
@@ -2208,9 +2217,9 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
-                                  name="volumeInCBM"
-                                  value={vlist[bolvno]?.volumeInCBM}
+                                  type="number"
+                                  name="volumeincbm"
+                                  value={vlist[bolvno]?.volumeincbm}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2221,8 +2230,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="volumeUom"
-                                  value={vlist[bolvno]?.volumeUom}
+                                  name="volumeuom"
+                                  value={vlist[bolvno]?.volumeuom}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2232,7 +2241,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="weight"
                                   value={vlist[bolvno]?.weight}
                                   onChange={(e) => updatebolv(e)}
@@ -2244,9 +2253,9 @@ consigneeTel:bollist[0]?.consigneetel || "",
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="weightInKg"
-                                  value={vlist[bolvno]?.weightInKg}
+                                  value={vlist[bolvno]?.weightinkg}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
@@ -2257,8 +2266,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
                               >
                                 <input
                                   type="text"
-                                  name="weightUom"
-                                  value={vlist[bolvno]?.weightUom}
+                                  name="weightuom"
+                                  value={vlist[bolvno]?.weightuom}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>

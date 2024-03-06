@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import moment from "moment";
+import Loading from "./reusable/Loading";
 // import apiService from "../Services/ApiInstance/apiService";
 
 const MessageDetail = () => {
@@ -87,7 +88,7 @@ const MessageDetail = () => {
     navigate("/modify", { state: { id: data, bolno:bolno} });
   };
 
-  const handleReprocess = async (data) => {
+  const handleReprocess = async () => {
     try {
       const data = await Apis.ProcessMessage(
         "https://dpw1.afrilogitech.com/api",
@@ -104,20 +105,13 @@ const MessageDetail = () => {
       }
 
     } catch (error) {
-      setLoading(false);
+      
       alert("Reprocess failed");
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return (
     <div className="wrapper">
-      {/* <div className="preloader flex-column justify-content-center align-items-center">
-      <img src="img/logo.png" alt="Logo" className="img-fluid" />
-    </div>
-   */}
-
       <Header />
 
       <Sidebar />
@@ -152,7 +146,9 @@ const MessageDetail = () => {
             <div className="card">
               <div className="card-body">
                 <h5>Vessel Details</h5>
-                <div className="row mt-3">
+                {
+                  vessel ?
+                  <div className="row mt-3">
                   <div className="col-md-2 col-6">
                     <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       MRN No:
@@ -325,6 +321,10 @@ const MessageDetail = () => {
 
                   </div>
                 </div>
+                :
+                <Loading/>
+                }
+               
                 <hr />
                 {message?.length > 0 && (
                   <>
@@ -1687,7 +1687,7 @@ const MessageDetail = () => {
                 <button
                   title="View/Re-process/View JSon"
                   type="button"
-                  onClick={() => handleReprocess(message)}
+                  onClick={() => handleReprocess()}
                   className="btn btn-block btn-sm text-white"
                   style={{ background: "#A48D6B" }}
                 >

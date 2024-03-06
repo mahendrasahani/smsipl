@@ -25,7 +25,7 @@ const Messages = () => {
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [filteredItems, setFilteredItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [dateOption, setDateoption] = useState(0);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mrnnumber, setmrnnumber] = useState("");
   const [visitcode, setVisitcode] = useState("");
@@ -389,9 +389,16 @@ const Messages = () => {
                         </tr>
                       </thead>
                       {loading ? (
-                        <div>
-                          <Loading />
-                        </div>
+                        <tbody>
+                          <tr style={{background:"white"}}>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><Loading /></td>
+                          </tr>
+                        </tbody>
+                          
+                    
                       ) : (
                         <tbody style={{ fontSize: "12px" }}>
                           {filteredItems && Array.isArray(filteredItems) &&
