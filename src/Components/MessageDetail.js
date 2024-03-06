@@ -351,7 +351,7 @@ const MessageDetail = () => {
                                   >
                                     {itm?.errorlist?.length > 0
                                       ? "Transfer Failed"
-                                      : "Successfull"}
+                                      : "Successful"}
                                   </td>
                                   <td>
                                     {itm?.errorlist?.length > 0 ? (
@@ -363,7 +363,7 @@ const MessageDetail = () => {
                                       </button>
                                     ) : (
                                       <p style={{ color: "darkgreen" }}>
-                                        Successfull
+                                        Successful
                                       </p>
                                     )}
                                   </td>

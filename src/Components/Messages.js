@@ -386,7 +386,7 @@ const Messages = () => {
                         </tr>
                       </thead>
                       {loading ? (
-                        <div className="d-flex justify-content-center w-100">
+                        <div>
                           <Loading />
                         </div>
                       ) : (

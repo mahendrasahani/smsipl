@@ -7,8 +7,8 @@ import Header from "./Header";
 
 const Modify = () => {
   const location = useLocation();
-  // const id = location?.state?.id;
-  const id=212;
+  const id = location?.state?.id?location?.state?.id:212;
+ 
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   // const [bolno, setbolno] = useState(location?.state?.bolno);
   const [bolno, setbolno] = useState("SENTINDDEL00102");

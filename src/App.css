@@ -1293,8 +1293,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-left: 37%;
   margin-top: 77px;
   margin-bottom: 150px;
-  width: 90px;
-  height: 90px;
+  width: 50px;
+  height:50px;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   animation: rotateLoading 0.4s linear infinite;
