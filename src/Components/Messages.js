@@ -287,6 +287,9 @@ const Messages = () => {
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={0}>Select All</option>
+                          <option value={1}>Raw Data Recieved</option>
+                          <option value={2}>Validation Failed</option>
+                          <option value={3}>Validation Successful</option>
                           <option value={4}>Details Inserted</option>
                           <option value={6}>Transfer Successful</option>
                           <option value={5}>Details Insertion Failed</option>

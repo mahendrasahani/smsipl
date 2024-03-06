@@ -94,6 +94,15 @@ const MessageDetail = () => {
         id,
         status_code
       );
+   
+      if(data?.success===true){
+        alert("Data reprocess successfully")
+      }
+
+      else{
+        alert(data?.message)
+      }
+
     } catch (error) {
       setLoading(false);
       alert("Reprocess failed");
@@ -1515,6 +1524,12 @@ const MessageDetail = () => {
                             <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
                               Width:
                             </p>
+                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                              Color Code:
+                            </p>
+                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                              Color:
+                            </p>
                               </div>
                               {vlist && (
                                 <div className="col-md-6 col-6">
@@ -1640,6 +1655,20 @@ const MessageDetail = () => {
                                   >
                                     {" "}
                                     {vlist[bolvno]?.width}
+                                  </p>
+                                  <p
+                                    className="mb-1 height-box"
+                                    style={{ color: "#676767" }}
+                                  >
+                                    {" "}
+                                    {vlist[bolvno]?.colorcode}
+                                  </p>
+                                  <p
+                                    className="mb-1 height-box"
+                                    style={{ color: "#676767" }}
+                                  >
+                                    {" "}
+                                    {vlist[bolvno]?.color}
                                   </p>
                                 </div>
                               )}

@@ -50,7 +50,7 @@ class Apis {
         nStatusCode: scode,
       }
     );
-    return apiResponse.data;
+    return apiResponse?.data;
   }
 
   async IntMessageManager(url, data) {

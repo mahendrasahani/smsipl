@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import {useLocation } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
+import moment from "moment";
 
 const Modify = () => {
   const location = useLocation();
@@ -301,7 +302,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
     );
     
     if(response && response?.success===true){
-      window.location.href="/dashboard";
+      alert("Save and update successfully")
+      // window.location.href="/dashboard";
     }
 
     else{
