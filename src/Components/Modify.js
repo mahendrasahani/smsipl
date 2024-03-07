@@ -222,7 +222,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
     refCntrNbr: "",
     commodityCode:"",
     hsCode:"",
-    volumeInCbm:0,
+    volumeInCBM:0,
     volume:0,
     volumeUom:"",
     weightInKg:0,
@@ -242,7 +242,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
         refCntrNbr: cargolist[cargono].refcntrnbr||"",
         commodityCode:cargolist[cargono].commoditycode||"",
         hsCode:cargolist[cargono].hscode||"",
-        volumeInCbm:cargolist[cargono].volumeincbm|| 0,
+        volumeInCBM:cargolist[cargono].volumeincbm|| 0,
         volume:cargolist[cargono].volume || 0,
         volumeUom:cargolist[cargono].volumeuom ||"",
         weightInKg:cargolist[cargono].weightinkg ||0,
@@ -318,7 +318,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
     usedCar:"",
     vehicleId:"",
     volume:"",
-    volumeInCbm:"",
+    volumeInCBM:"",
     volumeUom:"",
     weight:"",
     weightInKg:"",
@@ -340,7 +340,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
         usedCar:vlist[bolvno].usedcar  || "",
         vehicleId:vlist[bolvno].vehicleid  || "",
         volume:vlist[bolvno].volume  || "",
-        volumeInCbm:vlist[bolvno].volumeincbm  || "",
+        volumeInCBM:vlist[bolvno].volumeincbm  || "",
         volumeUom:vlist[bolvno].volumeuom  || "",
         weight:vlist[bolvno].weight  || "",
         weightInKg:vlist[bolvno].weightinkg  || "",
@@ -1776,8 +1776,8 @@ const handleVehicle = () => {
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="number"
-                                  name="volumeInCbm"
-                                  value={bolcargodata?.volumeInCbm}
+                                  name="volumeInCBM"
+                                  value={bolcargodata?.volumeInCBM}
                                   onChange={(e) => updatebolcargo(e)}
                                 />
                               </p>
@@ -2391,8 +2391,8 @@ const handleVehicle = () => {
                               >
                                 <input
                                   type="text"
-                                  name="volumeInCbm"
-                                  value={bolvdata?.volumeInCbm}
+                                  name="volumeInCBM"
+                                  value={bolvdata?.volumeInCBM}
                                   onChange={(e) => updatebolv(e)}
                                 />{" "}
                               </p>
