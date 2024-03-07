@@ -5,15 +5,6 @@ const HiddenSlice=createSlice({
     name:"hiddenstate",
     initialState:{
         hidden:false,
-        loginCredentials:{
-            userInfo:[{
-                username:"admin",
-                password:"admin"
-            }
-        
-        ]
-            
-        }
     },
 
     reducers:{

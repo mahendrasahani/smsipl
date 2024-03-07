@@ -12,9 +12,6 @@ const Dashboard = () => {
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const items = useSelector((state) => state.Items.items);
 
-  // const onRef = useRef();
-  // const betweenRef = useRef();
-
   useEffect(() => {
     document.title = "DP WORLD | Dashboard";
   }, []);
@@ -175,24 +172,7 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="col-md-6 status-field">
-                      <div className="form-group">
-                        <label>Status</label>
-                        <select
-                          name="SelectStatus"
-                          className="form-control"
-                          id="select1"
-                          value={statusValue}
-                          onChange={(e) => setStatusValue(e.target.value)}
-                        >
-                          <option value={0}>Select All</option>
-                          <option value={4}>Details Inserted</option>
-                          <option value={5}>Details Insertion Failed</option>
-                          <option value={6}>Transfer Successful</option>
-                          <option value={7}>Transfer Failed</option>
-                        </select>
-                      </div>
-                    </div> */}
+                  
                     <div className="row mt-3 mb-2">
                       <div className="col-md-3 col-5">
                         <button
@@ -211,7 +191,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="col-md-1"></div>
-                  {items?.length > 0 && Array.isArray(items) && (
+                  {(
                     <div className="col-md-6">
                       <div className="card">
                         <div className="card-body">

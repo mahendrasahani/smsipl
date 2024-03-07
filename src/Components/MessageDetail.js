@@ -12,8 +12,6 @@ const MessageDetail = () => {
   const id = location?.state?.messageData?.id;
   const status_code = location?.state?.messageData?.status_code;
 
-
-
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState("");
   const [cargono, setCargono] = useState(0);
@@ -85,6 +83,7 @@ const MessageDetail = () => {
 
 
 
+  
   const handlebolno = (e) => {
     setbolno(e.target.value);
   };

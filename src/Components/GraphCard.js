@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 defaults.plugins.title.display = "true";
 
-const Gr2= ({ itemsData }) => {
+const GraphCard= ({ itemsData }) => {
 
  
 
@@ -31,7 +31,7 @@ const Gr2= ({ itemsData }) => {
       validationsuccessful:0,
     }));
   
-    itemsData && itemsData.length>0 &&
+    itemsData && itemsData.length>0 && (typeof itemsData!="string") &&
       itemsData?.forEach((itm) => {
         setmessagedetails((prevState) => {
           if (itm.status_code ===1) {
@@ -100,7 +100,7 @@ const Gr2= ({ itemsData }) => {
       }}
     >
       <div className="graph-card">
-        {itemsData ? (
+        {Array.isArray(itemsData) ? (
           <Pie
             data={{
               labels: [
@@ -161,7 +161,7 @@ const Gr2= ({ itemsData }) => {
                 {
                   label: "Default",
                   data: [100],
-                  backgroundColor: ["rgb(255, 99, 132)"],
+                  backgroundColor: ["red"],
                   hoverOffset: 4,
                 },
               ],
@@ -185,7 +185,7 @@ const Gr2= ({ itemsData }) => {
   );
 };
 
-export default Gr2;
+export default GraphCard;
 
 
 
