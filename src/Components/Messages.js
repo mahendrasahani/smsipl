@@ -90,6 +90,7 @@ const Messages = () => {
     setVisitcode("");
     setcarriername("");
     setmrnnumber("");
+    setFilteredItems(items)
   };
 
   const handleFilterMEssage = () => {

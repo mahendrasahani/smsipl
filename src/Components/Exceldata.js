@@ -59,12 +59,9 @@ const Exceldata = () => {
       const formattedDate = date.toISOString().slice(0, 10);
       setStartDate(formattedDate);
     } else {
-      setStartDate(new Date().toISOString().split("T")[0]); // Corrected maindate
+      setStartDate(new Date().toISOString().split("T")[0]);
     }
     setNumber((prev) => prev + 1);
-    console.log("StartDate:", startDate);
-    console.log("EndDate:", endDate);
-    console.log("Number:", number);
   };
 
   useEffect(() => {

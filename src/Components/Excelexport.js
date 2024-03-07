@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import Vector from "./assests/Vector.png";
-
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 
@@ -8,17 +6,27 @@ const ExportExcel = ({ excelData, fileName }) => {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset-UTF-8";
   const fileExtension = ".xlsx";
-  const exportToExcel = async () => {
-    const ws = XLSX.utils.json_to_sheet(excelData);
-    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const data = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(data, fileName + fileExtension);
-  };
+
+  const exportToExcel=()=>{
+    const flatData = excelData?.map(item => ({
+      id: item?.id,
+      message: item?.message,
+      status_code: item?.status_code,
+      row_created: item?.row_created,
+      manifest: JSON.stringify(item?.manifest),
+      message: JSON.stringify(item?.message),
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(flatData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    XLSX.writeFile(wb, "data.xlsx");
+  }
 
   const handlebtn = () => {
     alert("No data is there to be printed");
   };
+
 
   return (
     <div className="col-md-7 col-7">
