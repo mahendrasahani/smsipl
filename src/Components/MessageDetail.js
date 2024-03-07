@@ -48,7 +48,13 @@ const MessageDetail = () => {
         id
       );
 
-      //  console.log("data",data?.data)
+      
+      if(typeof data?.data=== "string"){
+        alert("No data found for given message Id");
+        window.location.href="/messages"
+      }
+
+
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -58,7 +64,6 @@ const MessageDetail = () => {
       setLoading(false);
     }
   };
-
 
 
   useEffect(() => {
