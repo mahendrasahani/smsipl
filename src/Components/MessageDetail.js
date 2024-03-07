@@ -54,7 +54,7 @@ const MessageDetail = () => {
         window.location.href="/messages"
       }
 
-
+      console.log("data",data?.data)
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -455,6 +455,9 @@ const MessageDetail = () => {
                           BoL Number:
                         </p>
                         <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
+                          Primary Id:
+                        </p>
+                        <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                           Trade Mode:
                         </p>
                         <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
@@ -575,6 +578,9 @@ const MessageDetail = () => {
                         <div className="col-md-3 col-6">
                           <p className="mb-0 height-box" style={{ color: "#676767" }}>
                             {bollist[0]?.bolnbr}
+                          </p>
+                          <p className="mb-0 height-box" style={{ color: "#676767" }}>
+                            {bollist[0]?.primaryid}
                           </p>
                           <p className="mb-0 height-box" style={{ color: "#676767" }}>
                             {bollist[0]?.trademode}
@@ -1596,7 +1602,7 @@ const MessageDetail = () => {
                                     style={{ color: "#676767" }}
                                   >
                                     {" "}
-                                    {vlist[bolvno]?.keyNbr}
+                                    {vlist[bolvno]?.keynbr}
                                   </p>
                                   <p
                                     className="mb-1 height-box"
@@ -1673,7 +1679,7 @@ const MessageDetail = () => {
                                     style={{ color: "#676767" }}
                                   >
                                     {" "}
-                                    {vlist[bolvno]?.weightinuom}
+                                    {vlist[bolvno]?.weightuom}
                                   </p>
                                   <p
                                     className="mb-1 height-box"

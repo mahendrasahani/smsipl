@@ -397,7 +397,6 @@ consigneeTel:bollist[0]?.consigneetel || "",
         id
       );
 
-      console.log("data",data?.data?.bollist)
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error){
