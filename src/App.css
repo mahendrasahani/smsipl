@@ -1479,7 +1479,7 @@ canvas{
  }
  
 
-.actions>a:nth-child(2){
+.actions>button:nth-child(2){
 
   background:#A48D6B !important;
  }
@@ -1495,7 +1495,7 @@ canvas{
 }
 
 
-.actions>a:nth-child(2):hover{
+.actions>button:nth-child(2):hover{
 
   background:white !important;
   color: black !important;
