@@ -108,9 +108,8 @@ const Gr2= ({ itemsData }) => {
                 "Validation Successful",
                 "Validation Failed",
                 "Details Inserted",
-                "Details Insertion Failed",
                 "Transfer Successful",
-              
+                "Details Insertion Failed",
                 "Transfer Failed",
 
               ],
@@ -118,9 +117,6 @@ const Gr2= ({ itemsData }) => {
                 {
                   label: "No. of messages",
                   data: [
-                    messagedetails.rawdatarecieved,
-                    messagedetails.validationsuccessful,
-                    messagedetails.validationfailed,
                     messagedetails.detailsinserted,
                     messagedetails.insertionfailed,
                     messagedetails.transfersuccessful,
