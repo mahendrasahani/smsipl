@@ -472,20 +472,20 @@ const handleVehicle = () => {
    (cntrlist==null)?bollistdata.bolCntrs=[]:bollistdata.bolCntrs=cntrlist;
    (vlist==null)?bollistdata.bolVehicles=[]:bollistdata.bolVehicles=vlist;
     
-   console.log("bollist",bollistdata)
+ 
 
-    // const response=await Apis.UpdateBOLMessage(
-    //   "https://dpw1.afrilogitech.com/api",
-    //   bollistdata
-    // );
+    const response=await Apis.UpdateBOLMessage(
+      "https://dpw1.afrilogitech.com/api",
+      bollistdata
+    );
     
-    // if(response && response?.success===true){
-    //   alert("Save and update successfully")
-    // }
+    if(response && response?.success===true){
+      alert("Save and update successfully")
+    }
 
-    // else{
-    //   alert(response?.message)
-    // }
+    else{
+      alert(response?.message)
+    }
   };
 
   return (
