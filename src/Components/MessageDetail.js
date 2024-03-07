@@ -101,7 +101,7 @@ const MessageDetail = () => {
       }
 
       else{
-        alert(data?.message)
+        alert("Reprocess failed")
       }
 
     } catch (error) {
