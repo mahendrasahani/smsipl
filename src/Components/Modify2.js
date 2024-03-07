@@ -437,7 +437,6 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
 
   const handleCargo = () => {
-  
     cargolist!=null && setcargoList(prev => {
         const newArray = [...prev];
         newArray[cargono] = bolcargodata;
@@ -450,7 +449,6 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
 
 const handleCntr = () => {
-
   cntrlist!=null && setCntrList(prev => {
       const newArray = [...prev];
       newArray[cntrno] = bolcntrdata;
@@ -458,7 +456,6 @@ const handleCntr = () => {
   });
 };
 const handleVehicle = () => {
-
   vlist !=null && setVlist(prev => {
       const newArray = [...prev];
       newArray[bolvno] =bolvdata;
@@ -480,7 +477,7 @@ const handleVehicle = () => {
     );
     
     if(response && response?.success===true){
-      alert("Save and update successfully")
+      window.location.href="/dashboard";
     }
 
     else{
@@ -1355,7 +1352,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr0"
                       value={bollistdata?.userDefinedNbr0}
                       onChange={(e) => updateInputValue(e)}
@@ -1370,7 +1367,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr1"
                       value={bollistdata?.userDefinedNbr1}
                       onChange={(e) => updateInputValue(e)}
@@ -1385,7 +1382,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr2"
                       value={bollistdata?.userDefinedNbr2}
                       onChange={(e) => updateInputValue(e)}
@@ -1400,7 +1397,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr3"
                       value={bollistdata?.userDefinedNbr3}
                       onChange={(e) => updateInputValue(e)}
@@ -1415,7 +1412,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr4"
                       value={bollistdata?.userDefinedNbr4}
                       onChange={(e) => updateInputValue(e)}
@@ -1430,7 +1427,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr5"
                       value={bollistdata?.userDefinedNbr5}
                       onChange={(e) => updateInputValue(e)}
@@ -1445,7 +1442,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr6"
                       value={bollistdata?.userDefinedNbr6}
                       onChange={(e) => updateInputValue(e)}
@@ -1461,7 +1458,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr7"
                       value={bollistdata?.userDefinedNbr7}
                       onChange={(e) => updateInputValue(e)}
@@ -1476,7 +1473,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr8"
                       value={bollistdata?.userDefinedNbr8}
                       onChange={(e) => updateInputValue(e)}
@@ -1492,7 +1489,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="number"
-                      className="form-control form-control-sm input-field3"
+                      className="form-control form-control-sm input-field2"
                       name="userDefinedNbr9"
                       value={bollistdata?.userDefinedNbr9}
                       onChange={(e) => updateInputValue(e)}
@@ -1855,7 +1852,7 @@ const handleVehicle = () => {
                                   type="text"
                                   name="remarks"
                                   value={bolcargodata?.remarks}
-                                  onChange={() => updatebolcargo()}
+                                  onChange={(e) => updatebolcargo(e)}
                                 />
                               </p>
                             </div>
@@ -1864,7 +1861,7 @@ const handleVehicle = () => {
                       </div>
                       <button type="button"
                 className="btn btn-block text-white mt-2 save"
-                style={{ backgroundColor: "#547899" }} onClick={(e)=>handleCargo(e)}>Save</button>
+                style={{ backgroundColor: "#547899" }} onClick={()=>handleCargo()}>Save</button>
                     </div>
                   </div>
                   <div className="col-md-4 pl-0 pr-0">

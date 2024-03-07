@@ -1549,3 +1549,11 @@ canvas{
 .height-box{
   height: 23px;
 }
+
+input[type="number"]{
+  width: 150px;
+}
+
+.input-field3{
+  width: 246px !important;
+}
