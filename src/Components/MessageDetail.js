@@ -140,7 +140,20 @@ const MessageDetail = () => {
                   <li className="breadcrumb-item">
                     <a href="/messages">Messages</a>
                   </li>
-                  <li className="breadcrumb-item active">Transfer failed</li>
+                  <li className="breadcrumb-item active"> {status_code === 1 &&
+                                      "RAW DATA RECEIVED"}
+                                    {status_code === 2 &&
+                                      "VALIDATION FAILED"}
+                                    {status_code === 3 &&
+                                      "VALIDATION SUCCESSFUL"}
+                                    {status_code === 4 &&
+                                      "DETAILS INSERTED"}
+                                    {status_code === 5 &&
+                                      "DETAILS INSERTION FAILED"}
+                                    {status_code === 6 &&
+                                      "TRANSFER SUCCESSFUL"}
+                                    {status_code === 7 &&
+                                      "TRANSFER FAILED"}</li>
                 </ol>
               </div>
             </div>
@@ -359,17 +372,17 @@ const MessageDetail = () => {
                                   <td
                                     style={{
                                       color:
-                                        itm?.errorlist?.length > 0
+                                        itm?.errorlist?.length > 0 || itm?.pushstatus==7
                                           ? "#FF0000"
                                           : "darkgreen",
                                     }}
                                   >
-                                    {itm?.errorlist?.length > 0
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7
                                       ? "Transfer Failed"
                                       : "Successful"}
                                   </td>
                                   <td>
-                                    {itm?.errorlist?.length > 0 ? (
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7 ? (
                                       <button
                                         className="btn btn-sm bg-primary btn-clear"
                                         onClick={() => handleNavigation(itm.bolnbr,id)}
@@ -378,7 +391,7 @@ const MessageDetail = () => {
                                       </button>
                                     ) : (
                                       <p style={{ color: "darkgreen" }}>
-                                        Successful
+                                        -
                                       </p>
                                     )}
                                   </td>
@@ -1689,7 +1702,7 @@ const MessageDetail = () => {
             </div>
 
             {
-              (status_code===7 || status_code===5) &&
+              (status_code===7 || status_code===5) ?
               <div className="row">
               <div className="col-md-2 col-6">
                 <button
@@ -1700,6 +1713,20 @@ const MessageDetail = () => {
                   style={{ background: "#A48D6B" }}
                 >
                   Re-Process &nbsp;<i className="fa fa-refresh"></i>
+                </button>
+              </div>
+            </div>
+            :
+            <div className="row">
+              <div className="col-md-2 col-6">
+                <button
+                  title="View/Re-process/View JSon"
+                  type="button"
+                  onClick={() => handleReprocess()}
+                  className="btn btn-block btn-sm text-white"
+                  style={{ background: "#A48D6B" }}
+                >
+                  Clear All &nbsp;<i className="fa fa-refresh"></i>
                 </button>
               </div>
             </div>
