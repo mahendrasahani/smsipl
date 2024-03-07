@@ -453,8 +453,7 @@ const Messages = () => {
                                     >
                                       <FaRegEye />
                                     </button>
-                                    {itm?.status_code === 5 ||
-                                      (itm?.status_code === 7 && (
+                                    {(itm?.status_code === 5 || itm?.status_code === 7) && (
                                         <button
                                           className="btn btn-sm bg-success btn-clear"
                                           title="Re-Process"
@@ -462,7 +461,7 @@ const Messages = () => {
                                         >
                                           <FiRefreshCw />
                                         </button>
-                                      ))}
+                                      )}
 
                                     <button
                                       title="View JSON"

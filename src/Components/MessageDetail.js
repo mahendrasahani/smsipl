@@ -48,7 +48,7 @@ const MessageDetail = () => {
         id
       );
 
-       console.log("data",data?.data)
+      //  console.log("data",data?.data)
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
