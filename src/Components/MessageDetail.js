@@ -113,7 +113,9 @@ const MessageDetail = () => {
     } 
   };
 
- 
+  const clearMessage=()=>{
+     setbolno("")
+  }
  
 
   return (
@@ -1722,7 +1724,7 @@ const MessageDetail = () => {
                 <button
                   title="View/Re-process/View JSon"
                   type="button"
-                  onClick={() => handleReprocess()}
+                  onClick={() => clearMessage()}
                   className="btn btn-block btn-sm text-white"
                   style={{ background: "#A48D6B" }}
                 >
