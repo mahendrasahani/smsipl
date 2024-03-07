@@ -33,8 +33,7 @@ const Sidebar = () => {
   useEffect(() => {
     if (window.innerWidth < 768) {
       setwindowsize(true)
-      
-    }
+  }
 
     if (window.innerWidth > 768) {
       setwindowsize(false)
@@ -60,6 +59,9 @@ const Sidebar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  
+
 
   return (
     <aside
@@ -98,6 +100,7 @@ const Sidebar = () => {
                 href="/dashboard"
                 className={`nav-link ${url == "dashboard" ? "active" : ""}`}
                 style={{ height: "41px", padding: "8px" }}
+               
               >
                 <img src="img/home.png" className="img-responsive sidebar-img" />
                 <p>Dashboard</p>
