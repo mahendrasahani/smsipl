@@ -388,7 +388,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
         id
       );
 
-   
+      console.log("data",data?.data?.bollist)
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error){
@@ -472,20 +472,20 @@ const handleVehicle = () => {
    (cntrlist==null)?bollistdata.bolCntrs=[]:bollistdata.bolCntrs=cntrlist;
    (vlist==null)?bollistdata.bolVehicles=[]:bollistdata.bolVehicles=vlist;
     
-  
+   console.log("bollist",bollistdata)
 
-    const response=await Apis.UpdateBOLMessage(
-      "https://dpw1.afrilogitech.com/api",
-      bollistdata
-    );
+    // const response=await Apis.UpdateBOLMessage(
+    //   "https://dpw1.afrilogitech.com/api",
+    //   bollistdata
+    // );
     
-    if(response && response?.success===true){
-      alert("Save and update successfully")
-    }
+    // if(response && response?.success===true){
+    //   alert("Save and update successfully")
+    // }
 
-    else{
-      alert(response?.message)
-    }
+    // else{
+    //   alert(response?.message)
+    // }
   };
 
   return (
@@ -528,7 +528,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="bolNbr"
                       value={bollistdata?.bolNbr}
                       onChange={(e) => updateInputValue(e)}
@@ -542,7 +542,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="cargoClassificationCode"
                       value={bollistdata?.cargoClassificationCode}
                       onChange={(e) => updateInputValue(e)}
@@ -556,7 +556,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="cargoClassificationCame"
                       value={bollistdata?.cargoClassificationName}
                       onChange={(e) => updateInputValue(e)}
@@ -570,7 +570,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="consignee"
                       value={bollistdata?.consignee}
                       onChange={(e) => updateInputValue(e)}
@@ -584,7 +584,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="consigneeAddress"
                       value={bollistdata?.consigneeAddress}
                       onChange={(e) => updateInputValue(e)}
@@ -598,7 +598,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="consigneeName"
                       value={bollistdata?.consigneeName}
                       onChange={(e) => updateInputValue(e)}
@@ -612,7 +612,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="consigneeTel"
                       value={bollistdata?.consigneeTel}
                       onChange={(e) => updateInputValue(e)}
@@ -626,7 +626,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="cargoCode"
                       value={bollistdata?.cargoCode}
                       onChange={(e) => updateInputValue(e)}
@@ -640,7 +640,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="pod"
                       value={bollistdata?.pod}
                       onChange={(e) => updateInputValue(e)}
@@ -655,7 +655,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="shipper"
                       value={bollistdata?.shipper}
                       onChange={(e) => updateInputValue(e)}
@@ -669,7 +669,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="notifier"
                       value={bollistdata?.notifier}
                       onChange={(e) => updateInputValue(e)}
@@ -683,7 +683,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="org"
                       value={bollistdata?.org}
                       onChange={(e) => updateInputValue(e)}
@@ -697,7 +697,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="pol"
                       value={bollistdata?.pol}
                       onChange={(e) => updateInputValue(e)}
@@ -712,7 +712,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="dst"
                       value={bollistdata?.dst}
                       onChange={(e) => updateInputValue(e)}
@@ -727,7 +727,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="placeOfDelivery"
                       value={bollistdata?.placeOfDelivery}
                       onChange={(e) => updateInputValue(e)}
@@ -742,7 +742,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="crn"
                       value={bollistdata?.crn}
                       onChange={(e) => updateInputValue(e)}
@@ -757,7 +757,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="blType"
                       value={bollistdata?.blType}
                       onChange={(e) => updateInputValue(e)}
@@ -772,7 +772,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="loadingPortCode"
                       value={bollistdata?.loadingPortCode}
                       onChange={(e) => updateInputValue(e)}
@@ -787,7 +787,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="loadingPortName"
                       value={bollistdata?.loadingPortName}
                       onChange={(e) => updateInputValue(e)}
@@ -802,7 +802,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="destinationPlaceCode"
                       value={bollistdata?.destinationPlaceCode}
                       onChange={(e) => updateInputValue(e)}
@@ -816,7 +816,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="destinationPlaceName"
                       value={bollistdata?.destinationPlaceName}
                       onChange={(e) => updateInputValue(e)}
@@ -830,7 +830,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="deliveryPlaceCode"
                       value={bollistdata?.deliveryPlaceCode}
                       onChange={(e) => updateInputValue(e)}
@@ -845,7 +845,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="deliveryPlaceName"
                       value={bollistdata?.deliveryPlaceName}
                       onChange={(e) => updateInputValue(e)}
@@ -861,7 +861,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="notifyAddress"
                       value={bollistdata?.notifyAddress}
                       onChange={(e) => updateInputValue(e)}
@@ -876,7 +876,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="notifyName"
                       value={bollistdata?.notifyName}
                       onChange={(e) => updateInputValue(e)}
@@ -891,7 +891,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="notifyTel"
                       value={bollistdata?.notifyTel}
                       onChange={(e) => updateInputValue(e)}
@@ -909,7 +909,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="shippingAgentCode"
                       value={bollistdata?.shippingAgentCode}
                       onChange={(e) => updateInputValue(e)}
@@ -924,7 +924,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="shippingAgentName"
                       value={bollistdata?.shippingAgentName}
                       onChange={(e) => updateInputValue(e)}
@@ -939,7 +939,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="forwarderCode"
                       value={bollistdata?.forwarderCode}
                       onChange={(e) => updateInputValue(e)}
@@ -954,7 +954,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="forwarderName"
                       value={bollistdata?.forwarderName}
                       onChange={(e) => updateInputValue(e)}
@@ -969,7 +969,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="forwarderTel"
                       value={bollistdata?.forwarderTel}
                       onChange={(e) => updateInputValue(e)}
@@ -984,7 +984,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="exporterAddress"
                       value={bollistdata?.exporterAddress}
                       onChange={(e) => updateInputValue(e)}
@@ -999,7 +999,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="exporterName"
                       value={bollistdata?.exporterName}
                       onChange={(e) => updateInputValue(e)}
@@ -1014,7 +1014,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="exporterTel"
                       value={bollistdata?.exporterTel}
                       onChange={(e) => updateInputValue(e)}
@@ -1029,7 +1029,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="exporterTin"
                       value={bollistdata?.exporterTin}
                       onChange={(e) => updateInputValue(e)}
@@ -1044,7 +1044,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName0"
                       value={bollistdata?.userDefinedName0}
                       onChange={(e) => updateInputValue(e)}
@@ -1059,7 +1059,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName1"
                       value={bollistdata?.userDefinedName1}
                       onChange={(e) => updateInputValue(e)}
@@ -1074,7 +1074,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName2"
                       value={bollistdata?.userDefinedName2}
                       onChange={(e) => updateInputValue(e)}
@@ -1090,7 +1090,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName3"
                       value={bollistdata?.userDefinedName3}
                       onChange={(e) => updateInputValue(e)}
@@ -1106,7 +1106,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName4"
                       value={bollistdata?.userDefinedName4}
                       onChange={(e) => updateInputValue(e)}
@@ -1122,7 +1122,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName5"
                       value={bollistdata?.userDefinedName5}
                       onChange={(e) => updateInputValue(e)}
@@ -1138,7 +1138,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName6"
                       value={bollistdata?.userDefinedName6}
                       onChange={(e) => updateInputValue(e)}
@@ -1153,7 +1153,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName7"
                       value={bollistdata?.userDefinedName7}
                       onChange={(e) => updateInputValue(e)}
@@ -1169,7 +1169,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName8"
                       value={bollistdata?.userDefinedName8}
                       onChange={(e) => updateInputValue(e)}
@@ -1185,7 +1185,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedName9"
                       value={bollistdata?.userDefinedName9}
                       onChange={(e) => updateInputValue(e)}
@@ -1201,7 +1201,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode0"
                       value={bollistdata?.userDefinedCode0}
                       onChange={(e) => updateInputValue(e)}
@@ -1217,7 +1217,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode1"
                       value={bollistdata?.userDefinedCode1}
                       onChange={(e) => updateInputValue(e)}
@@ -1233,7 +1233,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode2"
                       value={bollistdata?.userDefinedCode2}
                       onChange={(e) => updateInputValue(e)}
@@ -1248,7 +1248,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode3"
                       value={bollistdata?.userDefinedCode3}
                       onChange={(e) => updateInputValue(e)}
@@ -1264,7 +1264,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode4"
                       value={bollistdata?.userDefinedCode4}
                       onChange={(e) => updateInputValue(e)}
@@ -1279,7 +1279,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode5"
                       value={bollistdata?.userDefinedCode5}
                       onChange={(e) => updateInputValue(e)}
@@ -1294,7 +1294,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode6"
                       value={bollistdata?.userDefinedCode6}
                       onChange={(e) => updateInputValue(e)}
@@ -1309,7 +1309,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode7"
                       value={bollistdata?.userDefinedCode7}
                       onChange={(e) => updateInputValue(e)}
@@ -1324,7 +1324,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode8"
                       value={bollistdata?.userDefinedCode8}
                       onChange={(e) => updateInputValue(e)}
@@ -1340,7 +1340,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedCode9"
                       value={bollistdata?.userDefinedCode9}
                       onChange={(e) => updateInputValue(e)}
@@ -1354,8 +1354,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr0"
                       value={bollistdata?.userDefinedNbr0}
                       onChange={(e) => updateInputValue(e)}
@@ -1369,8 +1369,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr1"
                       value={bollistdata?.userDefinedNbr1}
                       onChange={(e) => updateInputValue(e)}
@@ -1384,8 +1384,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr2"
                       value={bollistdata?.userDefinedNbr2}
                       onChange={(e) => updateInputValue(e)}
@@ -1399,8 +1399,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr3"
                       value={bollistdata?.userDefinedNbr3}
                       onChange={(e) => updateInputValue(e)}
@@ -1414,8 +1414,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr4"
                       value={bollistdata?.userDefinedNbr4}
                       onChange={(e) => updateInputValue(e)}
@@ -1429,8 +1429,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr5"
                       value={bollistdata?.userDefinedNbr5}
                       onChange={(e) => updateInputValue(e)}
@@ -1444,8 +1444,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr6"
                       value={bollistdata?.userDefinedNbr6}
                       onChange={(e) => updateInputValue(e)}
@@ -1460,8 +1460,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr7"
                       value={bollistdata?.userDefinedNbr7}
                       onChange={(e) => updateInputValue(e)}
@@ -1475,8 +1475,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr8"
                       value={bollistdata?.userDefinedNbr8}
                       onChange={(e) => updateInputValue(e)}
@@ -1491,8 +1491,8 @@ const handleVehicle = () => {
                   </div>
                   <div className="col-md-3 col-6">
                     <input
-                      type="number"
-                      className="form-control form-control-sm input-field3"
+                      type="text"
+                      className="form-control form-control-sm"
                       name="userDefinedNbr9"
                       value={bollistdata?.userDefinedNbr9}
                       onChange={(e) => updateInputValue(e)}
@@ -1507,7 +1507,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime0"
                       value={bollistdata?.userDefinedTime0}
                       onChange={(e) => updateInputValue(e)}
@@ -1522,7 +1522,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime1"
                       value={bollistdata?.userDefinedTime1}
                       onChange={(e) => updateInputValue(e)}
@@ -1537,7 +1537,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime2"
                       value={bollistdata?.userDefinedTime2}
                       onChange={(e) => updateInputValue(e)}
@@ -1552,7 +1552,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime3"
                       value={bollistdata?.userDefinedTime3}
                       onChange={(e) => updateInputValue(e)}
@@ -1567,7 +1567,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime4"
                       value={bollistdata?.userDefinedTime4}
                       onChange={(e) => updateInputValue(e)}
@@ -1582,7 +1582,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime5"
                       value={bollistdata?.userDefinedTime5}
                       onChange={(e) => updateInputValue(e)}
@@ -1597,7 +1597,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime6"
                       value={bollistdata?.userDefinedTime6}
                       onChange={(e) => updateInputValue(e)}
@@ -1612,7 +1612,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime7"
                       value={bollistdata?.userDefinedTime7}
                       onChange={(e) => updateInputValue(e)}
@@ -1627,7 +1627,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime8"
                       value={bollistdata?.userDefinedTime8}
                       onChange={(e) => updateInputValue(e)}
@@ -1642,7 +1642,7 @@ const handleVehicle = () => {
                   <div className="col-md-3 col-6">
                     <input
                       type="text"
-                      className="form-control form-control-sm input-field2"
+                      className="form-control form-control-sm"
                       name="userDefinedTime9"
                       value={bollistdata?.userDefinedTime9}
                       onChange={(e) => updateInputValue(e)}
@@ -1671,7 +1671,7 @@ const handleVehicle = () => {
                           </div>
                           <div className="col-md-3 col-3">
                             <select
-                              className="form-control form-control-sm input-field2"
+                              className="form-control form-control-sm"
                               onChange={(e) => setCargono(e.target.value)}
                             >
                               {bollist &&
@@ -1775,7 +1775,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="volumeInCBM"
                                   value={bolcargodata?.volumeInCBM}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1783,7 +1783,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="volume"
                                   value={bolcargodata?.volume}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1800,16 +1800,16 @@ const handleVehicle = () => {
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
-                                  name="weightKg"
-                                  value={bolcargodata?.weightKg}
+                                  type="text"
+                                  name="weightInKg"
+                                  value={bolcargodata?.weightInKg}
                                   onChange={(e) => updatebolcargo(e)}
                                 />
                               </p>
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="weight"
                                   value={bolcargodata?.weight}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1827,7 +1827,7 @@ const handleVehicle = () => {
 
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="qty"
                                   value={bolcargodata?.qty}
                                   onChange={(e) => updatebolcargo(e)}
@@ -1882,7 +1882,7 @@ const handleVehicle = () => {
                           </div>
                           <div className="col-md-3 col-3">
                             <select
-                              className="form-control form-control-sm input-field2"
+                              className="form-control form-control-sm"
                               onChange={(e) => setCntrno(e.target.value)}
                             >
                               {bollist &&
@@ -2046,7 +2046,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="grossWeightInKg"
                                   value={bolcntrdata?.grossWeightInKg}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2062,7 +2062,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="containerPackage"
                                   value={bolcntrdata?.containerPackage}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2078,7 +2078,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="containerWeight"
                                   value={bolcntrdata?.containerWeight}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2094,7 +2094,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="containerVolume"
                                   value={bolcntrdata?.containerVolume}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2118,7 +2118,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="minTemp"
                                   value={bolcntrdata?.minTemp}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2126,7 +2126,7 @@ const handleVehicle = () => {
                               </p>
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
-                                  type="number"
+                                  type="text"
                                   name="maxTemp"
                                   value={bolcntrdata?.maxTemp}
                                   onChange={(e) => updatebolcntr(e)}
@@ -2157,7 +2157,7 @@ const handleVehicle = () => {
                           </div>
                           <div className="col-md-3 col-3">
                             <select
-                              className="form-control form-control-sm input-field2"
+                              className="form-control form-control-sm"
                               onChange={(e) => setbolvno(e.target.value)}
                             >
                               {bollist &&
