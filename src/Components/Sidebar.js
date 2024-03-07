@@ -28,16 +28,16 @@ const Sidebar = () => {
     };
   }, [hidden]);
 
-  const [windowsize,setwindwosize]=useState(false);
+  const [windowsize,setwindowsize]=useState(false);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
-      setwindwosize(true)
-      dispatch(setHidden(true));
+      setwindowsize(true)
+      
     }
 
     if (window.innerWidth > 768) {
-      setwindwosize(false)
+      setwindowsize(false)
     }
 
   }, [window.innerWidth]);
