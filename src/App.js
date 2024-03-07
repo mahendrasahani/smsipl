@@ -6,6 +6,7 @@ import Messages from "./Components/Messages";
 import MessageDetail from "./Components/MessageDetail";
 import Dashboard from "./Components/Dashboard";
 import Modify from "./Components/Modify";
+import Users from "./Components/Users";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/messageDetails" element={<MessageDetail />} />
+        <Route path="/users" element={<Users/>} />
         <Route path="/modify" element={<Modify/>} />
       </Routes>
     </div>
