@@ -351,7 +351,6 @@ consigneeTel:bollist[0]?.consigneetel || "",
   },[bollist,vlist,bolvno])
 
   const updatebolcargo = (e) => {
-   
     setbolcargodata(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -472,20 +471,21 @@ const handleVehicle = () => {
    (cargolist==null)?bollistdata.bolCargos=[]:bollistdata.bolCargos=cargolist;
    (cntrlist==null)?bollistdata.bolCntrs=[]:bollistdata.bolCntrs=cntrlist;
    (vlist==null)?bollistdata.bolVehicles=[]:bollistdata.bolVehicles=vlist;
-
-
-    const response=await Apis.UpdateBOLMessage(
-      "https://dpw1.afrilogitech.com/api",
-      bollistdata
-    );
     
-    if(response && response?.success===true){
-      alert("Save and update successfully")
-    }
+   console.log('bollist',bollistdata)
 
-    else{
-      alert(response?.message)
-    }
+    // const response=await Apis.UpdateBOLMessage(
+    //   "https://dpw1.afrilogitech.com/api",
+    //   bollistdata
+    // );
+    
+    // if(response && response?.success===true){
+    //   alert("Save and update successfully")
+    // }
+
+    // else{
+    //   alert(response?.message)
+    // }
   };
 
   return (
@@ -1776,8 +1776,8 @@ const handleVehicle = () => {
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="number"
-                                  name="volumeCbm"
-                                  value={bolcargodata?.volumeCbm}
+                                  name="volumeInCbm"
+                                  value={bolcargodata?.volumeInCbm}
                                   onChange={(e) => updatebolcargo(e)}
                                 />
                               </p>
@@ -1855,7 +1855,7 @@ const handleVehicle = () => {
                                   type="text"
                                   name="remarks"
                                   value={bolcargodata?.remarks}
-                                  onChange={() => updatebolcargo()}
+                                  onChange={(e) => updatebolcargo(e)}
                                 />
                               </p>
                             </div>
