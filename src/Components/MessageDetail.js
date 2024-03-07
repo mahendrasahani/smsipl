@@ -13,6 +13,8 @@ const MessageDetail = () => {
   const id = location?.state?.messageData?.id;
   const status_code = location?.state?.messageData?.status_code;
 
+
+
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState("");
   const [cargono, setCargono] = useState(0);
@@ -111,6 +113,9 @@ const MessageDetail = () => {
     } 
   };
 
+ 
+ 
+
   return (
     <div className="wrapper">
       <Header />
@@ -206,7 +211,7 @@ const MessageDetail = () => {
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.vesselName}
                       </p>
-                     
+                    
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {message?.length}
                       </p>
@@ -1683,7 +1688,9 @@ const MessageDetail = () => {
               </div>
             </div>
 
-            <div className="row">
+            {
+              (status_code===7 || status_code===5) &&
+              <div className="row">
               <div className="col-md-2 col-6">
                 <button
                   title="View/Re-process/View JSon"
@@ -1696,6 +1703,8 @@ const MessageDetail = () => {
                 </button>
               </div>
             </div>
+}
+             
           </div>
         </section>
       </div>
