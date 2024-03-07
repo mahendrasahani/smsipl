@@ -15,7 +15,6 @@ const Sidebar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      // ---------------------------------------------------------------function to hide/show sidebar based on screen size
       if (window.innerWidth < 768 && hidden === false) {
         dispatch(setHidden(!hidden));
       } else if (window.innerWidth >= 768 && hidden === true) {
@@ -100,7 +99,7 @@ const Sidebar = () => {
                 className={`nav-link ${url == "dashboard" ? "active" : ""}`}
                 style={{ height: "41px", padding: "8px" }}
               >
-                <img src="img/home.png" className="img-responsive" />
+                <img src="img/home.png" className="img-responsive sidebar-img" />
                 <p>Dashboard</p>
               </a>
             </li>
@@ -108,9 +107,9 @@ const Sidebar = () => {
               <a
                 href="/messages"
                 className={`nav-link ${url == "messages" ? "active" : ""}`}
-                style={{ height: "41px", padding: "10px" }}
+                style={{ height: "41px", padding: "8px" }}
               >
-                <img src="img/msg.png" className="img-responsive" />
+                <img src="img/msg.png" className="img-responsive sidebar-img" />
                 <p>Messages</p>
               </a>
             </li>
@@ -120,7 +119,7 @@ const Sidebar = () => {
                 className={`nav-link ${url == "users" ? "active" : ""}`}
                 style={{ height: "41px", padding: "8px" }}
               >
-                <img src="img/manage.png" className="img-responsive" />
+                <img src="img/manage.png" className="img-responsive sidebar-img" />
                 <p>Users</p>
               </a>
             </li>

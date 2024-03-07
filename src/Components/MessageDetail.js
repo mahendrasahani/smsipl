@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import moment from "moment";
 import Loading from "./reusable/Loading";
-// import apiService from "../Services/ApiInstance/apiService";
 
 const MessageDetail = () => {
   const location = useLocation();
@@ -26,7 +25,6 @@ const MessageDetail = () => {
 
   const [message, setMessage] = useState([]);
   const [bollist, setbollist] = useState([]);
-  // const [errorlist, seterrorlist] = useState([]);
   const [vessel, setVessel] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -148,19 +146,19 @@ const MessageDetail = () => {
                     <a href="/messages">Messages</a>
                   </li>
                   <li className="breadcrumb-item active"> {status_code === 1 &&
-                                      "RAW DATA RECEIVED"}
+                                      "Raw Data Received"}
                                     {status_code === 2 &&
-                                      "VALIDATION FAILED"}
+                                      "Validation Failed"}
                                     {status_code === 3 &&
-                                      "VALIDATION SUCCESSFUL"}
+                                      "Validation Successful"}
                                     {status_code === 4 &&
-                                      "DETAILS INSERTED"}
+                                      "Details Inserted"}
                                     {status_code === 5 &&
-                                      "DETAILS INSERTION FAILED"}
+                                      "Details Insertion Failed"}
                                     {status_code === 6 &&
-                                      "TRANSFER SUCCESSFUL"}
+                                      "Transfer Successful"}
                                     {status_code === 7 &&
-                                      "TRANSFER FAILED"}</li>
+                                      "Transfer Failed"}</li>
                 </ol>
               </div>
             </div>
@@ -173,18 +171,12 @@ const MessageDetail = () => {
               <div className="card-body">
                 <h5>Vessel Details</h5>
                 {
-                  vessel ?
+                  message?.length >0 ?
                   <div className="row mt-3">
                   <div className="col-md-2 col-6">
                     <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       MRN No:
-                    </p>
-                    {/* <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
-                      Vessels Visit Code:
-                    </p> */}
-                    {/* <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
-                      Cargo Code:
-                    </p> */}
+                    </p>   
                     <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                       Vessel Name:
                     </p>
@@ -219,19 +211,14 @@ const MessageDetail = () => {
                     Tpa Uid:
                     </p>
                   </div>
-                  {vessel && (
+                  
                     <div className="col-md-3 col-6">
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.mrn}
                       </p>
-                      {/* <p className="mb-0 height-box" style={{ color: "#676767" }}>
-                        {vessel?.vesselVisitCode}
-                      </p> */}
-                   
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {vessel?.vesselName}
                       </p>
-                    
                       <p className="mb-0 height-box" style={{ color: "#676767" }}>
                         {message?.length}
                       </p>
@@ -263,7 +250,7 @@ const MessageDetail = () => {
                         {vessel?.tpaUid}
                       </p>
                     </div>
-                  )}
+                  
 
                   <div className="col-md-3 col-6" id="todate-div">
                     <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
@@ -355,7 +342,7 @@ const MessageDetail = () => {
                 {message?.length > 0 && (
                   <>
                     <h5>BoL List</h5>
-                    <div className="col-md-12 pt-3 table-responsive">
+                    <div className="col-md-12 table-responsive">
                       <table className="table table-striped table-sm table-hover text-nowrap">
                         <thead>
                           <tr
@@ -372,10 +359,9 @@ const MessageDetail = () => {
                           {message?.length > 0 &&
                             message?.map((itm, i) => {
                               return (
-                                <tr>
+                                <tr key={itm?.bolnbr}>
                                   <td>{i}</td>
                                   <td>{itm?.bolnbr}</td>
-                                  {/* <td>{itm?.errorlist && itm?.errorlist[0]?.errormessage}</td> */}
                                   <td
                                     style={{
                                       color:
@@ -955,7 +941,7 @@ const MessageDetail = () => {
                                   {bollist &&
                                     bollist[0]?.bolcargos?.map((itm, i) => {
                                       return (
-                                        <option id={i} value={i}>
+                                        <option id={i} key={i} value={i}>
                                           {i + 1}
                                         </option>
                                       );
@@ -1180,7 +1166,7 @@ const MessageDetail = () => {
                                   {bollist &&
                                     bollist[0]?.bolcntrs?.map((itm, i) => {
                                       return (
-                                        <option id={i} value={i}>
+                                        <option id={i} key={i} value={i}>
                                           {i + 1}
                                         </option>
                                       );
@@ -1476,7 +1462,7 @@ const MessageDetail = () => {
                                   {bollist &&
                                     bollist[0]?.bolvehicles?.map((itm, i) => {
                                       return (
-                                        <option value={i}>
+                                        <option value={i} key={i}>
                                           {i + 1}
                                         </option>
                                       );

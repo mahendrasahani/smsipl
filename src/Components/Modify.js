@@ -7,22 +7,10 @@ import Header from "./Header";
 
 const Modify2 = () => {
   const location = useLocation();
-  const id = location?.state?.id?location?.state?.id:212;
+  const id = location?.state?.id;
  
   const hidden = useSelector((state) => state.hiddenstate.hidden);
-  const [bolno, setbolno] = useState("");
-    
-  useEffect(()=>{
-    if(location?.state?.bolno){
-     setbolno(location?.state?.bolno)
-    }
-    else{
-      setbolno("SENTINDDEL00114")
-    }
-},[])
-
-
-
+  const [bolno, setbolno] = useState(location?.state?.bolno);
   const [cargono, setCargono] = useState(0);
   const [bollist, setbollist] = useState([]);
   const [cargolist, setcargoList] = useState(bollist[0]?.bolcargos);
@@ -36,7 +24,7 @@ const Modify2 = () => {
 
   const [errorlist, seterrorlist] = useState([]);
   const [vessel, setVessel] = useState({});
-  const [loading, setLoading] = useState(true);
+
 
   const [bollistdata, setbollistdata] = useState({
     bolID: 0,
@@ -391,7 +379,6 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
   const MessageInfo = async () => {
     try {
-      setLoading(true);
       const data = await Apis.getMessageDetails(
         "https://dpw1.afrilogitech.com/api",
         id
@@ -400,10 +387,8 @@ consigneeTel:bollist[0]?.consigneetel || "",
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error){
-      setLoading(false);
       console.error("Error fetching messages:", error);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -516,7 +501,7 @@ const handleVehicle = () => {
                     <a href="/dashboard">Home</a>
                   </li>
                   <li className="breadcrumb-item">
-                    <a href="/messages">Transfer failed</a>
+                    <a href="/messages">Transfer Failed</a>
                   </li>
                   <li className="breadcrumb-item active">Messages Modify</li>
                 </ol>
@@ -1684,7 +1669,7 @@ const handleVehicle = () => {
                             >
                               {bollist &&
                                 bollist[0]?.bolcargos?.map((itm, i) => {
-                                  return <option value={i}>{i + 1}</option>;
+                                  return <option key={i} value={i}>{i + 1}</option>;
                                 })}
                             </select>
                           </div>

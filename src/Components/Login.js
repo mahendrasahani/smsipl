@@ -4,7 +4,6 @@ import Apis from "./../Services/ApiServices/Apis";
 const Login = () => {
   const [error, setError] = useState(false);
   const [formdata, setFormdata] = useState({
-    //form data variables
     username: "",
     password: "",
   });
