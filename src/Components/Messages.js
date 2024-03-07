@@ -93,7 +93,7 @@ const Messages = () => {
     setFilteredItems(items)
   };
 
-  const handleFilterMEssage = () => {
+  const handleFiltermessage = () => {
     let filteredData = items;
     if (mrnnumber !== "") {
       filteredData = filteredData.filter(
@@ -175,12 +175,9 @@ const Messages = () => {
   }, []);
 
   const jsonString = JSON.stringify(modaldata, null, 2);
-
-  // State to store the formatted JSON string
   const [formattedJson, setFormattedJson] = useState("");
 
   useEffect(() => {
-    // Replace newline characters with HTML line breaks
     const htmlFormattedJson = jsonString.replace(/\n/g, "<br>");
     setFormattedJson(htmlFormattedJson);
   }, [jsonString]);
@@ -192,6 +189,16 @@ const Messages = () => {
         id,
         status_code
       );
+
+      
+      if(data?.success===true){
+        alert("Data reprocess successfully")
+      }
+
+      else{
+        alert("Reprocess failed")
+      }
+
     } catch (error) {
       setLoading(false);
       alert("Reprocess failed");
@@ -199,6 +206,7 @@ const Messages = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <>
@@ -353,7 +361,7 @@ const Messages = () => {
                       <button
                         type="button"
                         className="btn btn-block btn-sm btn-outline-primary"
-                        onClick={() => handleFilterMEssage()}
+                        onClick={() => handleFiltermessage()}
                       >
                         Search
                       </button>

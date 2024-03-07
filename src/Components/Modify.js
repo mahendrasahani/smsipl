@@ -21,6 +21,8 @@ const Modify2 = () => {
     }
 },[])
 
+
+
   const [cargono, setCargono] = useState(0);
   const [bollist, setbollist] = useState([]);
   const [cargolist, setcargoList] = useState(bollist[0]?.bolcargos);
@@ -255,6 +257,7 @@ consigneeTel:bollist[0]?.consigneetel || "",
 
 
 
+
   const [bolcntrdata, setbolcntrdata] = useState({
     cntrNbr: "",
     seal1Nbr: "",
@@ -310,20 +313,22 @@ consigneeTel:bollist[0]?.consigneetel || "",
     model: "",
     caseNbr: "",
     engineNbr: "",
-    height:"",
+    color:"",
+    colorCode:"",
+    height:0,
     keyNbr:"",
-    length:"",
+    length:0,
     prodMonth:"",
     remarks:"",
     usedCar:"",
     vehicleId:"",
-    volume:"",
-    volumeInCBM:"",
+    volume:0,
+    volumeInCBM:0,
     volumeUom:"",
-    weight:"",
-    weightInKg:"",
+    weight:0,
+    weightInKg:0,
     weightUom:"",
-    width:"",
+    width:0,
   });
 
   useEffect(()=>{
@@ -332,23 +337,27 @@ consigneeTel:bollist[0]?.consigneetel || "",
         model:vlist[bolvno].model  ||  "",
         caseNbr:vlist[bolvno].casenbr  ||  "",
         engineNbr:vlist[bolvno].enginenbr  ||  "",
-        height:vlist[bolvno].height  || "",
+        color:vlist[bolvno].color  ||  "",
+        colorCode:vlist[bolvno].colorcode ||  "",
+        height:vlist[bolvno].height  || 0,
         keyNbr:vlist[bolvno].keynbr  || "",
-        length:vlist[bolvno].length  || "",
+        length:vlist[bolvno].length  || 0,
         prodMonth:vlist[bolvno].prodmonth  || "",
         remarks:vlist[bolvno].remarks  || "",
         usedCar:vlist[bolvno].usedcar  || "",
         vehicleId:vlist[bolvno].vehicleid  || "",
-        volume:vlist[bolvno].volume  || "",
-        volumeInCBM:vlist[bolvno].volumeincbm  || "",
+        volume:vlist[bolvno].volume  || 0,
+        volumeInCBM:vlist[bolvno].volumeincbm  || 0,
         volumeUom:vlist[bolvno].volumeuom  || "",
-        weight:vlist[bolvno].weight  || "",
-        weightInKg:vlist[bolvno].weightinkg  || "",
+        weight:vlist[bolvno].weight  || 0,
+        weightInKg:vlist[bolvno].weightinkg  || 0,
         weightUom:vlist[bolvno].weightuom  || "",
-        width:vlist[bolvno].width  || "",
+        width:vlist[bolvno].width  || 0,
       })
 
   },[bollist,vlist,bolvno])
+
+
 
   const updatebolcargo = (e) => {
     setbolcargodata(prev => ({
@@ -2255,8 +2264,8 @@ const handleVehicle = () => {
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
-                                  name="casenbr"
-                                  value={bolvdata?.casenbr}
+                                  name="caseNbr"
+                                  value={bolvdata?.caseNbr}
                                   onChange={(e) => updatebolv(e)}
                                 />
                               </p>
@@ -2271,8 +2280,8 @@ const handleVehicle = () => {
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
-                                  name="colorcode"
-                                  value={bolvdata?.colorcode}
+                                  name="colorCode"
+                                  value={bolvdata?.colorCode}
                                   onChange={(e) => updatebolv(e)}
                                 />
                               </p>
@@ -2283,8 +2292,8 @@ const handleVehicle = () => {
                               >
                                 <input
                                   type="text"
-                                  name="enginenbr"
-                                  value={bolvdata?.enginenbr}
+                                  name="engineNbr"
+                                  value={bolvdata?.engineNbr}
                                   onChange={(e) => updatebolv(e)}
                                 />
                               </p>
