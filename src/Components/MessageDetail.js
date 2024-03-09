@@ -51,7 +51,7 @@ const MessageDetail = () => {
         window.location.href="/messages"
       }
 
-      console.log("data",data?.data)
+     
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {

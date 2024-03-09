@@ -77,7 +77,7 @@ const Messages = () => {
         status
       );
 
-      dispatch(addItems(apiResponse?.data));
+      dispatch(addItems([...apiResponse?.data].sort((a, b) => b.id - a.id)));
      
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -85,6 +85,10 @@ const Messages = () => {
       setLoading(false);
     }
   };
+
+  
+ 
+  
 
 
 
