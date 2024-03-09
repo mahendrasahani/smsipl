@@ -10,7 +10,8 @@ import Loading from "./reusable/Loading";
 const MessageDetail = () => {
   const location = useLocation();
   const id = location?.state?.messageData?.id;
-  const status_code = location?.state?.messageData?.status_code;
+  const status_code = location?.state?.messageData?.status_code ;
+
 
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState("");
@@ -919,232 +920,236 @@ const MessageDetail = () => {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-4 pr-0">
-                        <div className="card" style={{ height: "100%" }}>
-                          <div
-                            className="card-header"
-                            style={{
-                              background:
-                                "linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%)",
-                            }}
-                          >
-                            <div className="row">
-                              <div className="col-md-9 col-9">
-                                <h3 className="card-title">Cargo</h3>
-                              </div>
-                              <div className="col-md-3 col-3">
-                                <select
-                                  className="form-control form-control-sm"
-                                  onChange={(e) => setCargono(e.target.value)}
-                                >
-                                  {bollist &&
-                                    bollist[0]?.bolcargos?.map((itm, i) => {
-                                      return (
-                                        <option id={i} key={i} value={i}>
-                                          {i + 1}
-                                        </option>
-                                      );
-                                    })}
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="card-body">
-                            <div className="row">
-                              <div className="col-md-6 col-6">
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  MarAndNbr:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Cargo Type Code:
-                                </p>
+                     {
+                       cargolist!==null &&
+                       <div className="col-md-4 pr-0">
+                       <div className="card" style={{ height: "100%" }}>
+                         <div
+                           className="card-header"
+                           style={{
+                             background:
+                               "linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%)",
+                           }}
+                         >
+                           <div className="row">
+                             <div className="col-md-9 col-9">
+                               <h3 className="card-title">Cargo</h3>
+                             </div>
+                             <div className="col-md-3 col-3">
+                               <select
+                                 className="form-control form-control-sm"
+                                 onChange={(e) => setCargono(e.target.value)}
+                               >
+                                 {bollist &&
+                                   bollist[0]?.bolcargos?.map((itm, i) => {
+                                     return (
+                                       <option id={i} key={i} value={i}>
+                                         {i + 1}
+                                       </option>
+                                     );
+                                   })}
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+                         <div className="card-body">
+                           <div className="row">
+                             <div className="col-md-6 col-6">
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 MarAndNbr:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Cargo Type Code:
+                               </p>
 
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Description:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Commodity Code:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Hs Code:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Volume In CBM:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Volume:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Volume Uom:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Weight(Kg):
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Weight:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Weight Uom:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Qty:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  QtyUom:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  RefCentrNbr:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Remarks:
-                                </p>
-                              </div>
-                              {cargolist && (
-                                <div className="col-md-6 col-6">
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.markandnbr}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.cargotypecode}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.description}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.commoditycode}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.hscode}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.volumeincbm}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.volume}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.volumeuom}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.weightinkg}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.weight}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.weightuom}
-                                  </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Description:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Commodity Code:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Hs Code:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Volume In CBM:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Volume:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Volume Uom:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Weight(Kg):
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Weight:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Weight Uom:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Qty:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 QtyUom:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 RefCentrNbr:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Remarks:
+                               </p>
+                             </div>
+                               <div className="col-md-6 col-6">
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.markandnbr}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.cargotypecode}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.description}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.commoditycode}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.hscode}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.volumeincbm}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.volume}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.volumeuom}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.weightinkg}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.weight}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.weightuom}
+                                 </p>
 
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.qty}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.qtyuom}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.refcntrnbr}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {cargolist[cargono]?.remarks}
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.qty}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.qtyuom}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.refcntrnbr}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {cargolist[cargono]?.remarks}
+                                 </p>
+                               </div>
+                             
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                     }
 
-                      <div className="col-md-4 pl-0 pr-0">
+                     {
+                        cntrlist!==null &&
+                        <div className="col-md-4 pl-0 pr-0">
                         <div className="card" style={{ height: "100%" }}>
                           <div
                             className="card-header"
@@ -1175,7 +1180,7 @@ const MessageDetail = () => {
                             </div>
                           </div>
                           <div className="card-body">
-                            {cntrlist && (
+                           
                               <div className="row">
                                 <div className="col-md-6 col-6">
                                   <p
@@ -1436,263 +1441,270 @@ const MessageDetail = () => {
                                   </p>
                                 </div>
                               </div>
-                            )}
+                            
                           </div>
                         </div>
                       </div>
-                      <div className="col-md-4 pl-0">
-                        <div className="card" style={{ height: "100%" }}>
-                          <div
-                            className="card-header"
-                            style={{
-                              background:
-                                "linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%)",
-                            }}
-                          >
-                            <div className="row">
-                              <div className="col-md-9 col-9">
-                                <h3 className="card-title">Vehicles</h3>
-                              </div>
-                              <div className="col-md-3 col-3">
-                                <select
-                                  className="form-control form-control-sm"
-                                  onChange={(e) => setbolvno(e.target.value)}
-                                >
-                                  {bollist &&
-                                    bollist[0]?.bolvehicles?.map((itm, i) => {
-                                      return (
-                                        <option value={i} key={i}>
-                                          {i + 1}
-                                        </option>
-                                      );
-                                    })}
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="card-body">
-                            <div className="row">
-                              <div className="col-md-6 col-6">
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Make:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  Model:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  CaseNbr:
-                                </p>
-                                <p
-                                  className="mb-1 height-box"
-                                  style={{ fontWeight: "600" }}
-                                >
-                                  EngineNbr:
-                                </p>
-                               
-                                  <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Height:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              KeyNbr:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Length:
-                            </p>
+                     }
 
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              prodMonth:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Remarks:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              UsedCar
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              VehicleId:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Volume:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              VolumeInCBM:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              volumeUom:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Weight:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Weight(Kg):
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              WeightInUom:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Width:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Color Code:
-                            </p>
-                            <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
-                              Color:
-                            </p>
-                              </div>
-                              {vlist && (
-                                <div className="col-md-6 col-6">
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {vlist[bolvno]?.make}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {vlist[bolvno]?.model}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {vlist[bolvno]?.casenbr}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.enginenbr}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.height}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.keynbr}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.length}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.prodmonth}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.remarks}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.usedcar}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.vehicleid}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.volume}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.volumeincbm}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.volumeuom}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.weight}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.weightinkg}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.weightuom}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.width}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.colorcode}
-                                  </p>
-                                  <p
-                                    className="mb-1 height-box"
-                                    style={{ color: "#676767" }}
-                                  >
-                                    {" "}
-                                    {vlist[bolvno]?.color}
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    {
+                       vlist && 
+                       <div className="col-md-4 pl-0">
+                       <div className="card" style={{ height: "100%" }}>
+                         <div
+                           className="card-header"
+                           style={{
+                             background:
+                               "linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%)",
+                           }}
+                         >
+                           <div className="row">
+                             <div className="col-md-9 col-9">
+                               <h3 className="card-title">Vehicles</h3>
+                             </div>
+                             <div className="col-md-3 col-3">
+                               <select
+                                 className="form-control form-control-sm"
+                                 onChange={(e) => setbolvno(e.target.value)}
+                               >
+                                 {bollist &&
+                                   bollist[0]?.bolvehicles?.map((itm, i) => {
+                                     return (
+                                       <option value={i} key={i}>
+                                         {i + 1}
+                                       </option>
+                                     );
+                                   })}
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+                         <div className="card-body">
+                           <div className="row">
+                             <div className="col-md-6 col-6">
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Make:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 Model:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 CaseNbr:
+                               </p>
+                               <p
+                                 className="mb-1 height-box"
+                                 style={{ fontWeight: "600" }}
+                               >
+                                 EngineNbr:
+                               </p>
+                              
+                                 <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Height:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             KeyNbr:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Length:
+                           </p>
+
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             prodMonth:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Remarks:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             UsedCar
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             VehicleId:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Volume:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             VolumeInCBM:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             volumeUom:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Weight:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Weight(Kg):
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             WeightInUom:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Width:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Color Code:
+                           </p>
+                           <p className="mb-1 height-box" style={{ fontWeight: "600" }}>
+                             Color:
+                           </p>
+                             </div>
+                             
+                               <div className="col-md-6 col-6">
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {vlist[bolvno]?.make}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {vlist[bolvno]?.model}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {vlist[bolvno]?.casenbr}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.enginenbr}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.height}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.keynbr}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.length}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.prodmonth}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.remarks}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.usedcar}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.vehicleid}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.volume}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.volumeincbm}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.volumeuom}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.weight}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.weightinkg}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.weightuom}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.width}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.colorcode}
+                                 </p>
+                                 <p
+                                   className="mb-1 height-box"
+                                   style={{ color: "#676767" }}
+                                 >
+                                   {" "}
+                                   {vlist[bolvno]?.color}
+                                 </p>
+                               </div>
+                           
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+
+                    }
+                    
                     </div>
                   </>
                 )}

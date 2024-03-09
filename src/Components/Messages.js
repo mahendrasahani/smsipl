@@ -6,7 +6,6 @@ import moment from "moment/moment";
 import Loading from "./reusable/Loading";
 import { FaCode, FaRegEye } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
-
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
@@ -14,10 +13,11 @@ import { useNavigate } from "react-router";
 const Messages = () => {
   //present date
   const date = new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const maindate = `${year}-${month}-${day}`;
+  // const year = date.getFullYear();
+  // const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  // const day = date.getDate().toString().padStart(2, "0");
+  const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
+
 
   const [statusvalue, setStatus] = useState(0);
   const [startdate, setstartDate] = useState(maindate);
@@ -27,8 +27,8 @@ const Messages = () => {
   const [loading, setLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mrnnumber, setmrnnumber] = useState("");
   const [visitcode, setVisitcode] = useState("");
+  const [cargocode, setCargocode] = useState("");
   const [bolno, setbolno] = useState("");
   const [carriername, setcarriername] = useState("");
   const [items, setitems] = useState([]);
@@ -43,39 +43,42 @@ const Messages = () => {
     document.title = "DP WORLD | Dashboard";
   }, []);
 
-  const formatDate2 = (dateString) => {
-    const date = new Date(dateString);
-    const formattedDate = `${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${date
-      .getDate()
-      .toString()
-      .padStart(2, "0")}/${date.getFullYear()}`;
-    return formattedDate;
-  };
+  // const formatDate2 = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const formattedDate = `${(date.getMonth() + 1)
+  //     .toString()
+  //     .padStart(2, "0")}/${date
+  //     .getDate()
+  //     .toString()
+  //     .padStart(2, "0")}/${date.getFullYear()}`;
+  //   return formattedDate;
+  // };
 
   useEffect(() => {
-    const start = formatDate2(startdate);
-    const end = formatDate2(enddate);
-    fetchMessage(start, end, statusvalue);
+  
+   if(statusvalue==7){
+    fetchMessage(startdate, enddate,0);
+   }
+   else{
+    fetchMessage(startdate, enddate, statusvalue);
+   }
+  
   }, [startdate, enddate, statusvalue]);
 
   // --------------------------------Fetching data from getMessageList Api--------------------------------------//
 
-  const fetchMessage = async (start, end) => {
+  const fetchMessage = async (start, end , status ) => {
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
         "https://dpw1.afrilogitech.com/api",
         start,
         end,
-        statusvalue
+        status
       );
 
-   
       dispatch(addItems(apiResponse?.data));
-
-      setitems(apiResponse?.data);
+     
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
@@ -83,23 +86,30 @@ const Messages = () => {
     }
   };
 
-  //-------------------------------------------Reset Data----------------------------------------------------------//
+
+
+  useEffect(()=>{
+    if(statusvalue===7){
+      const messages=items?.filter((itm)=>{
+             return itm.status_code===1 || itm?.status_code===2 || itm?.status_code===3 || itm?.status_code===4 || itm?.status_code===5
+      })
+
+      setFilteredItems(messages)
+    }
+   
+  },[items])
+
+  //------------------------------------------------------------------------------Reset Data----------------------------------------------------------//
 
   const handleResetData = () => {
     setbolno("");
     setVisitcode("");
     setcarriername("");
-    setmrnnumber("");
-    setFilteredItems(items)
+    setFilteredItems(items);
   };
 
   const handleFiltermessage = () => {
     let filteredData = items;
-    if (mrnnumber !== "") {
-      filteredData = filteredData.filter(
-        (itm) => itm.manifest.vessel.mrn === mrnnumber
-      );
-    }
 
     if (visitcode !== "") {
       filteredData = filteredData.filter((itm) =>
@@ -125,20 +135,31 @@ const Messages = () => {
       );
     }
 
+    if (cargocode !== "") {
+      filteredData = filteredData.filter((itm) =>
+        itm.manifest.bolList.some((itm1) =>
+          itm1.cargoCode.toLowerCase().includes(cargocode.toLowerCase())
+        )
+      );
+    }
+
     setFilteredItems(filteredData);
   };
+
+
 
   useEffect(() => {
     setFilteredItems(items);
   }, [items]);
 
-  const handleInputChange = (e) => {
-    setmrnnumber(e.target.value);
-  };
-
   const handleVisitChange = (e) => {
     setVisitcode(e.target.value);
   };
+
+  const handleCargoChange = (e) => {
+    setCargocode(e.target.value);
+  };
+
   const handleBolChange = (e) => {
     setbolno(e.target.value);
   };
@@ -147,14 +168,14 @@ const Messages = () => {
   };
 
   const handleNavigation = (data) => {
-    navigate("/messageDetails", { state: {messageData:data } });
+    navigate("/messageDetails", { state: { messageData: data } });
   };
 
   const updateModal = (data) => {
     const modaldata1 = filteredItems?.filter((itm) => {
       return itm?.id == data;
     });
- 
+
     setmodaldata(modaldata1);
     setIsModalOpen(!isModalOpen);
   };
@@ -167,7 +188,6 @@ const Messages = () => {
         setIsModalOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -182,7 +202,7 @@ const Messages = () => {
     setFormattedJson(htmlFormattedJson);
   }, [jsonString]);
 
-  const handleReprocess = async (id,status_code) => {
+  const handleReprocess = async (id, status_code) => {
     try {
       const data = await Apis.ProcessMessage(
         "https://dpw1.afrilogitech.com/api",
@@ -190,15 +210,11 @@ const Messages = () => {
         status_code
       );
 
-      
-      if(data?.success===true){
-        alert("Data reprocess successfully")
+      if (data?.success === true) {
+        alert("Data reprocess successfully");
+      } else {
+        alert("Reprocess failed");
       }
-
-      else{
-        alert("Reprocess failed")
-      }
-
     } catch (error) {
       setLoading(false);
       alert("Reprocess failed");
@@ -206,7 +222,6 @@ const Messages = () => {
       setLoading(false);
     }
   };
-
 
   return (
     <>
@@ -252,7 +267,7 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="date"
+                            type="datetime-local"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             value={startdate}
@@ -273,7 +288,7 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="date"
+                            type="datetime-local"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             min="2023-01-01"
@@ -296,13 +311,14 @@ const Messages = () => {
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={0}>Select All</option>
-                          <option value={1}>Raw Data Recieved</option>
+                          {/* <option value={1}>Raw Data Recieved</option>
                           <option value={2}>Validation Failed</option>
                           <option value={3}>Validation Successful</option>
-                          <option value={4}>Details Inserted</option>
+                          <option value={4}>Details Inserted</option> */}
                           <option value={6}>Transfer Successful</option>
-                          <option value={5}>Details Insertion Failed</option>
                           <option value={7}>Transfer Failed</option>
+                          {/* <option value={5}>Details Insertion Failed</option>
+                          <option value={7}>Transfer Failed</option> */}
                         </select>
                       </div>
                     </div>
@@ -311,26 +327,57 @@ const Messages = () => {
                   <div className="row mt-3">
                     <div className="col-md-2">
                       <div className="form-group">
-                        <label>MRN Number</label>
-                        <input
-                          type="text"
-                          className="form-control form-control-sm"
-                          id="mr-nno"
-                          value={mrnnumber}
-                          onChange={(e) => handleInputChange(e)}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-2">
-                      <div className="form-group">
                         <label>Vessel Visit Code</label>
-                        <input
+                        {/* <input
                           type="text"
                           className="form-control form-control-sm"
                           id="mr-nno"
                           value={visitcode}
                           onChange={(e) => handleVisitChange(e)}
-                        />
+                        /> */}
+                        <select
+                          name="SelectStatus"
+                          className="form-control form-control-sm"
+                          id="select1"
+                          value={visitcode}
+                          onChange={(e) => handleVisitChange(e)}
+                        >
+                          <option value="">Select Vessel Visit code</option>
+                          {Array.isArray(items) &&
+                            items?.map((itm, i) => {
+                              return (
+                                <option
+                                  key={i}
+                                  value={itm?.manifest?.vessel?.vesselVisitCode}
+                                >
+                                  {itm?.manifest?.vessel?.vesselVisitCode}
+                                </option>
+                              );
+                            })}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-md-2">
+                      <div className="form-group">
+                        <label>Cargo Code</label>
+
+                        <select
+                          name="SelectStatus"
+                          className="form-control form-control-sm"
+                          id="select1"
+                          value={cargocode}
+                          onChange={(e) => handleCargoChange(e)}
+                        >
+                          <option value="">Select Cargo Code</option>
+                          {Array.isArray(items) &&
+                            items?.map((itm) =>
+                              itm.manifest?.bolList?.map((val) => (
+                                <option key={val?.bolNbr}>
+                                  {val.cargoCode}
+                                </option>
+                              ))
+                            )}
+                        </select>
                       </div>
                     </div>
                     <div className="col-md-2" id="todate-div">
@@ -399,26 +446,25 @@ const Messages = () => {
                       </thead>
                       {loading ? (
                         <tbody>
-                          <tr style={{background:"white"}}>
+                          <tr style={{ background: "white" }}>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><Loading /></td>
+                            <td>
+                              <Loading />
+                            </td>
                           </tr>
                         </tbody>
-                          
-                    
                       ) : (
                         <tbody style={{ fontSize: "12px" }}>
-                          {filteredItems && Array.isArray(filteredItems) &&
-                            filteredItems?.map((itm) => {
+                          {filteredItems &&
+                            Array.isArray(filteredItems) &&
+                            filteredItems?.map((itm,i) => {
                               return (
                                 <tr key={itm?.id}>
-                                  <td>{itm?.id}</td>
+                                  <td>{i+1}</td>
                                   <td>
-                                    {moment(
-                                      itm?.row_created.slice(0, 10)
-                                    ).format("DD-MM-YYYY")}
+                                    {itm?.row_created}
                                   </td>
                                   <td>{itm?.manifest?.vessel?.mrn}</td>
                                   <td>
@@ -462,15 +508,21 @@ const Messages = () => {
                                     >
                                       <FaRegEye />
                                     </button>
-                                    {(itm?.status_code === 5 || itm?.status_code === 7) && (
-                                        <button
-                                          className="btn btn-sm bg-success btn-clear"
-                                          title="Re-Process"
-                                          onClick={() => handleReprocess(itm?.id,itm?.status_code)}
-                                        >
-                                          <FiRefreshCw />
-                                        </button>
-                                      )}
+                                    {(itm?.status_code === 5 ||
+                                      itm?.status_code === 7) && (
+                                      <button
+                                        className="btn btn-sm bg-success btn-clear"
+                                        title="Re-Process"
+                                        onClick={() =>
+                                          handleReprocess(
+                                            itm?.id,
+                                            itm?.status_code
+                                          )
+                                        }
+                                      >
+                                        <FiRefreshCw />
+                                      </button>
+                                    )}
 
                                     <button
                                       title="View JSON"

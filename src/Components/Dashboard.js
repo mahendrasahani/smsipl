@@ -6,6 +6,7 @@ import { addItems } from "./store/ItemsSlice";
 import GraphCard from "./GraphCard";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import moment from "moment";
 
 
 const Dashboard = () => {
@@ -17,24 +18,23 @@ const Dashboard = () => {
   }, []);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(
-    new Date().toISOString().split("T")[0]
+    moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')
   );
   const [endDate, setEndDate] = useState(
-    new Date().toISOString().split("T")[0]
+    moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')
   );
   const [statusValue, setStatusValue] = useState(0);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  };
+  // const formatDate = (dateString) => {
+  //   const date = new Date(dateString);
+  //   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  // };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      const start = formatDate(startDate);
-      const end = formatDate(endDate);
-      fetchMessage(start, end);
+ 
+      fetchMessage(startDate, endDate);
     } else {
       window.location.href = "/";
     }
@@ -54,32 +54,7 @@ const Dashboard = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const element1 = onRef.current;
-  //   const element2 = betweenRef.current;
-  //   element2.checked = true;
 
-  //   const checkedStatus = () => {
-  //     element1.checked = true;
-  //     element2.checked = false;
-  //   };
-
-  //   element1.addEventListener("click", checkedStatus);
-
-  //   const checkedStatus2 = () => {
-  //     element1.checked = false;
-  //     element2.checked = true;
-  //   };
-
-  //   element2.addEventListener("click", checkedStatus2);
-
-  //   return () => {
-  //     element1.removeEventListener("click", checkedStatus);
-  //     element2.removeEventListener("click", checkedStatus2);
-  //   };
-  // }, []);
-
-  // const [isModalOpen, setModal] = useState("");
 
   const handleRemoveFilter = () => {
     setStatusValue("");
@@ -89,12 +64,7 @@ const Dashboard = () => {
 
   return (
     <div className="wrapper">
-      {/* <div className="preloader flex-column justify-content-center align-items-center">
-      <img src="img/logo.png" alt="Logo" className="img-fluid" />
-    </div> */}
-
       <Header />
-
       <Sidebar />
 
       <div className="content-wrapper" style={{ marginLeft: hidden && "0" }}>
@@ -142,7 +112,7 @@ const Dashboard = () => {
                             <input
                               id="start"
                               className="form-control form-control-sm datetimepicker-input date-pick"
-                              type="date"
+                              type="datetime-local"
                               value={startDate}
                               min="2023-01-01"
                               max={new Date().toISOString().split("T")[0]}
@@ -162,7 +132,7 @@ const Dashboard = () => {
                             <input
                               id="to"
                               className="form-control form-control-sm datetimepicker-input date-pick"
-                              type="date"
+                              type="datetime-local"
                               min="2023-01-01"
                               max={new Date().toISOString().split("T")[0]}
                               value={endDate}

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
-import {useLocation } from "react-router";
+import {useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
 
 const Modify2 = () => {
   const location = useLocation();
   const id = location?.state?.id;
- 
+  const navigate = useNavigate();
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState(location?.state?.bolno);
   const [cargono, setCargono] = useState(0);
@@ -458,6 +458,10 @@ const handleVehicle = () => {
   });
 };
 
+const handleNavigation = (bolno,data) => {
+  navigate("/modify", { state: { id: data, bolno:bolno} });
+};
+
   const submitData = async (e) => {
     e.preventDefault();
    
@@ -503,12 +507,70 @@ const handleVehicle = () => {
                   <li className="breadcrumb-item">
                     <a href="/messages">Transfer Failed</a>
                   </li>
-                  <li className="breadcrumb-item active">Messages Modify</li>
+                  <li className="breadcrumb-item active">Modify Bol -{location?.state?.bolno}</li>
                 </ol>
               </div>
             </div>
           </div>
         </div>
+
+        {message?.length > 0 && (
+                  <>
+                    <h5>BoL List</h5>
+                    <div className="col-md-12 table-responsive">
+                      <table className="table table-striped table-sm table-hover text-nowrap">
+                        <thead>
+                          <tr
+                            style={{ background: "#E1E8FF", fontSize: "12px" }}
+                          >
+                            <th style={{ color: "#3166C9" }}>#</th>
+                            <th style={{ color: "#3166C9" }}>BoL No.</th>
+                            {/* <th style={{ color: "#3166C9" }}>Error</th> */}
+                            <th style={{ color: "#3166C9" }}>Status</th>
+                            <th style={{ color: "#3166C9" }}>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody style={{ fontSize: "12px" }}>
+                          {message?.length > 0 &&
+                            message?.map((itm, i) => {
+                              return (
+                                <tr key={itm?.bolnbr}>
+                                  <td>{i}</td>
+                                  <td>{itm?.bolnbr}</td>
+                                  <td
+                                    style={{
+                                      color:
+                                        itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                          ? "#FF0000"
+                                          : "darkgreen",
+                                    }}
+                                  >
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                      ? "Transfer Failed"
+                                      : "Successful"}
+                                  </td>
+                                  <td>
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7 ? (
+                                      <button
+                                        className="btn btn-sm bg-primary btn-clear"
+                                        onClick={() => handleNavigation(itm.bolnbr,id)}
+                                      >
+                                        <i className="fa fa-edit"></i>
+                                      </button>
+                                    ) : (
+                                      <p style={{ color: "darkgreen" }}>
+                                        -
+                                      </p>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                )}
 
         <section className="content pb-3">
           <div className="container-fluid">
@@ -1649,7 +1711,9 @@ const handleVehicle = () => {
 
 
                 <div className="row mt-3">
-                  <div className="col-md-4 pr-0">
+                  {
+                    cargolist && 
+                    <div className="col-md-4 pr-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
                         className="card-header"
@@ -1724,7 +1788,7 @@ const handleVehicle = () => {
                               Remarks:
                             </p>
                           </div>
-                          {cargolist && (
+                          
                             <div className="col-md-6 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
@@ -1852,7 +1916,7 @@ const handleVehicle = () => {
                                 />
                               </p>
                             </div>
-                          )}
+                         
                         </div>
                       </div>
                       <button type="button"
@@ -1860,7 +1924,12 @@ const handleVehicle = () => {
                 style={{ backgroundColor: "#547899" }} onClick={(e)=>handleCargo(e)}>Save</button>
                     </div>
                   </div>
-                  <div className="col-md-4 pl-0 pr-0">
+                 }
+            
+
+                  {
+                    cntrlist && 
+                    <div className="col-md-4 pl-0 pr-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
                         className="card-header"
@@ -1954,7 +2023,7 @@ const handleVehicle = () => {
                             </p>
                           </div>
 
-                          {cntrlist && (
+                         
                             <div className="col-md-6 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
@@ -2126,7 +2195,7 @@ const handleVehicle = () => {
                                 />
                               </p>
                             </div>
-                          )}
+                         
                         </div>
                       </div>
                       <button  type="button"
@@ -2135,7 +2204,12 @@ const handleVehicle = () => {
                       
                     </div>
                   </div>
-                  <div className="col-md-4 pl-0">
+
+                  }
+                
+                  {
+                    vlist && 
+                    <div className="col-md-4 pl-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
                         className="card-header"
@@ -2227,7 +2301,7 @@ const handleVehicle = () => {
                             </p>
                           </div>
 
-                          {vlist && (
+                        
                             <div className="col-md-6 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
@@ -2451,7 +2525,7 @@ const handleVehicle = () => {
                               </p>
                             </div>
                             
-                          )}
+                       
                         </div>
                       </div>
                       <button   type="button"
@@ -2459,6 +2533,8 @@ const handleVehicle = () => {
                 style={{ backgroundColor: "#547899" }} onClick={()=>handleVehicle()}>Save</button>
                     </div>
                   </div>
+                  }
+                
                 </div>
               </div>
             </div>
