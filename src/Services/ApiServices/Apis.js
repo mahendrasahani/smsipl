@@ -62,6 +62,11 @@ class Apis {
     const apiResponse = await apiService.manifest(url + "/Manifest", data);
     return apiResponse.data;
   }
+
+  async BolExcel(url,vid,bolid) {
+    const apiResponse = await apiService.bolexcel(url + "/IntMessageManager/GetBOLExcel",vid,bolid);
+    return apiResponse.data;
+  }
 }
 
 export default new Apis();

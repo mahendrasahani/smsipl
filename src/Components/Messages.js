@@ -13,11 +13,13 @@ import { useNavigate } from "react-router";
 const Messages = () => {
   //present date
   const date = new Date();
-  // const year = date.getFullYear();
-  // const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  // const day = date.getDate().toString().padStart(2, "0");
-  const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const maindate = `${year}-${month}-${day}`;
 
+  // const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
+  
 
   const [statusvalue, setStatus] = useState(0);
   const [startdate, setstartDate] = useState(maindate);
@@ -33,8 +35,10 @@ const Messages = () => {
   const [carriername, setcarriername] = useState("");
   const [items, setitems] = useState([]);
   const [modaldata, setmodaldata] = useState([]);
+  const [vvcode,setVvcode]=useState([]);
+  const [ccode,setCcode]=useState([]);
 
-  // const items = useSelector((state) => state.Items.items);
+  const items2 = useSelector((state) => state.Items.items);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,25 +47,39 @@ const Messages = () => {
     document.title = "DP WORLD | Dashboard";
   }, []);
 
-  // const formatDate2 = (dateString) => {
-  //   const date = new Date(dateString);
-  //   const formattedDate = `${(date.getMonth() + 1)
-  //     .toString()
-  //     .padStart(2, "0")}/${date
-  //     .getDate()
-  //     .toString()
-  //     .padStart(2, "0")}/${date.getFullYear()}`;
-  //   return formattedDate;
-  // };
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}/${date
+      .getDate()
+      .toString()
+      .padStart(2, "0")}/${date.getFullYear()}`;
+    return formattedDate;
+  };
+
+
+
+  // useEffect(() => {
+  
+  //  if(statusvalue==7){
+  //   fetchMessage(startdate, enddate,0);
+  //  }
+  //  else{
+  //   fetchMessage(startdate, enddate, statusvalue);
+  //  }
+  
+  // }, [startdate, enddate, statusvalue]);
 
   useEffect(() => {
+    const start = formatDate2(startdate);
+
+    const end = formatDate2(enddate);
+     
   
-   if(statusvalue==7){
-    fetchMessage(startdate, enddate,0);
-   }
-   else{
-    fetchMessage(startdate, enddate, statusvalue);
-   }
+      (statusvalue!==7) &&
+        fetchMessage(start, end, statusvalue);
+      
   
   }, [startdate, enddate, statusvalue]);
 
@@ -77,7 +95,11 @@ const Messages = () => {
         status
       );
 
-      dispatch(addItems([...apiResponse?.data].sort((a, b) => b.id - a.id)));
+   
+      dispatch(addItems([...apiResponse?.data].sort((a, b) => a.id - b.id)));
+    
+      setitems([...apiResponse?.data].sort((a, b) => a.id - b.id));
+ 
      
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -91,17 +113,35 @@ const Messages = () => {
   
 
 
-
-  useEffect(()=>{
-    if(statusvalue===7){
-      const messages=items?.filter((itm)=>{
-             return itm.status_code===1 || itm?.status_code===2 || itm?.status_code===3 || itm?.status_code===4 || itm?.status_code===5
-      })
-
-      setFilteredItems(messages)
+  useEffect(() => {
+    if (statusvalue === 7) {
+      const messages = items?.filter((itm) => {
+        return itm?.status_code !== 6;
+      });
+      console.log("mess",messages)
+      setFilteredItems(messages);
     }
+  }, [statusvalue, items]);
+
+ 
    
-  },[items])
+    useEffect(() => {
+      if (Array.isArray(items)) {
+        const vesselVisitCodes = items.map((itm) => itm?.manifest?.vessel?.vesselVisitCode);
+        setVvcode([...new Set(vesselVisitCodes)]);
+      }
+    }, [items]);
+
+    useEffect(() => {
+      if (Array.isArray(items)) {
+        const cargoCodes = items.map((itm) => itm?.manifest?.bolList[0]?.cargoCode);
+        setCcode([...new Set(cargoCodes)]);
+      }
+    }, [items]);
+
+
+   
+ 
 
   //------------------------------------------------------------------------------Reset Data----------------------------------------------------------//
 
@@ -227,6 +267,8 @@ const Messages = () => {
     }
   };
 
+
+
   return (
     <>
       <div className="wrapper">
@@ -271,7 +313,7 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="datetime-local"
+                            type="date"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             value={startdate}
@@ -292,7 +334,7 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="datetime-local"
+                            type="date"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             min="2023-01-01"
@@ -347,14 +389,14 @@ const Messages = () => {
                           onChange={(e) => handleVisitChange(e)}
                         >
                           <option value="">Select Vessel Visit code</option>
-                          {Array.isArray(items) &&
-                            items?.map((itm, i) => {
+                          {vvcode && vvcode?.length>0 &&
+                            vvcode?.map((itm, i) => {
                               return (
                                 <option
                                   key={i}
-                                  value={itm?.manifest?.vessel?.vesselVisitCode}
+                                  value={itm}
                                 >
-                                  {itm?.manifest?.vessel?.vesselVisitCode}
+                                  {itm}
                                 </option>
                               );
                             })}
@@ -373,13 +415,13 @@ const Messages = () => {
                           onChange={(e) => handleCargoChange(e)}
                         >
                           <option value="">Select Cargo Code</option>
-                          {Array.isArray(items) &&
-                            items?.map((itm) =>
-                              itm.manifest?.bolList?.map((val) => (
-                                <option key={val?.bolNbr}>
-                                  {val.cargoCode}
+                          {ccode && ccode?.length>0 &&
+                            ccode?.map((itm) =>
+                             
+                                <option key={itm}>
+                                  {itm}
                                 </option>
-                              ))
+                             
                             )}
                         </select>
                       </div>

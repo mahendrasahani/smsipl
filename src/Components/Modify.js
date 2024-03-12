@@ -485,6 +485,31 @@ const handleNavigation = (bolno,data) => {
     }
   };
 
+  
+  const downloadExcel= async (id1,id2) => {
+    try {
+      const data = await Apis.BolExcel(
+        "https://dpw1.afrilogitech.com/api",
+         id1,
+         id2
+      );
+
+   
+      if(data?.success===true){
+        alert("Data download successfully")
+      }
+
+      else{
+        alert("Data not found")
+      }
+
+    } catch (error) {
+      
+      alert("Data not found");
+    } 
+
+  };
+
   return (
     <div className="wrapper">
       <Header />
@@ -516,8 +541,8 @@ const handleNavigation = (bolno,data) => {
 
         {message?.length > 0 && (
                   <>
-                    <h5>BoL List</h5>
-                    <div className="col-md-12 table-responsive">
+                    <h5 style={{padding:"0px 15.5px"}}>BoL List</h5>
+                    <div className="col-md-12 table-responsive" style={{padding:"0px 15.5px"}}>
                       <table className="table table-striped table-sm table-hover text-nowrap">
                         <thead>
                           <tr
@@ -557,11 +582,20 @@ const handleNavigation = (bolno,data) => {
                                       >
                                         <i className="fa fa-edit"></i>
                                       </button>
-                                    ) : (
-                                      <p style={{ color: "darkgreen" }}>
-                                        -
-                                      </p>
-                                    )}
+                                    ) : ((itm?.cargocode).toUpperCase()==="B" ||  (itm?.cargocode).toUpperCase()==="C" || (itm?.cargocode).toUpperCase()==="V"
+                                    )?
+                                    <button
+                                    className="btn btn-sm bg-primary btn-clear"
+                                    onClick={() =>downloadExcel(itm?.vesselvisitcode,itm?.primaryid)}
+                                  >
+                                   
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                  </button>
+                                  :
+
+                                      <p>
+                                             -
+                                      </p>}
                                   </td>
                                 </tr>
                               );
@@ -576,11 +610,13 @@ const handleNavigation = (bolno,data) => {
           <div className="container-fluid">
             <div className="card">
               <div className="card-body">
-                <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                <div className="row">
+                  <div className="col-md-6">
+                  <div className="row mb-1">
+                  <div className="col-md-4">
                     <label>BoL Number:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -591,10 +627,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Cargo Classification Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -605,10 +641,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Cargo Classification Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -619,10 +655,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Consignee:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -633,10 +669,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Consignee Address:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -647,10 +683,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Consignee Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -661,10 +697,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Consignee Tel:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -675,10 +711,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Cargo Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -689,10 +725,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>POD:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -704,10 +740,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Shipper:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -718,10 +754,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Notifier:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -732,10 +768,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Org:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -746,10 +782,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Pol:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -761,10 +797,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Dst:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -776,10 +812,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Place Of Delivery:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -791,10 +827,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Crn:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -806,10 +842,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Bl Type:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -821,10 +857,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Loading Port Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -836,10 +872,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Loading Port Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -851,10 +887,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Destination Place Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -865,10 +901,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Destination Place Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -879,10 +915,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Delivery Place Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -894,10 +930,10 @@ const handleNavigation = (bolno,data) => {
                   </div>
 
                   <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Delivery Place Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -910,10 +946,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Notify Address:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -925,10 +961,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Notify Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -940,10 +976,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Notify Tel:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -958,10 +994,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Shipping Agent Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -973,10 +1009,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Shipping Agent Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -988,10 +1024,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Forwarder Code:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1003,10 +1039,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Forwarder Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1018,10 +1054,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Forwarder Tel:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1033,10 +1069,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Exporter Address:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1048,10 +1084,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Exporter Name:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1063,10 +1099,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Exporter Tel:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1078,10 +1114,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>Exporter Tin:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1093,10 +1129,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName0:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1108,10 +1144,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName1:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1123,10 +1159,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName2:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1137,12 +1173,13 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 
                 </div>
-
-                <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  </div>
+                  <div className="col-md-6">
+                  <div className="row mb-1">
+                  <div className="col-md-4">
                     <label>UserDefinedName3:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1155,10 +1192,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName4:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1171,10 +1208,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName5:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1187,10 +1224,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
                 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName6:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1202,10 +1239,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName7:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1218,10 +1255,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName8:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1234,10 +1271,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedName9:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1250,10 +1287,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode0:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1266,10 +1303,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode1:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1282,10 +1319,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode2:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1297,10 +1334,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode3:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1313,10 +1350,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode4:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1328,10 +1365,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode5:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1343,10 +1380,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode6:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1358,10 +1395,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode7:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1373,10 +1410,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode8:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1389,10 +1426,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedCode9:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1404,10 +1441,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr0:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1419,10 +1456,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr1:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1434,10 +1471,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr2:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1449,10 +1486,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr3:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1464,10 +1501,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr4:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1479,10 +1516,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr5:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1494,10 +1531,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr6:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1510,10 +1547,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr7:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1525,10 +1562,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr8:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1541,10 +1578,10 @@ const handleNavigation = (bolno,data) => {
                 </div>
 
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedNbr9:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1556,10 +1593,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime0:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1571,10 +1608,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime1:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1586,10 +1623,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime2:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1601,10 +1638,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime3:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1616,10 +1653,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime4:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1631,10 +1668,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime5:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1646,10 +1683,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime6:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1661,10 +1698,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime7:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1676,10 +1713,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime8:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1691,10 +1728,10 @@ const handleNavigation = (bolno,data) => {
                 
                 </div>
                 <div className="row mb-1">
-                  <div className="col-md-2 col-6">
+                  <div className="col-md-4">
                     <label>UserDefinedTime9:</label>
                   </div>
-                  <div className="col-md-3 col-6">
+                  <div className="col-md-4">
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -1705,6 +1742,11 @@ const handleNavigation = (bolno,data) => {
                   </div>
                 
                 </div>
+                  </div>
+                </div>
+              
+
+               
              
                
                
@@ -1712,7 +1754,7 @@ const handleNavigation = (bolno,data) => {
 
                 <div className="row mt-3">
                   {
-                    cargolist && 
+                    cargolist && cargolist?.length>0 && 
                     <div className="col-md-4 pr-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
@@ -1739,9 +1781,9 @@ const handleNavigation = (bolno,data) => {
                           </div>
                         </div>
                       </div>
-                      <div className="card-body">
+                      <div className="card-body"> 
                         <div className="row">
-                          <div className="col-md-6 col-6">
+                          <div className="col-md-4col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               MarAndNbr:
                             </p>
@@ -1789,7 +1831,7 @@ const handleNavigation = (bolno,data) => {
                             </p>
                           </div>
                           
-                            <div className="col-md-6 col-6 dataInput">
+                            <div className="col-md-4col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
@@ -1928,7 +1970,7 @@ const handleNavigation = (bolno,data) => {
             
 
                   {
-                    cntrlist && 
+                    cntrlist && cntrlist?.length>0 && 
                     <div className="col-md-4 pl-0 pr-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
@@ -1957,7 +1999,7 @@ const handleNavigation = (bolno,data) => {
                       </div>
                       <div className="card-body">
                         <div className="row">
-                          <div className="col-md-6 col-6">
+                          <div className="col-md-4col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               Cntr Nbr:
                             </p>
@@ -2024,7 +2066,7 @@ const handleNavigation = (bolno,data) => {
                           </div>
 
                          
-                            <div className="col-md-6 col-6 dataInput">
+                            <div className="col-md-4col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
@@ -2208,7 +2250,7 @@ const handleNavigation = (bolno,data) => {
                   }
                 
                   {
-                    vlist && 
+                    vlist && vlist?.length>0 && 
                     <div className="col-md-4 pl-0">
                     <div className="card" style={{ height: "100%" }}>
                       <div
@@ -2237,7 +2279,7 @@ const handleNavigation = (bolno,data) => {
                       </div>
                       <div className="card-body">
                         <div className="row">
-                          <div className="col-md-6 col-6">
+                          <div className="col-md-4col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               Make:
                             </p>
@@ -2302,7 +2344,7 @@ const handleNavigation = (bolno,data) => {
                           </div>
 
                         
-                            <div className="col-md-6 col-6 dataInput">
+                            <div className="col-md-4col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"

@@ -7,7 +7,7 @@ const Login = () => {
     username: "",
     password: "",
   });
-  const token = localStorage.getItem("token") || 0;
+  const token = sessionStorage.getItem("token") || 0;
 
   useEffect(() => {
     if (token) {
@@ -21,7 +21,7 @@ const Login = () => {
       "https://dpw1.afrilogitech.com/api",
       formdata
     );
-    localStorage.setItem("token", apiResponseData.token);
+    sessionStorage.setItem("token", apiResponseData.token);
     window.location.href = "/dashboard";
   };
 
@@ -38,7 +38,7 @@ const Login = () => {
     <div className="row" style={{ overflowX: "hidden" }}>
       <div className="col-md-6 hold-transition login-page logo-div">
         <div className="login-box" align="center">
-          <img src="img/logologin.png" className="img-fluid" width="120px" />
+          <img src="img/logologin.png" className="img-fluid" width="120px" alt="img"/>
         </div>
       </div>
       <div className="col-md-6 hold-transition login-page login-div">
@@ -47,6 +47,7 @@ const Login = () => {
             src="img/logologin1.png"
             className="img-fluid logologin"
             width="120px"
+            alt="IMG"
           />
           <h2 className="font-weight-bold text-white">Hello Again!</h2>
           <h5 className="text-white mb-5" style={{ color: "#e4e4e4" }}>

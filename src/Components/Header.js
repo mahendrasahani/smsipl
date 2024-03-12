@@ -8,7 +8,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const handletoken = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     window.location.href = "/";
   };
 

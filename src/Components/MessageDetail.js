@@ -51,7 +51,7 @@ const MessageDetail = () => {
         window.location.href="/messages"
       }
 
-     
+    
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -119,6 +119,30 @@ const MessageDetail = () => {
   const clearMessage=()=>{
      setbolno("")
   }
+
+  const downloadExcel= async (id1,id2) => {
+    try {
+      const data = await Apis.BolExcel(
+        "https://dpw1.afrilogitech.com/api",
+         id1,
+         id2
+      );
+
+   
+      if(data?.success===true){
+        alert("Data download successfully")
+      }
+
+      else{
+        alert("Data not found")
+      }
+
+    } catch (error) {
+      
+      alert("Data not found");
+    } 
+
+  };
  
 
   return (
@@ -360,7 +384,7 @@ const MessageDetail = () => {
                             message?.map((itm, i) => {
                               return (
                                 <tr key={itm?.bolnbr}>
-                                  <td>{i}</td>
+                                  <td>{i+1}</td>
                                   <td>{itm?.bolnbr}</td>
                                   <td
                                     style={{
@@ -382,11 +406,22 @@ const MessageDetail = () => {
                                       >
                                         <i className="fa fa-edit"></i>
                                       </button>
-                                    ) : (
-                                      <p style={{ color: "darkgreen" }}>
-                                        -
-                                      </p>
-                                    )}
+                                    ) : 
+                                    ((itm?.cargocode).toUpperCase()==="B" ||  (itm?.cargocode).toUpperCase()==="C" || (itm?.cargocode).toUpperCase()==="V"
+                                      )?
+                                      <button
+                                      className="btn btn-sm bg-primary btn-clear"
+                                      onClick={() =>downloadExcel(itm?.vesselvisitcode,itm?.primaryid)}
+                                    >
+                                     
+                                      <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    :
+
+                                        <p>
+                                               -
+                                        </p>
+                                    }
                                   </td>
                                 </tr>
                               );
@@ -921,7 +956,7 @@ const MessageDetail = () => {
                     </div>
                     <div className="row">
                      {
-                       cargolist!==null &&
+                       (cargolist && cargolist?.length>0) &&
                        <div className="col-md-4 pr-0">
                        <div className="card" style={{ height: "100%" }}>
                          <div
@@ -1148,7 +1183,7 @@ const MessageDetail = () => {
                      }
 
                      {
-                        cntrlist!==null &&
+                        cntrlist && cntrlist?.length>0 &&
                         <div className="col-md-4 pl-0 pr-0">
                         <div className="card" style={{ height: "100%" }}>
                           <div
@@ -1448,7 +1483,7 @@ const MessageDetail = () => {
                      }
 
                     {
-                       vlist && 
+                       vlist && vlist?.length>0 && 
                        <div className="col-md-4 pl-0">
                        <div className="card" style={{ height: "100%" }}>
                          <div
