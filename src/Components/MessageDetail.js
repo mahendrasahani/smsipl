@@ -63,6 +63,8 @@ const MessageDetail = () => {
   };
 
 
+
+
   useEffect(() => {
     const filterbol =
       message && message?.filter((itm) => itm?.bolnbr === bolno);
@@ -144,6 +146,7 @@ const MessageDetail = () => {
 
   };
  
+  console.log("bolmessage",message)
 
   return (
     <div className="wrapper">
@@ -471,7 +474,7 @@ const MessageDetail = () => {
                 {bolno && (
                   <>
                     <div className="row mb-4">
-                      <div className="col-md-2 col-6">
+                      <div className="col-md-3 col-6">
                         <p className="mb-0 height-box" style={{ fontWeight: "600" }}>
                           BoL Number:
                         </p>
@@ -987,9 +990,9 @@ const MessageDetail = () => {
                              </div>
                            </div>
                          </div>
-                         <div className="card-body">
+                         <div className="card-body" style={{padding:"5px"}}>
                            <div className="row">
-                             <div className="col-md-6 col-6">
+                             <div className="col-md-7 col-6">
                                <p
                                  className="mb-1 height-box"
                                  style={{ fontWeight: "600" }}
@@ -1082,7 +1085,7 @@ const MessageDetail = () => {
                                  Remarks:
                                </p>
                              </div>
-                               <div className="col-md-6 col-6">
+                               <div className="col-md-5 col-6">
                                  <p
                                    className="mb-1 height-box"
                                    style={{ color: "#676767" }}
@@ -1214,10 +1217,10 @@ const MessageDetail = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="card-body">
+                          <div className="card-body" style={{padding:"5px"}}>
                            
                               <div className="row">
-                                <div className="col-md-6 col-6">
+                                <div className="col-md-7 col-6">
                                   <p
                                     className="mb-1 height-box"
                                     style={{ fontWeight: "600" }}
@@ -1346,7 +1349,7 @@ const MessageDetail = () => {
                                   </p>
                                 </div>
 
-                                <div className="col-md-6 col-6">
+                                <div className="col-md-5 col-6">
                                   <p
                                     className="mb-1 height-box"
                                     style={{ color: "#676767" }}
@@ -1514,9 +1517,9 @@ const MessageDetail = () => {
                              </div>
                            </div>
                          </div>
-                         <div className="card-body">
+                         <div className="card-body" style={{padding:"5px"}}>
                            <div className="row">
-                             <div className="col-md-6 col-6">
+                             <div className="col-md-7 col-6">
                                <p
                                  className="mb-1 height-box"
                                  style={{ fontWeight: "600" }}
@@ -1593,7 +1596,7 @@ const MessageDetail = () => {
                            </p>
                              </div>
                              
-                               <div className="col-md-6 col-6">
+                               <div className="col-md-5 col-6">
                                  <p
                                    className="mb-1 height-box"
                                    style={{ color: "#676767" }}

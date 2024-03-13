@@ -11,14 +11,10 @@ import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
 
 const Messages = () => {
-  //present date
+  
   const date = new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const maindate = `${year}-${month}-${day}`;
+  const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
 
-  // const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
   
 
   const [statusvalue, setStatus] = useState(0);
@@ -38,8 +34,6 @@ const Messages = () => {
   const [vvcode,setVvcode]=useState([]);
   const [ccode,setCcode]=useState([]);
 
-  const items2 = useSelector((state) => state.Items.items);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,37 +41,19 @@ const Messages = () => {
     document.title = "DP WORLD | Dashboard";
   }, []);
 
+
   const formatDate2 = (dateString) => {
-    const date = new Date(dateString);
-    const formattedDate = `${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${date
-      .getDate()
-      .toString()
-      .padStart(2, "0")}/${date.getFullYear()}`;
-    return formattedDate;
+    const parsedTime = moment(dateString);
+    const formattedTime = parsedTime.format("DD-MM-YYYY HH:mm");
+    return formattedTime;
   };
 
 
-
-  // useEffect(() => {
-  
-  //  if(statusvalue==7){
-  //   fetchMessage(startdate, enddate,0);
-  //  }
-  //  else{
-  //   fetchMessage(startdate, enddate, statusvalue);
-  //  }
-  
-  // }, [startdate, enddate, statusvalue]);
-
   useEffect(() => {
     const start = formatDate2(startdate);
-
     const end = formatDate2(enddate);
-     
   
-      (statusvalue!==7) &&
+    (statusvalue!=7) &&
         fetchMessage(start, end, statusvalue);
       
   
@@ -86,6 +62,7 @@ const Messages = () => {
   // --------------------------------Fetching data from getMessageList Api--------------------------------------//
 
   const fetchMessage = async (start, end , status ) => {
+  
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
@@ -95,12 +72,9 @@ const Messages = () => {
         status
       );
 
-   
-      dispatch(addItems([...apiResponse?.data].sort((a, b) => a.id - b.id)));
+        dispatch(addItems(apiResponse?.data));
+        setitems(apiResponse?.data);
     
-      setitems([...apiResponse?.data].sort((a, b) => a.id - b.id));
- 
-     
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
@@ -108,17 +82,15 @@ const Messages = () => {
     }
   };
 
-  
+  console.log("items",items)
+
  
-  
-
-
   useEffect(() => {
-    if (statusvalue === 7) {
+    if (statusvalue == 7) {
       const messages = items?.filter((itm) => {
         return itm?.status_code !== 6;
       });
-      console.log("mess",messages)
+    
       setFilteredItems(messages);
     }
   }, [statusvalue, items]);
@@ -146,14 +118,15 @@ const Messages = () => {
   //------------------------------------------------------------------------------Reset Data----------------------------------------------------------//
 
   const handleResetData = () => {
-    setbolno("");
-    setVisitcode("");
+   setCargocode("")
+   setVisitcode("")
     setcarriername("");
     setFilteredItems(items);
+    setStatus(0)
   };
 
   const handleFiltermessage = () => {
-    let filteredData = items;
+    let filteredData = filteredItems ? filteredItems :items;
 
     if (visitcode !== "") {
       filteredData = filteredData.filter((itm) =>
@@ -193,7 +166,8 @@ const Messages = () => {
 
 
   useEffect(() => {
-    setFilteredItems(items);
+    Array.isArray(items) &&
+    setFilteredItems([...items].sort((a, b) => a.id - b.id));
   }, [items]);
 
   const handleVisitChange = (e) => {
@@ -304,7 +278,7 @@ const Messages = () => {
                 <div className="card-body">
                   <h5>Search Results </h5>
                   <div className="row mt-3">
-                    <div className="col-md-2">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label>From Date</label>
                         <div
@@ -313,19 +287,19 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="date"
+                            type="datetime-local"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             value={startdate}
                             min="2023-01-01"
-                            max={new Date().toISOString().split("T")[0]}
+                            max={moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
                             onChange={(e) => setstartDate(e.target.value)}
                             data-target="#reservationdate"
                           />
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label>To Date</label>
                         <div
@@ -334,11 +308,11 @@ const Messages = () => {
                           data-target-input="nearest"
                         >
                           <input
-                            type="date"
+                            type="datetime-local"
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             min="2023-01-01"
-                            max={new Date().toISOString().split("T")[0]}
+                            max={moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
                             value={enddate}
                             onChange={(e) => setendDate(e.target.value)}
                             data-target="#reservationdate"
@@ -346,7 +320,7 @@ const Messages = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-3">
                       <div className="form-group">
                         <label>Status</label>
                         <select
@@ -374,13 +348,7 @@ const Messages = () => {
                     <div className="col-md-2">
                       <div className="form-group">
                         <label>Vessel Visit Code</label>
-                        {/* <input
-                          type="text"
-                          className="form-control form-control-sm"
-                          id="mr-nno"
-                          value={visitcode}
-                          onChange={(e) => handleVisitChange(e)}
-                        /> */}
+                       
                         <select
                           name="SelectStatus"
                           className="form-control form-control-sm"
@@ -503,7 +471,7 @@ const Messages = () => {
                         </tbody>
                       ) : (
                         <tbody style={{ fontSize: "12px" }}>
-                          {filteredItems &&
+                          {filteredItems && filteredItems?.length>0 &&
                             Array.isArray(filteredItems) &&
                             filteredItems?.map((itm,i) => {
                               return (

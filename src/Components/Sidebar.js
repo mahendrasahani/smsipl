@@ -15,9 +15,9 @@ const Sidebar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768 && hidden === false) {
+      if (window.innerWidth < 1200 && hidden === false) {
         dispatch(setHidden(!hidden));
-      } else if (window.innerWidth >= 768 && hidden === true) {
+      } else if (window.innerWidth >= 1200 && hidden === true) {
         dispatch(setHidden(!hidden));
       }
     };
@@ -47,7 +47,7 @@ const Sidebar = () => {
     const handleClickOutside = (event) => {
       if (
         sidebarRef.current &&
-        window.innerWidth < 992 &&
+        window.innerWidth < 1200 &&
         !sidebarRef.current.contains(event.target)
       ) {
         dispatch(setHidden(!hidden));
@@ -74,7 +74,7 @@ const Sidebar = () => {
       }}
     >
       <a
-        href="index.html"
+        href="/dashboard"
         className="brand-link"
         style={{ paddingBottom: "0px" }}
       >
@@ -124,6 +124,16 @@ const Sidebar = () => {
               >
                 <img src="img/manage.png" className="img-responsive sidebar-img" />
                 <p>Users</p>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="/help"
+                className={`nav-link ${url == "users" ? "active" : ""}`}
+                style={{ height: "41px", padding: "8px" }}
+              >
+                <img src="img/manage.png" className="img-responsive sidebar-img" />
+                <p>Help Section</p>
               </a>
             </li>
           </ul>

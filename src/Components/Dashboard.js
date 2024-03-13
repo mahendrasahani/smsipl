@@ -13,28 +13,38 @@ const Dashboard = () => {
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const items = useSelector((state) => state.Items.items);
 
+  const get8HoursBefore = () => {
+    const currentTime = moment();
+    const eightHoursBefore = currentTime.subtract(8, 'hours');
+    const formattedTime = eightHoursBefore.format('YYYY-MM-DDTHH:mm');
+    return formattedTime;
+};
+
+
   useEffect(() => {
     document.title = "DP WORLD | Dashboard";
   }, []);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(
-    moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')
+   get8HoursBefore()
   );
   const [endDate, setEndDate] = useState(
     moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')
   );
   const [statusValue, setStatusValue] = useState(0);
 
-  // const formatDate = (dateString) => {
-  //   const date = new Date(dateString);
-  //   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  // };
+ 
+  const formatDate2 = (dateString) => {
+    const parsedTime = moment(dateString);
+    const formattedTime = parsedTime.format("DD-MM-YYYY HH:mm");
+    return formattedTime;
+  };
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
+
     if (token) {
- 
-      fetchMessage(startDate, endDate);
+      fetchMessage(formatDate2(startDate), formatDate2(endDate));
     } else {
       window.location.href = "/";
     }
@@ -58,8 +68,8 @@ const Dashboard = () => {
 
   const handleRemoveFilter = () => {
     setStatusValue("");
-    setStartDate(new Date().toISOString().split("T")[0]);
-    setEndDate(new Date().toISOString().split("T")[0]);
+    setStartDate(moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm'));
+    setEndDate(moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm'));
   };
 
   return (
@@ -94,7 +104,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row">
-                  <div className="col-md-5">
+                  <div className="col-md-6">
                     <div className="row mb-3">
                       <div className="col-md-4 col-4">
                         <label>Search Results </label>
@@ -115,7 +125,7 @@ const Dashboard = () => {
                               type="datetime-local"
                               value={startDate}
                               min="2023-01-01"
-                              max={new Date().toISOString().split("T")[0]}
+                              max={moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
                               onChange={(e) => setStartDate(e.target.value)}
                             />
                           </div>
@@ -134,7 +144,7 @@ const Dashboard = () => {
                               className="form-control form-control-sm datetimepicker-input date-pick"
                               type="datetime-local"
                               min="2023-01-01"
-                              max={new Date().toISOString().split("T")[0]}
+                              max={moment(new Date(), 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
                               value={endDate}
                               onChange={(e) => setEndDate(e.target.value)}
                             />
@@ -160,9 +170,9 @@ const Dashboard = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-1"></div>
+                
                   {(
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                       <div className="card">
                         <div className="card-body">
                           <GraphCard itemsData={items} />

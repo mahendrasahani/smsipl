@@ -6,29 +6,28 @@ import { useEffect, useState } from "react";
 defaults.plugins.title.display = "true";
 
 const GraphCard= ({ itemsData }) => {
-
- 
+  
 
   const [messagedetails, setmessagedetails] = useState({
-    detailsinserted: 0,
-    insertionfailed: 0,
+    // detailsinserted: 0,
+    // insertionfailed: 0,
     transfersuccessful: 0,
     transferfailed: 0,
-    rawdatarecieved:0,
-    validationfailed:0,
-    validationsuccessful:0,
+    // rawdatarecieved:0,
+    // validationfailed:0,
+    // validationsuccessful:0,
   });
 
   useEffect(() => {
     setmessagedetails((prevState) => ({
       ...prevState,
-      detailsinserted: 0,
-      insertionfailed: 0,
+      // detailsinserted: 0,
+      // insertionfailed: 0,
       transfersuccessful: 0,
       transferfailed: 0,
-      rawdatarecieved:0,
-      validationfailed:0,
-      validationsuccessful:0,
+      // rawdatarecieved:0,
+      // validationfailed:0,
+      // validationsuccessful:0,
     }));
   
     itemsData && itemsData.length>0 && (typeof itemsData!="string") &&
@@ -37,7 +36,7 @@ const GraphCard= ({ itemsData }) => {
           if (itm.status_code ===1) {
             return {
               ...prevState,
-             rawdatarecieved: prevState.rawdatarecieved + 1,
+              transferfailed: prevState. transferfailed + 1,
             };
           }
 
@@ -45,28 +44,28 @@ const GraphCard= ({ itemsData }) => {
           if (itm.status_code ===2) {
             return {
               ...prevState,
-             validationfailed: prevState.validationfailed + 1,
+              transferfailed: prevState. transferfailed + 1,
             };
           }
 
           if (itm.status_code ===3) {
             return {
               ...prevState,
-             validationsuccessful: prevState.validationsuccessful + 1,
+              transferfailed: prevState. transferfailed + 1,
             };
           }
 
           if (itm.status_code === 4) {
             return {
               ...prevState,
-              detailsinserted: prevState.detailsinserted + 1,
+              transferfailed: prevState.transferfailed + 1,
             };
           }
   
           if (itm.status_code === 5) {
             return {
               ...prevState,
-              insertionfailed: prevState.insertionfailed + 1,
+              transferfailed: prevState. transferfailed + 1,
             };
           }
   
@@ -100,41 +99,45 @@ const GraphCard= ({ itemsData }) => {
       }}
     >
       <div className="graph-card">
-        {Array.isArray(itemsData) ? (
+        {Array.isArray(itemsData) && (itemsData?.length>0) ? (
           <Pie
             data={{
               labels: [
-                "Raw Data Received",
-                "Validation Successful",
-                "Validation Failed",
-                "Details Inserted",
-                "Details Insertion Failed",
+              
                 "Transfer Successful",
               
                 "Transfer Failed",
 
               ],
+              // "Raw Data Received",
+              // "Validation Successful",
+              // "Validation Failed",
+              // "Details Inserted",
+              // "Details Insertion Failed",
               datasets: [
                 {
                   label: "No. of messages",
                   data: [
-                    messagedetails.rawdatarecieved,
-                    messagedetails.validationsuccessful,
-                    messagedetails.validationfailed,
-                    messagedetails.detailsinserted,
-                    messagedetails.insertionfailed,
+          
                     messagedetails.transfersuccessful,
                     messagedetails.transferfailed,
                   ],
+
+                  // messagedetails.rawdatarecieved,
+                  // messagedetails.validationsuccessful,
+                  // messagedetails.validationfailed,
+                  // messagedetails.detailsinserted,
+                  // messagedetails.insertionfailed,
+
                   backgroundColor: [
-                    "grey",
-                    "orange",
                     "green",
-                    "blue",
-                    "purple",
-                    "#28a745",
+                    // "orange",
                     "red",
-                    "rgb(255, 180, 220)",
+                    // "blue",
+                    // "purple",
+                    // "#28a745",
+                    // "red",
+                    // "rgb(255, 180, 220)",
                   ],
                   hoverOffset: 4,
                 },

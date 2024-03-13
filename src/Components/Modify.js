@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import {useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modify2 = () => {
   const location = useLocation();
@@ -560,7 +561,7 @@ const handleNavigation = (bolno,data) => {
                             message?.map((itm, i) => {
                               return (
                                 <tr key={itm?.bolnbr}>
-                                  <td>{i}</td>
+                                  <td>{i+1}</td>
                                   <td>{itm?.bolnbr}</td>
                                   <td
                                     style={{
@@ -1781,9 +1782,9 @@ const handleNavigation = (bolno,data) => {
                           </div>
                         </div>
                       </div>
-                      <div className="card-body"> 
+                      <div className="card-body" style={{padding:"5px"}}> 
                         <div className="row">
-                          <div className="col-md-4col-6">
+                          <div className="col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               MarAndNbr:
                             </p>
@@ -1831,7 +1832,7 @@ const handleNavigation = (bolno,data) => {
                             </p>
                           </div>
                           
-                            <div className="col-md-4col-6 dataInput">
+                            <div className="col-md-4 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
@@ -1997,9 +1998,9 @@ const handleNavigation = (bolno,data) => {
                           </div>
                         </div>
                       </div>
-                      <div className="card-body">
+                      <div className="card-body"  style={{padding:"5px"}}>
                         <div className="row">
-                          <div className="col-md-4col-6">
+                          <div className="col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               Cntr Nbr:
                             </p>
@@ -2066,7 +2067,7 @@ const handleNavigation = (bolno,data) => {
                           </div>
 
                          
-                            <div className="col-md-4col-6 dataInput">
+                            <div className="col-md-4 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"
@@ -2277,9 +2278,9 @@ const handleNavigation = (bolno,data) => {
                           </div>
                         </div>
                       </div>
-                      <div className="card-body">
+                      <div className="card-body"  style={{padding:"5px"}}>
                         <div className="row">
-                          <div className="col-md-4col-6">
+                          <div className="col-md-4 col-6">
                             <p className="mb-2" style={{ fontWeight: "600" }}>
                               Make:
                             </p>
@@ -2344,7 +2345,7 @@ const handleNavigation = (bolno,data) => {
                           </div>
 
                         
-                            <div className="col-md-4col-6 dataInput">
+                            <div className="col-md-4 col-6 dataInput">
                               <p className="mb-1" style={{ color: "#676767" }}>
                                 <input
                                   type="text"

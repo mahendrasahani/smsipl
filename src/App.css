@@ -450,14 +450,13 @@ gap: 26px;
 }
 
 input[type="datetime-local"] {
-  padding: 14.5px;
-  width: 297px;
   font-family: Public Sans;
   font-size: 18px;
   border: none;
   outline: none;
   border: 1px solid #ced4da;
   color: rgba(17, 17, 19, 0.6);
+  cursor: pointer;
 }
 
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
@@ -491,25 +490,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   gap: 22px;
 }
 
-/* .filter-btn {
-  padding: 11px;
-  width: 327px;
-  height: 53px;
-  background-color: #0575E6;
-  border: 1px solid grey;
-  color: white;
-  font-size: 21px;
-  border-radius: 5px;
-  line-height: 29.4px;
-} */
 
-/* .filter-btn:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #0575e6;
-} */
-
-/* date-field */
 
 .date-field {
   justify-content: space-between;
@@ -522,12 +503,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
 
 @media only screen and (max-width: 1571px) {
-  input[type="date"] {
-   
-    width: 220px;
-    height: 3px;
-    font-size: 16px;
-  }
+
 
   .download-btn>span:nth-child(2)>img {
     width: 14px;
@@ -538,13 +514,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     width: 260px;
     padding: 9px;
   }
-
-  /* .filter-btn {
-    padding: 8px;
-    width: 180px;
-    height: 37px;
-    font-size: 13px;
-  } */
 
   .date-field {
     width: 440px;
@@ -560,12 +529,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     width: 160px;
   }
 
-  /* .filter-btn {
-    width: 200px;
-    height: 40px;
-    padding: 0;
-  } */
-
   .date-input > input[type="date"] {
     width: 79%;
   }
@@ -576,8 +539,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   }
 
   input[type="date"] {
-    padding: 14.5px;
-    width: 157px;
     font-size: 14px;
   }
 
@@ -589,6 +550,13 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .searchbox h1 {
     font-size: 22px;
   }
+}
+
+@media only screen and (max-width:1220px) {
+  input[type="datetime-local"] {
+    font-size: 14px;
+  }
+  
 }
 
 @media only screen and (max-width:768px) {
@@ -612,15 +580,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     font-size: 14px;
     width: 178px;
   }
-
-  /* .filter-btn {
-    margin-top: 20px;
-    width: 160px;
-    height: 36px;
-    padding: 0;
-    font-weight: 600;
-  } */
-
 
 }
 
@@ -1300,3 +1259,51 @@ canvas{
   transform: translate(-50%, -50%);
 }
 
+
+
+/* --------------------------------------------------------------Help Section ------------------------------------------------------------------*/
+.help-section{
+  gap: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+}
+
+.help-section>div{
+max-width: 800px;
+box-shadow:1px 2px 2px grey;
+}
+
+.help-section >div>img{
+  width: 800px;
+  padding: 20px 0px;
+}
+
+.help-section >div>h5{
+  text-decoration: underline;
+ 
+}
+
+.help-details>p>ul{
+  padding: 0px 40px;
+}
+
+@media only screen and (max-width:920px) {
+  .help-section>div{
+    max-width: 500px;
+    }
+    
+    .help-section >div>img{
+      width: 500px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+  .help-section>div{
+    max-width: 300px;
+    }
+    
+    .help-section >div>img{
+      width: 300px;
+    }
+}

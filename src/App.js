@@ -7,12 +7,11 @@ import MessageDetail from "./Components/MessageDetail";
 import Dashboard from "./Components/Dashboard";
 import Modify from "./Components/Modify";
 import Users from "./Components/Users";
+import HelpSection from "./Components/HelpSection";
 
 
 const App = () => {
  
-
-
   return (
     <div className="App">
       <Routes>
@@ -22,6 +21,7 @@ const App = () => {
         <Route path="/messageDetails" element={<MessageDetail />} />
         <Route path="/users" element={<Users/>} />
         <Route path="/modify" element={<Modify/>} />
+        <Route path="/help" element={<HelpSection/>} />
       </Routes>
     </div>
   );
