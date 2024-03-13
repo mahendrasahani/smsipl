@@ -142,7 +142,7 @@ const HelpSection = () => {
 
             <img src="img/modify3.png" alt="" />
             <hr />
-            <p>- Then at the last there is save and edit button ,which will save whole data and modify it.</p>
+            <p>- Then at the last there is save and update button ,which will save whole data and modify it.</p>
             
          
         </div>
