@@ -44,7 +44,7 @@ const Messages = () => {
 
   const formatDate2 = (dateString) => {
     const parsedTime = moment(dateString);
-    const formattedTime = parsedTime.format("DD-MM-YYYY HH:mm");
+    const formattedTime = parsedTime.format("YYYY-MM-DD HH:mm");
     return formattedTime;
   };
 
@@ -52,6 +52,8 @@ const Messages = () => {
   useEffect(() => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
+
+   
   
     (statusvalue!=7) &&
         fetchMessage(start, end, statusvalue);
