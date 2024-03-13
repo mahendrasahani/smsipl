@@ -59,7 +59,7 @@ const HelpSection = () => {
             <hr />
           <p>- This is the admin dashboard page,which is divided into two parts one is for filteration and other part is piechart.</p>
             <p>- In the filteration part,there are two date input where you have to select specific dates for which you want the data,default values for these date input is today's date.</p>
-            <p>- Then there are two buttons ,one is clearAll which when clicked,all filters resets to default values i.e todays date will be shown.</p>
+            <p>- Then there are two buttons ,one is clearAll which when clicked,all filters reset to default values i.e todays date will be shown.</p>
             <p>- The second button download excel sheet,will download an excel file according to the date filters you choose.</p>
             <p>- Then there is second part which is a piechart of message details ,which shows us no. of successful and failed messages on choosen dates.</p>
           </div>
@@ -70,7 +70,7 @@ const HelpSection = () => {
         <img src="img/logout.png" alt="img" />
           <div  className='help-details'>
             <hr />
-          <p>- When someone click on user icon , a logout popup will open,when clicked ,user will get logout</p>
+          <p>- When someone clicks on the user icon, a logout popup will open. When clicked, the user will get logged out.</p>
           
           </div>
         </div>
@@ -82,7 +82,7 @@ const HelpSection = () => {
         <p>- This the the message page,which shows the list of messages.</p>
             <p>- This page also contains two section one for filters which consists of date inputs ,a select box having two values i.e transfer successful and transfer failed,a select box of vessel visit code,a select box of cargo code,a input field of mrn number,a input field of carrier name and two buttons ,one for search and one for clear all filters.</p>
             <p>- Second one is list of all messages in a table.</p>
-            <p>- In table ,thare are details og messages i.e date of creation,mrn number,vessel visit code,bol count,status and three actions</p>
+            <p>- In table ,there are details of messages i.e date of creation,mrn number,vessel visit code,bol count,status and three actions</p>
             <p>- The three action button works as defined:
                 <ul>
                 <li><b>View :</b>When clicked,the user navigates to message details page which shows the message details of individual messages.</li>
@@ -123,9 +123,9 @@ const HelpSection = () => {
         <div>
             <img src="img/message4.png" alt="" />
             <hr />
-            <p>- Here you will see the details of bolcargos,bolcontainers and bolvehicles.</p>
-            <p>- At the top right section ,you can select the different bolcargo or bolcontainers or bolvehicles.</p>
-            <p>- Then there is a reporcess button,which will reprocess the message if the message is transfer failed or details insertion failed.</p>
+            <p>- Here you will see the detail of bolcargos, bolcontainers and bolvehicles.</p>
+            <p>- At the top right section ,you can select the different bolcargo or bolcontainer or bolvehicle.</p>
+            <p>- Then there is a reprocess button,which will reprocess the message, if the message is transfer failed or details insertion failed.</p>
         </div>
 
         <div>
@@ -137,12 +137,12 @@ const HelpSection = () => {
 
             <img src="img/modify2.png" alt="" />
             <hr />
-            <p>- Then there is the bolcargo details, bolcontainers details and bolvehicles details ,which u can modify.</p>
-            <p>- Whenever u select one cargo, after editing it u have to click the save button which will save the details and then u can  go to another bolcargo data,same procedure can followed for both bolcontainers and bol vehicles.</p>
+            <p>- Then there is the bolcargos detail, bolcontainers detail and bolvehicles detail ,which u can modify.</p>
+            <p>- Whenever u select one cargo, after editing it u have to click the save button which will save the details and then u can  go and select other cargo from select dropdown ,same procedure can followed for both bolcontainers and bol vehicles.</p>
 
             <img src="img/modify3.png" alt="" />
             <hr />
-            <p>- Then at the last there is save and update button ,which will save whole data and modify it.</p>
+            <p>- Then at the last there is save and update button , which will save whole data and modify it.</p>
             
          
         </div>
