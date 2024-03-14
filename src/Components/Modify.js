@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import {useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modify2 = () => {
   const location = useLocation();
@@ -544,6 +543,7 @@ const handleNavigation = (bolno,data) => {
                   <>
                     <h5 style={{padding:"0px 15.5px"}}>BoL List</h5>
                     <div className="col-md-12 table-responsive" style={{padding:"0px 15.5px"}}>
+                    
                       <table className="table table-striped table-sm table-hover text-nowrap">
                         <thead>
                           <tr
@@ -566,17 +566,17 @@ const handleNavigation = (bolno,data) => {
                                   <td
                                     style={{
                                       color:
-                                        itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                        itm?.errorlist?.length > 0 || itm?.pushstatus===7
                                           ? "#FF0000"
                                           : "darkgreen",
                                     }}
                                   >
-                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus===7
                                       ? "Transfer Failed"
                                       : "Successful"}
                                   </td>
                                   <td>
-                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7 ? (
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus===7 ? (
                                       <button
                                         className="btn btn-sm bg-primary btn-clear"
                                         onClick={() => handleNavigation(itm.bolnbr,id)}
@@ -605,7 +605,9 @@ const handleNavigation = (bolno,data) => {
                       </table>
                     </div>
                   </>
-                )}
+                )
+             
+              }
 
         <section className="content pb-3">
           <div className="container-fluid">

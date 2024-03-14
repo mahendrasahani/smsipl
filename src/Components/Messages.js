@@ -33,6 +33,7 @@ const Messages = () => {
   const [modaldata, setmodaldata] = useState([]);
   const [vvcode,setVvcode]=useState([]);
   const [ccode,setCcode]=useState([]);
+  const items2=useSelector(state=>state.Items.items)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,16 +53,13 @@ const Messages = () => {
   useEffect(() => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
-
-   
   
     (statusvalue!=7) &&
-        fetchMessage(start, end, statusvalue);
-      
+        fetchMessage(start, end, statusvalue);  
   
   }, [startdate, enddate, statusvalue]);
 
-  // --------------------------------Fetching data from getMessageList Api--------------------------------------//
+  // -------------------------------------------------------Fetching data from getMessageList Api--------------------------------------------------------//
 
   const fetchMessage = async (start, end , status ) => {
   
@@ -73,8 +71,10 @@ const Messages = () => {
         end,
         status
       );
-
+        
+      if(status!=6)
         dispatch(addItems(apiResponse?.data));
+
         setitems(apiResponse?.data);
     
     } catch (error) {
@@ -89,7 +89,7 @@ const Messages = () => {
  
   useEffect(() => {
     if (statusvalue == 7) {
-      const messages = items?.filter((itm) => {
+      const messages = items2?.filter((itm) => {
         return itm?.status_code !== 6;
       });
     
@@ -123,8 +123,8 @@ const Messages = () => {
    setCargocode("")
    setVisitcode("")
     setcarriername("");
-    setFilteredItems(items);
-    setStatus(0)
+    setFilteredItems([...items].sort((a, b) => a.id - b.id));
+    
   };
 
   const handleFiltermessage = () => {

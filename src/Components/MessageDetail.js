@@ -392,17 +392,17 @@ const MessageDetail = () => {
                                   <td
                                     style={{
                                       color:
-                                        itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                        itm?.errorlist?.length > 0 || itm?.pushstatus===7
                                           ? "#FF0000"
                                           : "darkgreen",
                                     }}
                                   >
-                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus===7
                                       ? "Transfer Failed"
                                       : "Successful"}
                                   </td>
                                   <td>
-                                    {itm?.errorlist?.length > 0 || itm?.pushstatus==7 ? (
+                                    {itm?.errorlist?.length > 0 || itm?.pushstatus===7 ? (
                                       <button
                                         className="btn btn-sm bg-primary btn-clear"
                                         onClick={() => handleNavigation(itm.bolnbr,id)}
