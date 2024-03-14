@@ -163,7 +163,6 @@ const Messages = () => {
         )
       );
     }
-
     setFilteredItems(filteredData);
   };
 
