@@ -47,7 +47,7 @@ const MessageDetail = () => {
 
       
       if(typeof data?.data=== "string"){
-        alert("No data found for given message Id");
+        alert(`No data found for given message Id -${id}`);
         window.location.href="/messages"
       }
 
@@ -146,7 +146,7 @@ const MessageDetail = () => {
 
   };
  
-  console.log("bolmessage",message)
+
 
   return (
     <div className="wrapper">
