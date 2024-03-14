@@ -181,7 +181,7 @@ class ApiService {
             if (err && err.response && err.response.data && err.response.data.message) {
               alert(err.response.data.message);
             } else {
-              alert("No data found")
+              alert(err)
             }
           }
         });

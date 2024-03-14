@@ -51,6 +51,7 @@ const MessageDetail = () => {
         window.location.href="/messages"
       }
 
+      console.log("data",data?.data)
     
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
@@ -123,10 +124,11 @@ const MessageDetail = () => {
   }
 
   const downloadExcel= async (id1,id2) => {
+   
     try {
       const data = await Apis.BolExcel(
         "https://dpw1.afrilogitech.com/api",
-         id1,
+         String(id1),
          id2
       );
 

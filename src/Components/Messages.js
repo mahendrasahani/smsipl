@@ -30,7 +30,7 @@ const Messages = () => {
   const [cargocode, setCargocode] = useState("");
   const [bolno, setbolno] = useState("");
   const [carriername, setcarriername] = useState("");
-  const [items, setitems] = useState([]);
+  const [items, setitems] = useState(null);
   const [modaldata, setmodaldata] = useState([]);
   const [vvcode,setVvcode]=useState([]);
   const [ccode,setCcode]=useState([]);
@@ -72,9 +72,10 @@ const Messages = () => {
         status
       );
         
-      if(status!=6)
+      if(status!=6){
         dispatch(addItems(apiResponse?.data));
-
+      }
+    
         setitems(apiResponse?.data);
 
        
@@ -171,12 +172,16 @@ const Messages = () => {
 
 
   useEffect(() => {
-    Array.isArray(items) ?
-    setFilteredItems([...items].sort((a, b) => a.id - b.id))
-    :
-    setFilteredItems([])
+    if (Array.isArray(items)) {
+      setFilteredItems([...items].sort((a, b) => a.id - b.id));
+      setFilteredItems2([...items].sort((a, b) => a.id - b.id));
+    } else {
+      setFilteredItems([]);
+      setFilteredItems2([]);
+    }
   }, [items]);
-
+  
+  
   const handleVisitChange = (e) => {
     setVisitcode(e.target.value);
   };
