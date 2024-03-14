@@ -62,9 +62,6 @@ const Messages = () => {
   // -------------------------------------------------------Fetching data from getMessageList Api--------------------------------------------------------//
 
   const fetchMessage = async (start, end , status ) => {
-   console.log("sartrt",start)
-   console.log("end",end)
-   console.log("sta",status)
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
@@ -98,7 +95,7 @@ const Messages = () => {
         return itm?.status_code !== 6;
       });
     
-      setFilteredItems(messages);
+      setFilteredItems([...messages].sort((a, b) => a.id - b.id));
     }
   }, [statusvalue, items]);
 
@@ -173,7 +170,6 @@ const Messages = () => {
 
 
   useEffect(() => {
-    
     Array.isArray(items) ?
     setFilteredItems([...items].sort((a, b) => a.id - b.id))
     :
