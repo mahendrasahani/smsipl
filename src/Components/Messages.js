@@ -22,6 +22,7 @@ const Messages = () => {
   const [enddate, setendDate] = useState(maindate);
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [filteredItems, setFilteredItems] = useState(null);
+  const [filteredItems2,setFilteredItems2] =useState(null);
   const [loading, setLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,6 +97,7 @@ const Messages = () => {
       });
     
       setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+      setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
     }
   }, [statusvalue, items]);
 
@@ -125,12 +127,12 @@ const Messages = () => {
    setCargocode("")
    setVisitcode("")
     setcarriername("");
-    setFilteredItems([...items].sort((a, b) => a.id - b.id));
+    setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
     
   };
 
   const handleFiltermessage = () => {
-    let filteredData = filteredItems ? filteredItems :items;
+    let filteredData = filteredItems2 ? filteredItems2 :items;
 
     if (visitcode !== "") {
       filteredData = filteredData.filter((itm) =>
