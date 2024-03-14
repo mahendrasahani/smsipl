@@ -105,18 +105,18 @@ const Messages = () => {
  
    
     useEffect(() => {
-      if (Array.isArray(items)) {
-        const vesselVisitCodes = items.map((itm) => itm?.manifest?.vessel?.vesselVisitCode);
+      if (Array.isArray(items2)) {
+        const vesselVisitCodes = items2.map((itm) => itm?.manifest?.vessel?.vesselVisitCode);
         setVvcode([...new Set(vesselVisitCodes)]);
       }
-    }, [items]);
+    }, [items2]);
 
     useEffect(() => {
-      if (Array.isArray(items)) {
-        const cargoCodes = items.map((itm) => itm?.manifest?.bolList[0]?.cargoCode);
+      if (Array.isArray(items2)) {
+        const cargoCodes = items2.map((itm) => itm?.manifest?.bolList[0]?.cargoCode);
         setCcode([...new Set(cargoCodes)]);
       }
-    }, [items]);
+    }, [items2]);
 
 
    
@@ -174,10 +174,11 @@ const Messages = () => {
   useEffect(() => {
     if (Array.isArray(items)) {
       setFilteredItems([...items].sort((a, b) => a.id - b.id));
-      setFilteredItems2([...items].sort((a, b) => a.id - b.id));
+      setFilteredItems([...items].sort((a, b) => a.id - b.id));
+      
     } else {
       setFilteredItems([]);
-      setFilteredItems2([]);
+      
     }
   }, [items]);
   
