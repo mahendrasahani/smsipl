@@ -21,7 +21,7 @@ const Messages = () => {
   const [startdate, setstartDate] = useState(maindate);
   const [enddate, setendDate] = useState(maindate);
   const hidden = useSelector((state) => state.hiddenstate.hidden);
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,7 +62,9 @@ const Messages = () => {
   // -------------------------------------------------------Fetching data from getMessageList Api--------------------------------------------------------//
 
   const fetchMessage = async (start, end , status ) => {
-  
+   console.log("sartrt",start)
+   console.log("end",end)
+   console.log("sta",status)
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
@@ -76,6 +78,8 @@ const Messages = () => {
         dispatch(addItems(apiResponse?.data));
 
         setitems(apiResponse?.data);
+
+       
     
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -84,7 +88,8 @@ const Messages = () => {
     }
   };
 
-  console.log("items",items)
+
+ 
 
  
   useEffect(() => {
@@ -168,8 +173,11 @@ const Messages = () => {
 
 
   useEffect(() => {
-    Array.isArray(items) &&
-    setFilteredItems([...items].sort((a, b) => a.id - b.id));
+    
+    Array.isArray(items) ?
+    setFilteredItems([...items].sort((a, b) => a.id - b.id))
+    :
+    setFilteredItems([])
   }, [items]);
 
   const handleVisitChange = (e) => {
