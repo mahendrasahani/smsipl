@@ -55,7 +55,7 @@ const Messages = () => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
   
-    (statusvalue==0) &&
+    (Number(statusvalue) === 0) &&
         fetchMessage(start, end, statusvalue);  
   
   }, [startdate, enddate, statusvalue]);
@@ -72,7 +72,7 @@ const Messages = () => {
         status
       );
         
-      if(status!=6){
+      if(Number(status)!== 6){
         dispatch(addItems(apiResponse?.data));
       }
     
@@ -87,22 +87,20 @@ const Messages = () => {
     }
   };
 
-
  
 
- 
   useEffect(() => {
   
-    if (statusvalue == 7) {
-      const messages = items2?.filter((itm) => {
+    if (Number(statusvalue) === 7) {
+      const messages =Array.isArray(items2) && items2?.filter((itm) => {
         return itm?.status_code !== 6;
       });
       setFilteredItems([...messages].sort((a, b) => a.id - b.id));
       setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
     }
 
-      if (statusvalue == 6) {
-        const messages = items2?.filter((itm) => {
+      if (Number(statusvalue) === 6) {
+        const messages = Array.isArray(items2) && items2?.filter((itm) => {
           return itm?.status_code === 6;
         });
         setFilteredItems([...messages].sort((a, b) => a.id - b.id));
@@ -139,23 +137,9 @@ const Messages = () => {
    setCargocode("")
    setVisitcode("")
     setcarriername("");
-    if (statusvalue == 7) {
-      const messages = items2?.filter((itm) => {
-        return itm?.status_code !== 6;
-      });
-      setFilteredItems([...messages].sort((a, b) => a.id - b.id));
-    }
-
-      if (statusvalue == 6) {
-        const messages = items2?.filter((itm) => {
-          return itm?.status_code === 6;
-        });
-        setFilteredItems([...messages].sort((a, b) => a.id - b.id));
-      }
-
-      if (statusvalue == 0) {
-        setFilteredItems([...items2].sort((a, b) => a.id - b.id));
-      }
+    setStatus(0)
+   setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
+   
     
    
     
@@ -233,7 +217,7 @@ const Messages = () => {
 
   const updateModal = (data) => {
     const modaldata1 = filteredItems?.filter((itm) => {
-      return itm?.id == data;
+      return itm?.id === data;
     });
 
     setmodaldata(modaldata1);
