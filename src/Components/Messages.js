@@ -9,6 +9,8 @@ import { FiRefreshCw } from "react-icons/fi";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
+import { Modal } from "react-bootstrap";
+
 
 const Messages = () => {
   
@@ -584,20 +586,34 @@ const Messages = () => {
                 </div>
               </div>
             </div>
-            {isModalOpen && modaldata && (
-              <div className="modal-box" ref={modalRef}>
-                <h1
-                  style={{ textAlign: "center", textDecoration: "underline" }}
-                >
-                  Message Information
-                </h1>
-                <div
-                  dangerouslySetInnerHTML={{
+            {modaldata && 
+        
+            <Modal
+            show={isModalOpen}
+            onHide={() => setIsModalOpen(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header style={{justifyContent:"center"}}>
+              <Modal.Title id="contained-modal-title-vcenter">
+              Message Information
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div
+                 dangerouslySetInnerHTML={{
                     __html: `<pre>${formattedJson}</pre>`,
-                  }}
-                />
-              </div>
-            )}
+                 }}
+               />
+            </Modal.Body>
+            <Modal.Footer>
+              <button onClick={() => setIsModalOpen(false)}  className="btn btn-block text-white mt-2 save"
+                style={{ backgroundColor: "#547899" }}>Close</button>
+            </Modal.Footer>
+          </Modal>
+            }
+
           </section>
         </div>
         <aside className="control-sidebar control-sidebar-dark"></aside>

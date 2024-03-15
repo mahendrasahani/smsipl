@@ -484,6 +484,15 @@ pre {
   font-size: 87.5%;
   color: #212529;
 }
+
+@media only screen and (max-width:400px) {
+   pre{
+    padding: 0px;
+    font-size: 43.5%;
+   }
+}
+
+
 pre code {
   font-size: inherit;
   color: inherit;
@@ -5882,6 +5891,15 @@ a.disabled.mailbox-attachment-close {
   overflow: hidden;
   outline: 0;
 }
+
+@media only screen and (max-width:400px) {
+   .modal{
+    width:85%;
+    padding-left: 25px !important;
+   }
+}
+
+
 .modal-dialog {
   position: relative;
   width: auto;
