@@ -40,13 +40,12 @@ class ApiService {
           'Authorization':`bearer ${token}`,
           'Accept': "*/*",
         }
-        
-      
+
     }).then((result) => {
       resolve(result);
     })
       .catch((err) => {
-        alert("Can't find the message Details for required messageId")
+        alert(`Can't find the message Details for required messageId - ${id}`)
         window.location.href="/messages"
         console.log("error: " + err);
       });
