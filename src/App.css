@@ -1156,6 +1156,7 @@ canvas{
 
 .actions>button:nth-child(1):hover{
   background:white !important;
+  border: 1px solid green;
  }
 
  .actions>button:nth-child(1){
