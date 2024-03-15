@@ -55,7 +55,7 @@ const Messages = () => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
   
-    (statusvalue!=7) &&
+    (statusvalue==0) &&
         fetchMessage(start, end, statusvalue);  
   
   }, [startdate, enddate, statusvalue]);
@@ -92,14 +92,25 @@ const Messages = () => {
 
  
   useEffect(() => {
+  
     if (statusvalue == 7) {
       const messages = items2?.filter((itm) => {
         return itm?.status_code !== 6;
       });
-    
       setFilteredItems([...messages].sort((a, b) => a.id - b.id));
       setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
     }
+
+      if (statusvalue == 6) {
+        const messages = items2?.filter((itm) => {
+          return itm?.status_code === 6;
+        });
+        setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+        setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
+      }
+    
+ 
+    
   }, [statusvalue, items]);
 
  
@@ -128,7 +139,25 @@ const Messages = () => {
    setCargocode("")
    setVisitcode("")
     setcarriername("");
-    setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
+    if (statusvalue == 7) {
+      const messages = items2?.filter((itm) => {
+        return itm?.status_code !== 6;
+      });
+      setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+    }
+
+      if (statusvalue == 6) {
+        const messages = items2?.filter((itm) => {
+          return itm?.status_code === 6;
+        });
+        setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+      }
+
+      if (statusvalue == 0) {
+        setFilteredItems([...items2].sort((a, b) => a.id - b.id));
+      }
+    
+   
     
   };
 
