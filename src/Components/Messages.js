@@ -57,12 +57,11 @@ const Messages = () => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
   
-    (Number(statusvalue) === 0) &&
-        fetchMessage(start, end, statusvalue);  
+    fetchMessage(start, end, 0);  
   
   }, [startdate, enddate, statusvalue]);
 
-  // -------------------------------------------------------Fetching data from getMessageList Api--------------------------------------------------------//
+  // -----------------------------------------Fetching data from getMessageList Api-----------------------------------------------------//
 
   const fetchMessage = async (start, end , status ) => {
     try {
@@ -73,12 +72,14 @@ const Messages = () => {
         end,
         status
       );
+
         
       if(Number(status)!== 6){
         dispatch(addItems(apiResponse?.data));
       }
     
-        setitems(apiResponse?.data);
+    
+      setitems(apiResponse?.data);
 
        
     
@@ -92,30 +93,33 @@ const Messages = () => {
  
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      if(Array.isArray(items2) && items2?.length>0) {
+        if (Number(statusvalue) === 7) {
+          const messages = Array.isArray(items2) && items2?.filter((itm) => {
+            return itm?.status_code !== 6;
+          });
+          setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+          setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
+        }
   
-    if (Number(statusvalue) === 7) {
-      const messages =Array.isArray(items2) && items2?.filter((itm) => {
-        return itm?.status_code !== 6;
-      });
-      setFilteredItems([...messages].sort((a, b) => a.id - b.id));
-      setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
-    }
-
-      if (Number(statusvalue) === 6) {
-        const messages = Array.isArray(items2) && items2?.filter((itm) => {
-          return itm?.status_code === 6;
-        });
-        setFilteredItems([...messages].sort((a, b) => a.id - b.id));
-        setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
+        if (Number(statusvalue) === 6) {
+          const messages = Array.isArray(items2) && items2?.filter((itm) => {
+            return itm?.status_code === 6;
+          });
+          setFilteredItems([...messages].sort((a, b) => a.id - b.id));
+          setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
+        }
       }
-    
- 
-    
+    }, 2000);
+  
+    return () => clearTimeout(timer); 
   }, [statusvalue, items]);
+  
 
  
    
-    useEffect(() => {
+   useEffect(() => {
       if (Array.isArray(items2)) {
         const vesselVisitCodes = items2.map((itm) => itm?.manifest?.vessel?.vesselVisitCode);
         setVvcode([...new Set(vesselVisitCodes)]);
@@ -141,11 +145,8 @@ const Messages = () => {
     setcarriername("");
     setStatus(0)
    setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
-   
-    
-   
-    
   };
+
 
   const handleFiltermessage = () => {
     let filteredData = filteredItems2 ? filteredItems2 :items;
