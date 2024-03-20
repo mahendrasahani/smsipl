@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHidden } from "./store/HiddenSlice";
+import Apis from "../Services/ApiServices/Apis";
 
 const Header = () => {
   const [logbtn, setLogbtn] = useState(false);
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const dispatch = useDispatch();
+ 
 
   const handletoken = () => {
     sessionStorage.removeItem("token");
@@ -26,6 +28,41 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
+  const sessionDuration = 26 * 60 * 1000; 
+
+  const [sessionTimer, setSessionTimer] = useState(null);
+
+  const startSessionTimer = () => {
+    const timer = setTimeout(logoutUser, sessionDuration);
+    setSessionTimer(timer);
+  };
+
+
+  const logoutUser = async () => {
+      var apiResponseData = await Apis.IntAuthentication(
+        "https://dpw1.afrilogitech.com/api",
+        {
+          username: "TPA_APIUser",
+          password: "AccTKN@2010",
+        }
+      );
+      sessionStorage.setItem("token", apiResponseData.token);
+
+    };
+
+
+
+  useEffect(() => {
+    startSessionTimer();
+   
+    return () => {
+      clearTimeout(sessionTimer);
+    };
+  }, []);
+
+
   return (
     <nav
       className="main-header navbar navbar-expand navbar-white navbar-light"
