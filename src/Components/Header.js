@@ -34,7 +34,6 @@ const Header = () => {
 
 
 
-
   const sessionDuration = 25 * 60 * 1000; 
 
   const [sessionTimer, setSessionTimer] = useState(null);
@@ -53,7 +52,7 @@ const Header = () => {
         }
       );
       sessionStorage.setItem("token", apiResponseData.token);
-
+           window.location.reload();
     };
 
   useEffect(() => {
