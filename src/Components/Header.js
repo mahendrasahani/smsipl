@@ -16,10 +16,13 @@ const Header = () => {
 
   const dropdownRef = useRef(null);
 
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setLogbtn(false);
+        if (!event.target.closest("#dropdownSubMenu1")) {
+          setLogbtn(false);
+        }
       }
     };
 
@@ -30,17 +33,18 @@ const Header = () => {
   }, []);
 
 
-  const sessionDuration = 26 * 60 * 1000; 
+
+
+  const sessionDuration = 25 * 60 * 1000; 
 
   const [sessionTimer, setSessionTimer] = useState(null);
 
   const startSessionTimer = () => {
-    const timer = setTimeout(logoutUser, sessionDuration);
+    const timer = setTimeout(changeToken, sessionDuration);
     setSessionTimer(timer);
   };
 
-
-  const logoutUser = async () => {
+  const changeToken = async () => {
       var apiResponseData = await Apis.IntAuthentication(
         "https://dpw1.afrilogitech.com/api",
         {
@@ -51,8 +55,6 @@ const Header = () => {
       sessionStorage.setItem("token", apiResponseData.token);
 
     };
-
-
 
   useEffect(() => {
     startSessionTimer();
