@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 
 const ExportExcel = ({ excelData, fileName }) => {
-  const fileType =
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset-UTF-8";
-  const fileExtension = ".xlsx";
 
   const exportToExcel=()=>{
     const flatData = excelData?.map(item => ({

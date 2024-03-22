@@ -5,10 +5,6 @@ const HiddenSlice=createSlice({
     name:"hiddenstate",
     initialState:{
         hidden:false,
-        userDetails:{
-            username: "",
-            password: "",
-          }
     },
 
     reducers:{
@@ -16,11 +12,9 @@ const HiddenSlice=createSlice({
             state.hidden=action.payload;
         },
         
-        setUserDetails:(state,action)=>{
-                   state.userDetails=action.payload;
-        }
+     
     }
 })
 
-export const { setHidden,setUserDetails} = HiddenSlice.actions
+export const { setHidden} = HiddenSlice.actions
 export default HiddenSlice.reducer

@@ -53,15 +53,7 @@ class Apis {
     return apiResponse?.data;
   }
 
-  async IntMessageManager(url, data) {
-    const apiResponse = await apiService.post(url + "/IntMessageManager", data);
-    return apiResponse.data;
-  }
 
-  async Manifest(url, data) {
-    const apiResponse = await apiService.manifest(url + "/Manifest", data);
-    return apiResponse.data;
-  }
 
   async BolExcel(url,vid,bolid) {
     const apiResponse = await apiService.bolexcel(url + "/IntMessageManager/GetBOLExcel",vid,bolid);

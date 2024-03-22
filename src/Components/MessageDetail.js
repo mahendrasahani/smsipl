@@ -123,30 +123,70 @@ const MessageDetail = () => {
      setbolno("")
   }
 
-  const downloadExcel= async (id1,id2) => {
-   
+
+  const [downloading, setDownloading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const downloadExcel = async (id1,id2) => {
+
+
     try {
-      const data = await Apis.BolExcel(
-        "https://dpw1.afrilogitech.com/api",
-         String(id1),
-         id2
-      );
+      setDownloading(true);
 
-   
-      if(data?.success===true){
-        alert("Data download successfully")
+      const response = await fetch(`https://dpw1.afrilogitech.com/api/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`);
+      if (!response.ok) {
+        throw new Error('Failed to download Excel file');
       }
 
-      else{
-        alert("Data not found")
-      }
+      const blob = await response.blob();
 
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${id1}-${id2}.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
-      
-      alert("Data not found");
-    } 
-
+      setError(error.message);
+    } finally {
+      setDownloading(false);
+    }
   };
+
+
+
+
+//   const downloadExcel = async (id1, id2) => {
+    
+//     try {
+//         const data = await Apis.BolExcel(
+//             "https://dpw1.afrilogitech.com/api",
+//             id1,
+//             id2
+//         );
+
+      
+//         const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    
+//         const url = window.URL.createObjectURL(blob);
+
+//         const link = document.createElement('a');
+//         link.href = url;
+//         link.setAttribute('download', `OMLB104-59906.xlsx`);
+//         document.body.appendChild(link);
+
+//         link.click();
+
+    
+//         document.body.removeChild(link);
+//         window.URL.revokeObjectURL(url);
+//     } catch (error) {
+//         alert("Data not found");
+//     }
+// };
+
  
 
 
@@ -404,13 +444,14 @@ const MessageDetail = () => {
                                       : "Successful"}
                                   </td>
                                   <td>
-                                    {itm?.errorlist?.length > 0 || itm?.pushstatus===7 ? (
-                                      <button
-                                        className="btn btn-sm bg-primary btn-clear"
-                                        onClick={() => handleNavigation(itm.bolnbr,id)}
-                                      >
-                                        <i className="fa fa-edit"></i>
-                                      </button>
+                                    {(itm?.errorlist?.length > 0 || itm?.pushstatus===7) && (status_code==7) ? (
+                                       <button
+                                       className="btn btn-sm bg-primary btn-clear"
+                                       onClick={() =>downloadExcel(itm?.vesselvisitcode,itm?.primaryid)}
+                                     >
+                                      
+                                       <i class="fa fa-download" aria-hidden="true"></i>
+                                     </button>
                                     ) : 
                                     ((itm?.cargocode).toUpperCase()==="B" ||  (itm?.cargocode).toUpperCase()==="C" || (itm?.cargocode).toUpperCase()==="V"
                                       )?

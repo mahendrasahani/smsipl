@@ -117,39 +117,7 @@ class ApiService {
     });
   }
 
-  async manifest(url,data) {
-    const token = sessionStorage.getItem('token')
-    return new Promise(async function (resolve, reject) {
-      await axios({
-        method: "post",
-        mode: "cors",
-        url,
-        body:data,
-        headers:
-        {
-          'Authorization':`bearer ${token}`,
-          'Accept': "*/*",
-          "Content-Type": "application/json",
-        }
-      }).then((result) => {
-        resolve(result);
-      })
-        .catch((err) => {
-          console.log("error: " + err);
-          if (err === 'Error: Request failed with status code 403' || err === 'Error: Request failed with status code 401') {
-            alert("Login to continue!!")
-            window.location.href = '/login'
-          } else {
-            console.log(err)
-            if (err && err.response && err.response.data && err.response.data.message) {
-              alert(err.response.data.message);
-            } else {
-              alert("Error in POST update")
-            }
-          }
-        });
-    });
-  }
+ 
 
   async bolexcel(url,vid,bolid) {
     const token = sessionStorage.getItem('token')
@@ -157,10 +125,11 @@ class ApiService {
       await axios({
         method: "get",
         url,
-        body:{
+        params:{
           sVesselVisitCode:vid,
           nBolID:bolid,
         },
+    
         headers:
         {
           'Authorization':`bearer ${token}`,
