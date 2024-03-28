@@ -9,7 +9,10 @@ import Footer from "./Footer";
 const Modify2 = () => {
   const location = useLocation();
   const id = location?.state?.id;
-  const status_code = location?.state?.statuscode;
+
+  const status_code = window.localStorage.getItem("status");
+
+
   const navigate = useNavigate();
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState(location?.state?.bolno);
@@ -384,7 +387,7 @@ const Modify2 = () => {
         id
       );
 
-      console.log("messagedata",data?.data?.bollist)
+      // console.log("messagedata",data?.data?.bollist)
 
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
@@ -468,9 +471,20 @@ useEffect(()=>{
   const submitData = async (e) => {
     e.preventDefault();
 
-    cargolist[cargono]=bolcargodata;
-    cntrlist[cntrno]=bolcntrdata;
-    vlist[bolvno]=bolvdata;
+    if(cargolist != null){
+      cargolist[cargono]=bolcargodata;
+    }
+
+    if(cntrlist!=null){
+      cntrlist[cntrno]=bolcntrdata;
+    }
+
+    if(vlist!=null){
+      vlist[bolvno]=bolvdata;
+    }
+  
+
+   
 
     cargolist == null
       ? (bollistdata.bolCargos = [])
@@ -628,6 +642,7 @@ useEffect(()=>{
               </table>
             </div>
           </>
+     
         )}
 
         <section className="content pb-3">

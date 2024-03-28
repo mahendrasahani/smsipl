@@ -13,6 +13,10 @@ const MessageDetail = () => {
   const id = location?.state?.messageData?.id;
   const status_code = location?.state?.messageData?.status_code;
 
+ useEffect(()=>{
+    window.localStorage.setItem("status",status_code)
+ },[])
+
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState("");
   const [cargono, setCargono] = useState(0);
@@ -50,7 +54,7 @@ const MessageDetail = () => {
         window.location.href = "/messages";
       }
 
-      console.log("data", data?.data);
+    
 
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);

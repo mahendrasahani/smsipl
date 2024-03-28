@@ -34,16 +34,17 @@ const Header = () => {
 
 
 
-  const sessionDuration = 25 * 60 * 1000; 
+  const sessionDuration = 25 * 60 * 1000;
 
   const [sessionTimer, setSessionTimer] = useState(null);
-
+  
   const startSessionTimer = () => {
-    const timer = setTimeout(changeToken, sessionDuration);
+    const timer = setInterval(changeToken, sessionDuration);
     setSessionTimer(timer);
   };
-
+  
   const changeToken = async () => {
+    try {
       var apiResponseData = await Apis.IntAuthentication(
         "https://dpw1.afrilogitech.com/api",
         {
@@ -52,17 +53,21 @@ const Header = () => {
         }
       );
       sessionStorage.setItem("token", apiResponseData.token);
-      console.log("token",apiResponseData.token)
-           window.location.reload();
-    };
-
+      console.log("token", apiResponseData.token);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  
   useEffect(() => {
     startSessionTimer();
-   
+    
     return () => {
-      clearTimeout(sessionTimer);
+      clearInterval(sessionTimer);
     };
   }, []);
+  
 
 
   return (

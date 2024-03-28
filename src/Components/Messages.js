@@ -67,7 +67,7 @@ const Messages = () => {
   // -----------------------------------------Fetching data from getMessageList Api-----------------------------------------------------//
 
   const fetchMessage = async (start, end, status) => {
-    console.log("hello");
+  
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
