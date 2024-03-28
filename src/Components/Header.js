@@ -52,6 +52,7 @@ const Header = () => {
         }
       );
       sessionStorage.setItem("token", apiResponseData.token);
+      console.log("token",apiResponseData.token)
            window.location.reload();
     };
 

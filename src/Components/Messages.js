@@ -11,20 +11,25 @@ import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
 import { Modal } from "react-bootstrap";
 
-
 const Messages = () => {
-  
   const date = new Date();
-  const maindate =moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm');
+  const maindate = moment(date, "ddd MMM DD YYYY HH:mm:ss [GMT]Z").format(
+    "YYYY-MM-DDTHH:mm"
+  );
 
-  
+  const get8HoursBefore = () => {
+    const currentTime = moment();
+    const eightHoursBefore = currentTime.subtract(8, "hours");
+    const formattedTime = eightHoursBefore.format("YYYY-MM-DDTHH:mm");
+    return formattedTime;
+  };
 
   const [statusvalue, setStatus] = useState(0);
-  const [startdate, setstartDate] = useState(maindate);
+  const [startdate, setstartDate] = useState(get8HoursBefore());
   const [enddate, setendDate] = useState(maindate);
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [filteredItems, setFilteredItems] = useState(null);
-  const [filteredItems2,setFilteredItems2] =useState(null);
+  const [filteredItems2, setFilteredItems2] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,9 +39,9 @@ const Messages = () => {
   const [carriername, setcarriername] = useState("");
   const [items, setitems] = useState(null);
   const [modaldata, setmodaldata] = useState([]);
-  const [vvcode,setVvcode]=useState([]);
-  const [ccode,setCcode]=useState([]);
-  const items2=useSelector(state=>state.Items.items)
+  const [vvcode, setVvcode] = useState([]);
+  const [ccode, setCcode] = useState([]);
+  const items2 = useSelector((state) => state.Items.items);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,25 +50,23 @@ const Messages = () => {
     document.title = "DP WORLD | Dashboard";
   }, []);
 
-
   const formatDate2 = (dateString) => {
     const parsedTime = moment(dateString);
     const formattedTime = parsedTime.format("YYYY-MM-DD HH:mm");
     return formattedTime;
   };
 
-
   useEffect(() => {
     const start = formatDate2(startdate);
     const end = formatDate2(enddate);
-  
-    fetchMessage(start, end, 0);  
-  
+
+    fetchMessage(start, end, 0);
   }, [startdate, enddate, statusvalue]);
 
   // -----------------------------------------Fetching data from getMessageList Api-----------------------------------------------------//
 
-  const fetchMessage = async (start, end , status ) => {
+  const fetchMessage = async (start, end, status) => {
+    console.log("hello");
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
@@ -73,16 +76,11 @@ const Messages = () => {
         status
       );
 
-        
-      if(Number(status)!== 6){
+      if (Number(status) !== 6) {
         dispatch(addItems(apiResponse?.data));
       }
-    
-    
-      setitems(apiResponse?.data);
 
-       
-    
+      setitems(apiResponse?.data);
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
@@ -90,66 +88,64 @@ const Messages = () => {
     }
   };
 
- 
-
   useEffect(() => {
     const timer = setTimeout(() => {
-      if(Array.isArray(items2) && items2?.length>0) {
+      if (Array.isArray(items2) && items2?.length > 0) {
         if (Number(statusvalue) === 7) {
-          const messages = Array.isArray(items2) && items2?.filter((itm) => {
-            return itm?.status_code !== 6;
-          });
+          const messages =
+            Array.isArray(items2) &&
+            items2?.filter((itm) => {
+              return itm?.status_code !== 6;
+            });
           setFilteredItems([...messages].sort((a, b) => a.id - b.id));
           setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
         }
-  
+
         if (Number(statusvalue) === 6) {
-          const messages = Array.isArray(items2) && items2?.filter((itm) => {
-            return itm?.status_code === 6;
-          });
+          const messages =
+            Array.isArray(items2) &&
+            items2?.filter((itm) => {
+              return itm?.status_code === 6;
+            });
           setFilteredItems([...messages].sort((a, b) => a.id - b.id));
           setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
         }
       }
     }, 2000);
-  
-    return () => clearTimeout(timer); 
+
+    return () => clearTimeout(timer);
   }, [statusvalue, items]);
-  
 
- 
-   
-   useEffect(() => {
-      if (Array.isArray(items2)) {
-        const vesselVisitCodes = items2.map((itm) => itm?.manifest?.vessel?.vesselVisitCode);
-        setVvcode([...new Set(vesselVisitCodes)]);
-      }
-    }, [items2]);
+  useEffect(() => {
+    if (Array.isArray(items2)) {
+      const vesselVisitCodes = items2.map(
+        (itm) => itm?.manifest?.vessel?.vesselVisitCode
+      );
+      setVvcode([...new Set(vesselVisitCodes)]);
+    }
+  }, [items2]);
 
-    useEffect(() => {
-      if (Array.isArray(items2)) {
-        const cargoCodes = items2.map((itm) => itm?.manifest?.bolList[0]?.cargoCode);
-        setCcode([...new Set(cargoCodes)]);
-      }
-    }, [items2]);
-
-
-   
- 
+  useEffect(() => {
+    if (Array.isArray(items2)) {
+      const cargoCodes = items2.map(
+        (itm) => itm?.manifest?.bolList[0]?.cargoCode
+      );
+      setCcode([...new Set(cargoCodes)]);
+    }
+  }, [items2]);
 
   //------------------------------------------------------------Reset Data---------------------------------------------------------//
 
   const handleResetData = () => {
-   setCargocode("")
-   setVisitcode("")
+    setCargocode("");
+    setVisitcode("");
     setcarriername("");
-    setStatus(0)
-   setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
+    setStatus(0);
+    setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
   };
 
-
   const handleFiltermessage = () => {
-    let filteredData = filteredItems2 ? filteredItems2 :items;
+    let filteredData = filteredItems2 ? filteredItems2 : items;
 
     if (visitcode !== "") {
       filteredData = filteredData.filter((itm) =>
@@ -185,20 +181,15 @@ const Messages = () => {
     setFilteredItems(filteredData);
   };
 
-
-
   useEffect(() => {
     if (Array.isArray(items)) {
       setFilteredItems([...items].sort((a, b) => a.id - b.id));
       setFilteredItems([...items].sort((a, b) => a.id - b.id));
-      
     } else {
       setFilteredItems([]);
-      
     }
   }, [items]);
-  
-  
+
   const handleVisitChange = (e) => {
     setVisitcode(e.target.value);
   };
@@ -270,8 +261,6 @@ const Messages = () => {
     }
   };
 
-
-
   return (
     <>
       <div className="wrapper">
@@ -321,7 +310,10 @@ const Messages = () => {
                             id="from-date"
                             value={startdate}
                             min="2023-01-01"
-                            max={moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
+                            max={moment(
+                              date,
+                              "ddd MMM DD YYYY HH:mm:ss [GMT]Z"
+                            ).format("YYYY-MM-DDTHH:mm")}
                             onChange={(e) => setstartDate(e.target.value)}
                             data-target="#reservationdate"
                           />
@@ -341,7 +333,10 @@ const Messages = () => {
                             className="form-control form-control-sm datetimepicker-input"
                             id="from-date"
                             min="2023-01-01"
-                            max={moment(date, 'ddd MMM DD YYYY HH:mm:ss [GMT]Z').format('YYYY-MM-DDTHH:mm')}
+                            max={moment(
+                              date,
+                              "ddd MMM DD YYYY HH:mm:ss [GMT]Z"
+                            ).format("YYYY-MM-DDTHH:mm")}
                             value={enddate}
                             onChange={(e) => setendDate(e.target.value)}
                             data-target="#reservationdate"
@@ -377,7 +372,7 @@ const Messages = () => {
                     <div className="col-md-2">
                       <div className="form-group">
                         <label>Vessel Visit Code</label>
-                       
+
                         <select
                           name="SelectStatus"
                           className="form-control form-control-sm"
@@ -386,13 +381,11 @@ const Messages = () => {
                           onChange={(e) => handleVisitChange(e)}
                         >
                           <option value="">Select Vessel Visit code</option>
-                          {vvcode && vvcode?.length>0 &&
+                          {vvcode &&
+                            vvcode?.length > 0 &&
                             vvcode?.map((itm, i) => {
                               return (
-                                <option
-                                  key={i}
-                                  value={itm}
-                                >
+                                <option key={i} value={itm}>
                                   {itm}
                                 </option>
                               );
@@ -412,14 +405,11 @@ const Messages = () => {
                           onChange={(e) => handleCargoChange(e)}
                         >
                           <option value="">Select Cargo Code</option>
-                          {ccode && ccode?.length>0 &&
-                            ccode?.map((itm) =>
-                             
-                                <option key={itm}>
-                                  {itm}
-                                </option>
-                             
-                            )}
+                          {ccode &&
+                            ccode?.length > 0 &&
+                            ccode?.map((itm) => (
+                              <option key={itm}>{itm}</option>
+                            ))}
                         </select>
                       </div>
                     </div>
@@ -500,15 +490,14 @@ const Messages = () => {
                         </tbody>
                       ) : (
                         <tbody style={{ fontSize: "12px" }}>
-                          {filteredItems && filteredItems?.length>0 &&
+                          {filteredItems &&
+                            filteredItems?.length > 0 &&
                             Array.isArray(filteredItems) &&
-                            filteredItems?.map((itm,i) => {
+                            filteredItems?.map((itm, i) => {
                               return (
                                 <tr key={itm?.id}>
-                                  <td>{i+1}</td>
-                                  <td>
-                                    {itm?.row_created}
-                                  </td>
+                                  <td>{i + 1}</td>
+                                  <td>{itm?.row_created}</td>
                                   <td>{itm?.manifest?.vessel?.mrn}</td>
                                   <td>
                                     {itm?.manifest.vessel?.vesselVisitCode}
@@ -587,34 +576,37 @@ const Messages = () => {
                 </div>
               </div>
             </div>
-            {modaldata && 
-        
-            <Modal
-            show={isModalOpen}
-            onHide={() => setIsModalOpen(false)}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
-            <Modal.Header style={{justifyContent:"center"}}>
-              <Modal.Title id="contained-modal-title-vcenter">
-              Message Information
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-            <div
-                 dangerouslySetInnerHTML={{
-                    __html: `<pre>${formattedJson}</pre>`,
-                 }}
-               />
-            </Modal.Body>
-            <Modal.Footer>
-              <button onClick={() => setIsModalOpen(false)}  className="btn btn-block text-white mt-2 save"
-                style={{ backgroundColor: "#547899" }}>Close</button>
-            </Modal.Footer>
-          </Modal>
-            }
-
+            {modaldata && (
+              <Modal
+                show={isModalOpen}
+                onHide={() => setIsModalOpen(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header style={{ justifyContent: "center" }}>
+                  <Modal.Title id="contained-modal-title-vcenter">
+                    Message Information
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: `<pre>${formattedJson}</pre>`,
+                    }}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="btn btn-block text-white mt-2 save"
+                    style={{ backgroundColor: "#547899" }}
+                  >
+                    Close
+                  </button>
+                </Modal.Footer>
+              </Modal>
+            )}
           </section>
         </div>
         <aside className="control-sidebar control-sidebar-dark"></aside>
