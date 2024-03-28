@@ -384,6 +384,8 @@ const Modify2 = () => {
         id
       );
 
+      console.log("messagedata",data?.data?.bollist)
+
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -468,7 +470,7 @@ useEffect(()=>{
 
     cargolist[cargono]=bolcargodata;
     cntrlist[cntrno]=bolcntrdata;
-    vlist[bolvdata]=bolvdata;
+    vlist[bolvno]=bolvdata;
 
     cargolist == null
       ? (bollistdata.bolCargos = [])
@@ -478,9 +480,9 @@ useEffect(()=>{
       : ((cntrlist?.length==1)?bollistdata.bolCntrs = [bolcntrdata]:bollistdata.bolCntrs =cntrlist);
     vlist == null
       ? (bollistdata.bolVehicles = [])
-      : ((bolvdata?.length==1)?bollistdata.bolVehicles = bolvdata:bollistdata.bolVehicles = vlist);
+      : ((bolvdata?.length==1)?bollistdata.bolVehicles =[bolvdata]:bollistdata.bolVehicles = vlist);
 
-  
+   
 
     const response = await Apis.UpdateBOLMessage(
       "https://dpw1.afrilogitech.com/api",
