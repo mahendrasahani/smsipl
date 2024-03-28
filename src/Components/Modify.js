@@ -465,16 +465,20 @@ useEffect(()=>{
   const submitData = async (e) => {
     e.preventDefault();
 
+    cargolist[cargono]=bolcargodata;
+    cntrlist[cntrno]=bolcntrdata;
+    vlist[bolvdata]=bolvdata
 
     cargolist == null
       ? (bollistdata.bolCargos = [])
-      : ((cargolist?.length==1)?bollistdata.bolCargos =[bolcargodata]:bollistdata.bolCargos = [...cargolist,bolcargodata]);
+      : ((cargolist?.length==1)?bollistdata.bolCargos =[bolcargodata]:bollistdata.bolCargos =cargolist);
     cntrlist == null
       ? (bollistdata.bolCntrs = [])
-      : ((cntrlist?.length==1)?bollistdata.bolCntrs = [bolcntrdata]:bollistdata.bolCntrs =[...cntrlist,bolcntrdata]);
+      : ((cntrlist?.length==1)?bollistdata.bolCntrs = [bolcntrdata]:bollistdata.bolCntrs =cntrlist);
     vlist == null
       ? (bollistdata.bolVehicles = [])
-      : ((bolvdata?.length==1)?bollistdata.bolVehicles = bolvdata:bollistdata.bolVehicles = [...vlist,bolvdata]);
+      : ((bolvdata?.length==1)?bollistdata.bolVehicles = bolvdata:bollistdata.bolVehicles = vlist);
+
 
 
     const response = await Apis.UpdateBOLMessage(
