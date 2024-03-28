@@ -383,7 +383,7 @@ const Modify2 = () => {
   const MessageInfo = async () => {
     try {
       const data = await Apis.getMessageDetails(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         id
       );
 
@@ -499,7 +499,7 @@ useEffect(()=>{
    
 
     const response = await Apis.UpdateBOLMessage(
-      "https://dpw1.afrilogitech.com/api",
+      "http://localhost:90/api",
       bollistdata
     );
 
@@ -513,7 +513,7 @@ useEffect(()=>{
   const downloadExcel = async (id1, id2) => {
     try {
       const data = await Apis.BolExcel(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         id1,
         id2
       );
@@ -571,7 +571,6 @@ useEffect(()=>{
                   <tr style={{ background: "#E1E8FF", fontSize: "12px" }}>
                     <th style={{ color: "#3166C9" }}>#</th>
                     <th style={{ color: "#3166C9" }}>BoL No.</th>
-                    {/* <th style={{ color: "#3166C9" }}>Error</th> */}
                     <th style={{ color: "#3166C9" }}>Status</th>
                     <th style={{ color: "#3166C9" }}>Action</th>
                   </tr>
@@ -618,7 +617,7 @@ useEffect(()=>{
                                   }
                                 >
                                   <i
-                                    class="fa fa-download"
+                                    className="fa fa-download"
                                     aria-hidden="true"
                                   ></i>
                                 </button>

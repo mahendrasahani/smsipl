@@ -54,7 +54,7 @@ const Dashboard = () => {
   const fetchMessage = async (start, end) => {
     try {
       const apiResponse = await Apis.GetMessageList(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         start,
         end
       );

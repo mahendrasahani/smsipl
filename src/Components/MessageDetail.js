@@ -45,7 +45,7 @@ const MessageDetail = () => {
     try {
       setLoading(true);
       const data = await Apis.getMessageDetails(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         id
       );
 
@@ -98,7 +98,7 @@ const MessageDetail = () => {
   const handleReprocess = async () => {
     try {
       const data = await Apis.ProcessMessage(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         id,
         status_code
       );
@@ -125,7 +125,7 @@ const MessageDetail = () => {
       setDownloading(true);
 
       const response = await fetch(
-        `https://dpw1.afrilogitech.com/api/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`
+        `http://localhost:90/api/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`
       );
       if (!response.ok) {
         throw new Error("Failed to download Excel file");
@@ -585,7 +585,7 @@ const MessageDetail = () => {
                                           }
                                         >
                                           <i
-                                            class="fa fa-download"
+                                            className="fa fa-download"
                                             aria-hidden="true"
                                           ></i>
                                         </button>

@@ -71,7 +71,7 @@ const Messages = () => {
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         start,
         end,
         status
@@ -244,7 +244,7 @@ const Messages = () => {
   const handleReprocess = async (id, status_code) => {
     try {
       const data = await Apis.ProcessMessage(
-        "https://dpw1.afrilogitech.com/api",
+        "http://localhost:90/api",
         id,
         status_code
       );
