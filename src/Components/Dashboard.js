@@ -7,6 +7,7 @@ import GraphCard from "./GraphCard";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import moment from "moment";
+import Footer from "./Footer";
 
 
 const Dashboard = () => {
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    document.title = "DP WORLD | Dashboard";
+    document.title = "DP World DAR | Dashboard";
   }, []);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(
@@ -73,6 +74,7 @@ const Dashboard = () => {
   };
 
   return (
+   
     <div className="wrapper">
       <Header />
       <Sidebar />
@@ -185,9 +187,12 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
+       
       </div>
       <aside className="control-sidebar control-sidebar-dark"></aside>
+      <Footer/>
     </div>
+
   );
 };
 

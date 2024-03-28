@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import moment from "moment";
 import Loading from "./reusable/Loading";
+import Footer from "./Footer";
 
 const MessageDetail = () => {
   const location = useLocation();
@@ -27,7 +28,7 @@ const MessageDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "DP WORLD | Dashboard";
+    document.title = "DP World DAR | Dashboard";
   }, []);
 
   const navigate = useNavigate();
@@ -2460,6 +2461,7 @@ const MessageDetail = () => {
         </section>
       </div>
       <aside className="control-sidebar control-sidebar-dark"></aside>
+      <Footer/>
     </div>
   );
 };

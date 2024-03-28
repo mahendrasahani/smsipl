@@ -1197,6 +1197,10 @@ canvas{
   width: 150px;
 }
 
+.dataInput > p>input[type="number"]{
+  width: 150px;
+}
+
 .save{
   margin:10px auto;
   width: 162px;
@@ -1273,4 +1277,21 @@ box-shadow:1px 2px 2px grey;
     .help-section >div>img{
       width: 300px;
     }
+}
+
+
+/* footer */
+
+.footer{
+  text-align: center;
+  background: blue;
+  color: white;
+  z-index: 100;
+  width: 100vw;
+  position: absolute;
+  padding-top: 10px;
+}
+
+.footer >p{
+ font-weight:600;
 }

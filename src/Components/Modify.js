@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const Modify2 = () => {
   const location = useLocation();
@@ -369,7 +370,7 @@ const Modify2 = () => {
   };
 
   useEffect(() => {
-    document.title = "DP WORLD | Dashboard";
+    document.title = "DP World DAR | Dashboard";
   }, []);
 
   useEffect(() => {
@@ -467,7 +468,7 @@ useEffect(()=>{
 
     cargolist[cargono]=bolcargodata;
     cntrlist[cntrno]=bolcntrdata;
-    vlist[bolvdata]=bolvdata
+    vlist[bolvdata]=bolvdata;
 
     cargolist == null
       ? (bollistdata.bolCargos = [])
@@ -479,7 +480,7 @@ useEffect(()=>{
       ? (bollistdata.bolVehicles = [])
       : ((bolvdata?.length==1)?bollistdata.bolVehicles = bolvdata:bollistdata.bolVehicles = vlist);
 
-
+  
 
     const response = await Apis.UpdateBOLMessage(
       "https://dpw1.afrilogitech.com/api",
@@ -567,18 +568,20 @@ useEffect(()=>{
                           <td>{i + 1}</td>
                           <td>{itm?.bolnbr}</td>
                           <td
-                            style={{
-                              color:
-                                itm?.errorlist?.length > 0 ||
-                                itm?.pushstatus === 7
-                                  ? "#FF0000"
-                                  : "darkgreen",
-                            }}
-                          >
-                            {itm?.errorlist?.length > 0 || itm?.pushstatus === 7
-                              ? "Transfer Failed"
-                              : "Successful"}
-                          </td>
+                                    style={{
+                                      color:
+                                        itm?.errorlist?.length > 0 ||
+                                        itm?.pushstatus == 7
+                                          ? "#FF0000"
+                                          : "darkgreen",
+                                    }}
+                                  >
+                                    {(status_code == 7 || status_code == 6) &&
+                                    (itm?.errorlist?.length > 0 ||
+                                      itm?.pushstatus == 7)
+                                      ? "Transfer Failed"
+                                      : "Successful"}
+                                  </td>
                           <td>
                             {(itm?.errorlist?.length > 0 ||
                               itm?.pushstatus == 7 ||
@@ -2469,7 +2472,7 @@ useEffect(()=>{
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="weight"
                                   value={bolvdata?.weight}
                                   onChange={(e) => updatebolv(e)}
@@ -2505,7 +2508,7 @@ useEffect(()=>{
                                 onChange={(e) => updatebolv(e)}
                               >
                                 <input
-                                  type="text"
+                                  type="number"
                                   name="width"
                                   value={bolvdata?.width}
                                   onChange={(e) => updatebolv(e)}
@@ -2534,6 +2537,7 @@ useEffect(()=>{
         </section>
       </div>
       <aside className="control-sidebar control-sidebar-dark"></aside>
+      <Footer/>
     </div>
   );
 };

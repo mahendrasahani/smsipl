@@ -10,6 +10,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
 import { Modal } from "react-bootstrap";
+import Footer from "./Footer";
 
 const Messages = () => {
   const date = new Date();
@@ -47,7 +48,7 @@ const Messages = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "DP WORLD | Dashboard";
+    document.title = "DP World DAR | Dashboard";
   }, []);
 
   const formatDate2 = (dateString) => {
@@ -610,6 +611,7 @@ const Messages = () => {
           </section>
         </div>
         <aside className="control-sidebar control-sidebar-dark"></aside>
+        <Footer/>
       </div>
     </>
   );

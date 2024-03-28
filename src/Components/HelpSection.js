@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { useSelector } from 'react-redux';
+import Footer from './Footer';
 
 const HelpSection = () => {
     const hidden = useSelector((state) => state.hiddenstate.hidden);
 
+    
+  useEffect(() => {
+    document.title = "DP World DAR | Dashboard";
+  }, []);
 
 
 
@@ -153,6 +158,7 @@ const HelpSection = () => {
     
     </div>
     <aside className="control-sidebar control-sidebar-dark"></aside>
+    <Footer/>
   </div>
 
 
