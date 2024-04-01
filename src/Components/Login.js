@@ -51,7 +51,7 @@ const Login = () => {
             width="120px"
             alt="IMG"
           />
-          <h2 className="font-weight-bold text-white">Hello Again! DP World DAR Portal</h2>
+          <h2 className="font-weight-bold text-white">DP World DAR Portal</h2>
           <h5 className="text-white mb-5" style={{ color: "#e4e4e4" }}>
             Welcome Back, Please login to continue
           </h5>
