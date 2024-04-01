@@ -6,20 +6,15 @@ import Footer from './Footer';
 
 const HelpSection = () => {
     const hidden = useSelector((state) => state.hiddenstate.hidden);
-
     
   useEffect(() => {
     document.title = "DP World DAR | Dashboard";
   }, []);
 
-
-
   return (
     <div className="wrapper">
     <Header/>
-
     <Sidebar />
-
     <div className="content-wrapper" style={{ marginLeft: hidden && "0" }}>
       <div className="content-header">
         <div className="container-fluid">
@@ -45,9 +40,7 @@ const HelpSection = () => {
       <section className="content">
           <div className="container-fluid"> 
       <div className='help-section'>
-    
-      
-        <div>
+         <div>
             <h5>Login Page</h5>
             <img src="img/login.png" alt="img" />
             <div className='help-details'>
@@ -134,7 +127,7 @@ const HelpSection = () => {
         </div>
 
         <div>
-        <h5>Modify Page</h5>
+            <h5>Modify Page</h5>
             <img src="img/modify1.png" alt="" />
             <hr />
             <p>- This is the modify page,when u can modify the bollist data.</p>
@@ -148,11 +141,8 @@ const HelpSection = () => {
             <img src="img/modify3.png" alt="" />
             <hr />
             <p>- Then at the last there is save and update button , which will save whole data and modify it.</p>
-            
-         
-        </div>
-     
-    </div>
+          </div>
+     </div>
     </div>
     </section>
     

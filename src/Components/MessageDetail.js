@@ -7,11 +7,13 @@ import Apis from "../Services/ApiServices/Apis";
 import moment from "moment";
 import Loading from "./reusable/Loading";
 import Footer from "./Footer";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 const MessageDetail = () => {
   const location = useLocation();
-  const id = location?.state?.messageData?.id;
+   const id = location?.state?.messageData?.id;
   const status_code = location?.state?.messageData?.status_code;
+  const { apiUrl, setApiUrl } = useApiUrl();
 
  useEffect(()=>{
     window.localStorage.setItem("status",status_code)
@@ -45,7 +47,7 @@ const MessageDetail = () => {
     try {
       setLoading(true);
       const data = await Apis.getMessageDetails(
-        "http://localhost:90/api",
+        apiUrl,
         id
       );
 
@@ -98,7 +100,7 @@ const MessageDetail = () => {
   const handleReprocess = async () => {
     try {
       const data = await Apis.ProcessMessage(
-        "http://localhost:90/api",
+        apiUrl,
         id,
         status_code
       );
@@ -125,7 +127,7 @@ const MessageDetail = () => {
       setDownloading(true);
 
       const response = await fetch(
-        `http://localhost:90/api/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`
+        `${apiUrl}/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`
       );
       if (!response.ok) {
         throw new Error("Failed to download Excel file");
@@ -147,32 +149,7 @@ const MessageDetail = () => {
     }
   };
 
-  //   const downloadExcel = async (id1, id2) => {
 
-  //     try {
-  //         const data = await Apis.BolExcel(
-  //             "https://dpw1.afrilogitech.com/api",
-  //             id1,
-  //             id2
-  //         );
-
-  //         const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
-  //         const url = window.URL.createObjectURL(blob);
-
-  //         const link = document.createElement('a');
-  //         link.href = url;
-  //         link.setAttribute('download', `OMLB104-59906.xlsx`);
-  //         document.body.appendChild(link);
-
-  //         link.click();
-
-  //         document.body.removeChild(link);
-  //         window.URL.revokeObjectURL(url);
-  //     } catch (error) {
-  //         alert("Data not found");
-  //     }
-  // };
 
   return (
     <div className="wrapper">

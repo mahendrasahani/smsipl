@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const ItemsSlice=createSlice({
     name:"Items",
     initialState:{
-        items : [], 
+        items : [],
     },
 
     reducers:{

@@ -26,6 +26,7 @@ class Apis {
   }
 
   async GetMessageList(url, start, end, status) {
+
     const apiResponse = await apiService.MessageList(
       url + "/IntMessageManager/GetMessageList",
       start,
@@ -53,12 +54,6 @@ class Apis {
     return apiResponse?.data;
   }
 
-
-
-  async BolExcel(url,vid,bolid) {
-    const apiResponse = await apiService.bolexcel(url + "/IntMessageManager/GetBOLExcel",vid,bolid);
-    return apiResponse.data;
-  }
 }
 
 export default new Apis();

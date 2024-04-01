@@ -11,8 +11,10 @@ import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
 import { Modal } from "react-bootstrap";
 import Footer from "./Footer";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 const Messages = () => {
+  const { apiUrl, setApiUrl } = useApiUrl();
   const date = new Date();
   const maindate = moment(date, "ddd MMM DD YYYY HH:mm:ss [GMT]Z").format(
     "YYYY-MM-DDTHH:mm"
@@ -71,7 +73,7 @@ const Messages = () => {
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(
-        "http://localhost:90/api",
+        apiUrl,
         start,
         end,
         status
@@ -244,7 +246,7 @@ const Messages = () => {
   const handleReprocess = async (id, status_code) => {
     try {
       const data = await Apis.ProcessMessage(
-        "http://localhost:90/api",
+        apiUrl,
         id,
         status_code
       );
@@ -261,8 +263,7 @@ const Messages = () => {
       setLoading(false);
     }
   };
-
-  return (
+ return (
     <>
       <div className="wrapper">
         <Header />
@@ -356,14 +357,8 @@ const Messages = () => {
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={0}>Select All</option>
-                          {/* <option value={1}>Raw Data Recieved</option>
-                          <option value={2}>Validation Failed</option>
-                          <option value={3}>Validation Successful</option>
-                          <option value={4}>Details Inserted</option> */}
                           <option value={6}>Transfer Successful</option>
                           <option value={7}>Transfer Failed</option>
-                          {/* <option value={5}>Details Insertion Failed</option>
-                          <option value={7}>Transfer Failed</option> */}
                         </select>
                       </div>
                     </div>
@@ -472,7 +467,7 @@ const Messages = () => {
                           <th style={{ color: "#3166C9" }}>
                             Vessel Visit Code
                           </th>
-                          {/* <th style={{ color: "#3166C9" }}>Cargo Code</th> */}
+                         
                           <th style={{ color: "#3166C9" }}>BoL Count.</th>
                           <th style={{ color: "#3166C9" }}>Status</th>
                           <th style={{ color: "#3166C9" }}>Action</th>

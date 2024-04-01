@@ -8,11 +8,15 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import moment from "moment";
 import Footer from "./Footer";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 
 const Dashboard = () => {
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const items = useSelector((state) => state.Items.items);
+  const { apiUrl, setApiUrl } = useApiUrl();
+  
+
 
   const get8HoursBefore = () => {
     const currentTime = moment();
@@ -54,7 +58,7 @@ const Dashboard = () => {
   const fetchMessage = async (start, end) => {
     try {
       const apiResponse = await Apis.GetMessageList(
-        "http://localhost:90/api",
+        apiUrl,
         start,
         end
       );

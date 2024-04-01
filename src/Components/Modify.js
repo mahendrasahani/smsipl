@@ -5,35 +5,27 @@ import { useLocation, useNavigate } from "react-router";
 import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 const Modify2 = () => {
   const location = useLocation();
   const id = location?.state?.id;
-
   const status_code = window.localStorage.getItem("status");
-
-
+  const { apiUrl, setApiUrl } = useApiUrl();
   const navigate = useNavigate();
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState(location?.state?.bolno);
   const [cargono, setCargono] = useState(0);
   const [bollist, setbollist] = useState([]);
   const [cargolist, setcargoList] = useState(bollist[0]?.bolcargos);
-
   const [cntrno, setCntrno] = useState(0);
   const [cntrlist, setCntrList] = useState(bollist[0]?.bolcntrs);
   const [bolvno, setbolvno] = useState(0);
-
   const [vlist, setVlist] = useState(bollist[0]?.bolvehicles);
-
   const [message, setMessage] = useState([]);
-
   const [errorlist, seterrorlist] = useState([]);
   const [vessel, setVessel] = useState({});
-
-
-  // PreviousValues->cargo,containers and vehicles;
-  const [prevcargo,setPrevcargo]=useState(0);
+   const [prevcargo,setPrevcargo]=useState(0);
   const [prevcntr,setprevcntr]=useState(0);
   const [prevvehicle,setPrevvehicle]=useState(0);
 
@@ -383,11 +375,10 @@ const Modify2 = () => {
   const MessageInfo = async () => {
     try {
       const data = await Apis.getMessageDetails(
-        "http://localhost:90/api",
+        apiUrl,
         id
       );
 
-      // console.log("messagedata",data?.data?.bollist)
 
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
@@ -483,9 +474,6 @@ useEffect(()=>{
       vlist[bolvno]=bolvdata;
     }
   
-
-   
-
     cargolist == null
       ? (bollistdata.bolCargos = [])
       : ((cargolist?.length==1)?bollistdata.bolCargos =[bolcargodata]:bollistdata.bolCargos =cargolist);
@@ -497,9 +485,8 @@ useEffect(()=>{
       : ((bolvdata?.length==1)?bollistdata.bolVehicles =[bolvdata]:bollistdata.bolVehicles = vlist);
 
    
-
     const response = await Apis.UpdateBOLMessage(
-      "http://localhost:90/api",
+      apiUrl,
       bollistdata
     );
 
@@ -513,7 +500,7 @@ useEffect(()=>{
   const downloadExcel = async (id1, id2) => {
     try {
       const data = await Apis.BolExcel(
-        "http://localhost:90/api",
+        apiUrl,
         id1,
         id2
       );

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Apis from "./../Services/ApiServices/Apis";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 const Login = () => {
+  const { apiUrl, setApiUrl } = useApiUrl();
   const [formdata, setFormdata] = useState({
     username: "",
     password: "",
   });
 
+ const token = sessionStorage.getItem("token") || 0;
 
-  const token = sessionStorage.getItem("token") || 0;
-
-  useEffect(() => {
+ useEffect(() => {
     if (token) {
       window.location.href = "/dashboard";
     }
@@ -19,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     var apiResponseData = await Apis.IntAuthentication(
-      "https://dpw1.afrilogitech.com/api",
+      apiUrl,
       formdata
     );
     sessionStorage.setItem("token", apiResponseData.token);

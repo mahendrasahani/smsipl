@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHidden } from "./store/HiddenSlice";
 import Apis from "../Services/ApiServices/Apis";
+import { useApiUrl } from "./Context/ApiUrlContext";
 
 const Header = () => {
   const [logbtn, setLogbtn] = useState(false);
+  const { apiUrl, setApiUrl } = useApiUrl();
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const dispatch = useDispatch();
  
@@ -46,7 +48,7 @@ const Header = () => {
   const changeToken = async () => {
     try {
       var apiResponseData = await Apis.IntAuthentication(
-        "https://dpw1.afrilogitech.com/api",
+        apiUrl,
         {
           username: "TPA_APIUser",
           password: "AccTKN@2010",
@@ -68,7 +70,6 @@ const Header = () => {
     };
   }, []);
   
-
 
   return (
     <nav
