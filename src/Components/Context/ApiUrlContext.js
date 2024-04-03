@@ -4,6 +4,7 @@ import config from '../../config.json';
 const ApiUrlContext = createContext();
 
 export const ApiUrlProvider = ({ children }) => {
+  // config.apiUrl
   const [apiUrl, setApiUrl] = useState(config.apiUrl);
 
   return (

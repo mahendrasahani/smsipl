@@ -6,6 +6,8 @@ import Dashboard from "./Components/Dashboard";
 import Users from "./Components/Users";
 import HelpSection from "./Components/HelpSection";
 import { ApiUrlProvider } from "./Components/Context/ApiUrlContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 import MessageDetail from "./Components/MessageDetail";
@@ -14,6 +16,7 @@ import Modify from "./Components/Modify";
 const App = () => {
   return (
     <div className="App">
+         <ToastContainer />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />

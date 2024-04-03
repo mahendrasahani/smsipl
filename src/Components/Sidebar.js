@@ -116,7 +116,7 @@ const Sidebar = () => {
                 <p>Messages</p>
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a
                 href="/users"
                 className={`nav-link ${url == "users" ? "active" : ""}`}
@@ -135,7 +135,7 @@ const Sidebar = () => {
                 <img src="img/manage.png" className="img-responsive sidebar-img" />
                 <p>Help Section</p>
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

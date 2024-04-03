@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Apis from "./../Services/ApiServices/Apis";
 import { useApiUrl } from "./Context/ApiUrlContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { apiUrl, setApiUrl } = useApiUrl();
@@ -19,10 +20,24 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var apiResponseData = await Apis.IntAuthentication(
-      apiUrl,
-      formdata
-    );
+
+  
+    const usernameRegex = /^[a-zA-Z0-9_]{1,30}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/;
+  
+
+    if (!usernameRegex.test(formdata?.username)) {
+      toast.error('Username must be alphanumeric and less than or equal to 30 characters');
+      return;
+    }
+  
+    if (!passwordRegex.test(formdata?.password)) {
+      toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase and one uppercase letter');
+      return;
+    }
+  
+
+    var apiResponseData = await Apis.IntAuthentication(apiUrl, formdata);
     sessionStorage.setItem("token", apiResponseData.token);
     window.location.href = "/dashboard";
   };

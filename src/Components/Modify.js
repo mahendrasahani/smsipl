@@ -6,11 +6,12 @@ import Apis from "../Services/ApiServices/Apis";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useApiUrl } from "./Context/ApiUrlContext";
+import { toast } from "react-toastify";
 
 const Modify2 = () => {
   const location = useLocation();
   const id = location?.state?.id;
-  const status_code = window.localStorage.getItem("status");
+  const status_code = window.sessionStorage.getItem("status");
   const { apiUrl, setApiUrl } = useApiUrl();
   const navigate = useNavigate();
   const hidden = useSelector((state) => state.hiddenstate.hidden);
@@ -491,7 +492,9 @@ useEffect(()=>{
     );
 
     if (response && response?.success === true) {
-      alert("Saved successfully");
+     toast.success("Saved successfully");
+     window.location.href="/messageDetails"
+
     } else {
       alert(response?.message);
     }

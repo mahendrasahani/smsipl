@@ -103,7 +103,7 @@ const Header = () => {
               style={{ color: "#6159C7", cursor: "pointer" }}
             >
               <img src="img/user1.png" className="img-responsive" />
-              DP WORLD
+              DP World DAR
             </a>
             <div ref={dropdownRef} className="">
               {logbtn && (

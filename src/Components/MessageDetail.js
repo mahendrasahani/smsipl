@@ -11,12 +11,13 @@ import { useApiUrl } from "./Context/ApiUrlContext";
 
 const MessageDetail = () => {
   const location = useLocation();
-   const id = location?.state?.messageData?.id;
-  const status_code = location?.state?.messageData?.status_code;
+   const id = location?.state?.messageData?.id?location?.state?.messageData?.id:  window.sessionStorage.getItem("id");
+  const status_code = location?.state?.messageData?.status_code ? location?.state?.messageData?.status_code: window.sessionStorage.getItem("status");
   const { apiUrl, setApiUrl } = useApiUrl();
 
  useEffect(()=>{
-    window.localStorage.setItem("status",status_code)
+    window.sessionStorage.setItem("status",status_code)
+    window.sessionStorage.setItem("id",id)
  },[])
 
   const hidden = useSelector((state) => state.hiddenstate.hidden);
