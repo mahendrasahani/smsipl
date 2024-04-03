@@ -496,7 +496,7 @@ useEffect(()=>{
      window.location.href="/messageDetails"
 
     } else {
-      alert(response?.message);
+      toast.error(response?.message);
     }
   };
 
@@ -509,12 +509,12 @@ useEffect(()=>{
       );
 
       if (data?.success === true) {
-        alert("Data download successfully");
+        toast.success("Data download successfully");
       } else {
-        alert("Data not found");
+        toast.error("Data not found");
       }
     } catch (error) {
-      alert("Data not found");
+      toast.error("Data not found");
     }
   };
 

@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-
+import { toast } from "react-toastify";
 
 class ApiService {
 
@@ -19,7 +19,7 @@ class ApiService {
           resolve(result);
         })
         .catch((err) => {
-          alert(err);
+          toast.error("Invalid Credentials")
         });
     });
   }
@@ -45,7 +45,7 @@ class ApiService {
       resolve(result);
     })
       .catch((err) => {
-        alert(`Can't find the message Details for required messageId - ${id}`)
+        toast.error(`Can't find the message Details for required messageId - ${id}`)
         window.location.href="/messages"
         console.log("error: " + err);
       });

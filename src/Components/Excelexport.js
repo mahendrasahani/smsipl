@@ -1,6 +1,7 @@
 import React from "react";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
+import { toast } from "react-toastify";
 
 const ExportExcel = ({ excelData, fileName }) => {
 
@@ -21,7 +22,7 @@ const ExportExcel = ({ excelData, fileName }) => {
   }
 
   const handlebtn = () => {
-    alert("No data is there to be printed");
+    toast.error("No data is there to be printed");
   };
 
 
