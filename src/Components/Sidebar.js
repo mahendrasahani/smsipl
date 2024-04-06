@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setHidden } from "./store/HiddenSlice";
 
 const Sidebar = () => {
-  const hidden = useSelector((state) => state.hiddenstate.hidden);
-  const dispatch = useDispatch();
+ 
 
   const [url, setUrl] = useState("");
 
@@ -13,33 +12,10 @@ const Sidebar = () => {
     setUrl(pageURLArray[pageURLArray.length - 1]);
   });
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1200 && hidden === false) {
-        dispatch(setHidden(!hidden));
-      } else if (window.innerWidth >= 1200 && hidden === true) {
-        dispatch(setHidden(!hidden));
-      }
-    };
+  
+  const hidden = useSelector((state) => state.hiddenstate.hidden);
+  const dispatch = useDispatch();
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [hidden]);
-
-  const [windowsize,setwindowsize]=useState(false);
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setwindowsize(true)
-  }
-
-    if (window.innerWidth > 768) {
-      setwindowsize(false)
-    }
-
-  }, [window.innerWidth]);
 
   const sidebarRef = useRef(null);
 
@@ -50,7 +26,7 @@ const Sidebar = () => {
         window.innerWidth < 1200 &&
         !sidebarRef.current.contains(event.target)
       ) {
-        dispatch(setHidden(!hidden));
+        dispatch(setHidden(true));
       }
     };
 
@@ -59,6 +35,52 @@ const Sidebar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
+
+
+  useEffect(() => {
+    const handleInitialVisibility = () => {
+      if (window.innerWidth < 768) {
+        dispatch(setHidden(true));
+      } else {
+        dispatch(setHidden(false));
+      }
+    };
+
+    handleInitialVisibility();
+
+    return () => {
+      window.removeEventListener("resize", handleInitialVisibility);
+    };
+  }, [dispatch]);
+
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        dispatch(setHidden(true));
+      } else if (!hidden) {
+        dispatch(setHidden(false)); 
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [dispatch, hidden]);
+
+
+  const calculateTransformValue = () => {
+    if (window.innerWidth < 768) {
+      return hidden ? "translateX(0px)" : "translateX(240px)";
+    } else {
+      return hidden ?"translateX(-255px)" : "translateX(0)";
+    }
+  };
+
+
 
   
 
@@ -66,11 +88,11 @@ const Sidebar = () => {
   return (
     <aside
       className="main-sidebar sidebar-dark-primary elevation-4"
-      ref={sidebarRef}
+        ref={sidebarRef}
       style={{
         background: "white",
         overflow: "hidden",
-        transform: !windowsize ? hidden ? "translateX(-255px)" : "translateX(0px)":hidden ? "translateX(0px)" : "translateX(225px)"
+        transform: calculateTransformValue(),
       }}
     >
       <a

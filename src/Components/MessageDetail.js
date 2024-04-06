@@ -8,17 +8,29 @@ import moment from "moment";
 import Loading from "./reusable/Loading";
 import Footer from "./Footer";
 import { useApiUrl } from "./Context/ApiUrlContext";
+import { toast } from "react-toastify";
 
 const MessageDetail = () => {
   const location = useLocation();
-   const id = location?.state?.messageData?.id?location?.state?.messageData?.id:  window.sessionStorage.getItem("id");
+
+  // "apiUrl": "https://ssarouatmwtpaapi.dpworld.com/api"
+
+  // https://dpw1.afrilogitech.com/
+
+   const id = location?.state?.messageData?.id?location?.state?.messageData?.id:window.sessionStorage.getItem("id");
   const status_code = location?.state?.messageData?.status_code ? location?.state?.messageData?.status_code: window.sessionStorage.getItem("status");
+
+  const filescreated=location?.state?.messageData?.file_created;
+
+  const vesselcode= location?.state?.messageData?.manifest?.vessel?.vesselVisitCode;
   const { apiUrl, setApiUrl } = useApiUrl();
 
  useEffect(()=>{
     window.sessionStorage.setItem("status",status_code)
     window.sessionStorage.setItem("id",id)
  },[])
+
+
 
   const hidden = useSelector((state) => state.hiddenstate.hidden);
   const [bolno, setbolno] = useState("");
@@ -40,6 +52,7 @@ const MessageDetail = () => {
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
     MessageInfo();
   }, []);
@@ -57,8 +70,8 @@ const MessageDetail = () => {
         window.location.href = "/messages";
       }
 
+     console.log("data",data?.data)
     
-
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
     } catch (error) {
@@ -120,35 +133,39 @@ const MessageDetail = () => {
     setbolno("");
   };
 
-  const [downloading, setDownloading] = useState(false);
-  const [error, setError] = useState(null);
 
   const downloadExcel = async (id1, id2) => {
+    const token=window.sessionStorage.getItem("token")
     try {
-      setDownloading(true);
+     
+      const response = await fetch(`${apiUrl}/IntMessageManager/GetBOLExcel?sVesselVisitCode=${vessel?.primaryid}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': '*/*',
+        }
+      });
+      
 
-      const response = await fetch(
-        `${apiUrl}/IntMessageManager/GetBOLExcel?sVesselVisitCode=${id1}&nBolID=${id2}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to download Excel file");
-      }
+      // if (!response.ok) {
+      //   throw new Error("FILE NOT FOUND");
+      // }
 
-      const blob = await response.blob();
+      const blob = await response?.blob();
 
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `${id1}-${id2}.xlsx`);
+      link.setAttribute("download", `${id1}.xlsx`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setDownloading(false);
-    }
+      toast.error(error.message);
+    } 
   };
+
+
 
 
 
@@ -272,6 +289,16 @@ const MessageDetail = () => {
                       >
                         Tpa Uid:
                       </p>
+                      { vessel?.excelfilepath && vessel.excelfilepath?.length>0 &&
+                      <p
+                        className="mb-0 height-box"
+                        style={{ fontWeight: "600" }}
+                      >
+                         Download:
+                      </p>
+                      }
+                     
+                     
                     </div>
 
                     <div className="col-md-3 col-6">
@@ -347,6 +374,31 @@ const MessageDetail = () => {
                       >
                         {vessel?.tpaUid}
                       </p>
+                      {
+                        vessel?.excelfilepath && vessel.excelfilepath?.length>0 &&
+                        <p
+                        className="mb-0 height-box"
+                        style={{ color: "#676767" }}
+                      >
+                         <button
+                                          style={{ margin: "0 5px" }}
+                                          className="btn btn-sm bg-primary btn-clear"
+                                          onClick={() =>
+                                            downloadExcel(
+                                              vesselcode,
+                                              0
+                                            )
+                                          }
+                                        >
+                                          <i
+                                            className="fa fa-download"
+                                            aria-hidden="true"
+                                          ></i>
+                                        </button>
+                      </p>
+                      }
+                     
+                  
                     </div>
 
                     <div className="col-md-3 col-6" id="todate-div">
@@ -499,7 +551,13 @@ const MessageDetail = () => {
                         {vessel?.voyageNumber}
                       </p>
                     </div>
+                  
                   </div>
+
+            
+
+                  
+
                 ) : (
                   <Loading />
                 )}
@@ -531,28 +589,30 @@ const MessageDetail = () => {
                                   <td
                                     style={{
                                       color:
-                                        itm?.errorlist?.length > 0 ||
+                                      ( (itm?.cargocode).toUpperCase() === "B" ||
+                                      (itm?.cargocode).toUpperCase() === "L" ||  (itm?.cargocode).toUpperCase() === "V")?"darkgreen":
+                                        itm?.errorlist?.length > 0 &&
                                         itm?.pushstatus == 7
                                           ? "#FF0000"
                                           : "darkgreen",
                                     }}
                                   >
-                                    {(status_code == 7 || status_code == 6) &&
-                                    (itm?.errorlist?.length > 0 ||
+                                    {
+                                      ( (itm?.cargocode).toUpperCase() === "B" ||
+                                      (itm?.cargocode).toUpperCase() === "L" ||  (itm?.cargocode).toUpperCase() === "V")?"FILES GENERATED":
+                                    (itm?.errorlist?.length > 0 &&
                                       itm?.pushstatus == 7)
                                       ? "Transfer Failed"
                                       : "Successful"}
                                   </td>
                                   <td>
-                                    {(itm?.errorlist?.length > 0 ||
-                                      itm?.pushstatus == 7 ||
-                                      (itm?.cargocode).toUpperCase() === "B" ||
-                                      (itm?.cargocode).toUpperCase() === "L" ||
-                                      (itm?.cargocode).toUpperCase() === "C" ||
-                                      (itm?.cargocode).toUpperCase() === "V") &&
-                                    (status_code == 7 || status_code == 6) ? (
+                                    {(
+                                      // itm?.errorlist?.length > 0 ||
+                                      (itm?.pushstatus == 7 || itm?.pushstatus==6)  && ( (itm?.cargocode).toUpperCase() === "B" ||
+                                      (itm?.cargocode).toUpperCase() === "L" ||  (itm?.cargocode).toUpperCase() === "V")
+                                     )  ? (
                                       <>
-                                        <button
+                                        {/* <button
                                           style={{ margin: "0 5px" }}
                                           className="btn btn-sm bg-primary btn-clear"
                                           onClick={() =>
@@ -566,23 +626,31 @@ const MessageDetail = () => {
                                             className="fa fa-download"
                                             aria-hidden="true"
                                           ></i>
-                                        </button>
-                                        <button
-                                          className="btn btn-sm bg-primary btn-clear"
-                                          onClick={() =>
-                                            handleNavigation(
-                                              itm.bolnbr,
-                                              id,
-                                              status_code
-                                            )
-                                          }
-                                        >
-                                          <i className="fa fa-edit"></i>
-                                        </button>
+                                        </button> */}
+                                       
                                       </>
                                     ) : (
-                                      <p>-</p>
+                                      null
                                     )}
+
+                                    {
+                                      (itm?.pushstatus!=6 && (itm?.pushstatus!=1)) && ( (itm?.cargocode).toUpperCase() !== "B" ||
+                                      (itm?.cargocode).toUpperCase() !== "L" ||  (itm?.cargocode).toUpperCase() !== "V")  ?
+                                      <button
+                                      style={{ margin: "0 5px" }}
+                                      className="btn btn-sm bg-primary btn-clear"
+                                      onClick={() =>
+                                        handleNavigation(
+                                          itm.bolnbr,
+                                          id,
+                                          status_code
+                                        )
+                                      }
+                                    >
+                                      <i className="fa fa-edit"></i>
+                                    </button>:
+                                    <p>-</p>
+                                    }
                                   </td>
                                 </tr>
                               );

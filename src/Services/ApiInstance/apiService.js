@@ -23,6 +23,27 @@ class ApiService {
         });
     });
   }
+
+  async postMessage(url, data) {
+    const token = sessionStorage.getItem('token')
+    return new Promise(async function (resolve, reject) {
+      await axios({
+        method: "post",
+        url,
+        data,
+        headers: {
+          'Authorization':`bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((err) => {
+          toast.error(err)
+        });
+    });
+  }
  
 
   async MessageDetails(url,id) {

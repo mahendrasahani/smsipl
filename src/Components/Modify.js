@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import { useApiUrl } from "./Context/ApiUrlContext";
 import { toast } from "react-toastify";
 
-const Modify2 = () => {
+const Modify = () => {
   const location = useLocation();
   const id = location?.state?.id;
   const status_code = window.sessionStorage.getItem("status");
@@ -24,12 +24,11 @@ const Modify2 = () => {
   const [bolvno, setbolvno] = useState(0);
   const [vlist, setVlist] = useState(bollist[0]?.bolvehicles);
   const [message, setMessage] = useState([]);
-  const [errorlist, seterrorlist] = useState([]);
+  const [errorlist, seterrorlist] = useState(null);
   const [vessel, setVessel] = useState({});
-   const [prevcargo,setPrevcargo]=useState(0);
-  const [prevcntr,setprevcntr]=useState(0);
-  const [prevvehicle,setPrevvehicle]=useState(0);
-
+  const [prevcargo, setPrevcargo] = useState(0);
+  const [prevcntr, setprevcntr] = useState(0);
+  const [prevvehicle, setPrevvehicle] = useState(0);
 
   const [bollistdata, setbollistdata] = useState({
     bolID: 0,
@@ -375,11 +374,7 @@ const Modify2 = () => {
 
   const MessageInfo = async () => {
     try {
-      const data = await Apis.getMessageDetails(
-        apiUrl,
-        id
-      );
-
+      const data = await Apis.getMessageDetails(apiUrl, id);
 
       setMessage(data?.data?.bollist);
       setVessel(data?.data?.vessel);
@@ -400,11 +395,6 @@ const Modify2 = () => {
   };
 
   useEffect(() => {
-    const filtererror = message?.filter((itm) => itm?.errorlist !== null);
-    seterrorlist(filtererror);
-  }, []);
-
-  useEffect(() => {
     const filterbol =
       message && message?.filter((itm) => itm?.bolnbr === bolno);
     setbollist(filterbol);
@@ -422,40 +412,37 @@ const Modify2 = () => {
     setVlist(bollist[0]?.bolvehicles);
   }, [bolvno, bollist, message]);
 
-
-
-  useEffect(()=>{
+  useEffect(() => {
     cargolist != null &&
-    setcargoList((prev) => {
-      const newArray = [...prev];
-      newArray[prevcargo] = bolcargodata;
-      return newArray;
-    });
+      setcargoList((prev) => {
+        const newArray = [...prev];
+        newArray[prevcargo] = bolcargodata;
+        return newArray;
+      });
 
-    setPrevcargo(cargono)
-  },[cargono])
+    setPrevcargo(cargono);
+  }, [cargono]);
 
-  useEffect(()=>{
+  useEffect(() => {
     cntrlist != null &&
       setCntrList((prev) => {
         const newArray = [...prev];
         newArray[prevcntr] = bolcntrdata;
         return newArray;
       });
-      setprevcntr(cntrno)
-  },[cntrno])
+    setprevcntr(cntrno);
+  }, [cntrno]);
 
-useEffect(()=>{
-  vlist != null &&
-  setVlist((prev) => {
-    const newArray = [...prev];
-    newArray[prevvehicle] = bolvdata;
-    return newArray;
-  });
-  setPrevvehicle(prevvehicle)
-},[bolvno])
+  useEffect(() => {
+    vlist != null &&
+      setVlist((prev) => {
+        const newArray = [...prev];
+        newArray[prevvehicle] = bolvdata;
+        return newArray;
+      });
+    setPrevvehicle(prevvehicle);
+  }, [bolvno]);
 
- 
   const handleNavigation = (bolno, data) => {
     navigate("/modify", { state: { id: data, bolno: bolno } });
   };
@@ -463,58 +450,44 @@ useEffect(()=>{
   const submitData = async (e) => {
     e.preventDefault();
 
-    if(cargolist != null){
-      cargolist[cargono]=bolcargodata;
+    if (cargolist != null) {
+      cargolist[cargono] = bolcargodata;
     }
 
-    if(cntrlist!=null){
-      cntrlist[cntrno]=bolcntrdata;
+    if (cntrlist != null) {
+      cntrlist[cntrno] = bolcntrdata;
     }
 
-    if(vlist!=null){
-      vlist[bolvno]=bolvdata;
+    if (vlist != null) {
+      vlist[bolvno] = bolvdata;
     }
-  
+
     cargolist == null
       ? (bollistdata.bolCargos = [])
-      : ((cargolist?.length==1)?bollistdata.bolCargos =[bolcargodata]:bollistdata.bolCargos =cargolist);
+      : cargolist?.length == 1
+      ? (bollistdata.bolCargos = [bolcargodata])
+      : (bollistdata.bolCargos = cargolist);
     cntrlist == null
       ? (bollistdata.bolCntrs = [])
-      : ((cntrlist?.length==1)?bollistdata.bolCntrs = [bolcntrdata]:bollistdata.bolCntrs =cntrlist);
+      : cntrlist?.length == 1
+      ? (bollistdata.bolCntrs = [bolcntrdata])
+      : (bollistdata.bolCntrs = cntrlist);
     vlist == null
       ? (bollistdata.bolVehicles = [])
-      : ((bolvdata?.length==1)?bollistdata.bolVehicles =[bolvdata]:bollistdata.bolVehicles = vlist);
+      : bolvdata?.length == 1
+      ? (bollistdata.bolVehicles = [bolvdata])
+      : (bollistdata.bolVehicles = vlist);
 
-   
-    const response = await Apis.UpdateBOLMessage(
-      apiUrl,
-      bollistdata
-    );
+    const response = await Apis.UpdateBOLMessage(apiUrl, bollistdata);
 
-    if (response && response?.success === true) {
-     toast.success("Saved successfully");
-     window.location.href="/messageDetails"
+    if (response && response.success === true) {
+      toast.success("Saved successfully");
 
+      setTimeout(() => {
+        window.location.href = "/messageDetails";
+      }, 5000);
     } else {
       toast.error(response?.message);
-    }
-  };
-
-  const downloadExcel = async (id1, id2) => {
-    try {
-      const data = await Apis.BolExcel(
-        apiUrl,
-        id1,
-        id2
-      );
-
-      if (data?.success === true) {
-        toast.success("Data download successfully");
-      } else {
-        toast.error("Data not found");
-      }
-    } catch (error) {
-      toast.error("Data not found");
     }
   };
 
@@ -551,7 +524,7 @@ useEffect(()=>{
 
         {message?.length > 0 && (
           <>
-            <h5 style={{ padding: "0px 15.5px" }}>BoL List</h5>
+            <h5 style={{ padding: "0px 15.5px" }}>BoL ErrorList</h5>
             <div
               className="col-md-12 table-responsive"
               style={{ padding: "0px 15.5px" }}
@@ -561,8 +534,12 @@ useEffect(()=>{
                   <tr style={{ background: "#E1E8FF", fontSize: "12px" }}>
                     <th style={{ color: "#3166C9" }}>#</th>
                     <th style={{ color: "#3166C9" }}>BoL No.</th>
-                    <th style={{ color: "#3166C9" }}>Status</th>
-                    <th style={{ color: "#3166C9" }}>Action</th>
+                    <th style={{ color: "#3166C9" }}>Message</th>
+                    <th style={{ color: "#3166C9" }}>TraceId</th>
+                    <th style={{ color: "#3166C9" }}>
+                      ValidationDetail Message
+                    </th>
+                    <th style={{ color: "#3166C9" }}>ValidationDetail code</th>
                   </tr>
                 </thead>
                 <tbody style={{ fontSize: "12px" }}>
@@ -572,57 +549,149 @@ useEffect(()=>{
                         <tr key={itm?.bolnbr}>
                           <td>{i + 1}</td>
                           <td>{itm?.bolnbr}</td>
-                          <td
-                                    style={{
-                                      color:
-                                        itm?.errorlist?.length > 0 ||
-                                        itm?.pushstatus == 7
-                                          ? "#FF0000"
-                                          : "darkgreen",
-                                    }}
-                                  >
-                                    {(status_code == 7 || status_code == 6) &&
-                                    (itm?.errorlist?.length > 0 ||
-                                      itm?.pushstatus == 7)
-                                      ? "Transfer Failed"
-                                      : "Successful"}
-                                  </td>
+
                           <td>
-                            {(itm?.errorlist?.length > 0 ||
-                              itm?.pushstatus == 7 ||
-                              (itm?.cargocode).toUpperCase() === "B" ||
-                              (itm?.cargocode).toUpperCase() === "L" ||
-                              (itm?.cargocode).toUpperCase() === "C" ||
-                              (itm?.cargocode).toUpperCase() === "V") &&
-                            (status_code == 7 || status_code == 6) ? (
-                              <>
-                                <button
-                                  style={{ margin: "0 5px" }}
-                                  className="btn btn-sm bg-primary btn-clear"
-                                  onClick={() =>
-                                    downloadExcel(
-                                      itm?.vesselvisitcode,
-                                      itm?.primaryid
-                                    )
+                            {itm?.errorlist?.map((item, index) => {
+                              const errorMessage = item?.errormessage;
+                              console.log("errorMessage:", errorMessage);
+                              let errorMessageToShow = "";
+
+                              if (
+                                errorMessage.startsWith(
+                                  "ERROR IN SENDING DATA - "
+                                )
+                              ) {
+                                const jsonStr = errorMessage.substring(
+                                  "ERROR IN SENDING DATA - ".length
+                                );
+                                try {
+                                  const errorObj = JSON.parse(jsonStr);
+                                  console.log("errorObj:", errorObj);
+                                  errorMessageToShow = errorObj?.message;
+                                } catch (error) {
+                                  console.error("Error parsing JSON:", error);
+                                }
+                              }
+
+                              return <p key={index}>{errorMessageToShow}</p>;
+                            })}
+                          </td>
+
+                          <td>
+                            {itm?.errorlist?.map((item, index) => {
+                              const errorMessage = item?.errormessage;
+
+                              let traceIdMessage = "";
+
+                              if (
+                                errorMessage.startsWith(
+                                  "ERROR IN SENDING DATA - "
+                                )
+                              ) {
+                                const jsonStr = errorMessage.substring(
+                                  "ERROR IN SENDING DATA - ".length
+                                );
+                                try {
+                                  const errorObj = JSON.parse(jsonStr);
+                                  console.log("errorObj:", errorObj);
+                                  if (
+                                    errorObj.responseDetail &&
+                                    errorObj.responseDetail.traceId
+                                  ) {
+                                    traceIdMessage =
+                                      errorObj.responseDetail.traceId;
                                   }
-                                >
-                                  <i
-                                    className="fa fa-download"
-                                    aria-hidden="true"
-                                  ></i>
-                                </button>
-                                <button
-                                  className="btn btn-sm bg-primary btn-clear"
-                                  onClick={() =>
-                                    handleNavigation(itm.bolnbr, id)
+                                } catch (error) {
+                                  console.error("Error parsing JSON:", error);
+                                }
+                              }
+
+                              return <p key={index}>{traceIdMessage}</p>;
+                            })}
+                          </td>
+                          <td>
+                            {itm?.errorlist?.map((item, index) => {
+                              const errorMessage = item?.errormessage;
+                              console.log("errorMessage:", errorMessage);
+                              let messageToShow = "";
+                              let codeToShow = "";
+
+                              if (
+                                errorMessage.startsWith(
+                                  "ERROR IN SENDING DATA - "
+                                )
+                              ) {
+                                const jsonStr = errorMessage.substring(
+                                  "ERROR IN SENDING DATA - ".length
+                                );
+                                try {
+                                  const errorObj = JSON.parse(jsonStr);
+                                  console.log("errorObj:", errorObj);
+                                  if (
+                                    errorObj.responseDetail &&
+                                    errorObj.responseDetail.validationDetail &&
+                                    errorObj.responseDetail.validationDetail
+                                      .length > 0
+                                  ) {
+                                    const validationDetail =
+                                      errorObj.responseDetail
+                                        .validationDetail[0];
+                                    if (validationDetail.message) {
+                                      messageToShow = validationDetail.message;
+                                    }
+                                    if (validationDetail.code) {
+                                      codeToShow = validationDetail.code;
+                                    }
                                   }
-                                >
-                                  <i className="fa fa-edit"></i>
-                                </button>
-                              </>
-                            ) : (
-                              <p>-</p>
-                            )}
+                                } catch (error) {
+                                  console.error("Error parsing JSON:", error);
+                                }
+                              }
+
+                              return <p key={index}>{messageToShow}</p>;
+                            })}
+                          </td>
+                          <td>
+                            {itm?.errorlist?.map((item, index) => {
+                              const errorMessage = item?.errormessage;
+                              console.log("errorMessage:", errorMessage);
+                              let messageToShow = "";
+                              let codeToShow = "";
+
+                              if (
+                                errorMessage.startsWith(
+                                  "ERROR IN SENDING DATA - "
+                                )
+                              ) {
+                                const jsonStr = errorMessage.substring(
+                                  "ERROR IN SENDING DATA - ".length
+                                );
+                                try {
+                                  const errorObj = JSON.parse(jsonStr);
+                                  console.log("errorObj:", errorObj);
+                                  if (
+                                    errorObj.responseDetail &&
+                                    errorObj.responseDetail.validationDetail &&
+                                    errorObj.responseDetail.validationDetail
+                                      .length > 0
+                                  ) {
+                                    const validationDetail =
+                                      errorObj.responseDetail
+                                        .validationDetail[0];
+                                    if (validationDetail.message) {
+                                      messageToShow = validationDetail.message;
+                                    }
+                                    if (validationDetail.code) {
+                                      codeToShow = validationDetail.code;
+                                    }
+                                  }
+                                } catch (error) {
+                                  console.error("Error parsing JSON:", error);
+                                }
+                              }
+
+                              return <p key={index}>{codeToShow}</p>;
+                            })}
                           </td>
                         </tr>
                       );
@@ -631,7 +700,6 @@ useEffect(()=>{
               </table>
             </div>
           </>
-     
         )}
 
         <section className="content pb-3">
@@ -1928,7 +1996,6 @@ useEffect(()=>{
                             </div>
                           </div>
                         </div>
-                      
                       </div>
                     </div>
                   )}
@@ -2201,7 +2268,6 @@ useEffect(()=>{
                             </div>
                           </div>
                         </div>
-                       
                       </div>
                     </div>
                   )}
@@ -2523,7 +2589,6 @@ useEffect(()=>{
                             </div>
                           </div>
                         </div>
-                       
                       </div>
                     </div>
                   )}
@@ -2543,9 +2608,9 @@ useEffect(()=>{
         </section>
       </div>
       <aside className="control-sidebar control-sidebar-dark"></aside>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
 
-export default Modify2;
+export default Modify;

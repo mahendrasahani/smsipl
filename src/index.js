@@ -8,9 +8,11 @@ import AppRouter from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-
-    <Provider store={store}>
+  <React.StrictMode>
+        <Provider store={store}>
        <AppRouter />
     </Provider>
+  </React.StrictMode>
+   
 
 );

@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const HiddenSlice=createSlice({
     name:"hiddenstate",
     initialState:{
-        hidden:false,
+        hidden:true,
     },
 
     reducers:{

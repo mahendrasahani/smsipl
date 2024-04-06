@@ -8,16 +8,7 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Lato-Regular';
-    src: url('../../font/Lato-Regular.ttf') format('truetype');
-    -ms-font-family: 'Lato-Regular' !important;
-    -ms-src: url('../../font/Lato-Regular.ttf') format('truetype') !important;
-    -webkit-font-family: 'Lato-Regular' !important;
-    -webkit-src: url('../../font/Lato-Regular.ttf') format('truetype') !important;
-    font-weight: normal;
-    font-style: normal;
-}
+
 #not-call{background: #E1E8FF;border-radius: 25px 25px 0px 25px;padding:15px;}
 .main-header{box-shadow: -2px 2px 3px 2px #ddd;}
 .btn-outline-primary{border:1px solid #838383;color:#838383;}

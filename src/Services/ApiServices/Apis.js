@@ -37,7 +37,7 @@ class Apis {
   }
 
   async UpdateBOLMessage(url,data) {
-    const apiResponse = await apiService.post(url + "/IntMessageManager/UpdateBOLMessage",data);
+    const apiResponse = await apiService.postMessage(url + "/IntMessageManager/UpdateBOLMessage",data);
     return apiResponse?.data;
   }
 
