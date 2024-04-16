@@ -146,8 +146,7 @@ const Messages = () => {
     setVisitcode("");
     setcarriername("");
     setStatus(0);
-    console.log("filte", filteredItems)
-    if(filteredItems2 && filteredItems2.length>0)
+    if(filteredItems2 && filteredItems2.length>0 && statusvalue!=0)
       setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
     
     else
