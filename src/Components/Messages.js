@@ -20,8 +20,6 @@ const Messages = () => {
     "YYYY-MM-DDTHH:mm"
   );
 
-
-
   const get8HoursBefore = () => {
     const currentTime = moment();
     const eightHoursBefore = currentTime.subtract(8, "hours");
@@ -71,22 +69,15 @@ const Messages = () => {
   // -----------------------------------------Fetching data from getMessageList Api-----------------------------------------------------//
 
   const fetchMessage = async (start, end, status) => {
-  
     try {
       setLoading(true);
-      const apiResponse = await Apis.GetMessageList(
-        apiUrl,
-        start,
-        end,
-        status
-      );
+      const apiResponse = await Apis.GetMessageList(apiUrl, start, end, status);
 
       if (Number(status) !== 6) {
         dispatch(addItems(apiResponse?.data));
       }
 
       setitems(apiResponse?.data);
-    
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
@@ -151,6 +142,7 @@ const Messages = () => {
   };
 
   const handleFiltermessage = () => {
+    console.log("filter",filteredItems2)
     let filteredData = filteredItems2 ? filteredItems2 : items;
 
     if (visitcode !== "") {
@@ -248,11 +240,7 @@ const Messages = () => {
 
   const handleReprocess = async (id, status_code) => {
     try {
-      const data = await Apis.ProcessMessage(
-        apiUrl,
-        id,
-        status_code
-      );
+      const data = await Apis.ProcessMessage(apiUrl, id, status_code);
 
       if (data?.success === true) {
         alert("Data reprocess successfully");
@@ -266,7 +254,7 @@ const Messages = () => {
       setLoading(false);
     }
   };
- return (
+  return (
     <>
       <div className="wrapper">
         <Header />
@@ -470,7 +458,7 @@ const Messages = () => {
                           <th style={{ color: "#3166C9" }}>
                             Vessel Visit Code
                           </th>
-                         
+
                           <th style={{ color: "#3166C9" }}>BoL Count.</th>
                           <th style={{ color: "#3166C9" }}>Status</th>
                           <th style={{ color: "#3166C9" }}>Action</th>
@@ -496,7 +484,11 @@ const Messages = () => {
                               return (
                                 <tr key={itm?.id}>
                                   <td>{i + 1}</td>
-                                  <td>{itm?.row_created_local?itm?.row_created_local:itm?.row_created}</td>
+                                  <td>
+                                    {itm?.row_created_local
+                                      ? itm?.row_created_local
+                                      : itm?.row_created}
+                                  </td>
                                   <td>{itm?.manifest?.vessel?.mrn}</td>
                                   <td>
                                     {itm?.manifest.vessel?.vesselVisitCode}
@@ -506,33 +498,32 @@ const Messages = () => {
                                   <td
                                     style={{
                                       color:
-                                     itm?.file_created===1
+                                        itm?.file_created === 1
                                           ? "darkgreen"
-                                          :   itm?.status_code === 2 ||
-                                          itm?.status_code === 5 ||
-                                          itm?.status_code === 7 ? "#FF0000"
-                                          : "darkgreen"
+                                          : itm?.status_code === 2 ||
+                                            itm?.status_code === 5 ||
+                                            itm?.status_code === 7
+                                          ? "#FF0000"
+                                          : "darkgreen",
                                     }}
                                   >
-                                   {
-  itm?.file_created === 1 ? "FILES GENERATED" :
-
-
-  itm?.status_code === 1 ? "RAW DATA RECEIVED" :
-  itm?.status_code === 2 ? "VALIDATION FAILED" :
-  itm?.status_code === 3 ? "VALIDATION SUCCESSFUL" :
-  itm?.status_code === 4 ? "DETAILS INSERTED" :
-  itm?.status_code === 5 ? "DETAILS INSERTION FAILED" :
-  itm?.status_code === 6 ? "TRANSFER SUCCESSFUL" :
-  itm?.status_code === 7 ? "TRANSFER FAILED" :
-  null
-}
-
-                                      
-                                 
-                                    
-                                    
-                                   
+                                    {itm?.file_created === 1
+                                      ? "FILES GENERATED"
+                                      : itm?.status_code === 1
+                                      ? "RAW DATA RECEIVED"
+                                      : itm?.status_code === 2
+                                      ? "VALIDATION FAILED"
+                                      : itm?.status_code === 3
+                                      ? "VALIDATION SUCCESSFUL"
+                                      : itm?.status_code === 4
+                                      ? "DETAILS INSERTED"
+                                      : itm?.status_code === 5
+                                      ? "DETAILS INSERTION FAILED"
+                                      : itm?.status_code === 6
+                                      ? "TRANSFER SUCCESSFUL"
+                                      : itm?.status_code === 7
+                                      ? "TRANSFER FAILED"
+                                      : null}
                                   </td>
                                   <td
                                     style={{ gap: "2px", display: "flex" }}
@@ -615,7 +606,7 @@ const Messages = () => {
           </section>
         </div>
         <aside className="control-sidebar control-sidebar-dark"></aside>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
