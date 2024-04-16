@@ -68,7 +68,9 @@ const Messages = () => {
 
   // -----------------------------------------Fetching data from getMessageList Api-----------------------------------------------------//
 
-  const fetchMessage = async (start, end, status) => {
+  const fetchMessage = async (start, end, status) =>
+  {
+    
     try {
       setLoading(true);
       const apiResponse = await Apis.GetMessageList(apiUrl, start, end, status);
@@ -77,13 +79,19 @@ const Messages = () => {
         dispatch(addItems(apiResponse?.data));
       }
 
-      setitems(apiResponse?.data);
+      if (Number(statusvalue) ===0)
+      {
+        setitems(apiResponse?.data);
+      }
+
+    
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -108,7 +116,7 @@ const Messages = () => {
           setFilteredItems2([...messages].sort((a, b) => a.id - b.id));
         }
       }
-    }, 2000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [statusvalue, items]);
@@ -138,7 +146,13 @@ const Messages = () => {
     setVisitcode("");
     setcarriername("");
     setStatus(0);
-    setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
+    console.log("filte", filteredItems)
+    if(filteredItems2 && filteredItems2.length>0)
+      setFilteredItems([...filteredItems2].sort((a, b) => a.id - b.id));
+    
+    else
+      setFilteredItems([...items2].sort((a, b) => a.id - b.id));
+
   };
 
   const handleFiltermessage = () => {
@@ -176,7 +190,9 @@ const Messages = () => {
         )
       );
     }
-    setFilteredItems(filteredData);
+
+    console.log("FILTERDA",filteredData)
+    setFilteredItems([...filteredData].sort((a, b) => a.id - b.id));
   };
 
   useEffect(() => {
@@ -394,8 +410,8 @@ const Messages = () => {
                           <option value="">Select Cargo Code</option>
                           {ccode &&
                             ccode?.length > 0 &&
-                            ccode?.map((itm) => (
-                              <option key={itm}>{itm}</option>
+                            ccode?.map((itm,i) => (
+                              <option key={i}>{itm}</option>
                             ))}
                         </select>
                       </div>
@@ -482,7 +498,7 @@ const Messages = () => {
                             Array.isArray(filteredItems) &&
                             filteredItems?.map((itm, i) => {
                               return (
-                                <tr key={itm?.id}>
+                                <tr key={i}>
                                   <td>{i + 1}</td>
                                   <td>
                                     {itm?.row_created_local
